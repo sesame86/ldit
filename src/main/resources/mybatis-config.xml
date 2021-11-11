@@ -4,7 +4,7 @@
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
-	<typeAliases>
+<!-- 	<typeAliases>
 		<typeAlias type="com.mycompany.LDIT.app_doc_file.model.app_doc_file" alias="app_doc_file"/>
 		<typeAlias type="com.mycompany.LDIT.app_doc_type.model.app_doc_type" alias="app_doc_type"/>
 		<typeAlias type="com.mycompany.LDIT.app_doc.model.app_doc" alias="app_doc"/>
@@ -59,5 +59,5 @@
 		<mapper resource="mappers/working_hours_kinds-mapper.xml"/>
 		<mapper resource="mappers/working_hours_manage-mapper.xml"/>
 		<mapper resource="mappers/xiuxi-mapper.xml"/>
-	</mappers>
+	</mappers> -->
 </configuration>
