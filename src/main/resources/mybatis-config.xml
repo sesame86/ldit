@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.mycompany.LDIT.app_doc_file.model.app_doc_file" alias="app_doc_file"/>
+		<typeAlias type="com.mycompany.LDIT.app_doc_type.model.app_doc_type" alias="app_doc_type"/>
+		<typeAlias type="com.mycompany.LDIT.app_doc.model.app_doc" alias="app_doc"/>
+		<typeAlias type="com.mycompany.LDIT.app.model.app" alias="app"/>
+		<typeAlias type="com.mycompany.LDIT.attendance.model.attendance" alias="attendance"/>
+		<typeAlias type="com.mycompany.LDIT.bookmark.model.bookmark" alias="bookmark"/>
+		<typeAlias type="com.mycompany.LDIT.client_needs.model.client_needs" alias="client_needs"/>
+		<typeAlias type="com.mycompany.LDIT.department.model.department" alias="department"/>
+		<typeAlias type="com.mycompany.LDIT.issue_comment.model.issue_comment" alias="issue_comment"/>
+		<typeAlias type="com.mycompany.LDIT.issue.model.issue" alias="issue"/>
+		<typeAlias type="com.mycompany.LDIT.msg.model.msg" alias="msg"/>
+		<typeAlias type="com.mycompany.LDIT.plus_work.model.plus_work" alias="plus_work"/>
+		<typeAlias type="com.mycompany.LDIT.project.model.project" alias="project"/>
+		<typeAlias type="com.mycompany.LDIT.receive_msg.model.receive_msg" alias="receive_msg"/>
+		<typeAlias type="com.mycompany.LDIT.right.model.right" alias="right"/>
+		<typeAlias type="com.mycompany.LDIT.send_msg.model.send_msg" alias="send_msg"/>
+		<typeAlias type="com.mycompany.LDIT.staff.model.staff" alias="staff"/>
+		<typeAlias type="com.mycompany.LDIT.team_aim.model.team_aim" alias="team_aim"/>
+		<typeAlias type="com.mycompany.LDIT.team_member.model.team_member" alias="team_member"/>
+		<typeAlias type="com.mycompany.LDIT.team.model.team" alias="team"/>
+		<typeAlias type="com.mycompany.LDIT.work_break.model.work_break" alias="work_break"/>
+		<typeAlias type="com.mycompany.LDIT.work_comment.model.work_comment" alias="work_comment"/>
+		<typeAlias type="com.mycompany.LDIT.work.model.work" alias="work"/>
+		<typeAlias type="com.mycompany.LDIT.working_hours_kinds.model.working_hours_kinds" alias="working_hours_kinds"/>
+		<typeAlias type="com.mycompany.LDIT.working_hours_manage.model.working_hours_manage" alias="working_hours_manage"/>
+		<typeAlias type="com.mycompany.LDIT.xiuxi.model.xiuxi" alias="xiuxi"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="mappers/approval_doc_file-mapper.xml"/>
+		<mapper resource="mappers/approval_doc_type-mapper.xml"/>
+		<mapper resource="mappers/approval_doc-mapper.xml"/>
+		<mapper resource="mappers/approval-mapper.xml"/>
+		<mapper resource="mappers/attendance-mapper.xml"/>
+		<mapper resource="mappers/bookmark-mapper.xml"/>
+		<mapper resource="mappers/client_needs-mapper.xml"/>
+		<mapper resource="mappers/department-mapper.xml"/>
+		<mapper resource="mappers/issue_comment-mapper.xml"/>
+		<mapper resource="mappers/issue-mapper.xml"/>
+		<mapper resource="mappers/msg-mapper.xml"/>
+		<mapper resource="mappers/plus_work-mapper.xml"/>
+		<mapper resource="mappers/project-mapper.xml"/>
+		<mapper resource="mappers/receive_msg-mapper.xml"/>
+		<mapper resource="mappers/right-mapper.xml"/>
+		<mapper resource="mappers/send_msg-mapper.xml"/>
+		<mapper resource="mappers/staff-mapper.xml"/>
+		<mapper resource="mappers/team_aim-mapper.xml"/>
+		<mapper resource="mappers/team_member-mapper.xml"/>
+		<mapper resource="mappers/team-mapper.xml"/>
+		<mapper resource="mappers/work_break-mapper.xml"/>
+		<mapper resource="mappers/work_comment-mapper.xml"/>
+		<mapper resource="mappers/work-mapper.xml"/>
+		<mapper resource="mappers/working_hours_kinds-mapper.xml"/>
+		<mapper resource="mappers/working_hours_manage-mapper.xml"/>
+		<mapper resource="mappers/xiuxi-mapper.xml"/>
+	</mappers>
+</configuration>
