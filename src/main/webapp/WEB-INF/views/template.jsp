@@ -9,8 +9,9 @@
 <script src="https://kit.fontawesome.com/616f27e0c4.js" crossorigin="anonymous"></script>
 
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/LDIT_header.css" /><!-- header css -->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/main.css" /><!-- main css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/ldit_header.css" /><!-- header css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/ldit_aside.css" /><!-- main css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/basic.css" /><!-- basic css -->
 
 <!-- jquery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -22,7 +23,7 @@
 </head>
 <body>
 	<%@ include file="ldit_header.jsp" %>
-	
+	<%@ include file="ldit_aside.jsp" %>
 	<!-- 여기에 입력 -->
 	
 </body>
