@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AttendanceController {
 	
 	
-	@RequestMapping(value="attcheck")
+	@RequestMapping(value="/attendance/attcheck")
 	public String attcheckMethod(Model m) {
-		return "attcheck";
+		return "attendance/attcheck";
 	}
 }
