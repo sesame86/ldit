@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.app.model;
+package com.mycompany.ldit.app.model;
 
-public class appDao {
+public class AppDao {
 
 }

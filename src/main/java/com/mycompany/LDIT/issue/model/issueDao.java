@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.issue.model;
+package com.mycompany.ldit.issue.model;
 
-public class issueDao {
+public class IssueDao {
 
 }

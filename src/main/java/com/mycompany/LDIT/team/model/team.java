@@ -1,13 +1,13 @@
-package com.mycompany.LDIT.team.model;
+package com.mycompany.ldit.team.model;
 
-public class team {
+public class Team {
 	private static final long serialVersionUID = 1111L;
 	private int team_id;
 	private int pro_no;
 	private String team_title;
 	private int team_manager;
 	
-	public team() {
+	public Team() {
 		super();
 	}
 

@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.team.model;
+package com.mycompany.ldit.team.model;
 
-public class teamDao {
+public class TeamDao {
 
 }

@@ -1,4 +1,4 @@
-package com.mycompany.LDIT.attendance.controller;
+package com.mycompany.ldit.attendance.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

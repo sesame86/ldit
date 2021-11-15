@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.msg.model;
+package com.mycompany.ldit.msg.model;
 
-public class msgDao {
+public class MsgDao {
 
 }

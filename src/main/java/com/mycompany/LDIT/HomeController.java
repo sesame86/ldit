@@ -1,4 +1,4 @@
-package com.mycompany.LDIT;
+package com.mycompany.ldit;
 
 import java.text.DateFormat;
 import java.util.Date;

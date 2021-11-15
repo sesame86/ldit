@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.xiuxi.model;
+package com.mycompany.ldit.xiuxi.model;
 
-public class xiuxiDao {
+public class XiuxiDao {
 
 }

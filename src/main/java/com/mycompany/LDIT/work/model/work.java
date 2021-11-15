@@ -1,8 +1,8 @@
-package com.mycompany.LDIT.work.model;
+package com.mycompany.ldit.work.model;
 
 import java.sql.Date;
 
-public class work {
+public class Work {
 	private static final long serialVersionUID = 1111L;
 	private int work_id;
 	private int stf_no;
@@ -12,7 +12,7 @@ public class work {
 	private Date work_end;
 	private int work_finish;
 	
-	public work() {
+	public Work() {
 		super();
 	}
 

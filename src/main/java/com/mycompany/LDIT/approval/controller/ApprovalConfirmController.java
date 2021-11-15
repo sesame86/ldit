@@ -1,4 +1,4 @@
-package com.mycompany.LDIT.approval.controller;
+package com.mycompany.ldit.approval.controller;
 
 import org.springframework.stereotype.Controller;
 

@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.staff.model;
+package com.mycompany.ldit.staff.model;
 
-public class staffDao {
+public class StaffDao {
 
 }

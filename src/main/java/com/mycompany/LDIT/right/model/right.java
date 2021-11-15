@@ -1,12 +1,12 @@
-package com.mycompany.LDIT.right.model;
+package com.mycompany.ldit.right.model;
 
-public class right {
+public class Right {
 	private static final long serialVersionUID = 1111L;
 	private int pro_no;
 	private int stf_no;
 	private int right_no;
 	
-	public right() {
+	public Right() {
 		super();
 	}
 

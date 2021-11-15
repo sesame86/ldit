@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.work.model;
+package com.mycompany.ldit.work.model;
 
-public class workDao {
+public class WorkDao {
 
 }

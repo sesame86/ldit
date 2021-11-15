@@ -1,8 +1,8 @@
-package com.mycompany.LDIT.attendance.model;
+package com.mycompany.ldit.attendance.model;
 
 import java.sql.Date;
 
-public class attendance {
+public class Attendance {
 	private static final long serialVersionUID = 1111L;
 	private Date att_date;
 	private int stf_no;
@@ -13,7 +13,7 @@ public class attendance {
 	private int xiu_no;
 	private int wh_code;
 	
-	public attendance() {
+	public Attendance() {
 		super();
 	}
 

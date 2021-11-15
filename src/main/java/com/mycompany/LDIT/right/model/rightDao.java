@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.right.model;
+package com.mycompany.ldit.right.model;
 
-public class rightDao {
+public class RightDao {
 
 }

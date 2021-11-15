@@ -1,6 +1,6 @@
-package com.mycompany.LDIT.issue.model;
+package com.mycompany.ldit.issue.model;
 
-public class issue {
+public class Issue {
 	private static final long serialVersionUID = 1111L;
 	private int issue_id;
 	private int work_id;
@@ -11,7 +11,7 @@ public class issue {
 	private int issue_check;
 	private int issue_rank;
 	
-	public issue() {
+	public Issue() {
 		super();
 	}
 

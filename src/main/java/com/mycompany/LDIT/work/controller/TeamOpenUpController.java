@@ -1,4 +1,4 @@
-package com.mycompany.LDIT.work.controller;
+package com.mycompany.ldit.work.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

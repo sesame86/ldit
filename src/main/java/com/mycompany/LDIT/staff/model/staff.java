@@ -1,8 +1,8 @@
-package com.mycompany.LDIT.staff.model;
+package com.mycompany.ldit.staff.model;
 
 import java.sql.Date;
 
-public class staff {
+public class Staff {
 	private static final long serialVersionUID = 1111L;
 	private int stf_no;
 	private int dept_no;
@@ -17,7 +17,7 @@ public class staff {
 	private Date stf_enroll;
 	private Date stf_nothere;
 	
-	public staff() {
+	public Staff() {
 		super();
 	}
 

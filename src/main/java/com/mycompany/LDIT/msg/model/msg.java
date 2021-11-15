@@ -1,12 +1,12 @@
-package com.mycompany.LDIT.msg.model;
+package com.mycompany.ldit.msg.model;
 
-public class msg {
+public class Msg {
 	private static final long serialVersionUID = 1111L;
 	private int m_no;
 	private String m_title;
 	private String m_content;
 	
-	public msg() {
+	public Msg() {
 		super();
 	}
 

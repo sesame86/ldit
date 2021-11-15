@@ -1,4 +1,4 @@
-package com.mycompany.LDIT.staff.controller;
+package com.mycompany.ldit.staff.controller;
 
 import org.springframework.stereotype.Controller;
 

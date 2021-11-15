@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.bookmark.model;
+package com.mycompany.ldit.bookmark.model;
 
-public class bookmarkDao {
+public class BookMarkDao {
 
 }

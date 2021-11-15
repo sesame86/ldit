@@ -1,8 +1,8 @@
-package com.mycompany.LDIT.project.model;
+package com.mycompany.ldit.project.model;
 
 import java.sql.Date;
 
-public class project {
+public class Project {
 	private static final long serialVersionUID = 1111L;
 	private int pro_no;
 	private String pro_title;
@@ -12,7 +12,7 @@ public class project {
 	private String pro_manager;
 	private char pro_status;
 	
-	public project() {}
+	public Project() {}
 	
 	
 	@Override

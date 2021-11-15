@@ -1,11 +1,11 @@
-package com.mycompany.LDIT.department.model;
+package com.mycompany.ldit.department.model;
 
-public class department {
+public class Department {
 	private static final long serialVersionUID = 1111L;
 	private int dept_no;
 	private String dept_name;
 	
-	public department() {
+	public Department() {
 		super();
 	}
 

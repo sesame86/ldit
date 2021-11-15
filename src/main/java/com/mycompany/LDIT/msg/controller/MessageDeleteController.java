@@ -1,4 +1,4 @@
-package com.mycompany.LDIT.msg.controller;
+package com.mycompany.ldit.msg.controller;
 
 import org.springframework.stereotype.Controller;
 

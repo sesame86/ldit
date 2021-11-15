@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.department.model;
+package com.mycompany.ldit.department.model;
 
-public class departmentDao {
+public class DepartmentDao {
 
 }

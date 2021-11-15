@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.project.model;
+package com.mycompany.ldit.project.model;
 
-public class projectDao {
+public class ProjectDao {
 
 }

@@ -1,12 +1,12 @@
-package com.mycompany.LDIT.xiuxi.model;
+package com.mycompany.ldit.xiuxi.model;
 
-public class xiuxi {
+public class Xiuxi {
 	private static final long serialVersionUID = 1111L;
 	private int xiu_no;
 	private String xiu_reason;
 	private int xiu_official;
 	
-	public xiuxi() {
+	public Xiuxi() {
 		super();
 	}
 

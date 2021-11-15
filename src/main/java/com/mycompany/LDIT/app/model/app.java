@@ -1,6 +1,6 @@
-package com.mycompany.LDIT.app.model;
+package com.mycompany.ldit.app.model;
 
-public class app {
+public class App {
 	private static final long serialVersionUID = 1111L;
 	private int app_no;
 	private int doc_no;
@@ -9,7 +9,7 @@ public class app {
 	private int app_result;
 	private String app_comment;
 	
-	public app() {
+	public App() {
 		super();
 	}
 	

@@ -1,4 +1,4 @@
-package com.mycompany.LDIT.main.controller;
+package com.mycompany.ldit.main.controller;
 
 import java.util.Locale;
 

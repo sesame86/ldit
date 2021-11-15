@@ -5,32 +5,32 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
  	<typeAliases>
-		<!-- <typeAlias type="com.mycompany.LDIT.app_doc_file.model.app_doc_file" alias="app_doc_file"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.app_doc_type.model.app_doc_type" alias="app_doc_type"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.app_doc.model.app_doc" alias="app_doc"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.app.model.app" alias="app"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.attendance.model.attendance" alias="attendance"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.bookmark.model.bookmark" alias="bookmark"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.client_needs.model.client_needs" alias="client_needs"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.department.model.department" alias="department"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.issue_comment.model.issue_comment" alias="issue_comment"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.issue.model.issue" alias="issue"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.msg.model.msg" alias="msg"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.plus_work.model.plus_work" alias="plus_work"/> -->
-		<typeAlias type="com.mycompany.LDIT.project.model.project" alias="project"/>
-		<!-- <typeAlias type="com.mycompany.LDIT.receive_msg.model.receive_msg" alias="receive_msg"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.right.model.right" alias="right"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.send_msg.model.send_msg" alias="send_msg"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.staff.model.staff" alias="staff"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.team_aim.model.team_aim" alias="team_aim"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.team_member.model.team_member" alias="team_member"/> -->
-		<typeAlias type="com.mycompany.LDIT.team.model.vo.Team" alias="Team"/>
-		<!-- <typeAlias type="com.mycompany.LDIT.work_break.model.work_break" alias="work_break"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.work_comment.model.work_comment" alias="work_comment"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.work.model.work" alias="work"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.working_hours_kinds.model.working_hours_kinds" alias="working_hours_kinds"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.working_hours_manage.model.working_hours_manage" alias="working_hours_manage"/> -->
-		<!-- <typeAlias type="com.mycompany.LDIT.xiuxi.model.xiuxi" alias="xiuxi"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.appdocfile.model.AppDocFile" alias="AppDocFile"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.appdoctype.model.AppDocType" alias="AppDocType"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.app_doc.model.AppDoc" alias="AppDoc"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.app.model.App" alias="App"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.attendance.model.Attendance" alias="Attendance"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.bookmark.model.BookMark" alias="BookMark"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.clientneeds.model.ClientNeeds" alias="ClientNeeds"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.department.model.Department" alias="Department"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.issuecomment.model.IssueComment" alias="IssueComment"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.issue.model.Issue" alias="Issue"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.msg.model.Msg" alias="Msg"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.pluswork.model.PlusWork" alias="PlusWork"/> -->
+		<typeAlias type="com.mycompany.ldit.project.model.Project" alias="Project"/>
+		<!-- <typeAlias type="com.mycompany.ldit.receivemsg.model.ReceiveMsg" alias="ReceiveMsg"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.right.model.Right" alias="Right"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.sendmsg.model.SendMsg" alias="SendMsg"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.staff.model.Staff" alias="Staff"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.teamaim.model.TeamAim" alias="TeamAim"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.teammember.model.TeamMember" alias="TeamMember"/> -->
+		<typeAlias type="com.mycompany.ldit.team.model.vo.Team" alias="Team"/>
+		<!-- <typeAlias type="com.mycompany.ldit.workbreak.model.WorkBreak" alias="WorkBreak"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.workcomment.model.WorkComment" alias="WorkComment"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.work.model.Work" alias="Work"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.workinghourskinds.model.WorkingHoursKinds" alias="WorkingHoursKinds"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.workinghoursmanage.model.WorkingHoursManage" alias="WorkingHoursManage"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.xiuxi.model.Xiuxi" alias="Xiuxi"/> -->
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappers/approval_doc_file-mapper.xml"/> -->

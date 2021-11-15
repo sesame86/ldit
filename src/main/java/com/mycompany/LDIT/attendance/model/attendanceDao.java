@@ -1,5 +1,5 @@
-package com.mycompany.LDIT.attendance.model;
+package com.mycompany.ldit.attendance.model;
 
-public class attendanceDao {
+public class AttendanceDao {
 
 }

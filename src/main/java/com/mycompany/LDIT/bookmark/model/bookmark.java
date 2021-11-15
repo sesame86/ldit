@@ -1,12 +1,12 @@
-package com.mycompany.LDIT.bookmark.model;
+package com.mycompany.ldit.bookmark.model;
 
-public class bookmark {
+public class BookMark {
 	private static final long serialVersionUID = 1111L;
 	private int bookmark_id;
 	private int enroll_id;
 	private int enrolled_id;
 	
-	public bookmark() {
+	public BookMark() {
 		super();
 	}
 
