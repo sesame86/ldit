@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class TeamMainController {
 	@RequestMapping(value = "/teammain", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		return "team_main";
+		return "team/team_main";
 	}
+	
 }

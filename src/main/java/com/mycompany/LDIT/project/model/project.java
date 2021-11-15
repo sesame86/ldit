@@ -10,17 +10,18 @@ public class project {
 	private Date pro_start;
 	private Date pro_end;
 	private String pro_manager;
+	private char pro_status;
 	
-	public project() {
-		super();
-	}
-
+	public project() {}
+	
+	
 	@Override
 	public String toString() {
 		return "project [pro_no=" + pro_no + ", pro_title=" + pro_title + ", pro_content=" + pro_content
-				+ ", pro_start=" + pro_start + ", pro_end=" + pro_end + ", pro_manager=" + pro_manager + "]";
+				+ ", pro_start=" + pro_start + ", pro_end=" + pro_end + ", pro_manager=" + pro_manager + ", pro_status="
+				+ pro_status + "]";
 	}
-	
+
 	public int getPro_no() {
 		return pro_no;
 	}
@@ -67,5 +68,13 @@ public class project {
 
 	public void setPro_manager(String pro_manager) {
 		this.pro_manager = pro_manager;
-	}	
+	}
+
+	public char getPro_status() {
+		return pro_status;
+	}
+
+	public void setPro_status(char pro_status) {
+		this.pro_status = pro_status;
+	}
 }

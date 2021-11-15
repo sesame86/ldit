@@ -23,13 +23,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="ldit_header.jsp" %>
-	<%@ include file="ldit_aside.jsp" %>
+	<%@ include file="/WEB-INF/views/ldit_header.jsp" %>
+	<%@ include file="/WEB-INF/views/ldit_aside.jsp" %>
 	<section>
         <a id="leftArrow"><i class="fas fa-chevron-left"></i></a>
         <div id="teamContainer">
             <h1>Team</h1>
-            <a href="#" id="teamAdd"><i class="fas fa-user-plus"></i></a>
+            <c:if test="${id == 'TM'}">
+            	<a href="teamadd" id="teamAdd"><i class="fas fa-user-plus"></i></a>
+            </c:if>
+            <a href="teamadd" id="teamAdd"><i class="fas fa-user-plus"></i></a>
             <div id="teamConGrid">
                 <article class="card">
                     <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">

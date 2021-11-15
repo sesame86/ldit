@@ -23,19 +23,27 @@
 <title>LDIT: 팀 개설</title>
 </head>
 <body>
-	<%@ include file="ldit_header.jsp" %>
-	<%@ include file="ldit_aside.jsp" %>
+	<%@ include file="/WEB-INF/views/ldit_header.jsp" %>
+	<%@ include file="/WEB-INF/views/ldit_aside.jsp" %>
 	<section>
         <div id="tmAddCon">
             <h1>팀 개설</h1>
             <article>
                 <div id="pjInfoCon">
                     <div id="smallColor"></div>
-                    <div id="pjTitle">프로젝트명</div>
-                    <div id="pmName">김예은</div>
-                    <div id="startDate">2021/11/12</div>
-                    <div id="endDate">2021/12/20</div>
-                    <div id="bigColor">새로운 요청</div>
+                    <div id="pjTitle">${getProject.pro_title}</div>
+                    <div id="pmName">${getProject.pro_manager}</div>
+                    <div id="startDate">${getProject.pro_start}</div>
+                    <div id="endDate">${getProject.pro_end}</div>
+                    <c:if test="${getProject.pro_status} == 'N'">
+                    <div id="bigColor" style="background-color: #3498DB">새로운 요청</div>
+                    </c:if>
+                    <c:if test="${getProject.pro_status} == 'C'">
+                    <div id="bigColor" style="background-color: #27AE60">진행중</div>
+                    </c:if>
+                    <c:if test="${getProject.pro_status} == 'F'">
+                    <div id="bigColor" style="background-color: yellow">완료</div>
+                    </c:if>
                 </div>
                 <form id="tmAddFrm">
                     <label>팀명</label>
@@ -50,6 +58,7 @@
                         <a href="#"><i class="fas fa-user-minus"></i></a>
                         <img class="tmInfoImg" src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                         <p>김예은</p>
+                        <input type="hidden" name="id_clean">
                     </div>
                     <p></p><p></p>
                     <div class="addResultCon">
