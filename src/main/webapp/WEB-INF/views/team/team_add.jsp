@@ -35,15 +35,15 @@
                     <div id="pmName">${getProject.pro_manager}</div>
                     <div id="startDate">${getProject.pro_start}</div>
                     <div id="endDate">${getProject.pro_end}</div>
-                    <c:if test="${getProject.pro_status} == 'N'">
+                    <%-- <c:if test="${getProject.pro_status == 'N'}">
                     <div id="bigColor" style="background-color: #3498DB">새로운 요청</div>
                     </c:if>
-                    <c:if test="${getProject.pro_status} == 'C'">
+                    <c:if test="${getProject.pro_status == 'C'}">
                     <div id="bigColor" style="background-color: #27AE60">진행중</div>
                     </c:if>
-                    <c:if test="${getProject.pro_status} == 'F'">
+                    <c:if test="${getProject.pro_status == 'F'}">
                     <div id="bigColor" style="background-color: yellow">완료</div>
-                    </c:if>
+                    </c:if> --%>
                 </div>
                 <form id="tmAddFrm">
                     <label>팀명</label>
