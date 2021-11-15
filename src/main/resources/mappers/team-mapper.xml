@@ -7,4 +7,7 @@
 	<select id="getproject" resultType="project">
 		select * from project
 	</select>
+	<select id="getTeam" resultType="Team">
+		select * from team
+	</select>
 </mapper>
