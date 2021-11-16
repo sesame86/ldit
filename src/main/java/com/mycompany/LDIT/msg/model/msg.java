@@ -12,7 +12,7 @@ public class Msg {
 
 	@Override
 	public String toString() {
-		return "msg [m_no=" + m_no + ", m_title=" + m_title + ", m_content=" + m_content + "]";
+		return "Msg [m_no=" + m_no + ", m_title=" + m_title + ", m_content=" + m_content + "]";
 	}
 	
 	public int getM_no() {
@@ -37,5 +37,5 @@ public class Msg {
 
 	public void setM_content(String m_content) {
 		this.m_content = m_content;
-	}	
+	}
 }

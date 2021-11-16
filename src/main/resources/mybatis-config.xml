@@ -7,7 +7,7 @@
  	<typeAliases>
 		<!-- <typeAlias type="com.mycompany.ldit.appdocfile.model.AppDocFile" alias="AppDocFile"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.appdoctype.model.AppDocType" alias="AppDocType"/> -->
-		<!-- <typeAlias type="com.mycompany.ldit.app_doc.model.AppDoc" alias="AppDoc"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.appdoc.model.AppDoc" alias="AppDoc"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.app.model.App" alias="App"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.attendance.model.Attendance" alias="Attendance"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.bookmark.model.BookMark" alias="BookMark"/> -->
@@ -33,31 +33,31 @@
 		<!-- <typeAlias type="com.mycompany.ldit.xiuxi.model.Xiuxi" alias="Xiuxi"/> -->
 	</typeAliases>
 	<mappers>
-		<!-- <mapper resource="mappers/approval_doc_file-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/approval_doc_type-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/approval_doc-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/approvaldocfile-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/approvaldoctype-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/approvaldoc-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/approval-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/attendance-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/bookmark-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/client_needs-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/clientneeds-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/department-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/issue_comment-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/issuecomment-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/issue-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/msg-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/plus_work-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/pluswork-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/project-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/receive_msg-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/receivemsg-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/right-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/send_msg-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/sendmsg-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/staff-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/team_aim-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/team_member-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/teamaim-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/teammember-mapper.xml"/> -->
 		<mapper resource="mappers/team-mapper.xml"/>
-		<!-- <mapper resource="mappers/work_break-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/work_comment-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/workbreak-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/workcomment-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/work-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/working_hours_kinds-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/working_hours_manage-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/workinghourskinds-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/workinghoursmanage-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/xiuxi-mapper.xml"/> -->
 	</mappers>
 </configuration>

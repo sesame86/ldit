@@ -1,15 +1,8 @@
 package com.mycompany.ldit.attendance.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@Controller("attcheck")
 public class AttendanceController {
-	
-	
-	@RequestMapping(value="/attendance/attcheck")
-	public String attcheckMethod(Model m) {
-		return "attendance/attcheck";
-	}
+
 }
