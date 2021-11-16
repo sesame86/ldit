@@ -6,5 +6,17 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="TIGER"/>
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+	</bean>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
 </beans>

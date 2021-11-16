@@ -1,4 +1,4 @@
-package com.mycompany.ldit.project.model;
+package com.mycompany.ldit.project.model.vo;
 
 import java.sql.Date;
 

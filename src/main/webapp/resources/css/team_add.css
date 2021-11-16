@@ -1,0 +1,135 @@
+@charset "UTF-8";
+section{
+    width: 87%;
+    height: 94%;
+    float: right;
+    overflow: auto;
+    position: relative;
+}
+h1{
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+#tmAddCon{
+    width: 90%;
+    height: 90%;
+    margin: 3rem auto auto auto;
+}
+#pjInfoCon{
+    display: grid;
+    width: 70%;
+    height: 100%;
+    margin: 5rem auto;
+    font-size: 1.7rem;
+    text-align: center;
+    gap: 0 1%;
+}
+
+#smallColor{
+    background-color: #3498DB;
+    border-radius: 0.3rem;
+    padding: 1rem 0;
+}
+#pjTitle, #pmName, #startDate, #endDate, #bigColor{
+    background-color: #e5e8eb;
+    border-radius: 0.3rem;
+    padding: 1rem 0;
+}
+
+#tmAddFrm{
+    width: 40%;
+    height: 100%;
+    margin: 8% auto;
+    display: grid;
+    grid-template-columns: 20% 70% 10%;
+    gap: 1rem 0 ;
+}
+label{
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: auto;
+}
+input{
+    padding: 0.7rem;
+}
+#teamAddBtn{
+    font-size: 1.4rem;
+    margin: auto;
+}
+.addResultCon{
+    display: grid;
+    grid-template-columns: 20% 20% 60%;
+    gap: 10%;
+    margin: auto;
+}
+.addResultCon a{
+    width: 100%;
+    font-size: 1.4rem;
+    margin: auto;
+}
+.tmInfoImg{
+    width: 100%;
+    border-radius: 3rem;
+    margin: auto;
+}
+.addResultCon p{
+    width: 100%;
+    font-size: 1.3rem;
+    margin: auto;
+}
+/*세로*/
+/*스마트폰*/
+@media only screen and (max-width:  767px) and (orientation: portrait){
+    #pjInfoCon{
+        grid-template-columns: 1fr;
+        font-size: 1.3rem;
+        gap: 1%;
+    }
+    #tmAddFrm{
+        width: 90%;
+    }
+}
+/*태블릿 pc*/
+@media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: portrait){
+    #pjInfoCon{
+        display: grid;
+        grid-template-columns: 2% 29% 10% 20% 20% 19%;
+        font-size: 1rem;
+    }
+    #tmAddFrm{
+        width: 70%;
+    }
+}
+/*데스크탑*/
+@media only screen and (min-width:  960px) and (orientation: portrait){
+    #pjInfoCon{
+        display: grid;
+        grid-template-columns: 2% 29% 10% 20% 20% 19%;
+        font-size: 1.2rem;
+    }
+}
+/*가로*/
+/*스마트폰*/
+@media only screen and (max-width:  767px) and (orientation: portrait) and (orientation: landscape){
+    #pjInfoCon{
+        display: grid;
+        grid-template-columns: 2% 29% 10% 20% 20% 19%;
+        font-size: 1.7rem;
+    }
+}
+/*태블릿 pc*/
+@media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: landscape){
+    #pjInfoCon{
+        display: grid;
+        grid-template-columns: 2% 29% 10% 20% 20% 19%;
+        font-size: 1rem;
+    }
+}
+/*데스크탑*/
+@media only screen and (min-width:  960px) and (orientation: landscape){
+    #pjInfoCon{
+        display: grid;
+        grid-template-columns: 2% 29% 10% 20% 20% 19%;
+        font-size: 1.2rem;
+    }
+}

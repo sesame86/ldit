@@ -1,13 +1,13 @@
-package com.mycompany.ldit.main.controller;
+package com.mycompany.ldit.work.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller("main")
-public class MainController {
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
+@Controller("teammain")
+public class TeamMainController {
+	@RequestMapping(value = "/teammain", method = RequestMethod.GET)
 	public String home() {
-		return "main";
+		return "team/team_main";
 	}
 }

@@ -6,59 +6,59 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="com.mycompany.ldit.app.model.vo.App" alias="App"/>
-		<typeAlias type="com.mycompany.ldit.appdoc.model.vo.AppDoc" alias="AppDoc"/>
-		<typeAlias type="com.mycompany.ldit.appdocfile.model.vo.AppDocFile" alias="AppDocFile"/>
-		<typeAlias type="com.mycompany.ldit.appdoctype.model.vo.AppDocType" alias="AppDocType"/>
-		<typeAlias type="com.mycompany.ldit.attendance.model.vo.Attendance" alias="Attendance"/>
-		<typeAlias type="com.mycompany.ldit.bookmark.model.vo.BookMark" alias="BookMark"/>
-		<typeAlias type="com.mycompany.ldit.clientneeds.model.vo.ClientNeeds" alias="ClientNeeds"/>
-		<typeAlias type="com.mycompany.ldit.department.model.vo.Department" alias="Department"/>
-		<typeAlias type="com.mycompany.ldit.issue.model.vo.Issue" alias="Issue"/>
-		<typeAlias type="com.mycompany.ldit.issuecomment.model.vo.IssueComment" alias="IssueComment"/>
-		<typeAlias type="com.mycompany.ldit.msg.model.vo.Msg" alias="Msg"/>
-		<typeAlias type="com.mycompany.ldit.pluswork.model.vo.PlusWork" alias="PlusWork"/>
+		<!-- <typeAlias type="com.mycompany.ldit.app.model.vo.App" alias="App"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.appdoc.model.vo.AppDoc" alias="AppDoc"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.appdocfile.model.vo.AppDocFile" alias="AppDocFile"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.appdoctype.model.vo.AppDocType" alias="AppDocType"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.attendance.model.vo.Attendance" alias="Attendance"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.bookmark.model.vo.BookMark" alias="BookMark"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.clientneeds.model.vo.ClientNeeds" alias="ClientNeeds"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.department.model.vo.Department" alias="Department"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.issue.model.vo.Issue" alias="Issue"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.issuecomment.model.vo.IssueComment" alias="IssueComment"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.msg.model.vo.Msg" alias="Msg"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.pluswork.model.vo.PlusWork" alias="PlusWork"/> -->
 		<typeAlias type="com.mycompany.ldit.project.model.vo.Project" alias="Project"/>
-		<typeAlias type="com.mycompany.ldit.receivemsg.model.vo.ReceiveMsg" alias="ReceiveMsg"/>
-		<typeAlias type="com.mycompany.ldit.right.model.vo.Right" alias="Right"/>
-		<typeAlias type="com.mycompany.ldit.sendmsg.model.vo.SendMsg" alias="SendMsg"/>
-		<typeAlias type="com.mycompany.ldit.Staff.model.vo.Staff" alias="Staff"/>
+		<!-- <typeAlias type="com.mycompany.ldit.receivemsg.model.vo.ReceiveMsg" alias="ReceiveMsg"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.right.model.vo.Right" alias="Right"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.sendmsg.model.vo.SendMsg" alias="SendMsg"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.Staff.model.vo.Staff" alias="Staff"/> -->
 		<typeAlias type="com.mycompany.ldit.team.model.vo.Team" alias="Team"/>
-		<typeAlias type="com.mycompany.ldit.teamaim.model.vo.TeamAim" alias="TeamAim"/>
-		<typeAlias type="com.mycompany.ldit.teammember.model.vo.TeamMember" alias="TeamMember"/>
-		<typeAlias type="com.mycompany.ldit.work.model.vo.Work" alias="Work"/>
-		<typeAlias type="com.mycompany.ldit.workbreak.model.vo.WorkBreak" alias="WorkBreak"/>
-		<typeAlias type="com.mycompany.ldit.workcomment.model.vo.WorkComment" alias="WorkComment"/>
-		<typeAlias type="com.mycompany.ldit.workinghourskinds.model.vo.WorkingHoursKinds" alias="WorkingHoursKinds"/>
-		<typeAlias type="com.mycompany.ldit.workinghoursmanage.model.vo.WorkingHoursManage" alias="WorkingHoursManage"/>
-		<typeAlias type="com.mycompany.ldit.xiuxi.model.vo.Xiuxi" alias="Xiuxi"/>		
+		<!-- <typeAlias type="com.mycompany.ldit.teamaim.model.vo.TeamAim" alias="TeamAim"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.teammember.model.vo.TeamMember" alias="TeamMember"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.work.model.vo.Work" alias="Work"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.workbreak.model.vo.WorkBreak" alias="WorkBreak"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.workcomment.model.vo.WorkComment" alias="WorkComment"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.workinghourskinds.model.vo.WorkingHoursKinds" alias="WorkingHoursKinds"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.workinghoursmanage.model.vo.WorkingHoursManage" alias="WorkingHoursManage"/> -->
+		<!-- <typeAlias type="com.mycompany.ldit.xiuxi.model.vo.Xiuxi" alias="Xiuxi"/> -->
 	</typeAliases>
 	<mappers>
-		<mapper resource="mappers/app-mapper.xml"/>
-		<mapper resource="mappers/appdoc-mapper.xml"/>
-		<mapper resource="mappers/appdocfile-mapper.xml"/>
-		<mapper resource="mappers/appdoctype-mapper.xml"/>
-		<mapper resource="mappers/attendance-mapper.xml"/>
-		<mapper resource="mappers/bookmark-mapper.xml"/>
-		<mapper resource="mappers/clientneeds-mapper.xml"/>
-		<mapper resource="mappers/department-mapper.xml"/>
-		<mapper resource="mappers/issue-mapper.xml"/>
-		<mapper resource="mappers/issuecomment-mapper.xml"/>
-		<mapper resource="mappers/msg-mapper.xml"/>
-		<mapper resource="mappers/pluswork-mapper.xml"/>
-		<mapper resource="mappers/project-mapper.xml"/>
-		<mapper resource="mappers/receivemsg-mapper.xml"/>
-		<mapper resource="mappers/right-mapper.xml"/>
-		<mapper resource="mappers/sendmsg-mapper.xml"/>
-		<mapper resource="mappers/staff-mapper.xml"/>
+		<!-- <mapper resource="mappers/app-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/appdoc-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/appdocfile-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/appdoctype-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/attendance-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/bookmark-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/clientneeds-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/department-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/issue-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/issuecomment-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/msg-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/pluswork-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/project-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/receivemsg-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/right-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/sendmsg-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/staff-mapper.xml"/> -->
 		<mapper resource="mappers/team-mapper.xml"/>
-		<mapper resource="mappers/teamaim-mapper.xml"/>
-		<mapper resource="mappers/teammember-mapper.xml"/>
-		<mapper resource="mappers/work-mapper.xml"/>
-		<mapper resource="mappers/workbreak-mapper.xml"/>
-		<mapper resource="mappers/workcomment-mapper.xml"/>
-		<mapper resource="mappers/workinghourskinds-mapper.xml"/>
-		<mapper resource="mappers/workinghoursmanage-mapper.xml"/>
-		<mapper resource="mappers/xiuxi-mapper.xml"/>
+		<!-- <mapper resource="mappers/teamaim-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/teammember-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/work-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/workbreak-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/workcomment-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/workinghourskinds-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/workinghoursmanage-mapper.xml"/> -->
+		<!-- <mapper resource="mappers/xiuxi-mapper.xml"/> -->
 	</mappers>
 </configuration>
