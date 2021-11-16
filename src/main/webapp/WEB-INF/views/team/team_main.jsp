@@ -34,102 +34,20 @@
             </c:if>
             <a href="teamadd" id="teamAdd"><i class="fas fa-user-plus"></i></a>
             <div id="teamConGrid">
+            <c:forEach var="vo" items="${getTeam}" varStatus="status">
                 <article class="card">
                     <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
                     <div class="cardGridCon">
-                        <h4 class="teamName">팀명</h4>
+                        <h4 class="teamName">${vo.team_title}</h4>
                         <div class="cardGrid">
                             <p>TM</p>
-                            <div>김예은</div>
+                            <div>${vo.team_manager}</div>
                             <p>팀목표</p>
-                            <progress value="60" max="100"></progress>
+                            <progress value="${vo.aim_status}" max="100"></progress>
                         </div>
                     </div>
                 </article>
-                <article class="card">
-                    <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
-                    <div class="cardGridCon">
-                        <h4 class="teamName">팀명</h4>
-                        <div class="cardGrid">
-                            <p>TM</p>
-                            <div>김예은</div>
-                            <p>팀목표</p>
-                            <progress value="60" max="100"></progress>
-                        </div>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
-                    <div class="cardGridCon">
-                        <h4 class="teamName">팀명</h4>
-                        <div class="cardGrid">
-                            <p>TM</p>
-                            <div>김예은</div>
-                            <p>팀목표</p>
-                            <progress value="60" max="100"></progress>
-                        </div>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
-                    <div class="cardGridCon">
-                        <h4 class="teamName">팀명</h4>
-                        <div class="cardGrid">
-                            <p>TM</p>
-                            <div>김예은</div>
-                            <p>팀목표</p>
-                            <progress value="60" max="100"></progress>
-                        </div>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
-                    <div class="cardGridCon">
-                        <h4 class="teamName">팀명</h4>
-                        <div class="cardGrid">
-                            <p>TM</p>
-                            <div>김예은</div>
-                            <p>팀목표</p>
-                            <progress value="60" max="100"></progress>
-                        </div>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
-                    <div class="cardGridCon">
-                        <h4 class="teamName">팀명</h4>
-                        <div class="cardGrid">
-                            <p>TM</p>
-                            <div>김예은</div>
-                            <p>팀목표</p>
-                            <progress value="60" max="100"></progress>
-                        </div>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
-                    <div class="cardGridCon">
-                        <h4 class="teamName">팀명</h4>
-                        <div class="cardGrid">
-                            <p>TM</p>
-                            <div>김예은</div>
-                            <p>팀목표</p>
-                            <progress value="60" max="100"></progress>
-                        </div>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
-                    <div class="cardGridCon">
-                        <h4 class="teamName">팀명</h4>
-                        <div class="cardGrid">
-                            <p>TM</p>
-                            <div>김예은</div>
-                            <p>팀목표</p>
-                            <progress value="60" max="100"></progress>
-                        </div>
-                    </div>
-                </article>
+            </c:forEach>
             </div>
         </div>
         <a id="rigthArrow"><i class="fas fa-chevron-right"></i></a>

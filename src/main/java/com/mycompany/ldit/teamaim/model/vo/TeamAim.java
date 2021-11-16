@@ -1,4 +1,4 @@
-package com.mycompany.ldit.teamaim.model;
+package com.mycompany.ldit.teamaim.model.vo;
 
 import java.sql.Date;
 

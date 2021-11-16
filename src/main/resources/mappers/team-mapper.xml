@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Team">
-	<select parameterType="int" resultType="project" id="getOneProject">
+	<resultMap type="Team" id="TeamJoinAim">
+		<id property="team_id" column="team_id"/>
+		<result property="pro_no" column="pro_no"/>
+		<result property="team_title" column="team_title"/>
+		<result property="team_manager" column="team_manager"/>
+		<collection property="TeamAims" ofType="TeamAim">
+			<id property="aim_id" column="aim_id"/>
+			<result property="aim_status" column="aim_status"/>
+		</collection>
+	</resultMap>
+	<select parameterType="int" resultType="TeamJoinAim" id="getOneProjectTeam">
+		select t.*, ta.aim_id, ta.aim_status from project p join team t on p.pro_no = t.pro_no left join team_aim ta on t.team_id = ta.team_id where t.pro_no like #{pro_no}
+	</select>
+	<select parameterType="int" resultType="Project" id="getOneProject">
 		select * from project where pro_no = #{pro_no}
 	</select>
-	<select resultType="project" id="getproject">
+	<select resultType="Project" id="getproject">
 		select * from project
 	</select>
 	<!-- <select id="getTeam" resultType="Team">select * from team</select>-->
