@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WorkingHoursKinds {
 	
+	private static final long serialVersionUID = 1112L;
 	private int whCode;
 	private String whName;
 

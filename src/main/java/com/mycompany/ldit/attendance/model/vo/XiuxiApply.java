@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class XiuxiApply {
 	
+	private static final long serialVersionUID = 1112L;
 	private int xaNo;
 	private int xiuNo;
 	private int stfNo;

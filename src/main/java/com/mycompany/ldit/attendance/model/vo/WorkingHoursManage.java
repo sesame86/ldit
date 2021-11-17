@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WorkingHoursManage {
 	
+	private static final long serialVersionUID = 1112L;
 	private int whDate;
 	private int whCode;
 	private Date whStart;

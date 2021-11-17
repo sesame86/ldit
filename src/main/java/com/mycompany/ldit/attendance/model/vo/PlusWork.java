@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PlusWork {
 	
+	private static final long serialVersionUID = 1112L;
 	private int attNo;
 	private int stfNo;
 	private int whCode;

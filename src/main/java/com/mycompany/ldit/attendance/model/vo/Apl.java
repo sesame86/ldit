@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Apl {
 	
+	private static final long serialVersionUID = 1112L;
 	private int stfNo;
 	private int aplTotal;
 	
