@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.ldit.team.model.service.TeamService;
-import com.mycompany.ldit.team.model.vo.TeamJoinAim;
+import com.mycompany.ldit.team.model.vo.Team;
 
 @Controller("teammain")
 public class TeamMainController {
@@ -19,14 +19,13 @@ public class TeamMainController {
 	@RequestMapping(value = "/teammain", method = RequestMethod.GET)
 	public ModelAndView teamMain(ModelAndView mv) {
 		String viewpage = "team/team_main";
-		List<TeamJoinAim> voList = null;
+		List<Team> voList = null;
 		try {
 			//pro_no 넘기는거 받아오기 전까지
 			int pro_no = 1;
 			
 			voList = TeamService.getOneProjectTeam(pro_no);
 			viewpage = "team/team_main";
-			System.out.println("voList" + voList);
 			mv.addObject("getTeam", voList);
 		}catch (Exception e) {
 			//viewpage = "error/commonError";

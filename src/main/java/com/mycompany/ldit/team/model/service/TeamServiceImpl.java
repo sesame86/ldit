@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.ldit.project.model.vo.Project;
 import com.mycompany.ldit.team.model.dao.TeamDao;
-import com.mycompany.ldit.team.model.vo.TeamJoinAim;
+import com.mycompany.ldit.team.model.vo.Team;
 
 @Service("TeamService")
 public class TeamServiceImpl implements TeamService{
@@ -15,7 +15,7 @@ public class TeamServiceImpl implements TeamService{
 	private TeamDao TeamDao;
 	
 	@Override
-	public List<TeamJoinAim> getOneProjectTeam(int pro_no) throws Exception {
+	public List<Team> getOneProjectTeam(int pro_no) throws Exception {
 		return TeamDao.getOneProjectTeam(pro_no);
 	}
 	@Override

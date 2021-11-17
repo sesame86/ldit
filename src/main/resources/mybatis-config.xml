@@ -22,9 +22,8 @@
 		<!-- <typeAlias type="com.mycompany.ldit.receivemsg.model.vo.ReceiveMsg" alias="ReceiveMsg"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.right.model.vo.Right" alias="Right"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.sendmsg.model.vo.SendMsg" alias="SendMsg"/> -->
-		<!-- <typeAlias type="com.mycompany.ldit.Staff.model.vo.Staff" alias="Staff"/> -->
+		<typeAlias type="com.mycompany.ldit.staff.model.vo.Staff" alias="Staff"/>
 		<typeAlias type="com.mycompany.ldit.team.model.vo.Team" alias="Team"/>
-		<typeAlias type="com.mycompany.ldit.team.model.vo.TeamJoinAim" alias="TeamJoinAim"/>
 		<typeAlias type="com.mycompany.ldit.teamaim.model.vo.TeamAim" alias="TeamAim"/>
 		<!-- <typeAlias type="com.mycompany.ldit.teammember.model.vo.TeamMember" alias="TeamMember"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.work.model.vo.Work" alias="Work"/> -->

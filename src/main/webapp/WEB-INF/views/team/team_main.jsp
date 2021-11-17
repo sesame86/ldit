@@ -41,9 +41,9 @@
                         <h4 class="teamName">${vo.team_title}</h4>
                         <div class="cardGrid">
                             <p>TM</p>
-                            <div>${vo.team_manager}</div>
+                            <div>${vo.staff.stf_name}</div>
                             <p>팀목표</p>
-                            <progress value="${vo.aim_status}" max="100"></progress>
+                            <progress value="${vo.teamAim.aim_status}" max="100"></progress>
                         </div>
                     </div>
                 </article>
