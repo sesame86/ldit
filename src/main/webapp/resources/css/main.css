@@ -373,3 +373,100 @@ progress {
 /*데스크탑*/
 @media only screen and (min-width:  960px) and (orientation: landscape){
 }
+
+/*오늘의일정 관련 */
+/*todayWork*/
+    #todayWork{
+        background-color: #F7F9FA;
+        border-radius: 0.6rem;
+        clear: both;
+        float: left;
+        width: 33%;
+        height: 100%;
+        margin: 0 1%;
+        overflow: auto;
+    }
+    #todayWork::-webkit-scrollbar {
+        width: 10px;
+    }
+    #todayWork::-webkit-scrollbar-thumb {
+        background-color: lightgray;
+        border-radius: 10px;
+        background-clip: padding-box;
+        border: 2px solid transparent;
+    }
+    #todayWork::-webkit-scrollbar-track {
+        border-radius: 10px;
+        box-shadow: inset 0px 0px 5px white;
+    }
+    .today{
+        clear: both;
+        width: 90%;
+        height: 18%;
+        background-color: white;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 0.3rem;
+        margin: 1rem auto;
+    }
+    .today:hover{
+        -webkit-transform: scale(1.01);
+        transform: scale(1.01);
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .aaaaa{
+        float: left;
+        background-color: #F3DE8F;
+        width: 1%;
+        height: 100%;
+        display: inline-block;
+        border-radius: 0.3rem 0 0 0.3rem ;
+    }
+    
+    /* 휴식정보 관련 */
+    #dayoffToday{
+        clear: both;
+        width: 80%;
+        height: 2%;
+        margin: 1rem auto;
+        line-height: 1.8rem;
+        font-size: 0.8rem;
+    }
+    #restInfo{
+        text-align: center;
+        overflow: auto;
+    }
+
+    #restHour{
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+        width: 80%;
+        height: 8%;
+        margin: 1rem auto;
+        line-height: 1.8rem;
+        font-size: 0.8rem;
+    }
+  
+  
+    #restGo{
+        float: none;
+        background-color: lightgray;
+        border-radius: 0.2rem;
+        width: 20%;
+        height: 100%;
+        margin: 1rem auto;
+    }
+    #dayoff{
+        float: left;
+        background-color: lightgray;
+        border-radius: 0.2rem;
+        width: 60%;
+        height: 100%;
+    }
+    #dayoffconunt{
+        float: left;
+        background-color: white;
+        border-radius: 0.2rem;
+        width: 40%;
+        height: 100%;
+    }

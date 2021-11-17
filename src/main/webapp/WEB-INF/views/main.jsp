@@ -34,6 +34,56 @@
             <h1 class="mobileTitle">오늘의 일정</h1>
             <div id="todayWork">
                 <!--여기 작성 3-->
+                 <div class="today">
+                    <div class="aaaaa"></div>
+                        <div class="bbbbb">
+                        <h4>일정 제목</h4>
+                    </div>
+                </div>
+                <div class="today">
+                    <div class="aaaaa" style="background-color: #B5DDC7;"></div>
+                        <div class="bbbbb">
+                        <h4>일정 제목</h4>
+                    </div>
+                </div>
+                <div class="today">
+                    <div class="aaaaa" ></div>
+                        <div class="bbbbb">
+                        <h4>일정 제목</h4>
+                    </div>
+                </div>
+                <div class="today">
+                    <div class="aaaaa" style="background-color: #F8C7C2;"></div>
+                        <div class="bbbbb">
+                        <h4>일정 제목</h4>
+                    </div>
+                </div>
+                <div class="today">
+                    <div class="aaaaa"></div>
+                        <div class="bbbbb">
+                        <h4>일정 제목</h4>
+                    </div>
+                </div>
+                <div class="today">
+                    <div class="aaaaa" style="background-color: #B5DDC7;"></div>
+                        <div class="bbbbb">
+                        <h4>일정 제목</h4>
+                    </div>
+                </div>
+                <div class="today">
+                    <div class="aaaaa" ></div>
+                        <div class="bbbbb">
+                        <h4>일정 제목</h4>
+                    </div>
+                </div>
+                <div class="today">
+                    <div class="aaaaa" style="background-color: #F8C7C2;"></div>
+                        <div class="bbbbb">
+                        <h4>일정 제목</h4>
+                    </div>
+                </div>
+               
+            </div>  
 
             </div>
             <h1 class="mobileTitle">내정보</h1>
@@ -55,6 +105,16 @@
             <h1 class="mobileTitle">휴식정보</h1>
             <div id="restInfo">
                 <!--여기 작성 5-->
+                <div style="margin: 5em auto;">
+
+                    <p id="restHour">오늘 총 휴식시간 00:00:00</p>
+                    <div id="restToday">
+                        <p id="restGo" > 휴식</p>
+                    </div>
+                    <div id="dayoffToday"></div>
+                    <p id="dayoff">연차 잔여일수</p>
+                    <p id="dayoffconunt">10 일</p>
+                </div>       
 
             </div>
         </article>
