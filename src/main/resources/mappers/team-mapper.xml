@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Team">
-	<resultMap type="Team" id="TeamJoinAim">
+	<resultMap type="Team" id="TeamJoinAimJoinStaff">
 		<id property="team_id" column="team_id"/>
 		<result property="pro_no" column="pro_no"/>
 		<result property="team_title" column="team_title"/>
-		<result property="team_manager" column="team_manager"/>
-		<collection property="TeamAims" ofType="TeamAim">
+		<association property="teamAim" javaType="TeamAim">
 			<id property="aim_id" column="aim_id"/>
 			<result property="aim_status" column="aim_status"/>
-		</collection>
+		</association>
+		<association property="staff" javaType="Staff">
+			<result property="stf_name" column="stf_name"/>
+		</association>
 	</resultMap>
-	<select parameterType="int" resultType="TeamJoinAim" id="getOneProjectTeam">
-		select t.*, ta.aim_id, ta.aim_status from project p join team t on p.pro_no = t.pro_no left join team_aim ta on t.team_id = ta.team_id where t.pro_no like #{pro_no}
+	
+	<select parameterType="int" resultMap="TeamJoinAimJoinStaff" id="getOneProjectTeam">
+		select t.team_id, t.pro_no, t.team_title, nvl(ta.aim_id,0) aim_id, nvl(ta.aim_status,0) aim_status, s.stf_name
+		from team t left join team_aim ta on t.team_id = ta.team_id join staff s on t.team_manager = s.stf_no
+		where t.pro_no = #{pro_no}
 	</select>
 	<select parameterType="int" resultType="Project" id="getOneProject">
 		select * from project where pro_no = #{pro_no}

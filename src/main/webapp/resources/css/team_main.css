@@ -7,21 +7,24 @@ section{
     position: relative;
 }
 #leftArrow{
-    font-size: 2.5rem;
+    font-size: 2rem;
     position:absolute;
     top:50%;
     left:2%;
 }
 #rigthArrow{
-    font-size: 2.5rem;
+    font-size: 2rem;
     position:absolute;
     top:50%;
     right:2%;
 }
 #dotContainer{
     position:absolute;
-    bottom:5%;
+    bottom:2%;
     left: 50%;
+}
+#dotContainer a i{
+	font-size: 0.7rem;
 }
 #dotContainer a {
     margin: 0 0.4rem;

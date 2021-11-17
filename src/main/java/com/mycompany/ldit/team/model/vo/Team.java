@@ -1,20 +1,23 @@
 package com.mycompany.ldit.team.model.vo;
 
+import com.mycompany.ldit.staff.model.vo.Staff;
+import com.mycompany.ldit.teamaim.model.vo.TeamAim;
+
 public class Team {
 	private static final long serialVersionUID = 1111L;
 	private int team_id;
 	private int pro_no;
 	private String team_title;
 	private int team_manager;
+	private TeamAim teamAim;
+	private Staff staff;
 	
-	public Team() {
-		super();
-	}
+	public Team() {}
 	
 	@Override
 	public String toString() {
 		return "Team [team_id=" + team_id + ", pro_no=" + pro_no + ", team_title=" + team_title + ", team_manager="
-				+ team_manager + "]";
+				+ team_manager + ", teamAim=" + teamAim + ", staff=" + staff + "]";
 	}
 
 	public int getTeam_id() {
@@ -47,5 +50,21 @@ public class Team {
 
 	public void setTeam_manager(int team_manager) {
 		this.team_manager = team_manager;
+	}
+
+	public TeamAim getTeamAim() {
+		return teamAim;
+	}
+
+	public void setTeamAim(TeamAim teamAim) {
+		this.teamAim = teamAim;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
 	}
 }

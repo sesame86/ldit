@@ -1,4 +1,4 @@
-package com.mycompany.ldit.staff.model;
+package com.mycompany.ldit.staff.model.vo;
 
 import java.sql.Date;
 
