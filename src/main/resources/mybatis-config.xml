@@ -50,7 +50,7 @@
 		<!-- <mapper resource="mappers/receivemsg-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/right-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/sendmsg-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/staff-mapper.xml"/> -->
+		<mapper resource="mappers/staff-mapper.xml"/>
 		<mapper resource="mappers/team-mapper.xml"/>
 		<!-- <mapper resource="mappers/teamaim-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/teammember-mapper.xml"/> -->

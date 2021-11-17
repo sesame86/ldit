@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.ldit.staff.model.vo.Staff;
+
 @Service("staffService")
 public class StaffService implements StaffServiceInterface{
 

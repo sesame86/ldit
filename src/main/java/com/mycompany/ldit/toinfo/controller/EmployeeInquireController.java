@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mycompany.ldit.staff.model.Staff;
 import com.mycompany.ldit.staff.model.StaffService;
+import com.mycompany.ldit.staff.model.vo.Staff;
 
 @Controller("einquire")
 public class EmployeeInquireController {
