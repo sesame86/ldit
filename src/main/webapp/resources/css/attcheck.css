@@ -10,35 +10,43 @@ section {
 #article_a{
 	background-color: beige;
 	width: 90%;
-    height: 40%;
+    height: 40vh;
     margin: 5% auto;
 	display: grid;
 	grid-template-columns: auto auto auto;
+	grid-template-rows: 15% 85%;
 }
 
 #article_a h1{
 	grid-column-start: 1;
 	grid-column-end: 4;
+	line-height: 1.1rem;
 }
 
 #article_a > div{
 	width: 80%;
 	height: 100%;
 	margin: auto;
+	background-color: #F7F9FA;
+	position: relative;
+}
+
+#article_a > div > button{
+	position: absolute;
+	width: 130px;
+    height: 50px;
+    left: 17%;
+	bottom: 10%;
 }
 
 #article_a > div > div > span:first-child{
-	text-align: left;
+	float: left;
 	color: blue;
 }
 
 #article_a > div > div > span:last-child{
-	text-align: right;
+	float: right;
 	color: red;
-}
-
-.div_checkin{
-	background-color: #F7F9FA;
 }
 
 
