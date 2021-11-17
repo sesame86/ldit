@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.ldit.project.model.vo.Project;
+import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.team.model.dao.TeamDao;
 import com.mycompany.ldit.team.model.vo.Team;
 
@@ -21,5 +22,17 @@ public class TeamServiceImpl implements TeamService{
 	@Override
 	public Project getOneProject(int pro_no) throws Exception {
 		return TeamDao.getOneProject(pro_no);
+	}
+	@Override
+	public List<Staff> searchPM(String searchWord) throws Exception {
+		return TeamDao.searchPM(searchWord);
+	}
+	@Override
+	public List<Staff> searchTeamMember(String searchWord) throws Exception {
+		return TeamDao.searchPM(searchWord);
+	}
+	@Override
+	public Staff searchByNo(int searchNo) throws Exception {
+		return TeamDao.searchByNo(searchNo);
 	}
 }

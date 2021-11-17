@@ -34,7 +34,7 @@
             </c:if>
             <a href="teamadd" id="teamAdd"><i class="fas fa-user-plus"></i></a>
             <div id="teamConGrid">
-            <c:forEach var="vo" items="${getTeam}" varStatus="status">
+            <c:forEach var="vo" items="${getTeam}">
                 <article class="card">
                     <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
                     <div class="cardGridCon">

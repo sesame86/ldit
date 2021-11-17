@@ -13,17 +13,22 @@
 			<result property="stf_name" column="stf_name"/>
 		</association>
 	</resultMap>
-	
+	<!-- 팀 메인 조회 -->
 	<select parameterType="int" resultMap="TeamJoinAimJoinStaff" id="getOneProjectTeam">
 		select t.team_id, t.pro_no, t.team_title, nvl(ta.aim_id,0) aim_id, nvl(ta.aim_status,0) aim_status, s.stf_name
 		from team t left join team_aim ta on t.team_id = ta.team_id join staff s on t.team_manager = s.stf_no
 		where t.pro_no = #{pro_no}
 	</select>
+	<!-- 팀개설시 프로젝트 기본정보 조회 -->
 	<select parameterType="int" resultType="Project" id="getOneProject">
 		select * from project where pro_no = #{pro_no}
 	</select>
-	<select resultType="Project" id="getproject">
-		select * from project
+	<!-- pm 검색/team member 검색 -->
+	<select id="search" parameterType="String" resultType="Staff">
+		select stf_no, dept_no, stf_lvl, stf_name from staff where stf_name like '%'||#{searchWord}||'%'
 	</select>
-	<!-- <select id="getTeam" resultType="Team">select * from team</select>-->
+	<!-- 사원번호로 이름, 사진 가져오기 -->
+	<select id="searchByNo" parameterType="int" resultType="Staff">
+		select stf_no, stf_name, stf_img from staff where stf_no = #{searchNo}
+	</select>
 </mapper>

@@ -1,13 +1,20 @@
 package com.mycompany.ldit.work.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.ldit.project.model.vo.Project;
+import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.team.model.service.TeamService;
+import com.mycompany.ldit.team.model.vo.Team;
 
 @Controller("topen")
 public class TeamOpenUpController {
@@ -23,7 +30,6 @@ public class TeamOpenUpController {
 			int pro_no = 1;
 			vo = TeamService.getOneProject(pro_no);
 			viewpage = "team/team_add";
-			System.out.println("vo:" + vo);
 			mv.addObject("getProject", vo);
 		}catch (Exception e) {
 			//viewpage = "error/commonError";
@@ -32,5 +38,46 @@ public class TeamOpenUpController {
 		}
 		mv.setViewName(viewpage);
 		return mv;
+	}
+	@RequestMapping(value = "/teamadd", method = RequestMethod.POST)
+	public ModelAndView postTeam(ModelAndView mv, Team tvo) {
+		String viewpage = "redirect:teammain";
+		
+		System.out.println("진입");
+		System.out.println("tvo: " + tvo);
+		try {
+			
+		}catch (Exception e) {
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	@RequestMapping(value = "/searchpm.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Staff> searchPM(HttpServletRequest request) {
+		String searchPM = request.getParameter("searchPM");
+		List<Staff> staffList = null;
+		try {
+			staffList = TeamService.searchPM(searchPM);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return staffList;
+	}
+	@RequestMapping(value = "/searchbyno.do", method = RequestMethod.GET)
+	@ResponseBody
+	public Staff searchByNo(HttpServletRequest request) {
+		String searchByNoStr = request.getParameter("searchByNo");
+		int searchByNo = 0;
+		if(searchByNoStr != null) {
+			searchByNo = Integer.parseInt(searchByNoStr);
+		}
+		Staff staffVo = null;
+		try {
+			staffVo = TeamService.searchByNo(searchByNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return staffVo;
 	}
 }
