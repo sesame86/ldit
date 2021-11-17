@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+section {
+    width: 87%;
+    height: 94%;
+    float: right;
+    overflow: auto;
+}
+
+#article_a{
+	background-color: beige;
+	width: 90%;
+    height: 40%;
+    margin: 5% auto;
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
+
+#article_a h1{
+	grid-column-start: 1;
+	grid-column-end: 4;
+}
+
+#article_a > div{
+	width: 80%;
+	height: 100%;
+	margin: auto;
+}
+
+#article_a > div > div > span:first-child{
+	text-align: left;
+	color: blue;
+}
+
+#article_a > div > div > span:last-child{
+	text-align: right;
+	color: red;
+}
+
+.div_checkin{
+	background-color: #F7F9FA;
+}
+
+
