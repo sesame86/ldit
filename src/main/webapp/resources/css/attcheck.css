@@ -31,21 +31,20 @@ section {
 	position: relative;
 }
 
-#article_a > div > button{
-	position: absolute;
-	width: 130px;
-    height: 50px;
-    left: 17%;
-	bottom: 10%;
+#article_a > div > div{
+	clear:both;
+	overflow : hidden;
+	width: 80%;
+	margin: 1rem auto;
 }
 
 #article_a > div > div > span:first-child{
-	float: left;
+	float:left;
 	color: blue;
 }
 
 #article_a > div > div > span:last-child{
-	float: right;
+	float:right;
 	color: red;
 }
 

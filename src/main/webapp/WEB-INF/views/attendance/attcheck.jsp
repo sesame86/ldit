@@ -22,7 +22,7 @@
 			<h1><br>근태현황</h1>
 			<div class="div_checkin">
 				<div>
-					<span>Today's 근무시간</span>
+					<span>Today's ***근무시간</span>
 					<span>00:00:00</span>
 				</div>
 				<div>
@@ -33,7 +33,7 @@
 					<span>Today's 퇴근시각</span>
 					<span>00:00:00</span>
 				</div>
-				<button type="button" id="btn_checkin">출근</button>
+				<div><a href="">출근</a></div>
 			</div>
 			<div class="div_restin">
 				<div>
@@ -48,7 +48,7 @@
 					<span>Today's 퇴근시각</span>
 					<span>00:00:00</span>
 				</div>
-				<button type="button" id="btn_restin">출근</button>
+				<div><button type="button" id="btn_restin">출근</button></div>
 			</div>
 			<div class="div_apply">
 				<div>
@@ -63,7 +63,7 @@
 					<span>Today's 퇴근시각</span>
 					<span>00:00:00</span>
 				</div>
-				<button type="button" id="btn_apply">출근</button>
+				<div><button type="button" id="btn_apply">출근</button></div>
 			</div>		
 		</article>
 		<article id="article_b">
@@ -90,24 +90,6 @@
 
 
 <script>
-
-$("#btn_checkin").on("click", function(){
-	$.ajax({
-		  url : "checkin"
-		, data : {"stfNo" : "${session.stfNo}"}
-		, type : "post"
-		, dataType : "json"
-		, success : function(d){
-			
-		}
-		, error : : function(request, status, errorData){ 
-			 alert("error code : " + request.status + "\n" 
-					 + "message : " + request.responseText + "\n" 
-					 + "error : " + errorData); 
-					 }
-	});
-});
-
 
 
 
