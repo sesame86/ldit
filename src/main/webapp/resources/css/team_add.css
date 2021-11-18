@@ -26,7 +26,6 @@ h1{
 }
 
 #smallColor{
-    background-color: #3498DB;
     border-radius: 0.3rem;
     padding: 1rem 0;
 }
@@ -126,7 +125,7 @@ input{
     #pjInfoCon{
         display: grid;
         grid-template-columns: 2% 29% 10% 20% 20% 19%;
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
     #tmAddFrm{
         width: 70%;
@@ -137,7 +136,7 @@ input{
     #pjInfoCon{
         display: grid;
         grid-template-columns: 2% 29% 10% 20% 20% 19%;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 }
 /*가로*/
@@ -154,7 +153,7 @@ input{
     #pjInfoCon{
         display: grid;
         grid-template-columns: 2% 29% 10% 20% 20% 19%;
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 }
 /*데스크탑*/
@@ -162,6 +161,6 @@ input{
     #pjInfoCon{
         display: grid;
         grid-template-columns: 2% 29% 10% 20% 20% 19%;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 }

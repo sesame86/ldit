@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- jstl -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% String ctxPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
@@ -18,8 +20,6 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<!-- jstl -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <title>LDIT: 팀 개설</title>
 </head>
@@ -31,20 +31,28 @@
             <h1>팀 개설</h1>
             <article>
                 <div id="pjInfoCon">
-                    <div id="smallColor"></div>
+                	<c:if test="${getProject.pro_status.toString() eq 'N'}">
+                    <div id="smallColor" style="background-color: #3498DB"></div>
+                    </c:if>
+                    <c:if test="${getProject.pro_status.toString() eq 'C'}">
+                    <div id="smallColor" style="background-color: #27AE60"></div>
+                    </c:if>
+                    <c:if test="${getProject.pro_status.toString() eq 'F'}">
+                    <div id="smallColor" style="background-color: yellow"></div>
+                    </c:if>
                     <div id="pjTitle">${getProject.pro_title}</div>
                     <div id="pmName">${getProject.pro_manager}</div>
                     <div id="startDate">${getProject.pro_start}</div>
                     <div id="endDate">${getProject.pro_end}</div>
-                    <%-- <c:if test="${getProject.pro_status == 'N'}">
+                    <c:if test="${getProject.pro_status.toString() eq 'N'}">
                     <div id="bigColor" style="background-color: #3498DB">새로운 요청</div>
                     </c:if>
-                    <c:if test="${getProject.pro_status == 'C'}">
+                    <c:if test="${getProject.pro_status.toString() eq 'C'}">
                     <div id="bigColor" style="background-color: #27AE60">진행중</div>
                     </c:if>
-                    <c:if test="${getProject.pro_status == 'F'}">
+                    <c:if test="${getProject.pro_status.toString() eq 'F'}">
                     <div id="bigColor" style="background-color: yellow">완료</div>
-                    </c:if> --%>
+                    </c:if>
                 </div>
                 <form id="tmAddFrm" action="teamadd" method="post">
                     <label>팀명</label>
@@ -165,25 +173,23 @@
     				}
     			},
     			error : function(e) {
-		        	alert("멤버 추가를 실패했습니다. 다시 시도해 주세요.");
+		        	alert("멤버 추가를 실패했습니다. 정확히 선택 후 다시 시도해 주세요.");
 		        }
     		})
     	}
     	function duplicationCheck(no) {
     		var tmemLen = $("input[name=stf_no]").length;
-    		console.log(tmemLen);
     		var tmemArr = new Array(tmemLen);
 			for(var i=0; i<tmemLen; i++){
 				tmemArr[i] = $("input[name=stf_no]").eq(i).val();
 			}
-			console.log(tmemArr);
-			for(var i=0; i<tmemLen; i++){
-				if(tmemArr[i] == no){
-					return false;
-				}else{
-					return true;
-				}
+			var result = null;
+			if(tmemArr.indexOf(no.toString(16)) === -1){
+				result = true;
+			}else{
+				result = false;
 			}
+			return result;
 		}
     	function deleteTeamMember(no) {
 			$("#icon_"+no).remove();
