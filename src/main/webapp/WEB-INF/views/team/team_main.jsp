@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- jstl -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% String ctxPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
@@ -16,9 +18,6 @@
 
 <!-- jquery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- jstl -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <title>Insert title here</title>
 </head>
@@ -42,8 +41,8 @@
                         <div class="cardGrid">
                             <p>TM</p>
                             <div>${vo.staff.stf_name}</div>
-                            <p>팀목표</p>
-                            <progress value="${vo.teamAim.aim_status}" max="100"></progress>
+                            <p onclick="teamGoalList(${vo.team_id})">팀목표</p>
+                            <progress value="${vo.teamAim.aim_status}" max="100" id="mainPbar"></progress>
                         </div>
                     </div>
                 </article>
@@ -56,6 +55,121 @@
             <a><i class="fas fa-circle"></i></a>
             <a><i class="fas fa-circle"></i></a>
         </div>
+        <!-- team goal list modal -->
+        <div id="teamGoalModal">
+		    <div class="modal-content">
+		      <div class="container">
+		        <div id="goalBasic">
+		        	<span onclick="closeModal()" id="cancleBtn"><i class="fas fa-times"></i></span>
+			        <h1 id="teamH1">팀 목표</h1>
+			        <a class="addGoalBtn" onclick="addGoal()"><i class="far fa-plus-square"></i></a>
+		        </div>
+		        <div id="goalList">
+		        </div>
+		      </div>
+		    </div>
+		</div>
+	    <!-- team goal register modal -->
+        <div id="tgRegisterModal">
+		    <div class="modal-content">
+		      <div class="container">
+		        <div id="goalBasic">
+		        	<span onclick="closeModal()" id="cancleBtn"><i class="fas fa-times"></i></span>
+			        <h1 id="teamH1">팀 목표 등록</h1>
+		        </div>
+		        <form id="tgForm" method="post" action="">
+		        	<label>목표 제목</label>
+		        	<input name="aim_title" required="required" id="aim_title">
+		        	<label>내용</label>
+		        	<textarea rows="8" name="aim_content" required="required" id="aim_content"></textarea>
+		        	<label>기간</label>
+		        	<select id="spendTime">
+		        		<option>1주일</option>
+		        		<option>2주일</option>
+		        		<option>3주일</option>
+		        		<option>4주일</option>
+		        		<option>사용자 지정</option>
+		        	</select>
+		        	<label>시작일</label>
+		        	<input type="date">
+		        	<label>마감일</label>
+		        	<input type="date">
+		        </form>
+		      </div>
+		    </div>
+	    </div>
     </section>
+    <script type="text/javascript">
+    	function teamGoalList(teamId) {
+    		$("#goalList").children().remove();
+    		$.ajax({
+    			url:"getteamgoal.do",
+    			data:{"teamId": teamId},
+    			contentType: 'application/json; charset=utf-8',
+    			type: "GET",
+    			dataType: "json",
+    			success: function(result){
+    				var teamText = "<input type='hidden' value='"+teamId+"' id='storeTeamId'>";
+					if($("#storeTeamId").val() != null){
+						$("#storeTeamId").remove();
+					}
+					$("#teamGoalModal").append(teamText);
+    				if(result.length>0){
+    					$("#teamGoalModal").css("display", "block");
+    					for(var i=0; i<result.length; i++){
+	    					var text = "<div class='goalListCon'>"
+	    							+"<div class='reqColorSmall' id='color_"+i+"'></div>"
+	    							+"<div class='goalInfo'>"
+	    							+"<h4>"+result[i].aim_title+"</h4>"
+	    							+"<p class='dateP'>"+result[i].aim_start+" ~ "+result[i].aim_end+"</p>"
+	    							+"<progress value="+result[i].aim_status+" max='100' class='modalPbar'></progress><p class='percentP'>"+result[i].aim_status+"%</p>"
+	    							+"</div>"
+	    							+"</div>";
+	    					$("#teamGoalModal #goalList").append(text);
+	    					if(result[i].aim_status == 0){
+	    						$("#color_"+i).css("background-color", "#3498DB");
+	    					}else if(result[i].aim_status > 0 && result[i].aim_status < 100){
+	    						$("#color_"+i).css("background-color", "#27AE60");
+	    					}else if(result[i].aim_status == 100){
+	    						$("#color_"+i).css("background-color", "#FFE08C");
+	    					}
+    					}
+    				}else{
+    					$("#teamGoalModal").css("display", "block");
+    					$("#teamGoalModal #goalList").append("<h4 style='text-align:center'>팀의 목표가 존재하지 않습니다</h4>");
+    				}
+    			},
+    			error : function(e) {
+		        }
+    		})
+		}
+    	function closeModal() {
+    		$("#teamGoalModal").css("display", "none");
+    		$("#tgRegisterModal").css("display", "none");
+		}
+    	function addGoal() {
+    		$.ajax({
+    			url:"gstatuscheck.do",
+    			data:{"teamId": $("#storeTeamId").val()},
+    			contentType: 'application/json; charset=utf-8',
+    			type: "GET",
+    			dataType: "json",
+    			success: function(result){
+    				console.log("result"+result);
+    				
+					if(result >= 0 && result < 100){
+						alert("이전 목표를 완료해주세요");
+					}else if(result == 100 || result == "noGoal"){
+						//팀 목표 등록 모달로 이동
+						$("#teamGoalModal").css("display", "none");
+						$("#tgRegisterModal").css("display", "block");
+					}
+    			},
+    			error : function(e) {
+    				console.log("result");
+		        }
+    		})
+		}
+    </script>
 </body>
 </html>

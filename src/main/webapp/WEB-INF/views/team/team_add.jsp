@@ -169,7 +169,7 @@
     				if(duplicationCheck(result.stf_no) == false){
     					alert("이미 추가한 팀원입니다.");
     				}else{
-    					$(".addResultCon").append("<input type='hidden' name='stf_no' value='"+result.stf_no+"'><a href='#' onclick='deleteTeamMember("+result.stf_no+")' id='icon_"+result.stf_no+"'><i class='fas fa-user-minus'></i></a><img class='tmInfoImg' src='"+result.stf_img+"' id='img_"+result.stf_no+"'><p id='name_"+result.stf_no+"'>"+result.stf_name+"</p>");
+    					$(".addResultCon").append("<input type='hidden' name='staffList.staff' value='"+result.stf_no+"'><a href='#' onclick='deleteTeamMember("+result.stf_no+")' id='icon_"+result.stf_no+"'><i class='fas fa-user-minus'></i></a><img class='tmInfoImg' src='"+result.stf_img+"' id='img_"+result.stf_no+"'><p id='name_"+result.stf_no+"'>"+result.stf_name+"</p>");
     				}
     			},
     			error : function(e) {

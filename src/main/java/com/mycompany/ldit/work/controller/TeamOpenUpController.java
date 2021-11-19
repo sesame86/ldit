@@ -16,7 +16,7 @@ import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.team.model.service.TeamService;
 import com.mycompany.ldit.team.model.vo.Team;
 
-@Controller("topen")
+@Controller
 public class TeamOpenUpController {
 	@Autowired
 	private TeamService TeamService;

@@ -60,7 +60,7 @@ h1{
     object-fit: cover;
 }
 .teamName{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 .cardGridCon{
     width: 90%;
@@ -82,38 +82,190 @@ h1{
     height: 90%;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
-progress {
+#mainPbar {
     -webkit-appearance: none;
     width: 100%;
     height: 90%;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
-::-webkit-progress-bar {
+#mainPbar::-webkit-progress-bar {
     background-color: #F7F9FA;
     border-radius: 0.2rem;
 }
-::-webkit-progress-value {
+#mainPbar::-webkit-progress-value {
     background-color: #3498DB;
     border-radius: 0.2rem;
 }
-
+/*team goal*/
+#teamGoalModal, #tgRegisterModal{
+	z-index:3;
+	display:none;
+	padding-top:100px;
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background-color:rgb(0,0,0);
+	background-color:rgba(0,0,0,0.4)
+}
+.modal-content{
+	margin:auto;
+	background-color:#fff;
+	position:relative;
+	padding:0;
+	outline:0;
+	height: 80%;
+}
+.container{
+	width:100%;
+	height:100%;
+}
+.container:after,.w3-container:before{
+	content:"";
+	display:table;
+	clear:both;
+}
+#goalBasic{
+	clear: both;
+	width: 100%;
+	height: 15%;
+	display: block;
+	margin: auto;
+}
+#cancleBtn{
+	position: absolute;
+	float: right;
+	top: 1rem;
+	right: 1rem;
+}
+#teamH1{
+	margin: 1rem;
+	font-size: 2.4rem;
+	float: left;
+}
+.addGoalBtn{
+	float: left;
+	margin: 1.5rem;
+	font-size: 1.2rem;
+}
+#goalList{
+	clear: both;
+	display: block;
+    border-radius: 0.6rem;
+    width: 100%;
+    height: 80%;
+    overflow: auto;
+}
+.goalListCon{
+    clear: both;
+    width: 90%;
+    height: 15%;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    margin: 1rem auto;
+}
+.goalListCon:hover{
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+}
+.reqColorSmall{
+    float: left;
+    background-color: #FFE08C;
+    width: 1%;
+    height: 100%;
+    border-radius: 0.3rem 0 0 0.3rem ;
+}
+.goalInfo{
+	float: left;
+    width: 98%;
+    height: 100%;
+}
+.goalInfo h4{
+    margin: 0.7rem 1.6rem;
+    font-size: 1.1rem;
+}
+.dateP{
+	width: 55%;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin: 0 0 0 5%;
+    float: left;
+}
+.percentP{
+	width: 7%;
+	font-size: 0.8rem;
+	display: inline-block;
+	float: left;
+	margin: 0 0 0 1%;
+}
+.modalPbar {
+    -webkit-appearance: none;
+    width: 25%;
+    height: 0.8rem;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+    float: left;
+    margin: 0.2rem;
+}
+.modalPbar::-webkit-progress-bar {
+    background-color: white;
+    border-radius: 1rem;
+    height: 100%;
+}
+.modalPbar::-webkit-progress-value {
+    background-color: #CFE4ED;
+    border-radius: 1rem;
+    height: 100%;
+}
+#tgForm{
+	display: grid;
+	grid-template-columns: 30% 70%;
+	width: 70%;
+	margin: auto;
+}
+#tgForm label{
+	font-size: 1.2rem;
+	margin: 0.5rem 0;
+}
+#tgForm input, #tgForm textarea{
+	font-size: 1rem;
+	margin: 0.5rem 0;
+	padding: 0.3rem;
+}
+#spendTime{
+	font-size: 1rem;
+	margin: 0.5rem 0;
+	padding: 0.3rem;
+}
 /*세로*/
 /*스마트폰*/
 @media only screen and (max-width:  767px) and (orientation: portrait){
     #teamConGrid{
         grid-template-columns: 1fr 1fr;
     }
+    .modal-content{
+		width:90%;
+	}
 }
 /*태블릿 pc*/
 @media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: portrait){
     #teamConGrid{
         grid-template-columns: 1fr 1fr 1fr;
     }
+    .modal-content{
+		width:60%;
+	}
 }
 /*데스크탑*/
 @media only screen and (min-width:  960px) and (orientation: portrait){
     #teamConGrid{
         grid-template-columns: 1fr 1fr 1fr;
+    }
+    .modal-content{
+		width:30%;
     }
 }
 /*가로*/
@@ -122,16 +274,25 @@ progress {
     #teamConGrid{
         grid-template-columns: 1fr 1fr 1fr;
     }
+    .modal-content{
+		width:90%;
+	}
 }
 /*태블릿 pc*/
 @media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: landscape){
     #teamConGrid{
         grid-template-columns: 1fr 1fr 1fr;
     }
+    .modal-content{
+		width:50%;
+    }
 }
 /*데스크탑*/
 @media only screen and (min-width:  960px) and (orientation: landscape){
     #teamConGrid{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+    .modal-content{
+		width:35%;
     }
 }
