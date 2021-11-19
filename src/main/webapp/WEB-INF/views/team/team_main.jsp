@@ -62,7 +62,7 @@
 		        <div id="goalBasic">
 		        	<span onclick="closeModal()" id="cancleBtn"><i class="fas fa-times"></i></span>
 			        <h1 id="teamH1">팀 목표</h1>
-			        <a class="addGoalBtn" onclick="addGoal()"><i class="far fa-plus-square"></i></a>
+			        <a class="addGoalBtn" onclick="moveToAddgoal()"><i class="far fa-plus-square"></i></a>
 		        </div>
 		        <div id="goalList">
 		        </div>
@@ -77,29 +77,34 @@
 		        	<span onclick="closeModal()" id="cancleBtn"><i class="fas fa-times"></i></span>
 			        <h1 id="teamH1">팀 목표 등록</h1>
 		        </div>
-		        <form id="tgForm" method="post" action="">
-		        	<label>목표 제목</label>
-		        	<input name="aim_title" required="required" id="aim_title">
-		        	<label>내용</label>
-		        	<textarea rows="8" name="aim_content" required="required" id="aim_content"></textarea>
-		        	<label>기간</label>
-		        	<select id="spendTime">
-		        		<option>1주일</option>
-		        		<option>2주일</option>
-		        		<option>3주일</option>
-		        		<option>4주일</option>
-		        		<option>사용자 지정</option>
-		        	</select>
-		        	<label>시작일</label>
-		        	<input type="date">
-		        	<label>마감일</label>
-		        	<input type="date">
+		        <form method="post" action="goaladd">
+		        	<div id="tgForm">
+		        		<input type="hidden" id="team_id" name="team_id" value="0">
+		        		<label>목표 제목</label>
+			        	<input name="aim_title" required="required" id="aim_title">
+			        	<label>내용</label>
+			        	<textarea rows="8" name="aim_content" required="required" id="aim_content"></textarea>
+			        	<label>기간</label>
+			        	<select id="spendTime">
+			        		<option value="0">사용자 지정</option>
+			        		<option value="7">1주일</option>
+			        		<option value="14">2주일</option>
+			        		<option value="21">3주일</option>
+			        		<option value="28">4주일</option>
+			        	</select>
+			        	<label>시작일</label>
+			        	<input type="date" id="startDate" name="aim_start">
+			        	<label>마감일</label>
+			        	<input type="date" id="endDate" name="aim_end">
+		        	</div>
+		        	<button type="submit" id="sbBtn">등록</button>
 		        </form>
 		      </div>
 		    </div>
 	    </div>
     </section>
     <script type="text/javascript">
+    
     	function teamGoalList(teamId) {
     		$("#goalList").children().remove();
     		$.ajax({
@@ -147,7 +152,8 @@
     		$("#teamGoalModal").css("display", "none");
     		$("#tgRegisterModal").css("display", "none");
 		}
-    	function addGoal() {
+    	function moveToAddgoal() {
+    		$("#team_id").val($("#storeTeamId").val());
     		$.ajax({
     			url:"gstatuscheck.do",
     			data:{"teamId": $("#storeTeamId").val()},
@@ -170,6 +176,35 @@
 		        }
     		})
 		}
+    	$("#startDate").on("change", function(){
+    		if($("#spendTime").val() == 0){
+    			
+    		}else{
+    			var startDate = new Date($("#startDate").val());
+    			var endDate = new Date();
+    			endDate.setDate(parseInt(startDate.getDate()) + parseInt($("#spendTime").val()));
+    			$("#endDate").val(formatDate(endDate));
+    		}
+    	})
+    	$("#spendTime").on("change", function(){
+    		if($("#startDate").val() != null){
+    			var startDate = new Date($("#startDate").val());
+    			var endDate = new Date();
+    			endDate.setDate(parseInt(startDate.getDate()) + parseInt($("#spendTime").val()));
+    			$("#endDate").val(formatDate(endDate));
+    		}
+    	})
+    	function formatDate(date) {
+    		var d = new Date(date),
+    		month = '' + (d.getMonth() + 1),
+    		day = '' + d.getDate(),
+    		year = d.getFullYear();
+    		if (month.length < 2)
+    			month = '0' + month;
+    		if (day.length < 2)
+    			day = '0' + day;
+    		return [year, month, day].join('-');
+    	}
     </script>
 </body>
 </html>

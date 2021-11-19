@@ -11,4 +11,7 @@
 	<select parameterType="int" resultType="String" id="goalStatusCheck">
 		select aim_status from (select aim_status from team_aim where team_id = #{teamId} order by rownum desc) where rownum = 1
 	</select>
+	<insert id="postTeamGoal" parameterType="TeamAim">
+		insert into team_aim values(team_aim_seq.nextval, #{team_id}, #{aim_title}, #{aim_content}, #{aim_start}, #{aim_end}, 0)
+	</insert>
 </mapper>

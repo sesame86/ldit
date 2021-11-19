@@ -19,4 +19,7 @@ public class TeamAimDao {
 	public String goalStatusCheck(int teamId) {
 		return sqlSession.selectOne("TeamAim.goalStatusCheck", teamId);
 	}
+	public int postTeamGoal(TeamAim tAimVo) {
+		return sqlSession.insert("TeamAim.postTeamGoal", tAimVo);
+	}
 }

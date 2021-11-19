@@ -240,6 +240,20 @@ h1{
 	margin: 0.5rem 0;
 	padding: 0.3rem;
 }
+#sbBtn{
+	clear: both;
+	margin: 3rem auto;
+	text-align: center;
+	display: block;
+	padding: 0.4rem 1rem;
+	border: 0;
+	background-color: #eeeeee;
+	border-radius: 0.3rem;
+	font-size: 1rem;
+}
+#sbBtn:hover{
+	background-color: #cccccc;
+}
 /*세로*/
 /*스마트폰*/
 @media only screen and (max-width:  767px) and (orientation: portrait){
