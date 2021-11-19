@@ -6,7 +6,7 @@
 
 
 
-<insert id="insertCheckin" parameterMap="map">
+<insert id="insertCheckin" parameterType="map">
 	Insert into ATTENDANCE (ATT_NO, STF_NO, WH_CODE, ATT_START) values (#{attNo}, #{stfNo}, #{whCode}, #{attStart})
 </insert>
 

@@ -8,13 +8,13 @@ section {
 }
 
 #article_a{
-	background-color: beige;
 	width: 90%;
+	max-width: 1080px;
     height: 40vh;
     margin: 5% auto;
 	display: grid;
 	grid-template-columns: auto auto auto;
-	grid-template-rows: 15% 85%;
+	grid-row-gap: 2rem;
 }
 
 #article_a h1{
@@ -38,14 +38,142 @@ section {
 	margin: 1rem auto;
 }
 
-#article_a > div > div > span:first-child{
-	float:left;
-	color: blue;
+#article_a > div > .div_title{
+	overflow : hidden;
+	text-align: left;
+	font-weight: bold;
+	font-size: 1rem;
 }
 
-#article_a > div > div > span:last-child{
-	float:right;
-	color: red;
+#article_a > div > .div_time {
+	overflow : hidden;
+	text-align: right;
+	font-size: 1.5rem;
+}
+
+#article_a > .div_apply > div{
+	height: 25%;
+}
+
+.div_btn{
+	text-align: center;
+}
+
+.btn_click{
+	position: relative;
+    width: 130px;    
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+    background: #3498DB;
+    border: none;
+    text-decoration: none;
+    color: white;
+    margin: 0 auto;
+}
+
+.btn_click:hover{
+	color: #3498DB;
+	background: white;
+	border: 1px solid #3498DB;
+	transition-duration: 0.5s;
 }
 
 
+#article_c{
+	width: 90%;
+	max-width: 1080px;
+    margin: 5% auto;
+	display: grid;
+	grid-template-columns: auto;
+	grid-row-gap: 2rem;
+}
+
+#article_c h1{
+	line-height: 1.1rem;
+}
+
+.div_restin_title{
+	width: 100%;
+	margin: auto;
+	position: relative;
+	padding: 20px 0px 20px 10px;
+	background-color: #F7F9FA;
+}
+
+.div_restin_closer{
+	clear: both;
+	overflow: hidden;
+}
+
+.ul_title{
+	float: left;
+}
+
+.ul_title > li {
+	float: left;
+	font-size: 18px;
+}
+
+.ul_title > li:nth-child(n+2){
+	margin-left: 50px;	
+}
+
+.div_restin_contents{
+	width: 100%;
+	margin: 0px;
+	padding: 0px 0px 5px 10px;
+	position: relative;
+}
+
+.div_restin_contents > div{
+	clear: both;
+	overflow: hidden;
+	margin-left: 66px;
+}
+
+.div_restin_contents > div{
+	padding-top: 0.5rem;
+	border-bottom: 1px solid black;
+}
+
+.div_restin_contents > div > ul{
+	float: left;
+	font-size: 18px;
+}
+
+
+.div_restin_contents > div > ul > li{
+	float: left;
+	font-size: 18px;
+}
+
+.div_restin_contents > div > ul > li:nth-child(n+2){
+	margin-left: 50px;	
+}
+
+#article_d{
+	width: 90%;
+	max-width: 1080px;
+    margin: 5% auto;
+	display: grid;
+	grid-template-columns: auto;
+	grid-row-gap: 2rem;
+}
+
+#article_d h1{
+	line-height: 1.1rem;	
+}
+
+#article_e{
+	width: 90%;
+	max-width: 1080px;
+    margin: 5% auto;
+	display: grid;
+	grid-template-columns: auto;
+	grid-row-gap: 2rem;	
+}
+
+#article_e h1{
+	line-height: 1.1rem;	
+}

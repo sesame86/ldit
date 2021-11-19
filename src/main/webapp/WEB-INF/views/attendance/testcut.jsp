@@ -22,8 +22,10 @@ $("#btn_checkin").on("click", function(){
 	$.ajax({
 		url : "checkin"
 		, type : "post"
+		, contentType:"json"
 		, dataType: "json"
 		, succeess: function(data) {
+			console.log("돌아옴");
 			alert(data);
 		}
 		, error : function(request, status, errorData){ 
