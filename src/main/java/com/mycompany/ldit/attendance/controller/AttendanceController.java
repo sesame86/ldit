@@ -25,7 +25,7 @@ public class AttendanceController {
 	private AttendanceService attService;
 	
 	@RequestMapping(value="testcut", method=RequestMethod.GET)
-	public ModelAndView testMethodGet(ModelAndView mv,HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public ModelAndView testMethodGet(ModelAndView mv) throws IOException{
 		mv.setViewName("attendance/testcut");
 		
 		return mv;
@@ -40,7 +40,7 @@ public class AttendanceController {
 	
 	@RequestMapping(value="checkin", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String checkinMethod(HttpServletRequest request, HttpServletResponse response, @RequestParam("stfNo") int stfno) throws IOException{
+	public String checkinMethod(@RequestParam("stfNo") int stfno) throws IOException{
 		//response.setContentType("application/json; charset=utf-8");
 		
 		System.out.println("checkinMethod진입");
