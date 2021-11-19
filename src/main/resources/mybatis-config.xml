@@ -52,7 +52,7 @@
 		<!-- <mapper resource="mappers/sendmsg-mapper.xml"/> -->
 		<mapper resource="mappers/staff-mapper.xml"/>
 		<mapper resource="mappers/team-mapper.xml"/>
-		<!-- <mapper resource="mappers/teamaim-mapper.xml"/> -->
+		<mapper resource="mappers/teamaim-mapper.xml"/>
 		<!-- <mapper resource="mappers/teammember-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/work-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/workbreak-mapper.xml"/> -->

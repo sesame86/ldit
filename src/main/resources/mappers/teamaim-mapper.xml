@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
+<mapper namespace="TeamAim">
+	<!-- 팀 목표 조회 -->
+	<select parameterType="int" resultType="TeamAim" id="getTeamGoal">
+		select aim_title, team_id, aim_start, aim_end, aim_status from team_aim
+		where team_id = #{teamId}
+		order by aim_id desc
+	</select>
+	<!-- 팀 목표 마지막 status 조회 -->
+	<select parameterType="int" resultType="String" id="goalStatusCheck">
+		select aim_status from (select aim_status from team_aim where team_id = #{teamId} order by rownum desc) where rownum = 1
+	</select>
+	<insert id="postTeamGoal" parameterType="TeamAim">
+		insert into team_aim values(team_aim_seq.nextval, #{team_id}, #{aim_title}, #{aim_content}, #{aim_start}, #{aim_end}, 0)
+	</insert>
 </mapper>

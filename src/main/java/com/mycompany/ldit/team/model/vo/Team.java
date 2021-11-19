@@ -1,5 +1,7 @@
 package com.mycompany.ldit.team.model.vo;
 
+import java.util.ArrayList;
+
 import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.teamaim.model.vo.TeamAim;
 
@@ -11,13 +13,14 @@ public class Team {
 	private int team_manager;
 	private TeamAim teamAim;
 	private Staff staff;
+	private ArrayList<Staff> staffList;
 	
 	public Team() {}
 	
 	@Override
 	public String toString() {
 		return "Team [team_id=" + team_id + ", pro_no=" + pro_no + ", team_title=" + team_title + ", team_manager="
-				+ team_manager + ", teamAim=" + teamAim + ", staff=" + staff + "]";
+				+ team_manager + ", teamAim=" + teamAim + ", staff=" + staff + ", staffList=" + staffList + "]";
 	}
 
 	public int getTeam_id() {
@@ -66,5 +69,13 @@ public class Team {
 
 	public void setStaff(Staff staff) {
 		this.staff = staff;
+	}
+
+	public ArrayList<Staff> getStaffList() {
+		return staffList;
+	}
+
+	public void setStaffList(ArrayList<Staff> staffList) {
+		this.staffList = staffList;
 	}
 }
