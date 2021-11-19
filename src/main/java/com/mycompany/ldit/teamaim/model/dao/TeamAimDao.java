@@ -22,4 +22,10 @@ public class TeamAimDao {
 	public int postTeamGoal(TeamAim tAimVo) {
 		return sqlSession.insert("TeamAim.postTeamGoal", tAimVo);
 	}
+	public TeamAim getUpdateGoal(int teamId) {
+		return sqlSession.selectOne("TeamAim.getUpdateGoal", teamId);
+	}
+	public int updateTeamGoal(TeamAim tAimVo) {
+		return sqlSession.insert("TeamAim.updateTeamGoal", tAimVo);
+	}
 }

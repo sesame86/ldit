@@ -9,4 +9,6 @@ public interface TeamAimService{
 	public List<TeamAim> getTeamGoal(int teamId) throws Exception;
 	public String goalStatusCheck(int teamId) throws Exception;
 	public int postTeamGoal(TeamAim tAimVo) throws Exception;
+	public TeamAim getUpdateGoal(int teamId) throws Exception;
+	public int updateTeamGoal(TeamAim tAimVo) throws Exception;
 }

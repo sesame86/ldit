@@ -139,7 +139,7 @@ h1{
 	top: 1rem;
 	right: 1rem;
 }
-#teamH1{
+.teamH1{
 	margin: 1rem;
 	font-size: 2.4rem;
 	float: left;
@@ -184,8 +184,26 @@ h1{
     height: 100%;
 }
 .goalInfo h4{
-    margin: 0.7rem 1.6rem;
+    margin: 0.7rem 0.3rem 0.7rem 1.6rem;
     font-size: 1.1rem;
+    display: inline-block;
+    width: 70%;
+    overflow: hidden;
+    float: left;
+}
+.goalInfo button{
+	width: 15%;
+	text-align: center;
+	border: 0;
+	background-color: #eeeeee;
+	border-radius: 0.3rem;
+	font-size: 0.7rem;
+	padding: 0.2rem 0;
+	float: left;
+	margin: 0.7rem 0;
+}
+.goalInfo button:hover{
+	background-color: #cccccc;
 }
 .dateP{
 	width: 55%;

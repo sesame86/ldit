@@ -37,7 +37,6 @@ public class TeamGoalRegistController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(status);
 		return status;
 	}
 	@RequestMapping(value = "/goaladd", method = RequestMethod.POST)
@@ -49,10 +48,10 @@ public class TeamGoalRegistController {
 			result = TeamAimService.postTeamGoal(tAimVo);
 			if(result>0) {
 				viewpage = "redirect:teammain";
-				mv.addObject("msg", "팀의 목표를 등록하였습니다.");
+				//mv.addObject("msg", "팀의 목표를 등록하였습니다.");
 			}else {
 				viewpage = "redirect:teammain";
-				mv.addObject("msg", "팀의 목표를 등록에 실패하였습니다.");
+				//mv.addObject("msg", "팀의 목표를 등록에 실패하였습니다.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

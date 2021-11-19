@@ -28,4 +28,13 @@ public class TeamAimServiceImpl implements TeamAimService{
 	public int postTeamGoal(TeamAim tAimVo) throws Exception {
 		return TeamAimDao.postTeamGoal(tAimVo);
 	}
+	@Override
+	public TeamAim getUpdateGoal(int teamId) throws Exception {
+		return TeamAimDao.getUpdateGoal(teamId);
+	}
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Throwable.class})
+	public int updateTeamGoal(TeamAim tAimVo) throws Exception {
+		return TeamAimDao.updateTeamGoal(tAimVo);
+	}
 }

@@ -15,10 +15,11 @@
 	</resultMap>
 	<!-- 팀 메인 조회 -->
 	<select parameterType="int" resultMap="TeamJoinAimJoinStaff" id="getOneProjectTeam">
-		select d1.* from(select t.team_id, t.pro_no, t.team_title, nvl(ta.aim_id,0) aim_id, nvl(ta.aim_status,0) aim_status, s.stf_name
+		select * from(select t.team_id, t.pro_no, t.team_title, nvl(ta.aim_id,0) aim_id, nvl(ta.aim_status,0) aim_status, s.stf_name,
+		rank() over (partition by t.team_id order by ta.aim_status) as ranking
 		from team t left join team_aim ta on t.team_id = ta.team_id join staff s on t.team_manager = s.stf_no
-		where t.pro_no = #{pro_no}) d1
-		where d1.aim_status between 0 and 99
+		where t.pro_no = #{pro_no})
+		where ranking = 1
 	</select>
 	<!-- 팀개설시 프로젝트 기본정보 조회 -->
 	<select parameterType="int" resultType="Project" id="getOneProject">

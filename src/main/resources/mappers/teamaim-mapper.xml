@@ -9,9 +9,18 @@
 	</select>
 	<!-- 팀 목표 마지막 status 조회 -->
 	<select parameterType="int" resultType="String" id="goalStatusCheck">
-		select aim_status from (select aim_status from team_aim where team_id = #{teamId} order by rownum desc) where rownum = 1
+		select aim_status from (select aim_status from team_aim where team_id = #{teamId} order by rownum asc) where rownum = 1
 	</select>
+	<!-- 팀 목표 등록 -->
 	<insert id="postTeamGoal" parameterType="TeamAim">
 		insert into team_aim values(team_aim_seq.nextval, #{team_id}, #{aim_title}, #{aim_content}, #{aim_start}, #{aim_end}, 0)
 	</insert>
+	<!-- 팀 update 정보 가져오기 -->
+	<select id="getUpdateGoal" parameterType="int" resultType="TeamAim">
+		select * from team_aim where team_id = #{teamId} and aim_status != 100
+	</select>
+	<update id="updateTeamGoal" parameterType="TeamAim">
+		update team_aim set aim_title=#{aim_title}, aim_content=#{aim_content}, aim_start=#{aim_start}, aim_end=#{aim_end}
+		where team_id = #{team_id} and aim_status != 100
+	</update>
 </mapper>

@@ -19,7 +19,7 @@
 <!-- jquery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<title>Insert title here</title>
+<title>LDIT: 팀 메인</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/ldit_header.jsp" %>
@@ -61,7 +61,7 @@
 		      <div class="container">
 		        <div id="goalBasic">
 		        	<span onclick="closeModal()" id="cancleBtn"><i class="fas fa-times"></i></span>
-			        <h1 id="teamH1">팀 목표</h1>
+			        <h1 class="teamH1">팀 목표</h1>
 			        <a class="addGoalBtn" onclick="moveToAddgoal()"><i class="far fa-plus-square"></i></a>
 		        </div>
 		        <div id="goalList">
@@ -75,9 +75,9 @@
 		      <div class="container">
 		        <div id="goalBasic">
 		        	<span onclick="closeModal()" id="cancleBtn"><i class="fas fa-times"></i></span>
-			        <h1 id="teamH1">팀 목표 등록</h1>
+			        <h1 class="teamH1" id="modalTitle">팀 목표 등록</h1>
 		        </div>
-		        <form method="post" action="goaladd">
+		        <form method="post" action="goaladd" id="tgModalFrm">
 		        	<div id="tgForm">
 		        		<input type="hidden" id="team_id" name="team_id" value="0">
 		        		<label>목표 제목</label>
@@ -122,14 +122,18 @@
     				if(result.length>0){
     					$("#teamGoalModal").css("display", "block");
     					for(var i=0; i<result.length; i++){
-	    					var text = "<div class='goalListCon'>"
-	    							+"<div class='reqColorSmall' id='color_"+i+"'></div>"
-	    							+"<div class='goalInfo'>"
-	    							+"<h4>"+result[i].aim_title+"</h4>"
-	    							+"<p class='dateP'>"+result[i].aim_start+" ~ "+result[i].aim_end+"</p>"
-	    							+"<progress value="+result[i].aim_status+" max='100' class='modalPbar'></progress><p class='percentP'>"+result[i].aim_status+"%</p>"
-	    							+"</div>"
-	    							+"</div>";
+    						var text = "";
+	    					text += "<div class='goalListCon'>";
+	    					text += "<div class='reqColorSmall' id='color_"+i+"'></div>";
+	    					text += "<div class='goalInfo'>";
+	    					text += "<h4>"+result[i].aim_title+"</h4>";
+	    					if(result[i].aim_status != 100){
+	    						text += "<button onclick='getUpdateGoal("+result[i].team_id+")'>수정</button>";
+	    					}
+	    					text += "<p class='dateP'>"+result[i].aim_start+" ~ "+result[i].aim_end+"</p>";
+	    					text += "<progress value="+result[i].aim_status+" max='100' class='modalPbar'></progress><p class='percentP'>"+result[i].aim_status+"%</p>";
+	    					text += "</div>";
+	    					text += "</div>";
 	    					$("#teamGoalModal #goalList").append(text);
 	    					if(result[i].aim_status == 0){
 	    						$("#color_"+i).css("background-color", "#3498DB");
@@ -169,6 +173,16 @@
 						//팀 목표 등록 모달로 이동
 						$("#teamGoalModal").css("display", "none");
 						$("#tgRegisterModal").css("display", "block");
+						$("#tgModalFrm").attr("action", "goaladd");
+						$("#aim_title").val("");
+						$("#aim_content").val("");
+						$("#startDate").val("");
+						$("#endDate").val("");
+						$("#modalTitle").text("팀 목표 등록");
+						$("#sbBtn").text("등록");
+					
+						$("#teamGoalModal").css("display", "none");
+						$("#tgRegisterModal").css("display", "block");
 					}
     			},
     			error : function(e) {
@@ -199,6 +213,42 @@
     		month = '' + (d.getMonth() + 1),
     		day = '' + d.getDate(),
     		year = d.getFullYear();
+    		if (month.length < 2)
+    			month = '0' + month;
+    		if (day.length < 2)
+    			day = '0' + day;
+    		return [year, month, day].join('-');
+    	}
+    	//업데이트 하기위해 팀 목표 상세 정보 가져오기
+    	function getUpdateGoal(teamId) {
+    		$("#team_id").val($("#storeTeamId").val());
+    		$.ajax({
+    			url:"getUpdateGoal.do",
+    			data:{"teamId": $("#storeTeamId").val()},
+    			contentType: 'application/json; charset=utf-8',
+    			type: "GET",
+    			dataType: "json",
+    			success: function(result){
+    				//팀 목표 수정 모달로 이동
+					$("#teamGoalModal").css("display", "none");
+					$("#tgRegisterModal").css("display", "block");
+					$("#tgModalFrm").attr("action", "goalupdate");
+					$("#aim_title").val(result.aim_title);
+					$("#aim_content").val(result.aim_content);
+					$("#startDate").val(formatSqlDate(result.aim_start));
+					$("#endDate").val(formatSqlDate(result.aim_end));
+					$("#modalTitle").text("팀 목표 수정");
+					$("#sbBtn").text("수정");
+    			},
+    			error : function(e) {
+    				console.log("result");
+		        }
+    		})
+		}
+    	function formatSqlDate(date) {
+    		month = date.split("월")[0];
+    		day = date.split("월 ")[1].split(",")[0];
+    		year = date.split(", ")[1];
     		if (month.length < 2)
     			month = '0' + month;
     		if (day.length < 2)
