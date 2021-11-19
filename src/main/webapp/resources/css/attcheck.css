@@ -106,16 +106,16 @@ section {
 	overflow: hidden;
 }
 
-.ul_title{
+.restin_ul_title{
 	float: left;
 }
 
-.ul_title > li {
+.restin_ul_title > li {
 	float: left;
 	font-size: 18px;
 }
 
-.ul_title > li:nth-child(n+2){
+.restin_ul_title > li:nth-child(n+2){
 	margin-left: 50px;	
 }
 
