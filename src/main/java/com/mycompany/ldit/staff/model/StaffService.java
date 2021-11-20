@@ -25,17 +25,17 @@ public class StaffService implements StaffServiceInterface{
 	}
 
 	//JH
-//01_01 È¸¿ø ·Î±×ÀÎ Ã¼Å©
+//01_01 íšŒì› ë¡œê·¸ì¸ ì²´í¬
 //	@Inject
 //	StaffDao staffDao;
 	
 	@Override
 	public boolean loginCheck(Staff vo, HttpSession session) {
 	boolean result = staffDao.loginCheck(vo);
-	if(result) {//true ÀÏ °æ¿ì ¼¼¼Ç¿¡ µî·Ï
+	if(result) {//true ì¼ ê²½ìš° ì„¸ì…˜ì— ë“±ë¡
 		Staff vo2 = viewStaff(vo);
 		vo2.setStf_passwd("");
-		//¼¼¼Ç º¯¼ö µî·Ï
+		//ì„¸ì…˜ ë³€ìˆ˜ ë“±ë¡
 		session.setAttribute("loginUser", vo2);
 		
 		
@@ -45,19 +45,19 @@ public class StaffService implements StaffServiceInterface{
 	return result;
 	}
 	
-	//01_02 È¸¿ø ·Î±×ÀÎ Á¤º¸
+	//01_02 íšŒì› ë¡œê·¸ì¸ ì •ë³´
 	@Override
 	public Staff viewStaff(Staff vo) {
 		//return vo;
 		return staffDao.viewStaff(vo);
 	}
 	
-	//02 È¸¿ø ·Î±× ¾Æ¿ô
+	//02 íšŒì› ë¡œê·¸ ì•„ì›ƒ
 	@Override
 	public void logout(HttpSession session) {
-		//¼¼¼Ç º¯¼ö °³º° »èÁ¦
+		//ì„¸ì…˜ ë³€ìˆ˜ ê°œë³„ ì‚­ì œ
 		//session.removeAttrubute("stf_id");
-		//¼¼¼Ç Á¤º¸¸¦ ÃÊ±âÈ­ ½ÃÅ´
+		//ì„¸ì…˜ ì •ë³´ë¥¼ ì´ˆê¸°í™” ì‹œí‚´
 		session.invalidate();
 	}
 	

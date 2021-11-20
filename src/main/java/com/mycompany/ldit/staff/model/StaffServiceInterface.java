@@ -11,11 +11,11 @@ public interface StaffServiceInterface {
 
 
 	//JH
-//01_01 »ç¿ø ·Î±×ÀÎ Ã¼Å©
+//01_01 ì‚¬ì› ë¡œê·¸ì¸ ì²´í¬
 public boolean loginCheck(Staff vo, HttpSession session);
-//01_02 »ç¿ø ·Î±×ÀÎ Á¤º¸
+//01_02 ì‚¬ì› ë¡œê·¸ì¸ ì •ë³´
 public Staff viewStaff(Staff vo);
-//02 »ç¿ø ·Î±× ¾Æ¿ô
+//02 ì‚¬ì› ë¡œê·¸ ì•„ì›ƒ
 public void logout(HttpSession session);
 
 }

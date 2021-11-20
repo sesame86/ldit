@@ -2,8 +2,8 @@
 <header>
 	<nav>
 		<ul>
-			<li id="loginUser">${loginUser.stf_name}(${loginUser.stf_id }) ´Ô ÀÏÇÏ¼¼¿ä.</li>
-			<li id="logout"><a href="logout.do" title="·Î±×¾Æ¿ô"><i class="fas fa-sign-out-alt"></a></i></li>
+			<li id="loginUser">${loginUser.stf_name}(${loginUser.stf_id }) ë‹˜ ì¼í•˜ì„¸ìš”.</li>
+			<li id="logout"><a href="logout.do" title="ë¡œê·¸ì•„ì›ƒ"><i class="fas fa-sign-out-alt"></a></i></li>
 			<li id="logo"><img src="./resources/image/logo.png"></li>
 			<li id="setting"><i class="fas fa-cog"></i></li>
 			<li id="bell"><i class="far fa-bell"></i></li>

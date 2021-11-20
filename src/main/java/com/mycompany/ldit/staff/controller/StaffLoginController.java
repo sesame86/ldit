@@ -17,45 +17,45 @@ import com.mycompany.ldit.staff.model.StaffServiceInterface;
 import com.mycompany.ldit.staff.model.vo.Staff;
 
 
-// ·Î±×ÀÎ È­¸é
+// ë¡œê·¸ì¸ í™”ë©´
 @Controller("login")
 //@RequestMapping("/staff/*")
 public class StaffLoginController {
-	//·Î±ëÀ» À§ÇÑ º¯¼ö
+	//ë¡œê¹…ì„ ìœ„í•œ ë³€ìˆ˜
 	private static final Logger logger = LoggerFactory.getLogger(StaffLoginController.class);
 	
 	@Inject
 	StaffServiceInterface staffService;
 	
-	// ·Î±×ÀÎ È­¸é
+	// ë¡œê·¸ì¸ í™”ë©´
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String home() {
 		return "login";
 	}
 	
-	//·Î±×ÀÎ Ã³¸®
+	//ë¡œê·¸ì¸ ì²˜ë¦¬
 	@RequestMapping("loginCheck.do")
 	public ModelAndView loginCheck(@ModelAttribute Staff vo, HttpSession session) {
 		boolean result = staffService.loginCheck(vo, session);
 		ModelAndView mav = new ModelAndView();
-		if(result == true) {//·Î±×ÀÎ ¼º°ø
-			//main.jsp ÀÌµ¿
-			System.out.println("¿©±â´Ù");
+		if(result == true) {//ë¡œê·¸ì¸ ì„±ê³µ
+			//main.jsp ì´ë™
+			System.out.println("ì—¬ê¸°ë‹¤");
 			mav.setViewName("redirect:main");
 			
-			//´Ü¼øÈ÷ JSP³»¿ëÀ» ºÒ·¯¿À°í ½ÍÀ¸¸é
-			// »õ·Î°íÄ§ ÇÏ¸é ·Î±×ÀÎ 
+			//ë‹¨ìˆœíˆ JSPë‚´ìš©ì„ ë¶ˆëŸ¬ì˜¤ê³  ì‹¶ìœ¼ë©´
+			// ìƒˆë¡œê³ ì¹¨ í•˜ë©´ ë¡œê·¸ì¸ 
 //			mav.setViewName("main");
 //			mav.addObject("msg", "success");
-		}else { //·Î±×ÀÎ ½ÇÆĞ
-			//login.jsp ÀÌµ¿.
+		}else { //ë¡œê·¸ì¸ ì‹¤íŒ¨
+			//login.jsp ì´ë™.
 			mav.setViewName("login");
 			mav.addObject("msg", "failure");
 		}
 		return mav;	
 	}
 	
-	//·Î±× ¾Æ¿ô Ã³¸®
+	//ë¡œê·¸ ì•„ì›ƒ ì²˜ë¦¬
 	
 	
 	
