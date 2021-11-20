@@ -49,6 +49,21 @@ nav ul li{
     right: 3%;
     font-size: 1.3rem;
 }
+/*JH*/
+#loginUser{
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    font-size: 1.3rem;
+}
+
+#logout{
+    position: absolute;
+    top: 20%;
+    right: 12%;
+    font-size: 1.3rem;
+}
+
 /*세로*/
 /*스마트폰*/
 @media only screen and (max-width:  767px) and (orientation: portrait){

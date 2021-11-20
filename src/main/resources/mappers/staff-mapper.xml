@@ -43,4 +43,16 @@ STF_NOTHERE          DATE      -->
 	<select id="organization" resultType="hashmap" parameterType="map">
 		select * from staff
 	</select>
+	
+	<!--  JH  -->
+	<select id="loginCheck" resultType="String" parameterType="Staff">
+	select stf_name from staff
+	where stf_id =#{stf_id} AND stf_passwd = #{stf_passwd}
+	</select>
+	
+	<select id="viewStaff" resultType="Staff" parameterType="Staff">
+	SELECT * from staff
+	where stf_id =#{stf_id}
+	</select>
+	
 </mapper>

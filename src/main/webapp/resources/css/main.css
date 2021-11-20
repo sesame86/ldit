@@ -286,12 +286,12 @@ progress {
     }
     #a1{
         width: 90%;
-        height: 100%;
+        height: auto; /* 100%; 일떄 겹침 현상 발생*/
         margin: 1% auto;
     }
     #a2{
         width: 90%;
-        height: 70%;
+        height: auto;/* 70%; 일떄 겹침 현상 발생  진행중이 프로젝트 글씨 크기 확인*/
         margin: 2% auto 1% auto;
     }
     #todayWork, #myInfo, #restInfo{
@@ -314,6 +314,10 @@ progress {
         height: 45%;
         margin: 1%;
     }
+    
+      #todayWork, #myInfo, #restInfo{
+	    width: 100% !important;
+	}
 }
 /*태블릿 pc*/
 @media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: portrait){
@@ -342,6 +346,9 @@ progress {
 /*가로*/
 /*스마트폰*/
 @media only screen and (max-width:  767px) and (orientation: portrait) and (orientation: landscape){
+	#todayWork, #myInfo, #restInfo{
+	    width: 100% !important;
+	}
 }
 /*태블릿 pc*/
 @media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: landscape){

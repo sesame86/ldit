@@ -42,7 +42,8 @@
               <a href="#"></a>
           </div>
           <script>
-              var acc = document.getElementsByClassName("accordion");
+           /*
+           var acc = document.getElementsByClassName("accordion");
               var i;
   
               for (i = 0; i < acc.length; i++) {
@@ -56,6 +57,24 @@
                       }
                   });
               }
+           */   
+           
+           
+           $(document).ready(function(){
+        	   $(".panel").hide();
+        	   // $("ul > li:first-child a").next().show();
+        	   $(".accordion").click(function(){
+            	   $(".accordion").removeClass("active"); 
+        	       $(this).addClass("active");
+        	       
+        	       $(this).next().slideToggle(300);
+        	       // $(this).next().slideDown(300);
+        	       $(".accordion").not(this).next().slideUp(300);
+        	       
+        	       return false;
+        	   });
+        	   $(".accordion").eq(0).trigger("click");
+        	 });
           </script>
 	
 </aside>
