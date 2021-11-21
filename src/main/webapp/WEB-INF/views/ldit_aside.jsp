@@ -61,8 +61,19 @@
            
            
            $(document).ready(function(){
+        	   // 제일 첫번째 아코디언 메뉴 버튼을 클릭한다.
+        	   //$(".accordion").eq(0).trigger("click");
+        	   
+        	   /* 
+        	   // 버튼의 색상 변경 (선택을 안 한 것처럼)
+        	   $(".accordion").removeClass("active");
+        	   
+        	   // 모든 서브 메뉴 접기
         	   $(".panel").hide();
         	   // $("ul > li:first-child a").next().show();
+        	   */
+        	   
+        	   // 아코디언 메뉴 버튼을 클릭할 때 실행
         	   $(".accordion").click(function(){
             	   $(".accordion").removeClass("active"); 
         	       $(this).addClass("active");
@@ -73,7 +84,7 @@
         	       
         	       return false;
         	   });
-        	   $(".accordion").eq(0).trigger("click");
+
         	 });
           </script>
 	

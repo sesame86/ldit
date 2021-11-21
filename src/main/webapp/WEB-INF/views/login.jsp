@@ -47,11 +47,12 @@
 				</div>
 
 				<div class="login_check">
-					<span class="option_wrap"> <input type="checkbox"
-						name="saveLoginId" id="saveLoginId" tabindex="5"> <label
-						id="login_id_save_label">계정 저장</label>
-					</span> <span class="option_wrap">|</span> <a class="option_wrap"
-						id="findPwd">비밀번호 찾기</a>
+					<span class="option_wrap">
+						<input type="checkbox" name="saveLoginId" id="saveLoginId" tabindex="5">
+						<label id="login_id_save_label" for="saveLoginId">계정 저장</label>
+					</span>
+					<span class="option_wrap">|</span>
+					<a class="option_wrap" id="findPwd">비밀번호 찾기</a>
 				</div>
 
 				<div class="submit">
