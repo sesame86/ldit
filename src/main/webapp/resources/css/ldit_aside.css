@@ -16,7 +16,7 @@ header{
 	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
 }
 /*aside*/
-aside{
+.right-aside{
 	width: 13%;
 	height: 94%;
 	float: left;
@@ -24,35 +24,35 @@ aside{
 	background-color: #F7F9FA;
 }
 
-.accordion {
+.aside-accordion {
 	background-color: #eee;
 	color: #444;
 	cursor: pointer;
-	padding: 18px;
+	padding:  1.2rem;/*18px;*/
 	width: 100%;
 	border: none;
 	text-align: left;
 	outline: none;
-	font-size: 15px;
+	font-size: 1rem;/*15px;*/
 	transition: 0.4s;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		"Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
 		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.active, .accordion:hover {
+.active, .aside-accordion:hover {
 	background-color: #ccc;
 }
 
 .panel {
-	padding: 0 18px;
+	padding: 0 1rem;
 	display: none;
 	background-color: white;
 	overflow: hidden;
 }
 
 #pd1 {
+	font-size : 0.8rem;
 	text-align: right;
-	line-height: 110%;
-	padding: 12px;
+	padding: 0.4rem;
 }
