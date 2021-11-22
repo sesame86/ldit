@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="TeamAim">
 	<!-- 팀 목표 조회 -->
-	<select parameterType="int" resultType="TeamAim" id="getTeamGoal">
-		select aim_title, team_id, aim_start, aim_end, aim_status from team_aim
+	<select id="getTeamGoal" parameterType="int" resultType="TeamAim">
+		select aim_title, team_id, aim_id, aim_start, aim_end, aim_status from team_aim
 		where team_id = #{teamId}
 		order by aim_id desc
 	</select>
 	<!-- 팀 목표 마지막 status 조회 -->
-	<select parameterType="int" resultType="String" id="goalStatusCheck">
+	<select id="goalStatusCheck" parameterType="int" resultType="String">
 		select aim_status from (select aim_status from team_aim where team_id = #{teamId} order by rownum asc) where rownum = 1
 	</select>
 	<!-- 팀 목표 등록 -->
-	<insert id="postTeamGoal" parameterType="TeamAim">
+	<insert id="insertTeamGoal" parameterType="TeamAim">
 		insert into team_aim values(team_aim_seq.nextval, #{team_id}, #{aim_title}, #{aim_content}, #{aim_start}, #{aim_end}, 0)
 	</insert>
 	<!-- 팀 update 정보 가져오기 -->
@@ -21,6 +21,11 @@
 	</select>
 	<update id="updateTeamGoal" parameterType="TeamAim">
 		update team_aim set aim_title=#{aim_title}, aim_content=#{aim_content}, aim_start=#{aim_start}, aim_end=#{aim_end}
+		where team_id = #{team_id} and aim_status != 100
+	</update>
+	<!-- 팀 목표 비활성화 -->
+	<update id="disableTeamGoal" parameterType="int">
+		update team_aim set aim_status = -1
 		where team_id = #{team_id} and aim_status != 100
 	</update>
 </mapper>

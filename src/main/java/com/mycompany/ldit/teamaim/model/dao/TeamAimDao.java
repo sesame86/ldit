@@ -19,13 +19,16 @@ public class TeamAimDao {
 	public String goalStatusCheck(int teamId) {
 		return sqlSession.selectOne("TeamAim.goalStatusCheck", teamId);
 	}
-	public int postTeamGoal(TeamAim tAimVo) {
-		return sqlSession.insert("TeamAim.postTeamGoal", tAimVo);
+	public int insertTeamGoal(TeamAim tAimVo) {
+		return sqlSession.insert("TeamAim.insertTeamGoal", tAimVo);
 	}
 	public TeamAim getUpdateGoal(int teamId) {
 		return sqlSession.selectOne("TeamAim.getUpdateGoal", teamId);
 	}
 	public int updateTeamGoal(TeamAim tAimVo) {
-		return sqlSession.insert("TeamAim.updateTeamGoal", tAimVo);
+		return sqlSession.update("TeamAim.updateTeamGoal", tAimVo);
+	}
+	public int disableTeamGoal(int teamId) {
+		return sqlSession.update("TeamAim.disableTeamGoal", teamId);
 	}
 }

@@ -25,8 +25,8 @@ public class TeamAimServiceImpl implements TeamAimService{
 	}
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Throwable.class})
-	public int postTeamGoal(TeamAim tAimVo) throws Exception {
-		return TeamAimDao.postTeamGoal(tAimVo);
+	public int insertTeamGoal(TeamAim tAimVo) throws Exception {
+		return TeamAimDao.insertTeamGoal(tAimVo);
 	}
 	@Override
 	public TeamAim getUpdateGoal(int teamId) throws Exception {
@@ -36,5 +36,9 @@ public class TeamAimServiceImpl implements TeamAimService{
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Throwable.class})
 	public int updateTeamGoal(TeamAim tAimVo) throws Exception {
 		return TeamAimDao.updateTeamGoal(tAimVo);
+	}
+	@Override
+	public int disableTeamGoal(int teamId) throws Exception {
+		return TeamAimDao.disableTeamGoal(teamId);
 	}
 }

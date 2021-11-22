@@ -129,6 +129,7 @@
 	    					text += "<h4>"+result[i].aim_title+"</h4>";
 	    					if(result[i].aim_status != 100){
 	    						text += "<button onclick='getUpdateGoal("+result[i].team_id+")'>수정</button>";
+	    						text += "<button onclick='disableGoal("+result[i].team_id+")'>비활성화</button>";
 	    					}
 	    					text += "<p class='dateP'>"+result[i].aim_start+" ~ "+result[i].aim_end+"</p>";
 	    					text += "<progress value="+result[i].aim_status+" max='100' class='modalPbar'></progress><p class='percentP'>"+result[i].aim_status+"%</p>";
@@ -141,6 +142,8 @@
 	    						$("#color_"+i).css("background-color", "#27AE60");
 	    					}else if(result[i].aim_status == 100){
 	    						$("#color_"+i).css("background-color", "#FFE08C");
+	    					}else if(result[i].aim_status == -1){
+	    						$("#color_"+i).css("background-color", "#DE4F4F");
 	    					}
     					}
     				}else{
@@ -255,6 +258,26 @@
     			day = '0' + day;
     		return [year, month, day].join('-');
     	}
+    	function disableGoal(teamId) {
+			var con = confirm("비활성화를 되돌릴 수 없습니다. 계속 진행하시겠습니까?");
+			if(con == true){
+	    		$.ajax({
+	    			url:"disablegoal.do",
+	    			data:{"teamId": teamId},
+	    			contentType: 'application/json; charset=utf-8',
+	    			type: "GET",
+	    			dataType: "json",
+	    			success: function(result){
+	    				if(result > 0){
+	    					alert("비활성화 완료");
+	    				}
+	    			},
+	    			error : function(e) {
+	    				console.log("result");
+			        }
+	    		})
+			}
+		}
     </script>
 </body>
 </html>

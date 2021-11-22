@@ -187,7 +187,7 @@ h1{
     margin: 0.7rem 0.3rem 0.7rem 1.6rem;
     font-size: 1.1rem;
     display: inline-block;
-    width: 70%;
+    width: 55%;
     overflow: hidden;
     float: left;
 }
@@ -197,10 +197,10 @@ h1{
 	border: 0;
 	background-color: #eeeeee;
 	border-radius: 0.3rem;
-	font-size: 0.7rem;
+	font-size: 0.6rem;
 	padding: 0.2rem 0;
 	float: left;
-	margin: 0.7rem 0;
+	margin: 0.7rem 0.1rem;
 }
 .goalInfo button:hover{
 	background-color: #cccccc;

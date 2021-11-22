@@ -1,6 +1,5 @@
 package com.mycompany.ldit.work.controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mycompany.ldit.team.model.vo.Team;
 import com.mycompany.ldit.teamaim.model.service.TeamAimService;
 import com.mycompany.ldit.teamaim.model.vo.TeamAim;
 
@@ -40,12 +38,12 @@ public class TeamGoalRegistController {
 		return status;
 	}
 	@RequestMapping(value = "/goaladd", method = RequestMethod.POST)
-	public ModelAndView postTeamGoal(ModelAndView mv, TeamAim tAimVo) {
+	public ModelAndView insertTeamGoal(ModelAndView mv, TeamAim tAimVo) {
 		String viewpage = "redirect:teammain";
 		int result = 0;
 		System.out.println(tAimVo);
 		try {
-			result = TeamAimService.postTeamGoal(tAimVo);
+			result = TeamAimService.insertTeamGoal(tAimVo);
 			if(result>0) {
 				viewpage = "redirect:teammain";
 				//mv.addObject("msg", "팀의 목표를 등록하였습니다.");
