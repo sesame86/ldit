@@ -51,7 +51,7 @@ STF_NOTHERE          DATE      -->
 	</select>
 	
 	<select id="viewStaff" resultType="Staff" parameterType="Staff">
-	select s.stf_name, r.right_no
+	select s.stf_name, s.stf_id, r.right_no
 	from staff s join right r on s.stf_no = r.stf_no
 	where stf_id = #{stf_id}
 	</select>
