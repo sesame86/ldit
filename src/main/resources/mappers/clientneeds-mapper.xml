@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
+<mapper namespace="ClientNeeds">
+	<!-- 팀 목표 조회 -->
+	<select id="getUrgentList" parameterType="int" resultType="ClientNeeds">
+		select * from client_needs where pro_no = #{pro_no} and cn_priority = 1 order by cn_id
+	</select>
+	<select id="getHighList" parameterType="int" resultType="ClientNeeds">
+		select * from client_needs where pro_no = #{pro_no} and cn_priority = 2 order by cn_id
+	</select>
+	<select id="getNormalList" parameterType="int" resultType="ClientNeeds">
+		select * from client_needs where pro_no = #{pro_no} and cn_priority = 3 order by cn_id
+	</select>
+	<select id="getLowList" parameterType="int" resultType="ClientNeeds">
+		select * from client_needs where pro_no = #{pro_no} and cn_priority = 4 order by cn_id
+	</select>
 </mapper>

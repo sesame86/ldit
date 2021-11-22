@@ -1,4 +1,4 @@
-package com.mycompany.ldit.clientneeds.model;
+package com.mycompany.ldit.clientneeds.model.vo;
 
 public class ClientNeeds {
 	private static final long serialVersionUID = 1111L;

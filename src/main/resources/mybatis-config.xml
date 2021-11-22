@@ -12,7 +12,7 @@
 		<!-- <typeAlias type="com.mycompany.ldit.appdoctype.model.vo.AppDocType" alias="AppDocType"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.attendance.model.vo.Attendance" alias="Attendance"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.bookmark.model.vo.BookMark" alias="BookMark"/> -->
-		<!-- <typeAlias type="com.mycompany.ldit.clientneeds.model.vo.ClientNeeds" alias="ClientNeeds"/> -->
+		<typeAlias type="com.mycompany.ldit.clientneeds.model.vo.ClientNeeds" alias="ClientNeeds"/>
 		<!-- <typeAlias type="com.mycompany.ldit.department.model.vo.Department" alias="Department"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.issue.model.vo.Issue" alias="Issue"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.issuecomment.model.vo.IssueComment" alias="IssueComment"/> -->
@@ -40,7 +40,7 @@
 		<!-- <mapper resource="mappers/appdoctype-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/attendance-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/bookmark-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/clientneeds-mapper.xml"/> -->
+		<mapper resource="mappers/clientneeds-mapper.xml"/>
 		<!-- <mapper resource="mappers/department-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/issue-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/issuecomment-mapper.xml"/> -->
