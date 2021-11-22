@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% String ctxPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <!-- 이모티콘 -->
 <script src="https://kit.fontawesome.com/616f27e0c4.js" crossorigin="anonymous"></script>
@@ -15,6 +16,7 @@
 
 <!-- jquery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- jstl -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -41,7 +43,7 @@
                     </div>
                     <div id="stf_name"><input type = "text" name = "stf_name" class = "stf_name_input" id = "stf_name_input" placeholder="이름을 입력해주세요"></div>
                     <div id="stf_no"><input type = "text" name = "stf_no" class = "stf_no_input" id = "stf_no_input" placeholder="사번을 입력해주세요"></div>
-                    <div id="searchBtn"><input type="button">버튼<!-- <i id="searchBtnImg" class="fas fa-search"> --></i></div>
+                    <div id="searchBtn"><input type="button"><i id="searchBtnImg" class="fas fa-search"></i></div>
                 </div>
                 <div id="staffInfoTitle">
                     <div id="deptNameTitle">부서명</div>
@@ -50,7 +52,7 @@
                 </div>
                 
                 <!-- 검색조건 일치하는 사람 반복문으로 리스트 뿌려주기 및 페이징처리 -->
-                <form action="">
+                <form id="rightgrantFrm" action="rightgrant" method="post">
 	                <div id="staffInfoList">
 	                	<div id="deptNameList">부서명</div>
 	                    <div id="stf_nameList">이름</div>

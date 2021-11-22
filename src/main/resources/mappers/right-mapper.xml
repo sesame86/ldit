@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
+<mapper namespace="Right">
+	<resultMap type="Staff" id="staffRM">
+		<id property="stf_no" column="STF_NO"/>
+		<result property="dept_no" column="DEPT_NO"/>
+		<result property="stf_name" column="STF_NAME"/>
+	</resultMap>
+	
+	<select id="searchStaffList" resultType="hashmap"	parameterType="map">
+		select * from staff
+		where 1=1
+		<choose>
+			<when test="category == '부서명'">
+				and DEPT_NO like '%'||#{searchValue}||'%'
+			</when>
+			<when test="category == '사원명'">
+				and STF_NAME like '%'||#{searchValue}||'%'
+			</when>
+			<when test="category == '사원번호'">
+				and STF_NO like '%'||#{searchValue}||'%'
+			</when>
+			<when test="category == '전체'">
+				and ( DEPT_NO like '%'||#{searchValue}||'%'
+					OR STF_NAME like '%'||#{searchValue}||'%'
+					OR STF_NO like '%'||#{searchValue}||'%' )
+			</when>
+		</choose>
+	</select>
 </mapper>

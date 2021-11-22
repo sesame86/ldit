@@ -1,0 +1,167 @@
+@charset "UTF-8";
+section{
+    width: 87%;
+    height: 94%;
+    float: right;
+    overflow: auto;
+    position: relative;
+}
+h1{
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+#tmAddCon{
+    width: 90%;
+    height: 90%;
+    margin: 3rem auto auto auto;
+}
+#pjInfoCon{
+    display: grid;
+    width: 70%;
+    height: 100%;
+    margin: 5rem auto;
+    font-size: 1.7rem;
+    text-align: center;
+    gap: 0 1%;
+}
+
+#smallColor{
+    background-color: #3498DB;
+    border-radius: 0.3rem;
+    padding: 1rem 0;
+}
+#pjTitle, #pmName, #startDate, #endDate, #bigColor{
+    background-color: #e5e8eb;
+    border-radius: 0.3rem;
+    padding: 1rem 0;
+}
+
+#tmAddFrm{
+    width: 40%;
+    height: 100%;
+    margin: 8% auto;
+    display: grid;
+    grid-template-columns: 20% 70% 10%;
+}
+label{
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: auto;
+    margin-top: 1.4rem;
+}
+input{
+    padding: 0.7rem;
+    margin-top: 1.4rem;
+}
+#teamAddBtn{
+    font-size: 1.4rem;
+    margin: 1.4rem auto auto auto;
+}
+.addResultCon{
+	clear: both;
+    display: grid;
+    grid-template-columns: 20% 30% 50%;
+    margin: 1.4rem auto;
+    text-align: center;
+}
+.addResultCon a{
+    width: 100%;
+    font-size: 1.4rem;
+    margin: auto;
+}
+.tmInfoImg{
+    width: 70%;
+    border-radius: 3rem;
+    margin: 1rem auto;
+}
+.addResultCon p{
+    width: 100%;
+    font-size: 1.3rem;
+    margin: auto;
+}
+#submitBtn{
+	display: block;
+	border: 0;
+	margin: auto;
+	padding: 0.5rem 1rem;
+	background-color: #e5e8eb;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+	border-radius: 0.3rem;
+	font-size: 1rem;
+}
+#submitBtn:hover {
+	background-color: #3498DB;
+	color: white;
+}
+#scPmList, #scTmemList{
+	text-align: right;
+	font-size: 1.2rem;
+	border: solid 1px #172b4d;
+	border-top: 0;
+	margin: 0;
+	padding: 0;
+	display: none;
+}
+#scPmList li, #scTmemList li{
+	padding: 0.5rem;
+}
+#scPmList li p, #scTmemList li p{
+	display: inline;
+	margin: 0 1rem;
+}
+/*세로*/
+/*스마트폰*/
+@media only screen and (max-width:  767px) and (orientation: portrait){
+    #pjInfoCon{
+        grid-template-columns: 1fr;
+        font-size: 1.3rem;
+        gap: 1%;
+    }
+    #tmAddFrm{
+        width: 90%;
+    }
+}
+/*태블릿 pc*/
+@media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: portrait){
+    #pjInfoCon{
+        display: grid;
+        grid-template-columns: 2% 29% 10% 20% 20% 19%;
+        font-size: 1rem;
+    }
+    #tmAddFrm{
+        width: 70%;
+    }
+}
+/*데스크탑*/
+@media only screen and (min-width:  960px) and (orientation: portrait){
+    #pjInfoCon{
+        display: grid;
+        grid-template-columns: 2% 29% 10% 20% 20% 19%;
+        font-size: 1.2rem;
+    }
+}
+/*가로*/
+/*스마트폰*/
+@media only screen and (max-width:  767px) and (orientation: portrait) and (orientation: landscape){
+    #pjInfoCon{
+        display: grid;
+        grid-template-columns: 2% 29% 10% 20% 20% 19%;
+        font-size: 1.7rem;
+    }
+}
+/*태블릿 pc*/
+@media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: landscape){
+    #pjInfoCon{
+        display: grid;
+        grid-template-columns: 2% 29% 10% 20% 20% 19%;
+        font-size: 1rem;
+    }
+}
+/*데스크탑*/
+@media only screen and (min-width:  960px) and (orientation: landscape){
+    #pjInfoCon{
+        display: grid;
+        grid-template-columns: 2% 29% 10% 20% 20% 19%;
+        font-size: 1.2rem;
+    }
+}
