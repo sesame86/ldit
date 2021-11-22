@@ -21,6 +21,12 @@ public class Staff {
 	      super();
 	   }
 
+	   public Staff(String stf_name, String stf_sign, String stf_phone) {
+		   super();
+		   this.stf_name=stf_name;
+		   this.stf_sign=stf_sign;
+		   this.stf_phone=stf_phone;
+	   }
 	   @Override
 	   public String toString() {
 	      return "staff [stf_no=" + stf_no + ", dept_no=" + dept_no + ", stf_lvl=" + stf_lvl + ", stf_name=" + stf_name

@@ -8,7 +8,7 @@ import com.mycompany.ldit.staff.model.vo.Staff;
 
 public interface StaffDaoInterface {
 
-	public List<Staff> organization() throws Exception;
+	public List<Staff> einquire() throws Exception;
 
 	// JH
 	// 01_01 사원 로그인 체크

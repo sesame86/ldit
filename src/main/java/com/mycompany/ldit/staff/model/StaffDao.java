@@ -1,8 +1,6 @@
 package com.mycompany.ldit.staff.model;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -21,10 +19,8 @@ public class StaffDao implements StaffDaoInterface {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<Staff> organization() throws Exception{
-		Map<String, Object> map1 = new HashMap<String, Object>();
-		map1.put("stf_name", "백건호");
-		return sqlSession.selectList("StaffNS.organization", map1);
+	public List<Staff> einquire(){
+		return sqlSession.selectList("StaffNS.einquire");
 	}
 	
 	

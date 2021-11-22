@@ -17,11 +17,8 @@ public class StaffService implements StaffServiceInterface{
 	private StaffDao staffDao;
 	
 	@Override
-	public List<Staff> organization(Staff vo) throws Exception {
-		List<Staff> orlist = null;
-		orlist = staffDao.organization();
-		System.out.println(orlist);
-		return orlist;
+	public List<Staff> einquire(Staff vo) throws Exception {
+		return staffDao.einquire();
 	}
 
 	//JH

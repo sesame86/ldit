@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.mycompany.ldit.staff.model.vo.Staff;
 
 public interface StaffServiceInterface {
-	public List<Staff> organization(Staff vo) throws Exception;
+	public List<Staff> einquire(Staff vo) throws Exception;
 
 
 	//JH

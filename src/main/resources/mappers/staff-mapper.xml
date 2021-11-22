@@ -40,8 +40,8 @@ STF_NOTHERE          DATE      -->
 		<result property="stf_nothere" column="STF_NOTHERE"/>
 	</resultMap>
 	
-	<select id="organization" resultType="hashmap" parameterType="map">
-		select * from staff
+	<select id="einquire" resultMap="staffRM" parameterType="int">
+		select stf_name, stf_img, stf_phone, stf_mail from staff
 	</select>
 	
 	<!--  JH  -->
