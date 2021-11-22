@@ -1,37 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
-	String ctxPath = request.getContextPath();
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- jstl -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% String ctxPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
 <!-- 이모티콘 -->
-<script src="https://kit.fontawesome.com/616f27e0c4.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/616f27e0c4.js" crossorigin="anonymous"></script>
 <!-- css -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/login.css" />
-<!-- login css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/basic.css" /><!-- basic css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/login.css" />
 
 <!-- jquery -->
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- jstl -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<title>Insert title here</title>
+<title>LDIT: Login</title>
 </head>
 <body>
-	<form name="form1" method="post">
-		<div class="wrap">
-			<div class="login">
-				<h2></h2>
-				<div class="logo">
-					<img src="./resources/image/logo.png" width="100%"">
-				</div>
+	<div class="wrap">
+		<div class="login">
+			<div class="logo">
+				<img src="./resources/image/logo.png">
+			</div>
+			<form name="form1" method="post">
 				<div class="login_id">
 					<h4>
 						ID <i class="fas fa-user"></i>
@@ -63,11 +57,10 @@
 					<c:if test="${msg=='logout'}">
 						<div style="color: red;">로그아웃되었습니다.</div>
 					</c:if>
-
 				</div>
-			</div>
+			</form>
 		</div>
-	</form>
+	</div>
 	<script>
   $(document).ready(function(){
     $("#btnLogin").click(function(){

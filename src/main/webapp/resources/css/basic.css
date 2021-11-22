@@ -14,6 +14,7 @@ body {
 /*스마트폰*/
 @media only screen and (max-width:  767px) and (orientation: portrait){
 	html{font-size: 10px;}
+}
 /*태블릿 pc*/
 @media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: portrait){
 	html{font-size: 13px;}
