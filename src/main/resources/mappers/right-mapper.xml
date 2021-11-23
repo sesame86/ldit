@@ -7,24 +7,19 @@
 		<result property="stf_name" column="STF_NAME"/>
 	</resultMap>
 	
-	<select id="searchStaffList" resultType="hashmap"	parameterType="map">
-		select * from staff
+	<select id="searchStaffList" parameterType="Staff" resultMap="staffRM">
+		select s.STF_NO, d.DEPT_NAME, s.STF_NAME
+		from staff s
+		inner join department d on s.DEPT_NO = d.DEPT_NO
 		where 1=1
-		<choose>
-			<when test="category == '부서명'">
-				and DEPT_NO like '%'||#{searchValue}||'%'
-			</when>
-			<when test="category == '사원명'">
-				and STF_NAME like '%'||#{searchValue}||'%'
-			</when>
-			<when test="category == '사원번호'">
-				and STF_NO like '%'||#{searchValue}||'%'
-			</when>
-			<when test="category == '전체'">
-				and ( DEPT_NO like '%'||#{searchValue}||'%'
-					OR STF_NAME like '%'||#{searchValue}||'%'
-					OR STF_NO like '%'||#{searchValue}||'%' )
-			</when>
-		</choose>
+		<if test="dept_no!=0">
+			and d.dept_no = #{dept_no}
+		</if>
+		<if test="stf_name!=null and !stf_name.equals('')">
+			and s.STF_NAME like '%'||#{stf_name}||'%'
+		</if>
+		<if test="stf_no!=null and !stf_no.equals('')">
+			and s.STF_NO like '%'||#{stf_no}||'%'
+		</if>
 	</select>
 </mapper>
