@@ -81,5 +81,29 @@
             </article>
         </div>
     </section>
+    <script>
+	    $("#searchBtn").on("click",	function() {
+			$.ajax({
+				url : "pmregist.do",
+				data:{
+					"deptNo" : $("#dept_select").val()
+					, "stfName" : $("#stf_name_input").val()
+					, "stfNo" : $("#stf_no_input").val()
+					},
+				type : "GET",
+				success : function(data) {
+					console.log(data);
+				},
+				error : function(request, status, errorData) {
+					alert("error code : "
+							+ request.status + "\n"
+							+ "message : "
+							+ request.responseText
+							+ "\n" + "error : "
+							+ errorData);
+				}
+			});
+		});
+    </script>
 </body>
 </html>

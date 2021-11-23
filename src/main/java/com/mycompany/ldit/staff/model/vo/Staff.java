@@ -2,6 +2,9 @@ package com.mycompany.ldit.staff.model.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Staff {
 	private static final long serialVersionUID = 1111L;
 	   private int stf_no;

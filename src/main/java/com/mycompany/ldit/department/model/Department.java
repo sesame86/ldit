@@ -1,5 +1,8 @@
 package com.mycompany.ldit.department.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Department {
 	private static final long serialVersionUID = 1111L;
 	   private int dept_no;

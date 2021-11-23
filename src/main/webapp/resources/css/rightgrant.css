@@ -20,7 +20,7 @@ h1{
     width: 70%;
     height: 100%;
     margin: 5rem auto;
-    margin-bottom: 20px;
+    margin-bottom: 1.2rem;
     font-size: 1.7rem;
     text-align: center;
     gap: 0 1%;
@@ -44,8 +44,8 @@ h1{
     width: 70%;
     height: 100%;
     margin: 8% auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
     display: grid;
     font-size: 1.7rem;
     text-align: center;
@@ -62,8 +62,8 @@ h1{
     width: 70%;
     height: 100%;
     margin: 8% auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
     display: grid;
     font-size: 1.0rem;
     text-align: center;
