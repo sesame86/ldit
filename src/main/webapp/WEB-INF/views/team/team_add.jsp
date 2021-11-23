@@ -169,7 +169,7 @@
     				if(duplicationCheck(result.stf_no) == false){
     					alert("이미 추가한 팀원입니다.");
     				}else{
-    					$(".addResultCon").append("<input type='hidden' name='staffList.staff' value='"+result.stf_no+"'><a href='#' onclick='deleteTeamMember("+result.stf_no+")' id='icon_"+result.stf_no+"'><i class='fas fa-user-minus'></i></a><img class='tmInfoImg' src='"+result.stf_img+"' id='img_"+result.stf_no+"'><p id='name_"+result.stf_no+"'>"+result.stf_name+"</p>");
+    					$(".addResultCon").append("<input class=checkDupid type='hidden' name='staffList["+$("input[name=stf_no]").length+"].stf_no' value='"+result.stf_no+"'><a href='#' onclick='deleteTeamMember("+result.stf_no+")' id='icon_"+result.stf_no+"'><i class='fas fa-user-minus'></i></a><img class='tmInfoImg' src='<%=request.getContextPath()%>/resources/image/"+result.stf_img+".png' id='img_"+result.stf_no+"'><p id='name_"+result.stf_no+"'>"+result.stf_name+"</p>");
     				}
     			},
     			error : function(e) {
@@ -178,13 +178,15 @@
     		})
     	}
     	function duplicationCheck(no) {
-    		var tmemLen = $("input[name=stf_no]").length;
+    		var tmemLen = $(".checkDupid").length;
     		var tmemArr = new Array(tmemLen);
 			for(var i=0; i<tmemLen; i++){
-				tmemArr[i] = $("input[name=stf_no]").eq(i).val();
+				tmemArr[i] = $(".checkDupid").eq(i).val();
 			}
+			console.log(tmemArr);
+			console.log(no);
 			var result = null;
-			if(tmemArr.indexOf(no.toString(16)) === -1){
+			if(tmemArr.indexOf(no.toString()) === -1){
 				result = true;
 			}else{
 				result = false;

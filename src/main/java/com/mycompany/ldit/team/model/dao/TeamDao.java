@@ -30,4 +30,10 @@ public class TeamDao {
 	public Staff searchByNo(int searchNo) {
 		return sqlSession.selectOne("Team.searchByNo", searchNo);
 	}
+	public int insertTeam(Team tvo) {
+		return sqlSession.insert("Team.insertTeam", tvo);
+	}
+	public int insertTeamMember(Team tvo) {
+		return sqlSession.insert("Team.insertTeamMember", tvo);
+	}
 }

@@ -33,4 +33,12 @@
 	<select id="searchByNo" parameterType="int" resultType="Staff">
 		select stf_no, stf_name, stf_img from staff where stf_no = #{searchNo}
 	</select>
+	<!-- 팀 등록 -->
+	<insert id="insertTeam" parameterType="Team">
+		insert into team values(team_seq.nextval, #{pro_no}, #{team_title}, #{team_manager})
+	</insert>
+	<!-- 팀 멤버 등록 -->
+	<insert id="insertTeamMember" parameterType="Team">
+		insert into team_member values(team_member_seq.nextval, #{staff.stf_no})
+	</insert>
 </mapper>

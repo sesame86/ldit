@@ -1,5 +1,7 @@
 package com.mycompany.ldit.work.controller;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,11 +45,17 @@ public class TeamOpenUpController {
 	public ModelAndView postTeam(ModelAndView mv, Team tvo) {
 		String viewpage = "redirect:teammain";
 		
-		System.out.println("진입");
 		System.out.println("tvo: " + tvo);
+		//20211123 진행중
 		try {
-			
+			int result1 = 0;
+			int result2 = 0;
+			result1 = TeamService.insertTeam(tvo);
+			System.out.println(result1);
+			//result2 = TeamService.insertTeamMember(tvo);
+			System.out.println(result2);
 		}catch (Exception e) {
+			e.getStackTrace();
 		}
 		mv.setViewName(viewpage);
 		return mv;
