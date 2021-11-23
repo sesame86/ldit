@@ -34,11 +34,11 @@
                     <div id="deptNameSelect">
                     	<select name="deptName" id="dept_select" class="dept_select">
 							<option value="">부서를 선택해주세요</option>
-							<option value="1">임원</option>
-							<option value="2">기획</option>
-							<option value="3">인사</option>
-							<option value="4">개발</option>
-							<option value="5">영업</option>
+							<option value="임원">임원</option>
+							<option value="기획">기획</option>
+							<option value="인사">인사</option>
+							<option value="개발">개발</option>
+							<option value="영업">영업</option>
 						</select>
                     </div>
                     <div id="stf_name"><input type = "text" name = "stf_name" class = "stf_name_input" id = "stf_name_input" placeholder="이름을 입력해주세요"></div>
@@ -86,7 +86,7 @@
 			$.ajax({
 				url : "pmregist.do",
 				data:{
-					"deptNo" : $("#dept_select").val()
+					"deptName" : $("#dept_select").val()
 					, "stfName" : $("#stf_name_input").val()
 					, "stfNo" : $("#stf_no_input").val()
 					},

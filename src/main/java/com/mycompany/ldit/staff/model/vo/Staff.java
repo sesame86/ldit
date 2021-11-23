@@ -19,6 +19,7 @@ public class Staff {
 	   private String stf_mail;
 	   private Date stf_enroll;
 	   private Date stf_nothere;
+	   private String dept_name;
 	   
 	   public Staff() {
 	      super();
@@ -31,14 +32,14 @@ public class Staff {
 		   this.stf_phone=stf_phone;
 	   }
 	   @Override
-	   public String toString() {
-	      return "staff [stf_no=" + stf_no + ", dept_no=" + dept_no + ", stf_lvl=" + stf_lvl + ", stf_name=" + stf_name
-	            + ", stf_id=" + stf_id + ", stf_passwd=" + stf_passwd + ", stf_img=" + stf_img + ", stf_sign="
-	            + stf_sign + ", stf_phone=" + stf_phone + ", stf_mail=" + stf_mail + ", stf_enroll=" + stf_enroll
-	            + ", stf_nothere=" + stf_nothere + "]";
-	   }
-	   
-	   public int getStf_no() {
+	public String toString() {
+		return "Staff [stf_no=" + stf_no + ", dept_no=" + dept_no + ", stf_lvl=" + stf_lvl + ", stf_name=" + stf_name
+				+ ", stf_id=" + stf_id + ", stf_passwd=" + stf_passwd + ", stf_img=" + stf_img + ", stf_sign="
+				+ stf_sign + ", stf_phone=" + stf_phone + ", stf_mail=" + stf_mail + ", stf_enroll=" + stf_enroll
+				+ ", stf_nothere=" + stf_nothere + ", dept_name=" + dept_name + "]";
+	}
+
+	public int getStf_no() {
 	      return stf_no;
 	   }
 
@@ -133,4 +134,12 @@ public class Staff {
 	   public void setStf_nothere(Date stf_nothere) {
 	      this.stf_nothere = stf_nothere;
 	   }
+
+	public String getDept_name() {
+		return dept_name;
+	}
+
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
 }

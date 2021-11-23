@@ -30,16 +30,16 @@ public class PMRegistController {
 	@RequestMapping(value = "/pmregist.do", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Staff> getStaffList(HttpServletRequest request
-			, @RequestParam(value = "deptNo", required = false) int getDeptNo
+			, @RequestParam(value = "deptName", required = false) String getdeptName
 			, @RequestParam(value = "stfName", required = false) String getStfName
 			, @RequestParam(value = "stfNo", required = false) int getStfNo) {
 		
-		System.out.println("getDeptName : " + getDeptNo);
+		System.out.println("getDeptName : " + getdeptName);
 		System.out.println("getStfName : " + getStfName);
 		System.out.println("getStfNo : " + getStfNo);
 		
 		Staff vo = new Staff();
-		vo.setDept_no(getDeptNo);
+		vo.setDept_name(getdeptName);
 		vo.setStf_name(getStfName);
 		vo.setStf_no(getStfNo);
 		System.out.println("vo : " + vo);
