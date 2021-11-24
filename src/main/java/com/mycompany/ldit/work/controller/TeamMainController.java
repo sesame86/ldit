@@ -35,6 +35,7 @@ public class TeamMainController {
 			voList = TeamService.getOneProjectTeam(pro_no);
 			viewpage = "team/team_main";
 			mv.addObject("getTeam", voList);
+			System.out.println(voList);
 		}catch (Exception e) {
 			//viewpage = "error/commonError";
 			//mv.addObject("msg", "팀 개설에 문제가 생겼습니다.");

@@ -8,6 +8,7 @@
 		<association property="teamAim" javaType="TeamAim">
 			<id property="aimId" column="aim_id"/>
 			<result property="aimStatus" column="aim_status"/>
+			<result property="aimFinish" column="aim_finish"/>
 		</association>
 		<association property="staff" javaType="Staff">
 			<result property="stfName" column="stf_name"/>
@@ -39,8 +40,8 @@
 	</resultMap>
 	<!-- 팀 메인 조회 -->
 	<select parameterType="int" resultMap="TeamJoinAimJoinStaff" id="getOneProjectTeam">
-		select * from(select t.team_id, t.pro_no, t.team_title, nvl(ta.aim_id,0) aim_id, nvl(ta.aim_status,0) aim_status, s.stf_name,
-		rank() over (partition by t.team_id order by ta.aim_status) as ranking
+		select * from(select t.team_id, t.pro_no, t.team_title, ta.aim_id, ta.aim_status, ta.aim_finish, s.stf_name,
+		rank() over (partition by t.team_id order by ta.aim_id desc) as ranking
 		from team t left join team_aim ta on t.team_id = ta.team_id join staff s on t.team_manager = s.stf_no
 		where t.pro_no = #{proNo})
 		where ranking = 1

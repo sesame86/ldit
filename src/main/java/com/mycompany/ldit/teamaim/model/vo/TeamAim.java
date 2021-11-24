@@ -11,13 +11,15 @@ public class TeamAim {
 	private Date aimStart;
 	private Date aimEnd;
 	private int aimStatus;
+	private char aimFinish;
 	   
 	public TeamAim() {}
 
 	@Override
 	public String toString() {
 		return "TeamAim [aimId=" + aimId + ", teamId=" + teamId + ", aimTitle=" + aimTitle + ", aimContent="
-				+ aimContent + ", aimStart=" + aimStart + ", aimEnd=" + aimEnd + ", aimStatus=" + aimStatus + "]";
+				+ aimContent + ", aimStart=" + aimStart + ", aimEnd=" + aimEnd + ", aimStatus=" + aimStatus
+				+ ", aimFinish=" + aimFinish + "]";
 	}
 
 	public int getAimId() {
@@ -74,5 +76,13 @@ public class TeamAim {
 
 	public void setAimStatus(int aimStatus) {
 		this.aimStatus = aimStatus;
+	}
+
+	public char getAimFinish() {
+		return aimFinish;
+	}
+
+	public void setAimFinish(char aimFinish) {
+		this.aimFinish = aimFinish;
 	}
 }

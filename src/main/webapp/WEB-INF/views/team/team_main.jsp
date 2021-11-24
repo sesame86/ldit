@@ -35,14 +35,40 @@
             <div id="teamConGrid">
             <c:forEach var="vo" items="${getTeam}">
                 <article class="card">
-                    <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
+                    <c:if test="${vo.teamAim.aimFinish == 'N'.charAt(0)}">
+                            	<c:if test="${vo.teamAim.aimStatus == 0}">
+                            	<img class="cardImg" src="<%=request.getContextPath()%>/resources/image/new.png">
+	                            </c:if>
+                            	<c:if test="${vo.teamAim.aimStatus > 0 && vo.teamAim.aimStatus < 100}">
+                            	<img class="cardImg" src="<%=request.getContextPath()%>/resources/image/ongoing.png">
+	                            </c:if>
+	                            <c:if test="${vo.teamAim.aimStatus == 100}">
+	                            <img class="cardImg" src="<%=request.getContextPath()%>/resources/image/finish.png">
+	                            </c:if>
+                            </c:if>
+                            <c:if test="${vo.teamAim.aimFinish == 'Y'.charAt(0)}">
+                            <img class="cardImg" src="<%=request.getContextPath()%>/resources/image/finish.png">
+                            </c:if>
                     <div class="cardGridCon">
                         <h4 class="teamName">${vo.teamTitle}</h4>
                         <div class="cardGrid">
                             <p>TM</p>
                             <div>${vo.staff.stfName}</div>
                             <p onclick="teamGoalList(${vo.teamId})">팀목표</p>
-                            <progress value="${vo.teamAim.aimStatus}" max="100" id="mainPbar"></progress>
+                            <c:if test="${vo.teamAim.aimFinish == 'N'.charAt(0)}">
+                            	<c:if test="${vo.teamAim.aimStatus == 0}">
+	                            <progress value="${vo.teamAim.aimStatus}" max="100" id="mainPbarBlue"></progress>
+	                            </c:if>
+                            	<c:if test="${vo.teamAim.aimStatus > 0 && vo.teamAim.aimStatus < 100}">
+	                            <progress value="${vo.teamAim.aimStatus}" max="100" id="mainPbarGreen"></progress>
+	                            </c:if>
+	                            <c:if test="${vo.teamAim.aimStatus == 100}">
+	                            <progress value="${vo.teamAim.aimStatus}" max="100" id="mainPbarYellow"></progress>
+	                            </c:if>
+                            </c:if>
+                            <c:if test="${vo.teamAim.aimFinish == 'Y'.charAt(0)}">
+                            <progress value="${vo.teamAim.aimStatus}" max="100" id="mainPbarRed"></progress>
+                            </c:if>
                         </div>
                     </div>
                 </article>
@@ -127,22 +153,24 @@
 	    					text += "<div class='reqColorSmall' id='color_"+i+"'></div>";
 	    					text += "<div class='goalInfo'>";
 	    					text += "<h4>"+result[i].aimTitle+"</h4>";
-	    					if(result[i].aimStatus != 100){
+	    					if(result[i].aimStatus != 100 && result[i].aimFinish == 'N'){
 	    						text += "<button onclick='getUpdateGoal("+result[i].teamId+")'>수정</button>";
 	    						text += "<button onclick='disableGoal("+result[i].teamId+")'>비활성화</button>";
 	    					}
 	    					text += "<p class='dateP'>"+result[i].aimStart+" ~ "+result[i].aimEnd+"</p>";
-	    					text += "<progress value="+result[i].aimStart+" max='100' class='modalPbar'></progress><p class='percentP'>"+result[i].aimStatus+"%</p>";
+	    					text += "<progress value="+result[i].aimStatus+" max='100' class='modalPbar'></progress><p class='percentP'>"+result[i].aimStatus+"%</p>";
 	    					text += "</div>";
 	    					text += "</div>";
 	    					$("#teamGoalModal #goalList").append(text);
-	    					if(result[i].aimStatus == 0){
-	    						$("#color_"+i).css("background-color", "#3498DB");
-	    					}else if(result[i].aimStatus > 0 && result[i].aimStatus < 100){
-	    						$("#color_"+i).css("background-color", "#27AE60");
-	    					}else if(result[i].aimStatus == 100){
-	    						$("#color_"+i).css("background-color", "#FFE08C");
-	    					}else if(result[i].aimStatus == -1){
+	    					if(result[i].aimFinish == 'N'){
+	    						if(result[i].aimStatus == 0){
+		    						$("#color_"+i).css("background-color", "#3498DB");
+		    					}else if(result[i].aimStatus > 0 && result[i].aimStatus < 100){
+		    						$("#color_"+i).css("background-color", "#27AE60");
+		    					}else if(result[i].aimStatus == 100){
+		    						$("#color_"+i).css("background-color", "#FFE08C");
+		    					}
+	    					}else if(result[i].aimFinish == 'Y'){
 	    						$("#color_"+i).css("background-color", "#DE4F4F");
 	    					}
     					}
@@ -168,30 +196,35 @@
     			type: "GET",
     			dataType: "json",
     			success: function(result){
-    				console.log("result"+result);
-    				
-					if(result >= 0 && result < 100){
-						alert("이전 목표를 완료해주세요");
-					}else if(result == 100 || result == "noGoal"){
-						//팀 목표 등록 모달로 이동
-						$("#teamGoalModal").css("display", "none");
-						$("#tgRegisterModal").css("display", "block");
-						$("#tgModalFrm").attr("action", "goaladd");
-						$("#aimTitle").val("");
-						$("#aimContent").val("");
-						$("#startDate").val("");
-						$("#endDate").val("");
-						$("#modalTitle").text("팀 목표 등록");
-						$("#sbBtn").text("등록");
-					
-						$("#teamGoalModal").css("display", "none");
-						$("#tgRegisterModal").css("display", "block");
-					}
+    				if(result.aimFinish == 'N'){
+    					if(result.aimStatus >= 0 && result.aimStatus < 100){
+    						alert("이전 목표를 완료해주세요");
+    					}else if(result.aimStatus == 100){
+    						addGoal();
+    					}
+    				}else if(result.aimFinish == 'Y'){
+    					addGoal();
+    				}
     			},
     			error : function(e) {
-    				console.log("result");
+    				alert("code:"+e.status+"\n"+"message:"+e.responseText+"\n"+"error:"+e);
 		        }
     		})
+		}
+    	function addGoal() {
+    		//팀 목표 등록 모달로 이동
+			$("#teamGoalModal").css("display", "none");
+			$("#tgRegisterModal").css("display", "block");
+			$("#tgModalFrm").attr("action", "goaladd");
+			$("#aimTitle").val("");
+			$("#aimContent").val("");
+			$("#startDate").val("");
+			$("#endDate").val("");
+			$("#modalTitle").text("팀 목표 등록");
+			$("#sbBtn").text("등록");
+		
+			$("#teamGoalModal").css("display", "none");
+			$("#tgRegisterModal").css("display", "block");
 		}
     	$("#startDate").on("change", function(){
     		if($("#spendTime").val() == 0){
@@ -244,7 +277,7 @@
 					$("#sbBtn").text("수정");
     			},
     			error : function(e) {
-    				console.log("result");
+    				alert("code:"+e.status+"\n"+"message:"+e.responseText+"\n"+"error:"+e);
 		        }
     		})
 		}
@@ -273,7 +306,7 @@
 	    				}
 	    			},
 	    			error : function(e) {
-	    				console.log("result");
+	    				alert("code:"+e.status+"\n"+"message:"+e.responseText+"\n"+"error:"+e);
 			        }
 	    		})
 			}

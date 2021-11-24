@@ -109,7 +109,7 @@
         				}
         			},
         			error:function(e) {
-    		        	alert(e.responseText);
+        				alert("code:"+e.status+"\n"+"message:"+e.responseText+"\n"+"error:"+e);
     		        }
         		})
     		}
@@ -144,7 +144,7 @@
         				}
         			},
         			error:function(e) {
-    		        	alert(e.responseText);
+        				alert("code:"+e.status+"\n"+"message:"+e.responseText+"\n"+"error:"+e);
     		        }
         		})
     		}

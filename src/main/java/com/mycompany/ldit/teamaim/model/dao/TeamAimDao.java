@@ -16,7 +16,7 @@ public class TeamAimDao {
 	public List<TeamAim> getTeamGoal(int teamId) {
 		return sqlSession.selectList("TeamAim.getTeamGoal", teamId);
 	}
-	public String goalStatusCheck(int teamId) {
+	public TeamAim goalStatusCheck(int teamId) {
 		return sqlSession.selectOne("TeamAim.goalStatusCheck", teamId);
 	}
 	public int insertTeamGoal(TeamAim tAimVo) {

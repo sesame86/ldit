@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="TeamAim">
+	<resultMap type="TeamAim" id="TeamAimRM">
+		<id property="aimId" column="aim_id"/>
+		<result property="teamId" column="team_id"/>
+		<result property="aimTitle" column="aim_title"/>
+		<result property="aimContent" column="aim_content"/>
+		<result property="aimStart" column="aim_start"/>
+		<result property="aimEnd" column="aim_end"/>
+		<result property="aimStatus" column="aim_status"/>
+		<result property="aimFinish" column="aim_finish"/>
+	</resultMap>
 	<!-- 팀 목표 조회 -->
-	<select id="getTeamGoal" parameterType="int" resultType="TeamAim">
-		select aim_title, team_id, aim_id, aim_start, aim_end, aim_status from team_aim
+	<select id="getTeamGoal" parameterType="int" resultMap="TeamAimRM">
+		select * from team_aim
 		where team_id = #{teamId}
 		order by aim_id desc
 	</select>
 	<!-- 팀 목표 마지막 status 조회 -->
-	<select id="goalStatusCheck" parameterType="int" resultType="String">
-		select aim_status from (select aim_status from team_aim where team_id = #{teamId} order by rownum asc) where rownum = 1
+	<select id="goalStatusCheck" parameterType="int" resultMap="TeamAimRM">
+		select * from (select aim_status, aim_finish from team_aim where team_id = #{teamId} order by rownum desc) where rownum = 1
 	</select>
 	<!-- 팀 목표 등록 -->
 	<insert id="insertTeamGoal" parameterType="TeamAim">
-		insert into team_aim values(team_aim_seq.nextval, #{team_id}, #{aim_title}, #{aim_content}, #{aim_start}, #{aim_end}, 0)
+		insert into team_aim(aim_id, team_id, aim_title, aim_content, aim_start, aim_end) values(team_aim_seq.nextval, #{teamId}, #{aimTitle}, #{aimContent}, #{aimStart}, #{aimEnd})
 	</insert>
 	<!-- 팀 update 정보 가져오기 -->
-	<select id="getUpdateGoal" parameterType="int" resultType="TeamAim">
-		select * from team_aim where team_id = #{teamId} and aim_status != 100
+	<select id="getUpdateGoal" parameterType="int" resultMap="TeamAimRM">
+		select * from team_aim where team_id = #{teamId} and aim_status != 100 and aim_finish = 'N'
 	</select>
 	<update id="updateTeamGoal" parameterType="TeamAim">
-		update team_aim set aim_title=#{aim_title}, aim_content=#{aim_content}, aim_start=#{aim_start}, aim_end=#{aim_end}
-		where team_id = #{team_id} and aim_status != 100
+		update team_aim set aim_title=#{aimTitle}, aim_content=#{aimContent}, aim_start=#{aimStart}, aim_end=#{aimEnd}
+		where team_id = #{teamId} and aim_status != 100
 	</update>
 	<!-- 팀 목표 비활성화 -->
 	<update id="disableTeamGoal" parameterType="int">
-		update team_aim set aim_status = -1
-		where team_id = #{team_id} and aim_status != 100
+		update team_aim set aim_finish = 'Y'
+		where team_id = #{teamId} and aim_status != 100
 	</update>
 </mapper>

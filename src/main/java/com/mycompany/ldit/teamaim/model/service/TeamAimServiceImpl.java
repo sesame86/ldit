@@ -20,7 +20,7 @@ public class TeamAimServiceImpl implements TeamAimService{
 		return TeamAimDao.getTeamGoal(teamId);
 	}
 	@Override
-	public String goalStatusCheck(int teamId) throws Exception {
+	public TeamAim goalStatusCheck(int teamId) throws Exception {
 		return TeamAimDao.goalStatusCheck(teamId);
 	}
 	@Override

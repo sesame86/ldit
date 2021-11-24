@@ -20,17 +20,18 @@ public class TeamGoalRegistController {
 	
 	@RequestMapping(value = "/gstatuscheck.do", method = RequestMethod.GET)
 	@ResponseBody
-	public String goalStatusCheck(HttpServletRequest request) {
+	public TeamAim goalStatusCheck(HttpServletRequest request) {
 		String teamIdStr = request.getParameter("teamId");
 		int teamId = 0;
 		if(teamIdStr != null) {
 			teamId = Integer.parseInt(teamIdStr);
 		}
-		String status = null;
+		TeamAim status = null;
 		try {
 			status = TeamAimService.goalStatusCheck(teamId);
 			if(status == null) {
-				status = "noGoal";
+				status = new TeamAim();
+				status.setAimFinish('Y');
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,7 +42,6 @@ public class TeamGoalRegistController {
 	public ModelAndView insertTeamGoal(ModelAndView mv, TeamAim tAimVo) {
 		String viewpage = "redirect:teammain";
 		int result = 0;
-		System.out.println(tAimVo);
 		try {
 			result = TeamAimService.insertTeamGoal(tAimVo);
 			if(result>0) {
