@@ -40,50 +40,32 @@ public class AttendanceController {
 	
 	@RequestMapping(value="checkin", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String checkinMethod(@RequestParam("stfNo") int stfno) throws IOException{
-		//response.setContentType("application/json; charset=utf-8");
+	public String checkinMethod(/*@RequestParam("stfNo") int stfNo*/) throws IOException{
 		
 		System.out.println("checkinMethod진입");
-		//근태일련번호
-		LocalDateTime dt = LocalDateTime.now();
-		DateTimeFormatter attnoFormat = DateTimeFormatter.ofPattern("yyyyMMdd");
-		int attNo = Integer.parseInt(String.valueOf(dt.format(attnoFormat)));
-		System.out.println("attNo: "+attNo);
 		
-		//출근시간
-		Timestamp attStart = Timestamp.valueOf(dt);
+		//임시 사원번호
+		int stfNo = 1;
 		
-		//출근 근태코드
-		int whCode = 0;
 		
-		//임시 아이디
-		System.out.println("stfno:"+stfno);
-		int stfNo;
-		try {
-			stfNo = stfno;
-		} catch (NumberFormatException e) {
-			stfNo = 1111;
-		}
+		int result = attService.insertCheckin(stfNo);
 		
-		Map<String, Object> mapCheckin = new HashMap<String, Object>();	
-		mapCheckin.put("attNo", attNo);
-		mapCheckin.put("attStart", attStart);
-		mapCheckin.put("stfNo", stfNo);
-		mapCheckin.put("whCode", "ㄷㄷㄷ");
 		
-	//	int result = attService.insertCheckin(mapCheckin);
-		String r = "돌아가자";
-		Gson gson = new Gson();
-		r = gson.toJson(mapCheckin);
-		System.out.println(r);
+		
+		
+		String r ="";
 		return r;
-//		response.getWriter().append(r);
-//		response.getWriter().flush();
-//		response.getWriter().close();
 		
 	}
 	
-	
+	@RequestMapping(value="checkout", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String checkoutMethod(@RequestParam("stfNo") int stfno/*, @RequestParam("whmCode") int whmCode*/) {
+		
+		
+		String r ="";
+		return r;
+	}
 	
 	
 	
