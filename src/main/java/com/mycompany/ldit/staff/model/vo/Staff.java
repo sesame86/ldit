@@ -7,139 +7,133 @@ import org.springframework.stereotype.Component;
 @Component
 public class Staff {
 	private static final long serialVersionUID = 1111L;
-	   private int stf_no;
-	   private int dept_no;
-	   private String stf_lvl;
-	   private String stf_name;
-	   private String stf_id;
-	   private String stf_passwd;
-	   private String stf_img;
-	   private String stf_sign;
-	   private String stf_phone;
-	   private String stf_mail;
-	   private Date stf_enroll;
-	   private Date stf_nothere;
-	   private String dept_name;
-	   
-	   public Staff() {
-	      super();
-	   }
-
-	   public Staff(String stf_name, String stf_sign, String stf_phone) {
-		   super();
-		   this.stf_name=stf_name;
-		   this.stf_sign=stf_sign;
-		   this.stf_phone=stf_phone;
-	   }
-	   @Override
+	private int stfNo;
+	private int deptNo;
+	private String stfLvl;
+	private String stfName;
+	private String stfId;
+	private String stfPasswd;
+	private String stfImg;
+	private String stfSign;
+	private String stfPhone;
+	private String stfMail;
+	private Date stfEnroll;
+	private Date stfNothere;
+	private String deptName;
+	
+	public Staff() {
+		super();
+	}
+	
+	@Override
 	public String toString() {
-		return "Staff [stf_no=" + stf_no + ", dept_no=" + dept_no + ", stf_lvl=" + stf_lvl + ", stf_name=" + stf_name
-				+ ", stf_id=" + stf_id + ", stf_passwd=" + stf_passwd + ", stf_img=" + stf_img + ", stf_sign="
-				+ stf_sign + ", stf_phone=" + stf_phone + ", stf_mail=" + stf_mail + ", stf_enroll=" + stf_enroll
-				+ ", stf_nothere=" + stf_nothere + ", dept_name=" + dept_name + "]";
+		return "Staff [stfNo=" + stfNo + ", deptNo=" + deptNo + ", stfLvl=" + stfLvl + ", stfName=" + stfName
+				+ ", stfId=" + stfId + ", stfPasswd=" + stfPasswd + ", stfImg=" + stfImg + ", stfSign=" + stfSign
+				+ ", stfPhone=" + stfPhone + ", stfMail=" + stfMail + ", stfEnroll=" + stfEnroll + ", stfNothere="
+				+ stfNothere + ", deptName=" + deptName + "]";
 	}
 
-	public int getStf_no() {
-	      return stf_no;
-	   }
-
-	   public void setStf_no(int stf_no) {
-	      this.stf_no = stf_no;
-	   }
-
-	   public int getDept_no() {
-	      return dept_no;
-	   }
-
-	   public void setDept_no(int dept_no) {
-	      this.dept_no = dept_no;
-	   }
-
-	   public String getStf_lvl() {
-	      return stf_lvl;
-	   }
-
-	   public void setStf_lvl(String stf_lvl) {
-	      this.stf_lvl = stf_lvl;
-	   }
-
-	   public String getStf_name() {
-	      return stf_name;
-	   }
-
-	   public void setStf_name(String stf_name) {
-	      this.stf_name = stf_name;
-	   }
-
-	   public String getStf_id() {
-	      return stf_id;
-	   }
-
-	   public void setStf_id(String stf_id) {
-	      this.stf_id = stf_id;
-	   }
-
-	   public String getStf_passwd() {
-	      return stf_passwd;
-	   }
-
-	   public void setStf_passwd(String stf_passwd) {
-	      this.stf_passwd = stf_passwd;
-	   }
-
-	   public String getStf_img() {
-	      return stf_img;
-	   }
-
-	   public void setStf_img(String stf_img) {
-	      this.stf_img = stf_img;
-	   }
-
-	   public String getStf_sign() {
-	      return stf_sign;
-	   }
-
-	   public void setStf_sign(String stf_sign) {
-	      this.stf_sign = stf_sign;
-	   }
-
-	   public String getStf_phone() {
-	      return stf_phone;
-	   }
-
-	   public void setStf_phone(String stf_phone) {
-	      this.stf_phone = stf_phone;
-	   }
-
-	   public String getStf_mail() {
-	      return stf_mail;
-	   }
-
-	   public void setStf_mail(String stf_mail) {
-	      this.stf_mail = stf_mail;
-	   }
-
-	   public Date getStf_enroll() {
-	      return stf_enroll;
-	   }
-
-	   public void setStf_enroll(Date stf_enroll) {
-	      this.stf_enroll = stf_enroll;
-	   }
-
-	   public Date getStf_nothere() {
-	      return stf_nothere;
-	   }
-
-	   public void setStf_nothere(Date stf_nothere) {
-	      this.stf_nothere = stf_nothere;
-	   }
-
-	public String getDept_name() {
-		return dept_name;
+	public int getStfNo() {
+		return stfNo;
 	}
 
-	public void setDept_name(String dept_name) {
-		this.dept_name = dept_name;
+	public void setStfNo(int stfNo) {
+		this.stfNo = stfNo;
+	}
+
+	public int getDeptNo() {
+		return deptNo;
+	}
+
+	public void setDeptNo(int deptNo) {
+		this.deptNo = deptNo;
+	}
+
+	public String getStfLvl() {
+		return stfLvl;
+	}
+
+	public void setStfLvl(String stfLvl) {
+		this.stfLvl = stfLvl;
+	}
+
+	public String getStfName() {
+		return stfName;
+	}
+
+	public void setStfName(String stfName) {
+		this.stfName = stfName;
+	}
+
+	public String getStfId() {
+		return stfId;
+	}
+
+	public void setStfId(String stfId) {
+		this.stfId = stfId;
+	}
+
+	public String getStfPasswd() {
+		return stfPasswd;
+	}
+
+	public void setStfPasswd(String stfPasswd) {
+		this.stfPasswd = stfPasswd;
+	}
+
+	public String getStfImg() {
+		return stfImg;
+	}
+
+	public void setStfImg(String stfImg) {
+		this.stfImg = stfImg;
+	}
+
+	public String getStfSign() {
+		return stfSign;
+	}
+
+	public void setStfSign(String stfSign) {
+		this.stfSign = stfSign;
+	}
+
+	public String getStfPhone() {
+		return stfPhone;
+	}
+
+	public void setStfPhone(String stfPhone) {
+		this.stfPhone = stfPhone;
+	}
+
+	public String getStfMail() {
+		return stfMail;
+	}
+
+	public void setStfMail(String stfMail) {
+		this.stfMail = stfMail;
+	}
+
+	public Date getStfEnroll() {
+		return stfEnroll;
+	}
+
+	public void setStfEnroll(Date stfEnroll) {
+		this.stfEnroll = stfEnroll;
+	}
+
+	public Date getStfNothere() {
+		return stfNothere;
+	}
+
+	public void setStfNothere(Date stfNothere) {
+		this.stfNothere = stfNothere;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
 	}
 }

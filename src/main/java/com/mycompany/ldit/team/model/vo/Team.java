@@ -2,57 +2,60 @@ package com.mycompany.ldit.team.model.vo;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
 import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.teamaim.model.vo.TeamAim;
 
+@Component
 public class Team {
 	private static final long serialVersionUID = 1111L;
-	private int team_id;
-	private int pro_no;
-	private String team_title;
-	private int team_manager;
+	private int teamId;
+	private int proNo;
+	private String teamTitle;
+	private int teamManager;
 	private TeamAim teamAim;
 	private Staff staff;
 	private ArrayList<Staff> staffList;
 	
 	public Team() {}
-	
+
 	@Override
 	public String toString() {
-		return "Team [team_id=" + team_id + ", pro_no=" + pro_no + ", team_title=" + team_title + ", team_manager="
-				+ team_manager + ", teamAim=" + teamAim + ", staff=" + staff + ", staffList=" + staffList + "]";
+		return "Team [teamId=" + teamId + ", proNo=" + proNo + ", teamTitle=" + teamTitle + ", teamManager="
+				+ teamManager + ", teamAim=" + teamAim + ", staff=" + staff + ", staffList=" + staffList + "]";
 	}
 
-	public int getTeam_id() {
-		return team_id;
+	public int getTeamId() {
+		return teamId;
 	}
 
-	public void setTeam_id(int team_id) {
-		this.team_id = team_id;
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
 	}
 
-	public int getPro_no() {
-		return pro_no;
+	public int getProNo() {
+		return proNo;
 	}
 
-	public void setPro_no(int pro_no) {
-		this.pro_no = pro_no;
+	public void setProNo(int proNo) {
+		this.proNo = proNo;
 	}
 
-	public String getTeam_title() {
-		return team_title;
+	public String getTeamTitle() {
+		return teamTitle;
 	}
 
-	public void setTeam_title(String team_title) {
-		this.team_title = team_title;
+	public void setTeamTitle(String teamTitle) {
+		this.teamTitle = teamTitle;
 	}
 
-	public int getTeam_manager() {
-		return team_manager;
+	public int getTeamManager() {
+		return teamManager;
 	}
 
-	public void setTeam_manager(int team_manager) {
-		this.team_manager = team_manager;
+	public void setTeamManager(int teamManager) {
+		this.teamManager = teamManager;
 	}
 
 	public TeamAim getTeamAim() {
