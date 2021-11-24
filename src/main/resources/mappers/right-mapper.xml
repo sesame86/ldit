@@ -2,24 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Right">
 	<resultMap type="Staff" id="staffRM">
-		<id property="stf_no" column="STF_NO"/>
-		<result property="dept_no" column="DEPT_NO"/>
-		<result property="stf_name" column="STF_NAME"/>
+		<id property="stfNo" column="STF_NO"/>
+		<result property="deptName" column="DEPT_Name"/>
+		<result property="stfName" column="STF_NAME"/>
 	</resultMap>
 	
+	<!-- 권한관리페이지 사원정보 조회 쿼리문 -->
 	<select id="searchStaffList" parameterType="Staff" resultMap="staffRM">
 		select s.STF_NO, d.DEPT_NAME, s.STF_NAME
 		from staff s
 		inner join department d on s.DEPT_NO = d.DEPT_NO
 		where 1=1
-		<if test="dept_no!=0">
-			and d.dept_no = #{dept_no}
+		<if test="deptName!=null and !deptName.equals('')">
+			and d.DEPT_NAME = #{deptName}
 		</if>
-		<if test="stf_name!=null and !stf_name.equals('')">
-			and s.STF_NAME like '%'||#{stf_name}||'%'
+		<if test="stfName!=null and !stfName.equals('')">
+			and s.STF_NAME like '%'||#{stfName}||'%'
 		</if>
-		<if test="stf_no!=null and !stf_no.equals('')">
-			and s.STF_NO like '%'||#{stf_no}||'%'
+		<if test="stfNo!=-1">
+			and s.STF_NO like '%'||#{stfNo}||'%'
 		</if>
 	</select>
+	
+	<!-- 권한관리페이지 PM등록 쿼리문 -->
+	<insert id="insertPm" parameterType="_int">
+		insert into right (stf_no, right_no) values (#{stfNo}, 0)
+	</insert>
 </mapper>

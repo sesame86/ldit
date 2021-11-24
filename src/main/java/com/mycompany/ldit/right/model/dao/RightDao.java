@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.ldit.right.model.vo.Right;
 import com.mycompany.ldit.staff.model.vo.Staff;
 
 @Repository("RightDao")
@@ -19,6 +20,9 @@ public class RightDao {
 		System.out.println("volist : " + volist);
 		return volist;
 	}
+	
+	public int insertPm(int stfNo) {
+		System.out.println("DAO vo : " + stfNo);
+		return sqlSession.insert("Right.insertPm", stfNo);
+	}
 }
-
-

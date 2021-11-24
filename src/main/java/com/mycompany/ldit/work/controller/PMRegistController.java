@@ -39,9 +39,9 @@ public class PMRegistController {
 		System.out.println("getStfNo : " + getStfNo);
 		
 		Staff vo = new Staff();
-		//vo.setDept_name(getdeptName);
-		//vo.setStf_name(getStfName);
-		//vo.setStf_no(getStfNo);
+		vo.setDept_name(getdeptName);
+		vo.setStf_name(getStfName);
+		vo.setStf_no(getStfNo);
 		System.out.println("vo : " + vo);
 		
 		List<Staff> staffList = null;

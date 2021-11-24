@@ -52,36 +52,18 @@
                 </div>
                 
                 <!-- 검색조건 일치하는 사람 반복문으로 리스트 뿌려주기 및 페이징처리 -->
-                <form id="rightgrantFrm" action="rightgrant" method="post">
+                <!-- <form id="rightgrantFrm" action="rightgrant" method="post"> -->
 	                <div id="staffInfoList">
-	                	<div id="deptNameList">부서명</div>
-	                    <div id="stf_nameList">이름</div>
-	                    <div id="stf_noList">사원번호</div>
-	                    <button id="rightBtnList">PM등록</button>
 	                </div>
-	                <div id="staffInfoList">
-	                	<div id="deptNameList">부서명</div>
-	                    <div id="stf_nameList">이름</div>
-	                    <div id="stf_noList">사원번호</div>
-	                    <button id="rightBtnList">PM등록</button>
-	                </div>
-	                <div id="staffInfoList">
-	                	<div id="deptNameList">부서명</div>
-	                    <div id="stf_nameList">이름</div>
-	                    <div id="stf_noList">사원번호</div>
-	                    <button id="rightBtnList">PM등록</button>
-	                </div>
-	                <div id="staffInfoList">
-	                	<div id="deptNameList">부서명</div>
-	                    <div id="stf_nameList">이름</div>
-	                    <div id="stf_noList">사원번호</div>
-	                    <button id="rightBtnList">PM등록</button>
-	                </div>
-                </form>
+                <!-- </form> -->
             </article>
         </div>
+        
+        <!-- PM등록 버큰 클릭 시 사원번호 확인용 -->
+        <input type="text" id="stf_noListVal" style="display: none;">
     </section>
     <script>
+    	/* 조건별 검색기능 */
 	    $("#searchBtn").on("click",	function() {
 			$.ajax({
 				url : "pmregist.do",
@@ -93,6 +75,48 @@
 				type : "GET",
 				success : function(data) {
 					console.log(data);
+					alert("사원리스트가 검색되었습니다.")
+					resultHtml(data);
+				},
+				error : function(request, status, errorData) {
+					alert("error code : "
+							+ request.status + "\n"
+							+ "message : "
+							+ request.responseText
+							+ "\n" + "error : "
+							+ errorData);
+				}
+			});
+		});
+	    
+	    /* 조건별 검색된 목록 리스트 출력 // 조건별 검색기능 ajax의 success로 전달 */
+	    function resultHtml(data){
+			var html="";
+			$.each(data, function(i, value){
+					html += '<div id="deptNameList">'+value.deptName+'</div>';
+					html += '<div id="stf_nameList">'+value.stfName+'</div>';
+					html += '<div id="stf_noList">'+value.stfNo+'</div>';
+					html += '<button class="rightBtnList">PM등록</button>';
+			});
+			$("#staffInfoList").empty(); 
+			$("#staffInfoList").append(html);
+		}
+	    
+	    /* PM등록 기능 */
+	    $(document).on("click", ".rightBtnList", function() {
+	    	/* alert("클릭하였습니다.") */
+	    	var stf_noVal = $(this).prev().text();
+	    	console.log(stf_noVal);
+	    	$("#stf_noListVal").val(stf_noVal);
+	    	
+			$.ajax({
+				url : "insertPm.do",
+				data:{
+					"stfNo" : $("#stf_noListVal").val()
+					},
+				type : "POST",
+				success : function(data) {
+					alert("PM 등록이 완료되었습니다.")
 				},
 				error : function(request, status, errorData) {
 					alert("error code : "

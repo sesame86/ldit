@@ -12,24 +12,25 @@ public class Department {
 	      super();
 	   }
 
-	   @Override
-	   public String toString() {
-	      return "department [deptNo=" + deptNo + ", deptName=" + deptName + "]";
-	   }
-	   
-	   public int getDeptNo() {
-	      return deptNo;
-	   }
+	@Override
+	public String toString() {
+		return "Department [deptNo=" + deptNo + ", deptName=" + deptName + "]";
+	}
 
-	   public void setDeptNo(int deptNo) {
-	      this.deptNo = deptNo;
-	   }
+	public int getDeptNo() {
+		return deptNo;
+	}
 
-	   public String getDeptName() {
-	      return deptName;
-	   }
+	public void setDeptNo(int deptNo) {
+		this.deptNo = deptNo;
+	}
 
-	   public void setDeptName(String deptName) {
-	      this.deptName = deptName;
-	   }
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
 }
