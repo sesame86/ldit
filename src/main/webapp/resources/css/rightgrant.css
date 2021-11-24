@@ -63,7 +63,6 @@ h1{
     height: 100%;
     margin: 8% auto;
     margin-top: 1.2rem;
-    margin-bottom: 1.2rem;
     display: grid;
     font-size: 1.0rem;
     text-align: center;
@@ -73,12 +72,14 @@ h1{
 
 #deptNameList, #stf_nameList, #stf_noList{
     background-color: #e5e8eb;
+    margin-bottom: 1.2rem;
     border-radius: 0.3rem;
     padding: 1rem 0;
 }
 
 #staffInfoList > button{
     background-color: #3498DB;
+    margin-bottom: 1.2rem;
     border-radius: 0.3rem;
     padding: 1rem 0;
     cursor: pointer;
