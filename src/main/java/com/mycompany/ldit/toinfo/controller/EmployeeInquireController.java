@@ -21,11 +21,10 @@ public class EmployeeInquireController {
 	public ModelAndView einquire(ModelAndView mv) {
 		String viewpage ="";
 		Staff vo = new Staff();
-		vo.setStf_name("백건호");
 		List<Staff> orlist = null;
 		try {
 			viewpage="employee/einquire";
-			orlist=staffService.einquire(vo);
+			orlist = staffService.einquire(vo);
 			mv.addObject("orlist", orlist);
 		} catch(Exception e) {
 			mv.addObject("msg", "조직도를 불러올 때 문제가 발생했습니다.");

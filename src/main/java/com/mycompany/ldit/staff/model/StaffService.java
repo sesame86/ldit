@@ -2,7 +2,6 @@ package com.mycompany.ldit.staff.model;
 
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class StaffService implements StaffServiceInterface{
 	boolean result = staffDao.loginCheck(vo);
 	if(result) {//true 일 경우 세션에 등록
 		Staff vo2 = viewStaff(vo);
-		vo2.setStf_passwd("");
+		vo2.setStfPasswd("");
 		//세션 변수 등록
 		session.setAttribute("loginUser", vo2);
 		

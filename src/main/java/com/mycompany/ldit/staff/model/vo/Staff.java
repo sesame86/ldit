@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.mycompany.ldit.department.model.vo.Department;
+
 @Component
 public class Staff {
 	private static final long serialVersionUID = 1111L;
@@ -20,6 +22,7 @@ public class Staff {
 	private Date stfEnroll;
 	private Date stfNothere;
 	private String deptName;
+	private Department department;
 	
 	public Staff() {
 		super();
@@ -30,7 +33,7 @@ public class Staff {
 		return "Staff [stfNo=" + stfNo + ", deptNo=" + deptNo + ", stfLvl=" + stfLvl + ", stfName=" + stfName
 				+ ", stfId=" + stfId + ", stfPasswd=" + stfPasswd + ", stfImg=" + stfImg + ", stfSign=" + stfSign
 				+ ", stfPhone=" + stfPhone + ", stfMail=" + stfMail + ", stfEnroll=" + stfEnroll + ", stfNothere="
-				+ stfNothere + ", deptName=" + deptName + "]";
+				+ stfNothere + ", deptName=" + deptName + ", department=" + department + "]";
 	}
 
 	public int getStfNo() {
@@ -135,5 +138,13 @@ public class Staff {
 
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 }

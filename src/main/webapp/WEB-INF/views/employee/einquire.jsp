@@ -30,12 +30,12 @@
 			<div id="deptNM1">임원</div>
 			<div id="staffInfo1">
 				<c:forEach var="vo" items="${orlist}">
-					<c:if test="${vo.department.dept_name =='임원'}">
+					<c:if test="${vo.department.deptName =='임원'}">
 						<br><br>
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-						<label class="staffName">${vo.stf_name}</label>
-						<label class="staffPhone">${vo.stf_phone}</label>
-						<label class="staffMail">${vo.stf_mail}</label><br><br><br>
+						<label class="staffName">${vo.stfName}</label>
+						<label class="staffPhone">${vo.stfPhone}</label>
+						<label class="staffMail">${vo.stfMail}</label><br><br><br>
 					</c:if>
 				</c:forEach>
 			</div>
@@ -46,12 +46,12 @@
 			<div id="deptNM2">기획부</div>
 			<div id="staffInfo2">
 				<c:forEach var="vo" items="${orlist}">
-					<c:if test="${vo.department.dept_name =='기획'}">
+					<c:if test="${vo.department.deptName =='기획'}">
 						<br><br>
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-						<label class="staffName">${vo.stf_name}</label>
-						<label class="staffPhone">${vo.stf_phone}</label>
-						<label class="staffMail">${vo.stf_mail}</label><br><br><br>
+						<label class="staffName">${vo.stfName}</label>
+						<label class="staffPhone">${vo.stfPhone}</label>
+						<label class="staffMail">${vo.stfMail}</label><br><br><br>
 					</c:if>
 				</c:forEach>
 			</div>
@@ -62,12 +62,12 @@
 			<div id="deptNM3">인사부</div>
 			<div id="staffInfo3">
 				<c:forEach var="vo" items="${orlist}">
-					<c:if test="${vo.department.dept_name =='인사'}">
+					<c:if test="${vo.department.deptName =='인사'}">
 						<br><br>
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-						<label class="staffName">${vo.stf_name}</label>
-						<label class="staffPhone">${vo.stf_phone}</label>
-						<label class="staffMail">${vo.stf_mail}</label><br><br><br>
+						<label class="staffName">${vo.stfName}</label>
+						<label class="staffPhone">${vo.stfPhone}</label>
+						<label class="staffMail">${vo.stfMail}</label><br><br><br>
 					</c:if>
 				</c:forEach>
 			</div>
@@ -78,12 +78,12 @@
 			<div id="deptNM4">개발부</div>
 			<div id="staffInfo4">
 				<c:forEach var="vo" items="${orlist}">
-					<c:if test="${vo.department.dept_name =='개발'}">
+					<c:if test="${vo.department.deptName =='개발'}">
 						<br><br>
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-						<label class="staffName">${vo.stf_name}</label>
-						<label class="staffPhone">${vo.stf_phone}</label>
-						<label class="staffMail">${vo.stf_mail}</label><br><br><br>
+						<label class="staffName">${vo.stfName}</label>
+						<label class="staffPhone">${vo.stfPhone}</label>
+						<label class="staffMail">${vo.stfMail}</label><br><br><br>
 					</c:if>
 				</c:forEach>
 			</div>
@@ -94,12 +94,12 @@
 			<div id="deptNM5">영업부</div>
 			<div id="staffInfo5">
 				<c:forEach var="vo" items="${orlist}">
-					<c:if test="${vo.department.dept_name =='영업'}">
+					<c:if test="${vo.department.deptName =='영업'}">
 						<br><br>
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-						<label class="staffName">${vo.stf_name}</label>
-						<label class="staffPhone">${vo.stf_phone}</label>
-						<label class="staffMail">${vo.stf_mail}</label><br><br><br>
+						<label class="staffName">${vo.stfName}</label>
+						<label class="staffPhone">${vo.stfPhone}</label>
+						<label class="staffMail">${vo.stfMail}</label><br><br><br>
 					</c:if>
 				</c:forEach>
 			</div>

@@ -26,22 +26,26 @@ STF_NOTHERE          DATE      -->
 	   private Date stf_enroll;
 	   private Date stf_nothere; -->
 	<resultMap type="Staff" id="staffRM">
-		<id property="stf_no" column="STF_NO"/>
-		<result property="dept_no" column="DEPT_NO"/>
-		<result property="stf_lvl" column="STF_LVL"/>
-		<result property="stf_name" column="STF_NAME"/>
-		<result property="stf_id" column="STF_ID"/>
-		<result property="stf_passwd" column="STF_PASSWD"/>
-		<result property="stf_img" column="STF_IMG"/>
-		<result property="stf_sign" column="STF_SIGN"/>
-		<result property="stf_phone" column="STF_PHONE"/>
-		<result property="stf_mail" column="STF_MAIL"/>
-		<result property="stf_enroll" column="STF_ENROLL"/>
-		<result property="stf_nothere" column="STF_NOTHERE"/>
+		<id property="stfNo" column="STF_NO"/>
+		<result property="deptNo" column="DEPT_NO"/>
+		<result property="stfNvl" column="STF_LVL"/>
+		<result property="stfName" column="STF_NAME"/>
+		<result property="stfId" column="STF_ID"/>
+		<result property="stfPasswd" column="STF_PASSWD"/>
+		<result property="stfImg" column="STF_IMG"/>
+		<result property="stfSign" column="STF_SIGN"/>
+		<result property="stfPhone" column="STF_PHONE"/>
+		<result property="stfMail" column="STF_MAIL"/>
+		<result property="stfEnroll" column="STF_ENROLL"/>
+		<result property="stfNothere" column="STF_NOTHERE"/>
+		<association property="department" javaType="Department">
+			<id property="deptNo" column="DEPT_NO"/>
+			<result property="deptName" column="DEPT_NAME"/>
+		</association>
 	</resultMap>
 	
 	<select id="einquire" resultMap="staffRM" parameterType="int">
-		select stf_name, stf_img, stf_phone, stf_mail from staff
+		select s.stf_name, s.stf_img, s.stf_phone, s.stf_mail, d.dept_name from staff s join department d on s.dept_no = d.dept_no
 	</select>
 	
 	<!--  JH  -->
