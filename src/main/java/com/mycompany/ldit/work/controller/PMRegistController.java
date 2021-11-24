@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.ldit.right.model.service.RightService;
+import com.mycompany.ldit.right.model.vo.Right;
 import com.mycompany.ldit.staff.model.vo.Staff;
 
-@Controller("pmregist")
+@Controller
 public class PMRegistController {
 	@Autowired
 	RightService rightService;
@@ -32,16 +33,16 @@ public class PMRegistController {
 	public List<Staff> getStaffList(HttpServletRequest request
 			, @RequestParam(value = "deptName", required = false) String getdeptName
 			, @RequestParam(value = "stfName", required = false) String getStfName
-			, @RequestParam(value = "stfNo", required = false) int getStfNo) {
+			, @RequestParam(value = "stfNo", defaultValue = "0") int getStfNo) {
 		
 		System.out.println("getDeptName : " + getdeptName);
 		System.out.println("getStfName : " + getStfName);
 		System.out.println("getStfNo : " + getStfNo);
 		
 		Staff vo = new Staff();
-		vo.setDept_name(getdeptName);
-		vo.setStf_name(getStfName);
-		vo.setStf_no(getStfNo);
+		vo.setDeptName(getdeptName);
+		vo.setStfName(getStfName);
+		vo.setStfNo(getStfNo);
 		System.out.println("vo : " + vo);
 		
 		List<Staff> staffList = null;
@@ -52,5 +53,20 @@ public class PMRegistController {
 		}
 		System.out.println("staffList : " + staffList);
 		return staffList;
+	}
+	
+	@RequestMapping(value = "/insertPm.do", method = RequestMethod.POST)
+	public ModelAndView insertPm(ModelAndView mv, @RequestParam("stfNo") int rightSno) {
+		System.out.println("stfNo : " + rightSno);
+		String viewpage = "redirect:pmregist";
+		int result = 0;
+		System.out.println(rightSno);
+		try {
+			result = rightService.insertPm(rightSno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
 	}
 }
