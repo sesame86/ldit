@@ -13,5 +13,4 @@ public interface TeamService {
 	public List<Staff> searchTeamMember(String searchWord) throws Exception;
 	public Staff searchByNo(int searchNo) throws Exception;
 	public int insertTeam(Team tvo) throws Exception;
-	public int insertTeamMember(Team tvo) throws Exception;
 }

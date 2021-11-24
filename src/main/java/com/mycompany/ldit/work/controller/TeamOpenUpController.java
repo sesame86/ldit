@@ -1,7 +1,6 @@
 package com.mycompany.ldit.work.controller;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +16,13 @@ import com.mycompany.ldit.project.model.vo.Project;
 import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.team.model.service.TeamService;
 import com.mycompany.ldit.team.model.vo.Team;
+import com.mycompany.ldit.teammember.model.service.TeamMemberService;
 
 @Controller
 public class TeamOpenUpController {
 	@Autowired
 	private TeamService TeamService;
+	private TeamMemberService TeamMemberService;
 	
 	@RequestMapping(value = "/teamadd", method = RequestMethod.GET)
 	public ModelAndView getTeam(ModelAndView mv) {
@@ -52,7 +53,7 @@ public class TeamOpenUpController {
 			int result2 = 0;
 			result1 = TeamService.insertTeam(tvo);
 			System.out.println(result1);
-			//result2 = TeamService.insertTeamMember(tvo);
+			result2 = TeamMemberService.insertTeamMember(tvo);
 			System.out.println(result2);
 		}catch (Exception e) {
 			e.getStackTrace();

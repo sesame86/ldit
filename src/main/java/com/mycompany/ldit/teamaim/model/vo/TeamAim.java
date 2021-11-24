@@ -4,77 +4,75 @@ import java.sql.Date;
 
 public class TeamAim {
 	private static final long serialVersionUID = 1111L;
-	private int aim_id;
-	private int team_id;
-	private String aim_title;
-	private String aim_content;
-	private Date aim_start;
-	private Date aim_end;
-	private int aim_status;
+	private int aimId;
+	private int teamId;
+	private String aimTitle;
+	private String aimContent;
+	private Date aimStart;
+	private Date aimEnd;
+	private int aimStatus;
 	   
 	public TeamAim() {}
-	
+
 	@Override
 	public String toString() {
-		return "TeamAim [aim_id=" + aim_id + ", team_id=" + team_id + ", aim_title=" + aim_title + ", aim_content="
-				+ aim_content + ", aim_start=" + aim_start + ", aim_end=" + aim_end + ", aim_status=" + aim_status
-				+ "]";
+		return "TeamAim [aimId=" + aimId + ", teamId=" + teamId + ", aimTitle=" + aimTitle + ", aimContent="
+				+ aimContent + ", aimStart=" + aimStart + ", aimEnd=" + aimEnd + ", aimStatus=" + aimStatus + "]";
 	}
 
-	public int getAim_id() {
-		return aim_id;
+	public int getAimId() {
+		return aimId;
 	}
 
-	public void setAim_id(int aim_id) {
-		this.aim_id = aim_id;
+	public void setAimId(int aimId) {
+		this.aimId = aimId;
 	}
 
-	public int getTeam_id() {
-		return team_id;
+	public int getTeamId() {
+		return teamId;
 	}
 
-	public void setTeam_id(int team_id) {
-		this.team_id = team_id;
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
 	}
 
-	public String getAim_title() {
-		return aim_title;
+	public String getAimTitle() {
+		return aimTitle;
 	}
 
-	public void setAim_title(String aim_title) {
-		this.aim_title = aim_title;
+	public void setAimTitle(String aimTitle) {
+		this.aimTitle = aimTitle;
 	}
 
-	public String getAim_content() {
-		return aim_content;
+	public String getAimContent() {
+		return aimContent;
 	}
 
-	public void setAim_content(String aim_content) {
-		this.aim_content = aim_content;
+	public void setAimContent(String aimContent) {
+		this.aimContent = aimContent;
 	}
 
-	public Date getAim_start() {
-		return aim_start;
+	public Date getAimStart() {
+		return aimStart;
 	}
 
-	public void setAim_start(Date aim_start) {
-		this.aim_start = aim_start;
+	public void setAimStart(Date aimStart) {
+		this.aimStart = aimStart;
 	}
 
-	public Date getAim_end() {
-		return aim_end;
+	public Date getAimEnd() {
+		return aimEnd;
 	}
 
-	public void setAim_end(Date aim_end) {
-		this.aim_end = aim_end;
+	public void setAimEnd(Date aimEnd) {
+		this.aimEnd = aimEnd;
 	}
 
-	public int getAim_status() {
-		return aim_status;
+	public int getAimStatus() {
+		return aimStatus;
 	}
 
-	public void setAim_status(int aim_status) {
-		this.aim_status = aim_status;
+	public void setAimStatus(int aimStatus) {
+		this.aimStatus = aimStatus;
 	}
-	
 }

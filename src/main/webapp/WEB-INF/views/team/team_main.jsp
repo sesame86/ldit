@@ -37,12 +37,12 @@
                 <article class="card">
                     <img class="cardImg" src="https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png">
                     <div class="cardGridCon">
-                        <h4 class="teamName">${vo.team_title}</h4>
+                        <h4 class="teamName">${vo.teamTitle}</h4>
                         <div class="cardGrid">
                             <p>TM</p>
-                            <div>${vo.staff.stf_name}</div>
-                            <p onclick="teamGoalList(${vo.team_id})">팀목표</p>
-                            <progress value="${vo.teamAim.aim_status}" max="100" id="mainPbar"></progress>
+                            <div>${vo.staff.stfName}</div>
+                            <p onclick="teamGoalList(${vo.teamId})">팀목표</p>
+                            <progress value="${vo.teamAim.aimStatus}" max="100" id="mainPbar"></progress>
                         </div>
                     </div>
                 </article>
@@ -79,11 +79,11 @@
 		        </div>
 		        <form method="post" action="goaladd" id="tgModalFrm">
 		        	<div id="tgForm">
-		        		<input type="hidden" id="team_id" name="team_id" value="0">
+		        		<input type="hidden" id="teamId" name="teamId" value="0">
 		        		<label>목표 제목</label>
-			        	<input name="aim_title" required="required" id="aim_title">
+			        	<input name="aimTitle" required="required" id="aimTitle">
 			        	<label>내용</label>
-			        	<textarea rows="8" name="aim_content" required="required" id="aim_content"></textarea>
+			        	<textarea rows="8" name="aimContent" required="required" id="aimContent"></textarea>
 			        	<label>기간</label>
 			        	<select id="spendTime">
 			        		<option value="0">사용자 지정</option>
@@ -93,9 +93,9 @@
 			        		<option value="28">4주일</option>
 			        	</select>
 			        	<label>시작일</label>
-			        	<input type="date" id="startDate" name="aim_start">
+			        	<input type="date" id="startDate" name="aimStart">
 			        	<label>마감일</label>
-			        	<input type="date" id="endDate" name="aim_end">
+			        	<input type="date" id="endDate" name="aimEnd">
 		        	</div>
 		        	<button type="submit" id="sbBtn">등록</button>
 		        </form>
@@ -126,23 +126,23 @@
 	    					text += "<div class='goalListCon'>";
 	    					text += "<div class='reqColorSmall' id='color_"+i+"'></div>";
 	    					text += "<div class='goalInfo'>";
-	    					text += "<h4>"+result[i].aim_title+"</h4>";
-	    					if(result[i].aim_status != 100){
-	    						text += "<button onclick='getUpdateGoal("+result[i].team_id+")'>수정</button>";
-	    						text += "<button onclick='disableGoal("+result[i].team_id+")'>비활성화</button>";
+	    					text += "<h4>"+result[i].aimTitle+"</h4>";
+	    					if(result[i].aimStatus != 100){
+	    						text += "<button onclick='getUpdateGoal("+result[i].teamId+")'>수정</button>";
+	    						text += "<button onclick='disableGoal("+result[i].teamId+")'>비활성화</button>";
 	    					}
-	    					text += "<p class='dateP'>"+result[i].aim_start+" ~ "+result[i].aim_end+"</p>";
-	    					text += "<progress value="+result[i].aim_status+" max='100' class='modalPbar'></progress><p class='percentP'>"+result[i].aim_status+"%</p>";
+	    					text += "<p class='dateP'>"+result[i].aimStart+" ~ "+result[i].aimEnd+"</p>";
+	    					text += "<progress value="+result[i].aimStart+" max='100' class='modalPbar'></progress><p class='percentP'>"+result[i].aimStatus+"%</p>";
 	    					text += "</div>";
 	    					text += "</div>";
 	    					$("#teamGoalModal #goalList").append(text);
-	    					if(result[i].aim_status == 0){
+	    					if(result[i].aimStatus == 0){
 	    						$("#color_"+i).css("background-color", "#3498DB");
-	    					}else if(result[i].aim_status > 0 && result[i].aim_status < 100){
+	    					}else if(result[i].aimStatus > 0 && result[i].aimStatus < 100){
 	    						$("#color_"+i).css("background-color", "#27AE60");
-	    					}else if(result[i].aim_status == 100){
+	    					}else if(result[i].aimStatus == 100){
 	    						$("#color_"+i).css("background-color", "#FFE08C");
-	    					}else if(result[i].aim_status == -1){
+	    					}else if(result[i].aimStatus == -1){
 	    						$("#color_"+i).css("background-color", "#DE4F4F");
 	    					}
     					}
@@ -160,7 +160,7 @@
     		$("#tgRegisterModal").css("display", "none");
 		}
     	function moveToAddgoal() {
-    		$("#team_id").val($("#storeTeamId").val());
+    		$("#teamId").val($("#storeTeamId").val());
     		$.ajax({
     			url:"gstatuscheck.do",
     			data:{"teamId": $("#storeTeamId").val()},
@@ -177,8 +177,8 @@
 						$("#teamGoalModal").css("display", "none");
 						$("#tgRegisterModal").css("display", "block");
 						$("#tgModalFrm").attr("action", "goaladd");
-						$("#aim_title").val("");
-						$("#aim_content").val("");
+						$("#aimTitle").val("");
+						$("#aimContent").val("");
 						$("#startDate").val("");
 						$("#endDate").val("");
 						$("#modalTitle").text("팀 목표 등록");
@@ -224,7 +224,7 @@
     	}
     	//업데이트 하기위해 팀 목표 상세 정보 가져오기
     	function getUpdateGoal(teamId) {
-    		$("#team_id").val($("#storeTeamId").val());
+    		$("#teamId").val($("#storeTeamId").val());
     		$.ajax({
     			url:"getUpdateGoal.do",
     			data:{"teamId": $("#storeTeamId").val()},
@@ -236,10 +236,10 @@
 					$("#teamGoalModal").css("display", "none");
 					$("#tgRegisterModal").css("display", "block");
 					$("#tgModalFrm").attr("action", "goalupdate");
-					$("#aim_title").val(result.aim_title);
-					$("#aim_content").val(result.aim_content);
-					$("#startDate").val(formatSqlDate(result.aim_start));
-					$("#endDate").val(formatSqlDate(result.aim_end));
+					$("#aimTitle").val(result.aimTitle);
+					$("#aimContent").val(result.aimContent);
+					$("#startDate").val(formatSqlDate(result.aimStart));
+					$("#endDate").val(formatSqlDate(result.aimEnd));
 					$("#modalTitle").text("팀 목표 수정");
 					$("#sbBtn").text("수정");
     			},

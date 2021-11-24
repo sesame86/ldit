@@ -31,32 +31,33 @@
             <h1>팀 개설</h1>
             <article>
                 <div id="pjInfoCon">
-                	<c:if test="${getProject.pro_status.toString() eq 'N'}">
+                	<c:if test="${getProject.proStatus.toString() eq 'N'}">
                     <div id="smallColor" style="background-color: #3498DB"></div>
                     </c:if>
-                    <c:if test="${getProject.pro_status.toString() eq 'C'}">
+                    <c:if test="${getProject.proStatus.toString() eq 'C'}">
                     <div id="smallColor" style="background-color: #27AE60"></div>
                     </c:if>
-                    <c:if test="${getProject.pro_status.toString() eq 'F'}">
+                    <c:if test="${getProject.proStatus.toString() eq 'F'}">
                     <div id="smallColor" style="background-color: yellow"></div>
                     </c:if>
-                    <div id="pjTitle">${getProject.pro_title}</div>
-                    <div id="pmName">${getProject.pro_manager}</div>
-                    <div id="startDate">${getProject.pro_start}</div>
-                    <div id="endDate">${getProject.pro_end}</div>
-                    <c:if test="${getProject.pro_status.toString() eq 'N'}">
+                    <div id="pjTitle">${getProject.proTitle}</div>
+                    <div id="pmName">${getProject.proManager}</div>
+                    <div id="startDate">${getProject.proStart}</div>
+                    <div id="endDate">${getProject.proEnd}</div>
+                    <c:if test="${getProject.proStatus.toString() eq 'N'}">
                     <div id="bigColor" style="background-color: #3498DB">새로운 요청</div>
                     </c:if>
-                    <c:if test="${getProject.pro_status.toString() eq 'C'}">
+                    <c:if test="${getProject.proStatus.toString() eq 'C'}">
                     <div id="bigColor" style="background-color: #27AE60">진행중</div>
                     </c:if>
-                    <c:if test="${getProject.pro_status.toString() eq 'F'}">
+                    <c:if test="${getProject.proStatus.toString() eq 'F'}">
                     <div id="bigColor" style="background-color: yellow">완료</div>
                     </c:if>
                 </div>
                 <form id="tmAddFrm" action="teamadd" method="post">
+                	<input type="hidden" name="proNo" value="${getProject.proNo }">
                     <label>팀명</label>
-                    <input id="team_title" name="team_title"><br>
+                    <input id="teamTitle" name="teamTitle"><br>
                     <label>책임자</label>
                     <input id="tmInput"><br>
                     <p></p>
@@ -103,11 +104,11 @@
         					$("#scTitle").nextAll().remove();
         					for(var i=0; i<result.length; i++){
         						$("#scPmList").css("display","block");
-        						$("#scPmList").append("<li onclick='pickPM("+i+")'><p id='scId_"+i+"'>"+result[i].stf_no+"</p><p id='scName_"+i+"'>"+result[i].stf_name+"</p><p>"+result[i].dept_no+"</p><p>"+result[i].stf_lvl+"</p></li>");
+        						$("#scPmList").append("<li onclick='pickPM("+i+")'><p id='scId_"+i+"'>"+result[i].stfNo+"</p><p id='scName_"+i+"'>"+result[i].stfName+"</p><p>"+result[i].deptNo+"</p><p>"+result[i].stfLvl+"</p></li>");
         					}
         				}
         			},
-        			error : function(e) {
+        			error:function(e) {
     		        	alert(e.responseText);
     		        }
         		})
@@ -117,11 +118,11 @@
     		var staffName = $("#scName_"+i).html();
     		var staffNo = $("#scId_"+i).html();
     		$("#tmInput").val(staffName);
-    		$("#tmInput").next().append("<input name='team_manager' value='"+staffNo+"' type='hidden'>");
+    		$("#tmInput").next().append("<input name='teamManager' value='"+staffNo+"' type='hidden'>");
     		$("#scTitle").nextAll().remove();
     		$("#scPmList").css("display","none");
     	}
-    	//팀 멤버 추가
+    	//팀 멤버 검색
     	$("#addTeamMem").keyup(function(event){
     		if($("#addTeamMem").val().length == 0){
     			$("#scTmemList").css("display","none");
@@ -138,11 +139,11 @@
         					$("#tmemTitle").nextAll().remove();
         					for(var i=0; i<result.length; i++){
         						$("#scTmemList").css("display","block");
-        						$("#scTmemList").append("<li onclick='pickTeamMember("+i+")'><p id='tmemId"+i+"'>"+result[i].stf_no+"</p><p id='tmemName"+i+"'>"+result[i].stf_name+"</p><p>"+result[i].dept_no+"</p><p>"+result[i].stf_lvl+"</p></li>");
+        						$("#scTmemList").append("<li onclick='pickTeamMember("+i+")'><p id='tmemId_"+i+"'>"+result[i].stfNo+"</p><p id='tmemName_"+i+"'>"+result[i].stfName+"</p><p>"+result[i].deptNo+"</p><p>"+result[i].stfLvl+"</p></li>");
         					}
         				}
         			},
-        			error : function(e) {
+        			error:function(e) {
     		        	alert(e.responseText);
     		        }
         		})
@@ -150,14 +151,15 @@
     	})
     	function pickTeamMember(i) {
     		$("#pickNo").remove();
-    		var tmemName = $("#tmemName"+i).html();
-    		var tmemId = $("#tmemId"+i).html();
+    		var tmemName = $("#tmemName_"+i).html();
+    		var tmemId = $("#tmemId_"+i).html();
     		$("#addTeamMem").val(tmemName);
     		$("#addTeamMem").next().append("<input id='pickNo' value='"+tmemId+"' type='hidden'>");
     		//$(".addResultCon").next().append("<a href='#'><i class='fas fa-user-minus'></i></a><img class='tmInfoImg' src='/ldit/resources/image/myInfoAlt.JPG'><p>김예은</p>");
     		$("#tmemTitle").nextAll().remove();
     		$("#scTmemList").css("display","none");
     	}
+    	//팀 멤버 화면에 추가
     	function addTeamMember(){
     		$.ajax({
     			url:"searchbyno.do",
@@ -166,13 +168,13 @@
     			type: "GET",
     			dataType: "json",
     			success: function(result){
-    				if(duplicationCheck(result.stf_no) == false){
+    				if(duplicationCheck(result.stfNo) == false){
     					alert("이미 추가한 팀원입니다.");
     				}else{
-    					$(".addResultCon").append("<input class=checkDupid type='hidden' name='staffList["+$("input[name=stf_no]").length+"].stf_no' value='"+result.stf_no+"'><a href='#' onclick='deleteTeamMember("+result.stf_no+")' id='icon_"+result.stf_no+"'><i class='fas fa-user-minus'></i></a><img class='tmInfoImg' src='<%=request.getContextPath()%>/resources/image/"+result.stf_img+".png' id='img_"+result.stf_no+"'><p id='name_"+result.stf_no+"'>"+result.stf_name+"</p>");
+    					$(".addResultCon").append("<input class=checkDupid type='hidden' name='staffList["+$(".checkDupid").length+"].stfNo' value='"+result.stfNo+"'><a href='#' onclick='deleteTeamMember("+result.stfNo+")' id='icon_"+result.stfNo+"'><i class='fas fa-user-minus'></i></a><img class='tmInfoImg' src='<%=request.getContextPath()%>/resources/image/"+result.stfImg+".png' id='img_"+result.stfNo+"'><p id='name_"+result.stfNo+"'>"+result.stfName+"</p>");
     				}
     			},
-    			error : function(e) {
+    			error:function(e) {
 		        	alert("멤버 추가를 실패했습니다. 정확히 선택 후 다시 시도해 주세요.");
 		        }
     		})

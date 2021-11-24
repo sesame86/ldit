@@ -2,43 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Team">
 	<resultMap type="Team" id="TeamJoinAimJoinStaff">
-		<id property="team_id" column="team_id"/>
-		<result property="pro_no" column="pro_no"/>
-		<result property="team_title" column="team_title"/>
+		<id property="teamId" column="team_id"/>
+		<result property="proNo" column="pro_no"/>
+		<result property="teamTitle" column="team_title"/>
 		<association property="teamAim" javaType="TeamAim">
-			<id property="aim_id" column="aim_id"/>
-			<result property="aim_status" column="aim_status"/>
+			<id property="aimId" column="aim_id"/>
+			<result property="aimStatus" column="aim_status"/>
 		</association>
 		<association property="staff" javaType="Staff">
-			<result property="stf_name" column="stf_name"/>
+			<result property="stfName" column="stf_name"/>
 		</association>
+	</resultMap>
+	<resultMap type="Project" id="ProjectRM">
+		<id property="proNo" column="pro_no"/>
+		<result property="proTitle" column="pro_title"/>
+		<result property="proContent" column="pro_content"/>
+		<result property="proStart" column="pro_start"/>
+		<result property="proEnd" column="pro_end"/>
+		<result property="proManager" column="pro_manager"/>
+		<result property="proStatus" column="pro_status"/>
+	</resultMap>
+	<resultMap type="Staff" id="StaffRM">
+		<id property="stfNo" column="stf_no"/>
+		<result property="deptNo" column="dept_no"/>
+		<result property="stfLvl" column="stf_lvl"/>
+		<result property="stfName" column="stf_name"/>
+		<result property="stfId" column="stf_id"/>
+		<result property="stfPasswd" column="stf_passwd"/>
+		<result property="stfImg" column="stf_img"/>
+		<result property="stfSign" column="stf_sign"/>
+		<result property="stfPhone" column="stf_phone"/>
+		<result property="stfMail" column="stf_mail"/>
+		<result property="stfEnroll" column="stf_enroll"/>
+		<result property="stfNothere" column="stf_nothere"/>
+		<result property="deptName" column="dept_name"/>
 	</resultMap>
 	<!-- 팀 메인 조회 -->
 	<select parameterType="int" resultMap="TeamJoinAimJoinStaff" id="getOneProjectTeam">
 		select * from(select t.team_id, t.pro_no, t.team_title, nvl(ta.aim_id,0) aim_id, nvl(ta.aim_status,0) aim_status, s.stf_name,
 		rank() over (partition by t.team_id order by ta.aim_status) as ranking
 		from team t left join team_aim ta on t.team_id = ta.team_id join staff s on t.team_manager = s.stf_no
-		where t.pro_no = #{pro_no})
+		where t.pro_no = #{proNo})
 		where ranking = 1
 	</select>
 	<!-- 팀개설시 프로젝트 기본정보 조회 -->
-	<select parameterType="int" resultType="Project" id="getOneProject">
-		select * from project where pro_no = #{pro_no}
+	<select parameterType="int" resultMap="ProjectRM" id="getOneProject">
+		select * from project where pro_no = #{proNo}
 	</select>
 	<!-- pm 검색/team member 검색 -->
-	<select id="search" parameterType="String" resultType="Staff">
+	<select id="search" parameterType="String" resultMap="StaffRM">
 		select stf_no, dept_no, stf_lvl, stf_name from staff where stf_name like '%'||#{searchWord}||'%'
 	</select>
 	<!-- 사원번호로 이름, 사진 가져오기 -->
-	<select id="searchByNo" parameterType="int" resultType="Staff">
+	<select id="searchByNo" parameterType="int" resultMap="StaffRM">
 		select stf_no, stf_name, stf_img from staff where stf_no = #{searchNo}
 	</select>
 	<!-- 팀 등록 -->
 	<insert id="insertTeam" parameterType="Team">
-		insert into team values(team_seq.nextval, #{pro_no}, #{team_title}, #{team_manager})
-	</insert>
-	<!-- 팀 멤버 등록 -->
-	<insert id="insertTeamMember" parameterType="Team">
-		insert into team_member values(team_member_seq.nextval, #{staff.stf_no})
+		insert into team values(team_seq.nextval, #{proNo}, #{teamTitle}, #{teamManager})
 	</insert>
 </mapper>
