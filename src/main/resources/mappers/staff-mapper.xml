@@ -51,13 +51,13 @@ STF_NOTHERE          DATE      -->
 	<!--  JH  -->
 	<select id="loginCheck" resultType="String" parameterType="Staff">
 	select stf_name from staff
-	where stf_id =#{stf_id} AND stf_passwd = #{stf_passwd}
+	where stf_id =#{stfId} AND stf_passwd = #{stfPasswd}
 	</select>
 	
 	<select id="viewStaff" resultType="Staff" parameterType="Staff">
 	select stf_name, stf_id, stf_no
 	from staff
-	where stf_id = #{stf_id}
+	where stf_id = #{stfId}
 	</select>
 	
 </mapper>
