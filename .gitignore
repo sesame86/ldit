@@ -4,6 +4,8 @@
 ### Java ###
 # Compiled class file
 
+ldit.properties
+
 *.class
 build/
 
