@@ -3,21 +3,34 @@
 <mapper namespace="aboutAtt">
 
 
-
-
-
-<insert id="insertCheckin" parameterType="map">
+<insert id="insertCheckin" parameterType="_int">
 	<![CDATA[ 
-		Insert into ATTENDANCE (ATT_NO, STF_NO, WH_CODE, ATT_START) values (
-		to_number(to_char(SYSDATE, 'YYYYMMDD'))
-		, #{stfNo}
-		, case when SYSDATE <= 
-		(select WH_START from (select WH_START, WH_DATE from WH_MANAGE m, ATTENDANCE a where m.WH_DATE = a.ATT_NO)
-		where WH_DATE = to_number(to_char(SYSDATE, 'YYYYMMDD'))
-		then 0 else 1 end
-		, SYSDATE)
+Insert into ATTENDANCE (ATT_NO, STF_NO, ATT_START, WH_CODE) values (
+    to_number(to_char(SYSDATE, 'YYYYMMDD'))
+    , #{stfNo}
+    , SYSDATE
+    , case when
+                SYSDATE <=
+                (select WH_START from WH_MANAGE where WH_DATE = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+            then 0 
+            else 1
+            END
+)
 	]]>
 </insert>
 
+<insert id="insertCheckout" parameterType="_int">
+	<![CDATA[
+
+	]]>
+</insert>
+
+<select id="getAttStart" parameterType="_int" resultType="string">
+	select to_char(ATT_START, 'hh24:mi:ss') from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+</select>
+
+<select id="countAttStart" parameterType="_int" resultType="_int">
+	select count(ATT_START) from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+</select>
 
 </mapper>
