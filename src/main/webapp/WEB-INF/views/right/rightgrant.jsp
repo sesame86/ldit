@@ -43,7 +43,8 @@
                     </div>
                     <div id="stf_name"><input type = "text" name = "stf_name" class = "stf_name_input" id = "stf_name_input" placeholder="이름을 입력해주세요"></div>
                     <div id="stf_no"><input type = "text" name = "stf_no" class = "stf_no_input" id = "stf_no_input" placeholder="사번을 입력해주세요"></div>
-                    <div id="searchBtn"><input type="button"><i id="searchBtnImg" class="fas fa-search"></i></div>
+                    <button id="searchBtn"><i id="searchBtnImg" class="fas fa-search"></i></button>
+                    <!-- <div id="searchBtn"><input type="button"><i id="searchBtnImg" class="fas fa-search"></i></div> -->
                 </div>
                 <div id="staffInfoTitle">
                     <div id="deptNameTitle">부서명</div>
@@ -96,7 +97,7 @@
 					html += '<div id="deptNameList">'+value.deptName+'</div>';
 					html += '<div id="stf_nameList">'+value.stfName+'</div>';
 					html += '<div id="stf_noList">'+value.stfNo+'</div>';
-					html += '<button class="rightBtnList">PM등록</button>';
+					html += '<button id="pmRegister" class="rightBtnList">PM등록</button>';
 			});
 			$("#staffInfoList").empty(); 
 			$("#staffInfoList").append(html);
@@ -116,7 +117,6 @@
 					},
 				type : "POST",
 				success : function(data) {
-					alert("PM 등록이 완료되었습니다.")
 				},
 				error : function(request, status, errorData) {
 					alert("error code : "
@@ -127,6 +127,8 @@
 							+ errorData);
 				}
 			});
+			alert("PM 등록이 완료되었습니다.")
+			location.reload();
 		});
     </script>
 </body>

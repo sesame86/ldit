@@ -26,18 +26,36 @@ h1{
     gap: 0 1%;
 }
 
-#dept_select, #stf_name_input, #stf_no_input, #searchBtn{
+#dept_select, #stf_name_input, #stf_no_input{
     border: 1px solid black;
     border-radius: 0.3rem;
     padding: 0;
 }
 
-.dept_select, .stf_name_input, .stf_no_input, .searchBtn{
+.dept_select, .stf_name_input, .stf_no_input{
 	imgposition: absolute; top:0; left: 0;
 	width: 100%;
 	height: 100%;
 	font-size: 1.2rem;
     text-align: center;
+}
+
+#searchBtn{
+	width: 100%;
+	height: 100%;
+	display: block;
+	border: 1px solid black;
+	margin-bottom: 1.2rem;
+	padding: 0;
+	background-color: white;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+	border-radius: 0.3rem;
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+#searchBtn:hover {
+	background-color: #3498DB;
+	color: white;
 }
 
 #staffInfoTitle{
@@ -77,19 +95,23 @@ h1{
     padding: 1rem 0;
 }
 
-#staffInfoList > button{
-    background-color: #3498DB;
-    margin-bottom: 1.2rem;
-    border-radius: 0.3rem;
-    padding: 1rem 0;
-    cursor: pointer;
+#pmRegister{
+	display: block;
+	border: 0;
+	margin-bottom: 1.2rem;
+	padding: 1rem 0;
+	background-color: #e5e8eb;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+	border-radius: 0.3rem;
+	font-size: 1rem;
+	cursor: pointer;
+}
+#pmRegister:hover {
+	background-color: #3498DB;
+	color: white;
 }
 
 #deptNameSelect > select {
-	cursor: pointer;
-}
-
-#searchBtn{
 	cursor: pointer;
 }
 
