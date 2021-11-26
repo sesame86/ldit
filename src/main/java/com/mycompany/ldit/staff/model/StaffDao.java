@@ -19,10 +19,15 @@ public class StaffDao implements StaffDaoInterface {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 조직도
 	public List<Staff> einquire(){
 		return sqlSession.selectList("StaffNS.einquire");
 	}
 	
+	// 직원 등록
+	public int join(Staff staff) {
+		return sqlSession.insert("Staff.join", staff);
+	}
 	
 	//JH
 	@Inject

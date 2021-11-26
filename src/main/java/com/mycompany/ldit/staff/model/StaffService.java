@@ -15,16 +15,29 @@ public class StaffService implements StaffServiceInterface{
 	@Autowired
 	private StaffDao staffDao;
 	
+	//조직도
 	@Override
-	public List<Staff> einquire(Staff vo) throws Exception {
+	public List<Staff> einquire(Staff vo) {
 		return staffDao.einquire();
 	}
 
-	//JH
-//01_01 회원 로그인 체크
-//	@Inject
-//	StaffDao staffDao;
+	//직원 등록
+	@Override
+	public int join(Staff staff) {
+		int result = 0;
+		try {
+			result = staffDao.join(staff);
+			System.out.println("직원 등록 성공 여부 :" + result);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
+	//JH
+	//01_01 회원 로그인 체크
+	//	@Inject
+	//	StaffDao staffDao;
 	@Override
 	public boolean loginCheck(Staff vo, HttpSession session) {
 	boolean result = staffDao.loginCheck(vo);

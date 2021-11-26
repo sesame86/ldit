@@ -8,8 +8,12 @@ import com.mycompany.ldit.staff.model.vo.Staff;
 
 public interface StaffDaoInterface {
 
+	// 조직도
 	public List<Staff> einquire() throws Exception;
 
+	// 직원등록
+	public int join(Staff staff);
+	
 	// JH
 	// 01_01 사원 로그인 체크
 	public boolean loginCheck(Staff vo);

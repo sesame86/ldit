@@ -28,7 +28,7 @@ STF_NOTHERE          DATE      -->
 	<resultMap type="Staff" id="staffRM">
 		<id property="stfNo" column="STF_NO"/>
 		<result property="deptNo" column="DEPT_NO"/>
-		<result property="stfNvl" column="STF_LVL"/>
+		<result property="stfLvl" column="STF_LVL"/>
 		<result property="stfName" column="STF_NAME"/>
 		<result property="stfId" column="STF_ID"/>
 		<result property="stfPasswd" column="STF_PASSWD"/>
@@ -43,7 +43,12 @@ STF_NOTHERE          DATE      -->
 			<result property="deptName" column="DEPT_NAME"/>
 		</association>
 	</resultMap>
+	<!-- 직원 등록 -->
+	<insert id="join" parameterType="string">
+		insert into staff (#{stfNo}, #{deptNo}, #{stfLvl}, #{stfName}, #{stfId}, #{stfPasswd}, #{stfImg}, #{stfSign}, #{stfPhone}, #{stfMail}, #{stfEnroll})
+	</insert>
 	
+	<!-- 조직도 -->
 	<select id="einquire" resultMap="staffRM" parameterType="int">
 		select s.stf_name, s.stf_img, s.stf_phone, s.stf_mail, d.dept_name from staff s join department d on s.dept_no = d.dept_no
 	</select>
@@ -59,5 +64,4 @@ STF_NOTHERE          DATE      -->
 	from staff
 	where stf_id = #{stfId}
 	</select>
-	
 </mapper>

@@ -16,6 +16,10 @@ h1 {
 	flex-deriection:column;
 }
 
+P{
+	text-align:center;
+}
+
 #deptNM1{
 	font-size:3rem;
 	float:left;
@@ -71,9 +75,6 @@ h1 {
 	width:70%;
 }
 
-p {
-
-}
 .deptName{
 	width:7%;
 	height:4rem;
