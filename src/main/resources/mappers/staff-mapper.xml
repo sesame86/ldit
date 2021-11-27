@@ -59,7 +59,7 @@ STF_NOTHERE          DATE      -->
 	where stf_id =#{stfId} AND stf_passwd = #{stfPasswd}
 	</select>
 	
-	<select id="viewStaff" resultType="Staff" parameterType="Staff">
+	<select id="viewStaff" resultMap="staffRM" parameterType="Staff">
 	select stf_name, stf_id, stf_no
 	from staff
 	where stf_id = #{stfId}
