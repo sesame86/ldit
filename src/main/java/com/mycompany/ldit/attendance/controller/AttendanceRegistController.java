@@ -2,7 +2,10 @@ package com.mycompany.ldit.attendance.controller;
 
 import org.springframework.stereotype.Controller;
 
-@Controller("aregist")
+@Controller("whmanage")
 public class AttendanceRegistController {
+	
+	
+	
 
 }

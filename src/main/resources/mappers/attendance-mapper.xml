@@ -2,35 +2,92 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="aboutAtt">
 
+<resultMap type="WorkBreak" id="WorkBreak1">
+	<id property="brNo" column="BR_NO" />
+	<result property="brStart" column="BR_START"/>
+</resultMap>
+
+<select id="countAttStart" parameterType="_int" resultType="_int">
+	<![CDATA[ 
+	select count(ATT_START) from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+		]]>
+</select>
 
 <insert id="insertCheckin" parameterType="_int">
 	<![CDATA[ 
-Insert into ATTENDANCE (ATT_NO, STF_NO, ATT_START, WH_CODE) values (
+Insert into ATTENDANCE (ATT_NO, STF_NO, ATT_START) values (
     to_number(to_char(SYSDATE, 'YYYYMMDD'))
     , #{stfNo}
     , SYSDATE
-    , case when
-                SYSDATE <=
-                (select WH_START from WH_MANAGE where WH_DATE = to_number(to_char(SYSDATE, 'YYYYMMDD'))
-            then 0 
-            else 1
-            END
 )
 	]]>
 </insert>
 
-<insert id="insertCheckout" parameterType="_int">
-	<![CDATA[
-
-	]]>
-</insert>
-
 <select id="getAttStart" parameterType="_int" resultType="string">
-	select to_char(ATT_START, 'hh24:mi:ss') from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+	<![CDATA[ 
+	select to_char(ATT_START, 'hh24:mi:ss') ATT_START from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+			]]>
 </select>
 
-<select id="countAttStart" parameterType="_int" resultType="_int">
-	select count(ATT_START) from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+<update id="updateCheckout" parameterType="_int">
+	<![CDATA[
+Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+	]]>
+</update>
+
+<select id="getAttEnd" parameterType="_int" resultType="string">
+	<![CDATA[ 
+	select to_char(ATT_END, 'hh24:mi:ss') ATT_END from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+		]]>
+</select>
+
+<insert id="insertRestin" parameterType="_int">
+	<![CDATA[ 
+	Insert into WORK_BREAK (BR_NO, BR_START, ATT_NO, STF_NO)values (
+	WORK_BREAK_SEQ.nextval
+	, SYSDATE
+	, to_number(to_char(SYSDATE, 'YYYYMMDD'))
+	, #{stfNo}
+	)
+			]]>
+</insert>
+
+<select id="getRestStart" parameterType="_int" resultMap="WorkBreak1">
+	<![CDATA[ 
+	Select
+	BR_NO
+	, to_char(BR_START, 'hh24:mi:ss') BR_START
+	from (select * from WORK_BREAK where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD')) order by BR_NO desc)
+	where rownum = 1
+	]]>
+</select>
+
+<update id="updateBrEnd" parameterType="_int">
+	<![CDATA[
+	Update WORK_BREAK set BR_END = SYSDATE where BR_NO = #{brNo}
+		]]>
+</update>
+
+<select id="getBrEnd" parameterType="_int" resultType="string">
+	<![CDATA[ 
+	select to_char(BR_END, 'hh24:mi:ss') BR_END from WORK_BREAK where BR_NO = #{brNo}
+	]]>
+</select>
+
+<select id="getLatestBrStart" parameterType="_int" resultType="string">
+	<![CDATA[ 
+	select to_char(BR_START, 'hh24:mi:ss') BR_START
+	from (select * from WORK_BREAK where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD')) order by BR_NO desc)
+	where rownum = 1
+		]]>
+</select>
+
+<select id="getLatestBrEnd" parameterType="_int" resultType="string">
+	<![CDATA[ 
+	select to_char(BR_END, 'hh24:mi:ss') BR_END
+	from (select * from WORK_BREAK where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD')) order by BR_NO desc)
+	where rownum = 1
+	]]>
 </select>
 
 </mapper>
