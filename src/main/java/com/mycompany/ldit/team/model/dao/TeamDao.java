@@ -16,11 +16,15 @@ public class TeamDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<Team> getOneProjectTeam(int pro_no){
-		return sqlSession.selectList("Team.getOneProjectTeam", pro_no);
+	public List<Team> getOneProjectTeam(int proNo){
+		return sqlSession.selectList("Team.getOneProjectTeam", proNo);
 	}
-	public Project getOneProject(int pro_no){
-		return sqlSession.selectOne("Team.getOneProject", pro_no);
+	public List<Team> getTeamMemberTeamList(Team tvo){
+		System.out.println("진입");
+		return sqlSession.selectList("Team.getTeamMemberTeamList", tvo);
+	}
+	public Project getOneProject(int proNo){
+		return sqlSession.selectOne("Team.getOneProject", proNo);
 	}
 	public List<Staff> searchPM(String searchWord) {
 		return sqlSession.selectList("Team.search", searchWord);
@@ -33,9 +37,12 @@ public class TeamDao {
 	}
 	@Transactional(rollbackFor = Exception.class)
 	public int insertTeam(Team tvo) {
-		System.out.println("dao: "+tvo);
-		int result = sqlSession.insert("Team.insertTeam", tvo);
-		System.out.println(result);
-		return result;
+		return sqlSession.insert("Team.insertTeam", tvo);
+	}
+	public int getStaffRight(int stfNo) {
+		return sqlSession.selectOne("Team.getStaffRight", stfNo);
+	}
+	public Team getTeamUpdate(int proNo) {
+		return sqlSession.selectOne("Team.getTeamUpdate", proNo);
 	}
 }

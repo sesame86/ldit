@@ -2,68 +2,68 @@ package com.mycompany.ldit.clientneeds.model.vo;
 
 public class ClientNeeds {
 	private static final long serialVersionUID = 1111L;
-	   private int cn_id;
-	   private int pro_no;
-	   private String cn_title;
-	   private String cn_content;
-	   private int cn_priority;
-	   private String cn_deactivate;
-	   
-	   public ClientNeeds() {
-	      super();
-	   }
-	   
-	   @Override
-	   public String toString() {
-	      return "client_needs [cn_id=" + cn_id + ", pro_no=" + pro_no + ", cn_title=" + cn_title + ", cn_content="
-	            + cn_content + ", cn_priority=" + cn_priority + ", cn_deactivate=" + cn_deactivate + "]";
-	   }
+	private int cnId;
+	private int proNo;
+	private String cnTitle;
+	private String cnContent;
+	private int cnPriority;
+	private String cnDeactivate;
 
-	   public int getCn_id() {
-	      return cn_id;
-	   }
+	public ClientNeeds() {
+		super();
+	}
+	@Override
+	public String toString() {
+		return "ClientNeeds [cnId=" + cnId + ", proNo=" + proNo + ", cnTitle=" + cnTitle + ", cnContent=" + cnContent
+				+ ", cnPriority=" + cnPriority + ", cnDeactivate=" + cnDeactivate + "]";
+	}
 
-	   public void setCn_id(int cn_id) {
-	      this.cn_id = cn_id;
-	   }
+	public int getCnId() {
+		return cnId;
+	}
 
-	   public int getPro_no() {
-	      return pro_no;
-	   }
+	public void setCnId(int cnId) {
+		this.cnId = cnId;
+	}
 
-	   public void setPro_no(int pro_no) {
-	      this.pro_no = pro_no;
-	   }
+	public int getProNo() {
+		return proNo;
+	}
 
-	   public String getCn_title() {
-	      return cn_title;
-	   }
+	public void setProNo(int proNo) {
+		this.proNo = proNo;
+	}
 
-	   public void setCn_title(String cn_title) {
-	      this.cn_title = cn_title;
-	   }
+	public String getCnTitle() {
+		return cnTitle;
+	}
 
-	   public String getCn_content() {
-	      return cn_content;
-	   }
+	public void setCnTitle(String cnTitle) {
+		this.cnTitle = cnTitle;
+	}
 
-	   public void setCn_content(String cn_content) {
-	      this.cn_content = cn_content;
-	   }
+	public String getCnContent() {
+		return cnContent;
+	}
 
-	   public int getCn_priority() {
-	      return cn_priority;
-	   }
+	public void setCnContent(String cnContent) {
+		this.cnContent = cnContent;
+	}
 
-	   public void setCn_priority(int cn_priority) {
-	      this.cn_priority = cn_priority;
-	   }
+	public int getCnPriority() {
+		return cnPriority;
+	}
 
-	   public String getCn_deactivate() {
-	      return cn_deactivate;
-	   }
+	public void setCnPriority(int cnPriority) {
+		this.cnPriority = cnPriority;
+	}
 
-	   public void setCn_deactivate(String cn_deactivate) {
-	      this.cn_deactivate = cn_deactivate;
-	   }
+	public String getCnDeactivate() {
+		return cnDeactivate;
+	}
+
+	public void setCnDeactivate(String cnDeactivate) {
+		this.cnDeactivate = cnDeactivate;
+	}
+	
 }

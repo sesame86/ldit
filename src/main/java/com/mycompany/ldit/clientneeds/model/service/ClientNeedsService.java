@@ -10,4 +10,7 @@ public interface ClientNeedsService {
 	public List<ClientNeeds> getHighList(int pro_no) throws Exception;
 	public List<ClientNeeds> getNormalList(int pro_no) throws Exception;
 	public List<ClientNeeds> getLowList(int pro_no) throws Exception;
+	public int insertCS(ClientNeeds cvo) throws Exception;
+	public ClientNeeds getCSDetail(int cnId) throws Exception;
+	public int disableCS(int cnId) throws Exception;
 }

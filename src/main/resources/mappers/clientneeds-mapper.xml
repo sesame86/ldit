@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ClientNeeds">
+	<resultMap type="ClientNeeds" id="ClientNeedsRM">
+		<id property="cnId" column="cn_id"/>
+		<result property="proNo" column="pro_no"/>
+		<result property="cnTitle" column="cn_title"/>
+		<result property="cnContent" column="cn_content"/>
+		<result property="cnPriority" column="cn_priority"/>
+		<result property="cnDeactivate" column="cn_deactivate"/>
+	</resultMap>
 	<!-- 팀 목표 조회 -->
-	<select id="getUrgentList" parameterType="int" resultType="ClientNeeds">
-		select * from client_needs where pro_no = #{pro_no} and cn_priority = 1 order by cn_id
+	<select id="getUrgentList" parameterType="int" resultMap="ClientNeedsRM">
+		select * from client_needs where pro_no = #{proNo} and cn_priority = 1 order by cn_id
 	</select>
-	<select id="getHighList" parameterType="int" resultType="ClientNeeds">
-		select * from client_needs where pro_no = #{pro_no} and cn_priority = 2 order by cn_id
+	<select id="getHighList" parameterType="int" resultMap="ClientNeedsRM">
+		select * from client_needs where pro_no = #{proNo} and cn_priority = 2 order by cn_id
 	</select>
-	<select id="getNormalList" parameterType="int" resultType="ClientNeeds">
-		select * from client_needs where pro_no = #{pro_no} and cn_priority = 3 order by cn_id
+	<select id="getNormalList" parameterType="int" resultMap="ClientNeedsRM">
+		select * from client_needs where pro_no = #{proNo} and cn_priority = 3 order by cn_id
 	</select>
-	<select id="getLowList" parameterType="int" resultType="ClientNeeds">
-		select * from client_needs where pro_no = #{pro_no} and cn_priority = 4 order by cn_id
+	<select id="getLowList" parameterType="int" resultMap="ClientNeedsRM">
+		select * from client_needs where pro_no = #{proNo} and cn_priority = 4 order by cn_id
 	</select>
+	<insert id="insertCS" parameterType="ClientNeeds">
+		insert into client_needs(cn_id, pro_no, cn_title, cn_content, cn_priority) values(client_needs_seq.nextval, #{proNo}, #{cnTitle}, #{cnContent}, #{cnPriority})
+	</insert>
+	<!-- 고객요구사항 상세조회 -->
+	<select id="getCSDetail" parameterType="int" resultMap="ClientNeedsRM">
+		select * from client_needs where cn_id = #{cnId}
+	</select>
+	<update id="disableCS" parameterType="int">
+		update client_needs set cn_deactivate = 'Y' where cn_id = #{cnId}
+	</update>
 </mapper>

@@ -14,19 +14,31 @@ public class ClientNeedsServiceImpl implements ClientNeedsService{
 	private ClientNeedsDao ClientNeedsDao;
 	
 	@Override
-	public List<ClientNeeds> getUrgentList(int pro_no) throws Exception {
-		return ClientNeedsDao.getUrgentList(pro_no);
+	public List<ClientNeeds> getUrgentList(int proNo) throws Exception {
+		return ClientNeedsDao.getUrgentList(proNo);
 	}
 	@Override
-	public List<ClientNeeds> getHighList(int pro_no) throws Exception {
-		return ClientNeedsDao.getHighList(pro_no);
+	public List<ClientNeeds> getHighList(int proNo) throws Exception {
+		return ClientNeedsDao.getHighList(proNo);
 	}
 	@Override
-	public List<ClientNeeds> getNormalList(int pro_no) throws Exception {
-		return ClientNeedsDao.getNormalList(pro_no);
+	public List<ClientNeeds> getNormalList(int proNo) throws Exception {
+		return ClientNeedsDao.getNormalList(proNo);
 	}
 	@Override
-	public List<ClientNeeds> getLowList(int pro_no) throws Exception {
-		return ClientNeedsDao.getLowList(pro_no);
+	public List<ClientNeeds> getLowList(int proNo) throws Exception {
+		return ClientNeedsDao.getLowList(proNo);
+	}
+	@Override
+	public int insertCS(ClientNeeds cvo) throws Exception {
+		return ClientNeedsDao.insertCS(cvo);
+	}
+	@Override
+	public ClientNeeds getCSDetail(int cnId) throws Exception {
+		return ClientNeedsDao.getCSDetail(cnId);
+	}
+	@Override
+	public int disableCS(int cnId) throws Exception {
+		return ClientNeedsDao.disableCS(cnId);
 	}
 }

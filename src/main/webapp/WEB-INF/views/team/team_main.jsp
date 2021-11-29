@@ -28,27 +28,36 @@
         <a id="leftArrow"><i class="fas fa-chevron-left"></i></a>
         <div id="teamContainer">
             <h1>Team</h1>
-            <c:if test="${id == 'TM'}">
+            <c:if test="${rightNo == 1}">
             	<a href="teamadd" id="teamAdd"><i class="fas fa-user-plus"></i></a>
             </c:if>
-            <a href="teamadd" id="teamAdd"><i class="fas fa-user-plus"></i></a>
             <div id="teamConGrid">
             <c:forEach var="vo" items="${getTeam}">
                 <article class="card">
-                    <c:if test="${vo.teamAim.aimFinish == 'N'.charAt(0)}">
-                            	<c:if test="${vo.teamAim.aimStatus == 0}">
-                            	<img class="cardImg" src="<%=request.getContextPath()%>/resources/image/new.png">
-	                            </c:if>
-                            	<c:if test="${vo.teamAim.aimStatus > 0 && vo.teamAim.aimStatus < 100}">
-                            	<img class="cardImg" src="<%=request.getContextPath()%>/resources/image/ongoing.png">
-	                            </c:if>
-	                            <c:if test="${vo.teamAim.aimStatus == 100}">
-	                            <img class="cardImg" src="<%=request.getContextPath()%>/resources/image/finish.png">
-	                            </c:if>
-                            </c:if>
-                            <c:if test="${vo.teamAim.aimFinish == 'Y'.charAt(0)}">
-                            <img class="cardImg" src="<%=request.getContextPath()%>/resources/image/finish.png">
-                            </c:if>
+                		<c:if test="${rightNo == 1}">
+			            	<a href="teamadd?update=${vo.teamId}" id="teamUpdate"><i class="fas fa-sync-alt"></i></a>
+			            </c:if>
+						<c:if test="${vo.teamAim.aimFinish == 'N'.charAt(0)}">
+							<c:if test="${vo.teamAim.aimStatus == 0}">
+								<img class="cardImg"
+									src="<%=request.getContextPath()%>/resources/image/new.png">
+							</c:if>
+							<c:if
+								test="${vo.teamAim.aimStatus > 0 && vo.teamAim.aimStatus < 100}">
+								<img class="cardImg"
+									src="<%=request.getContextPath()%>/resources/image/ongoing.png">
+							</c:if>
+							<c:if test="${vo.teamAim.aimStatus == 100}">
+								<img class="cardImg"
+									src="<%=request.getContextPath()%>/resources/image/finish.png">
+							</c:if>
+						</c:if>
+						<c:if test="${vo.teamAim.aimFinish == 'Y'.charAt(0)}">
+                        	<img class="cardImg" src="<%=request.getContextPath()%>/resources/image/finish.png">
+                        </c:if>
+						<c:if test="${vo.teamAim == null}">
+                        	<img class="cardImg" src="<%=request.getContextPath()%>/resources/image/new.png">
+                        </c:if>
                     <div class="cardGridCon">
                         <h4 class="teamName">${vo.teamTitle}</h4>
                         <div class="cardGrid">
@@ -69,6 +78,9 @@
                             <c:if test="${vo.teamAim.aimFinish == 'Y'.charAt(0)}">
                             <progress value="${vo.teamAim.aimStatus}" max="100" id="mainPbarRed"></progress>
                             </c:if>
+                            <c:if test="${vo.teamAim == null}">
+	                            <progress value="0" max="100" id="mainPbarYellow"></progress>
+	                        </c:if>
                         </div>
                     </div>
                 </article>
@@ -88,7 +100,9 @@
 		        <div id="goalBasic">
 		        	<span onclick="closeModal()" id="cancleBtn"><i class="fas fa-times"></i></span>
 			        <h1 class="teamH1">팀 목표</h1>
+			        <c:if test="${rightNo == 1}">
 			        <a class="addGoalBtn" onclick="moveToAddgoal()"><i class="far fa-plus-square"></i></a>
+			        </c:if>
 		        </div>
 		        <div id="goalList">
 		        </div>
@@ -153,9 +167,11 @@
 	    					text += "<div class='reqColorSmall' id='color_"+i+"'></div>";
 	    					text += "<div class='goalInfo'>";
 	    					text += "<h4>"+result[i].aimTitle+"</h4>";
-	    					if(result[i].aimStatus != 100 && result[i].aimFinish == 'N'){
-	    						text += "<button onclick='getUpdateGoal("+result[i].teamId+")'>수정</button>";
-	    						text += "<button onclick='disableGoal("+result[i].teamId+")'>비활성화</button>";
+	    					if ("${rightNo}" == 1){
+	    						if(result[i].aimStatus != 100 && result[i].aimFinish == 'N'){
+		    						text += "<button onclick='getUpdateGoal("+result[i].teamId+")'>수정</button>";
+		    						text += "<button onclick='disableGoal("+result[i].teamId+")'>비활성화</button>";
+		    					}
 	    					}
 	    					text += "<p class='dateP'>"+result[i].aimStart+" ~ "+result[i].aimEnd+"</p>";
 	    					text += "<progress value="+result[i].aimStatus+" max='100' class='modalPbar'></progress><p class='percentP'>"+result[i].aimStatus+"%</p>";

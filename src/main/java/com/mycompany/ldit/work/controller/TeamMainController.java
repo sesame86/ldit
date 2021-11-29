@@ -3,14 +3,17 @@ package com.mycompany.ldit.work.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.team.model.service.TeamService;
 import com.mycompany.ldit.team.model.vo.Team;
 import com.mycompany.ldit.teamaim.model.service.TeamAimService;
@@ -25,17 +28,31 @@ public class TeamMainController {
 	private TeamAimService TeamAimService;
 	
 	@RequestMapping(value = "/teammain", method = RequestMethod.GET)
-	public ModelAndView teamMain(ModelAndView mv) {
+	public ModelAndView teamMain(ModelAndView mv, HttpSession session) {
 		String viewpage = "team/team_main";
 		List<Team> voList = null;
 		try {
 			//pro_no 넘기는거 받아오기 전까지
-			int pro_no = 1;
+			int proNo = 1;
 			
-			voList = TeamService.getOneProjectTeam(pro_no);
+			//0:PM, 1:TM, 2:팀원
+			Staff loginUser = (Staff)session.getAttribute("loginUser");
+			int rightNo = TeamService.getStaffRight(loginUser.getStfNo());
+			if(rightNo == 0 || rightNo == 1) {
+				//PM은 프로젝트에 속한 팀 전체 조회, TM은 프로젝트에 속한 팀 전체 조회
+				voList = TeamService.getOneProjectTeam(proNo);
+			}else if(rightNo == 2) {
+				//팀원은 프로젝트에 속한 팀중에서 자신이 속한 팀 조회
+				Team tvo = new Team();
+				Staff svo = new Staff();
+				tvo.setProNo(proNo);
+				svo.setStfNo(loginUser.getStfNo());
+				tvo.setStaff(svo);
+				voList = TeamService.getTeamMemberTeamList(tvo);
+			}//권한에 속하지 않으면 아예 팀 메인 화면 접속하는 버튼이 안보임
 			viewpage = "team/team_main";
 			mv.addObject("getTeam", voList);
-			System.out.println(voList);
+			mv.addObject("rightNo", rightNo);
 		}catch (Exception e) {
 			//viewpage = "error/commonError";
 			//mv.addObject("msg", "팀 개설에 문제가 생겼습니다.");

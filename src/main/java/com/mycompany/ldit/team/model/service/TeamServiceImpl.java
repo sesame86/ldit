@@ -16,12 +16,16 @@ public class TeamServiceImpl implements TeamService{
 	private TeamDao TeamDao;
 	
 	@Override
-	public List<Team> getOneProjectTeam(int pro_no) throws Exception {
-		return TeamDao.getOneProjectTeam(pro_no);
+	public List<Team> getOneProjectTeam(int proNo) throws Exception {
+		return TeamDao.getOneProjectTeam(proNo);
 	}
 	@Override
-	public Project getOneProject(int pro_no) throws Exception {
-		return TeamDao.getOneProject(pro_no);
+	public List<Team> getTeamMemberTeamList(Team tvo) throws Exception {
+		return TeamDao.getTeamMemberTeamList(tvo);
+	}
+	@Override
+	public Project getOneProject(int proNo) throws Exception {
+		return TeamDao.getOneProject(proNo);
 	}
 	@Override
 	public List<Staff> searchPM(String searchWord) throws Exception {
@@ -38,5 +42,13 @@ public class TeamServiceImpl implements TeamService{
 	@Override
 	public int insertTeam(Team tvo) throws Exception {
 		return TeamDao.insertTeam(tvo);
+	}
+	@Override
+	public int getStaffRight(int stfNo) throws Exception {
+		return TeamDao.getStaffRight(stfNo);
+	}
+	@Override
+	public Team getTeamUpdate(int proNo) throws Exception {
+		return TeamDao.getTeamUpdate(proNo);
 	}
 }

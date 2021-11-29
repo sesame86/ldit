@@ -6,6 +6,15 @@ section{
     overflow: auto;
     position: relative;
 }
+h1{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+#csadd{
+	font-size: 1.3rem;
+	margin: 1rem;
+}
 #csContainer{
 	width: 90%;
 	height: 85%;
@@ -48,4 +57,90 @@ section{
 	float: left;
     width: 98%;
     height: 100%;
+}
+/*team goal*/
+#csDetailModal{
+	z-index:3;
+	display: none;
+	padding-top:100px;
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background-color:rgb(0,0,0);
+	background-color:rgba(0,0,0,0.4)
+}
+.modal-content{
+	margin:auto;
+	background-color:#fff;
+	position:relative;
+	padding:0;
+	outline:0;
+	width: 37rem;
+	height: 80%;
+}
+.container{
+	width:100%;
+	height:100%;
+}
+.container:after,.w3-container:before{
+	content:"";
+	display:table;
+	clear:both;
+}
+#csBasic{
+	clear: both;
+	width: 100%;
+	height: 15%;
+	display: block;
+	margin: auto;
+}
+#cancleBtn{
+	position: absolute;
+	float: right;
+	top: 1rem;
+	right: 1rem;
+}
+#csDetailContent{
+	clear: both;
+	width: 80%;
+	margin: 1rem auto;
+}
+#csDetailContent h4{
+	font-size: 1.2rem;
+	display: inline-block;
+	margin: 1rem 0;
+	color: #5E6C84;
+}
+#csDetailContent p{
+	font-size: 1.2em;
+	margin: 0 2rem;
+}
+.teamH1{
+	margin: 1rem;
+	font-size: 2.4rem;
+	float: left;
+}
+.addGoalBtn{
+	float: left;
+	margin: 1.5rem;
+	font-size: 1.2rem;
+}
+.csH1{
+	margin: 1.4rem;
+}
+#csDisableBtn{
+	display: inline-block;
+	border: 0;
+	margin: 1.4rem;
+	padding: 0.5rem 0.8rem;
+	background-color: #e5e8eb;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+	border-radius: 0.3rem;
+	font-size: 0.8rem;
+}
+#csDisableBtn:hover {
+	background-color: #3498DB;
+	color: white;
 }

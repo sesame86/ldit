@@ -25,15 +25,23 @@ public class TeamOpenUpController {
 	private TeamMemberService TeamMemberService;
 	
 	@RequestMapping(value = "/teamadd", method = RequestMethod.GET)
-	public ModelAndView getTeam(ModelAndView mv) {
+	public ModelAndView getTeam(ModelAndView mv, HttpServletRequest request) {
 		String viewpage = "team/team_add";
 		Project vo = null;
 		try {
 			//pro_no 넘기는거 받아오기 전까지
-			int pro_no = 1;
-			vo = TeamService.getOneProject(pro_no);
+			int proNo = 1;
+			vo = TeamService.getOneProject(proNo);
 			viewpage = "team/team_add";
 			mv.addObject("getProject", vo);
+			String update = request.getParameter("update");
+			if(update != null) {
+				int updateInt = Integer.parseInt(update);
+				Team tvo = new Team();
+				tvo = TeamService.getTeamUpdate(updateInt);
+				mv.addObject("getUpdateTeam", tvo);
+			}
+			mv.addObject("update", update);
 		}catch (Exception e) {
 			//viewpage = "error/commonError";
 			//mv.addObject("msg", "팀 개설에 문제가 생겼습니다.");
@@ -45,16 +53,21 @@ public class TeamOpenUpController {
 	@RequestMapping(value = "/teamadd", method = RequestMethod.POST)
 	public ModelAndView postTeam(ModelAndView mv, Team tvo) {
 		String viewpage = "redirect:teammain";
-		
-		System.out.println("tvo: " + tvo);
-		//20211123 진행중
 		try {
 			int result1 = 0;
 			int result2 = 0;
 			result1 = TeamService.insertTeam(tvo);
-			System.out.println(result1);
-			result2 = TeamMemberService.insertTeamMember(tvo);
-			System.out.println(result2);
+			for(int i=0; i<tvo.getStaffList().size(); i++) {
+				Team teamVo = new Team();
+				Staff staffVo = new Staff();
+				teamVo.setProNo(tvo.getProNo());
+				staffVo.setStfNo(tvo.getStaffList().get(i).getStfNo());
+				teamVo.setStaff(staffVo);
+				result2 = TeamMemberService.insertTeamMember(teamVo);
+			}
+			//result2 = TeamMemberService.insertTeamMember(tvo);
+			System.out.println("result1:"+result1);
+			System.out.println("result2:"+result2);
 		}catch (Exception e) {
 			e.getStackTrace();
 		}

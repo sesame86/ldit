@@ -28,7 +28,12 @@
 	<%@ include file="/WEB-INF/views/ldit_aside.jsp" %>
 	<section>
         <div id="tmAddCon">
-            <h1>팀 개설</h1>
+        <c:if test="${update == null}">
+        	<h1>팀 개설</h1>
+        </c:if>
+        <c:if test="${update != null}">
+        	<h1>팀 수정</h1>
+        </c:if>
             <article>
                 <div id="pjInfoCon">
                 	<c:if test="${getProject.proStatus.toString() eq 'N'}">
@@ -54,12 +59,13 @@
                     <div id="bigColor" style="background-color: yellow">완료</div>
                     </c:if>
                 </div>
-                <form id="tmAddFrm" action="teamadd" method="post">
-                	<input type="hidden" name="proNo" value="${getProject.proNo }">
+                <c:if test="${update == null}">
+                	<form id="tmAddFrm" action="teamadd" method="post">
+                	<input type="hidden" name="proNo" value="${getProject.proNo}">
                     <label>팀명</label>
-                    <input id="teamTitle" name="teamTitle"><br>
+                    <input id="teamTitle" name="teamTitle" value="${getUpdateTeam.teamTitle}"><br>
                     <label>책임자</label>
-                    <input id="tmInput"><br>
+                    <input id="tmInput" value="${getUpdateTeam.teamManager}"><br>
                     <p></p>
                     <div>
                     	<ul id="scPmList">
@@ -83,6 +89,38 @@
   
                     <button type="submit" id="submitBtn">저장</button>
                 </form>
+                </c:if>
+                <c:if test="${update != null}">
+                	<form id="tmAddFrm" action="teamadd" method="post">
+                	<input type="hidden" name="proNo" value="${getProject.proNo}">
+                    <label>팀명</label>
+                    <input id="teamTitle" name="teamTitle" value="${getUpdateTeam.teamTitle}"><br>
+                    <label>책임자</label>
+                    <input id="tmInput" value="${getUpdateTeam.teamManager}"><br>
+                    <p></p>
+                    <div>
+                    	<ul id="scPmList">
+                    		<li id="scTitle"><p>사원번호</p><p>이름</p><p>부서</p><p>직급</p></li>
+                    	</ul>
+                    </div><p></p>
+                    <label>팀원 추가</label>
+                    <input id="addTeamMem">
+                    <a href="#" id="teamAddBtn" onclick="addTeamMember()"><i class="far fa-plus-square"></i></a>
+                    <p></p>
+                    <div>
+                    	<ul id="scTmemList">
+                    		<li id="tmemTitle"><p>사원번호</p><p>이름</p><p>부서</p><p>직급</p></li>
+                    	</ul>
+                    </div><p></p>
+                    <br>
+                    <div class="addResultCon">
+
+                    </div>
+                    <p></p><p></p>
+  
+                    <button type="submit" id="submitBtn">저장</button>
+                </form>
+                </c:if>
             </article>
         </div>
     </section>

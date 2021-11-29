@@ -3,6 +3,11 @@
 <mapper namespace="TeamMember">
 	<!-- 팀 멤버 등록 -->
 	<insert id="insertTeamMember" parameterType="Team">
-		insert into team_member values(team_member_seq.nextval, #{staff.stf_no})
+		<selectKey keyProperty="no" order="BEFORE" resultType="long">
+	    	select last_number
+			from user_sequences
+			where sequence_name='TEAM_SEQ'
+	    </selectKey>
+		insert into team_member(team_id, stf_no) values(#{no}, #{staff.stfNo})
 	</insert>
 </mapper>

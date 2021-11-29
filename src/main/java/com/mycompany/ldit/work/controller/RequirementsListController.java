@@ -2,22 +2,30 @@ package com.mycompany.ldit.work.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.ldit.clientneeds.model.service.ClientNeedsService;
 import com.mycompany.ldit.clientneeds.model.vo.ClientNeeds;
+import com.mycompany.ldit.staff.model.vo.Staff;
+import com.mycompany.ldit.team.model.service.TeamService;
 
 @Controller
 public class RequirementsListController {
 	@Autowired
 	private ClientNeedsService ClientNeedsService;
+	@Autowired
+	private TeamService TeamService;
 	
 	@RequestMapping(value = "/csneeds", method = RequestMethod.GET)
-	public ModelAndView getNeedsList(ModelAndView mv) {
+	public ModelAndView getNeedsList(ModelAndView mv, HttpSession session) {
 		String viewpage = "project/csneeds";
 		List<ClientNeeds> urgentList = null;
 		List<ClientNeeds> highList = null;
@@ -25,14 +33,18 @@ public class RequirementsListController {
 		List<ClientNeeds> lowList = null;
 		try {
 			//pro_no 넘기는거 받아오기 전까지
-			int pro_no = 1;
+			int proNo = 1;
+			Staff loginUser = (Staff)session.getAttribute("loginUser");
+			int rightNo = TeamService.getStaffRight(loginUser.getStfNo());
+			mv.addObject("rightNo", rightNo);
 			
-			urgentList = ClientNeedsService.getUrgentList(pro_no);
-			highList = ClientNeedsService.getHighList(pro_no);
-			normalList = ClientNeedsService.getNormalList(pro_no);
-			lowList = ClientNeedsService.getLowList(pro_no);
+			urgentList = ClientNeedsService.getUrgentList(proNo);
+			highList = ClientNeedsService.getHighList(proNo);
+			normalList = ClientNeedsService.getNormalList(proNo);
+			lowList = ClientNeedsService.getLowList(proNo);
 			viewpage = "project/csneeds";
 
+			mv.addObject("proNo", proNo);
 			mv.addObject("urgentList", urgentList);
 			mv.addObject("highList", highList);
 			mv.addObject("normalList", normalList);
@@ -44,5 +56,22 @@ public class RequirementsListController {
 		}
 		mv.setViewName(viewpage);
 		return mv;
+	}
+	@RequestMapping(value = "/getCSDetail.do", method = RequestMethod.GET)
+	@ResponseBody
+	public ClientNeeds getCSDetail(ModelAndView mv, HttpServletRequest request) {
+		String cnIdStr = request.getParameter("cnId");
+		int cnId = 0;
+		if(cnIdStr != null) {
+			cnId = Integer.parseInt(cnIdStr);
+		}
+		ClientNeeds cvo = null;
+		try {
+			cvo = ClientNeedsService.getCSDetail(cnId);
+			mv.addObject("cvo", cvo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cvo;
 	}
 }

@@ -14,6 +14,7 @@ public class TeamMemberDao {
 	
 	@Transactional(rollbackFor = Exception.class)
 	public int insertTeamMember(Team tvo) {
+		System.out.println(tvo);
 		return sqlSession.insert("Team.insertTeamMember", tvo);
 	}
 }

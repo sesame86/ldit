@@ -14,6 +14,12 @@
 			<result property="stfName" column="stf_name"/>
 		</association>
 	</resultMap>
+	<resultMap type="Team" id="TeamRM">
+		<id property="teamId" column="team_id"/>
+		<result property="proNo" column="pro_no"/>
+		<result property="teamTitle" column="team_title"/>
+		<result property="teamManager" column="team_manager"/>
+	</resultMap>
 	<resultMap type="Project" id="ProjectRM">
 		<id property="proNo" column="pro_no"/>
 		<result property="proTitle" column="pro_title"/>
@@ -39,12 +45,19 @@
 		<result property="deptName" column="dept_name"/>
 	</resultMap>
 	<!-- 팀 메인 조회 -->
-	<select parameterType="int" resultMap="TeamJoinAimJoinStaff" id="getOneProjectTeam">
+	<select id="getOneProjectTeam" parameterType="int" resultMap="TeamJoinAimJoinStaff">
+		select * from(select t.team_id, t.pro_no, t.team_title, ta.aim_id, ta.aim_status, ta.aim_finish, s.stf_name,
+		rank() over (partition by t.team_id order by t.team_id, ta.aim_id desc) as ranking
+		from team t left join team_aim ta on t.team_id = ta.team_id join staff s on t.team_manager = s.stf_no
+		where t.pro_no = #{proNo}) t1
+		where ranking = 1 order by t1.team_id desc
+	</select>
+	<select id="getTeamMemberTeamList" parameterType="Team" resultMap="TeamJoinAimJoinStaff">
 		select * from(select t.team_id, t.pro_no, t.team_title, ta.aim_id, ta.aim_status, ta.aim_finish, s.stf_name,
 		rank() over (partition by t.team_id order by ta.aim_id desc) as ranking
-		from team t left join team_aim ta on t.team_id = ta.team_id join staff s on t.team_manager = s.stf_no
-		where t.pro_no = #{proNo})
-		where ranking = 1
+		from team t left join team_aim ta on t.team_id = ta.team_id left join team_member tm on t.team_id= tm.team_id left join staff s on t.team_manager = s.stf_no
+		where t.pro_no = #{proNo} and tm.stf_no = #{staff.stfNo} or t.team_manager = #{staff.stfNo})t1
+		where ranking = 1 order by t1.team_id desc
 	</select>
 	<!-- 팀개설시 프로젝트 기본정보 조회 -->
 	<select parameterType="int" resultMap="ProjectRM" id="getOneProject">
@@ -62,4 +75,12 @@
 	<insert id="insertTeam" parameterType="Team">
 		insert into team values(team_seq.nextval, #{proNo}, #{teamTitle}, #{teamManager})
 	</insert>
+	<!-- 권한 확인 -->
+	<select id="getStaffRight" parameterType="Staff" resultType="int">
+		select nvl(r.right_no, -1) right_no from right r right join staff s on r.stf_no = s.stf_no where s.stf_no = #{stfNo}
+	</select>
+	<!-- update시 팀 정보 조회 -->
+	<select id="getTeamUpdate" parameterType="int" resultMap="TeamRM">
+		select * from team where team_id = #{teamId}
+	</select>
 </mapper>

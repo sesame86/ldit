@@ -6,19 +6,18 @@
               <a href="#"></a>
           </div>
   
-          <button class="aside-accordion">프로젝트       <i class="fas fa-angle-down"></i> </button>
+          <button class="aside-accordion">프로젝트<i class="fas fa-angle-down"></i> </button>
           <div class="panel">
-              <p id="pd1">프로젝트 개설</p>
-              <p id="pd1">고객 요구사항</p>
-              <p id="pd1">이슈</p>
+              <p class="pd1">프로젝트 조회</p>
+              <p class="pd1">이슈</p>
               
           </div>
   
-          <button class="aside-accordion">근무계획       <i class="fas fa-angle-down"></i> </button>
+          <button class="aside-accordion">근무계획<i class="fas fa-angle-down"></i> </button>
           <div class="panel">
-              <p id="pd1">근무계획2</p>
-              <p id="pd1">근무계획3</p>
-              <p id="pd1">근무계획1</p>
+              <p class="pd1">근무계획2</p>
+              <p class="pd1">근무계획3</p>
+              <p class="pd1">근무계획1</p>
   
           </div>
   
@@ -27,12 +26,12 @@
               <a href="#"></a>
           </div>
   
-          <button class="aside-accordion">쪽지       <i class="fas fa-angle-down"></i> </button>
+          <button class="aside-accordion">쪽지<i class="fas fa-angle-down"></i> </button>
           <div class="panel"  >
-              <p id="pd1">쪽지보내기</p>
-              <p id="pd1">보낸 쪽지 확인</p>
-              <p id="pd1">받은쪽지 확인</p>
-              <p id="pd1">쪽지 폴더 등록</p>
+              <p class="pd1">쪽지보내기</p>
+              <p class="pd1">보낸 쪽지 확인</p>
+              <p class="pd1">받은쪽지 확인</p>
+              <p class="pd1">쪽지 폴더 등록</p>
           </div>
   
           <button class="aside-accordion">전자결재</button>
