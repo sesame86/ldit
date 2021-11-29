@@ -32,30 +32,41 @@
             	<a href="csadd?prono=${proNo}" id="csadd"><i class="fas fa-user-plus"></i></a>
             </c:if>
 			<div class="flexContainer">
-				<div id="urgent" class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<div id="urgent">
 					<h4>긴급</h4>
 					<c:forEach var="vo" items="${urgentList}">
-					<div id="urgentList" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true">
-						<c:if test="${vo.cnDeactivate == 'Y'.toString()}">
-							<div class="reqColorSmall" style="background-color: red"></div>
+					<div id="urgentList">
+						<c:if test="${vo.cnDeactivate eq 'Y'.toString()}">
+							<div class="reqColorSmall" style="background-color: #DE4F4F"></div>
+							<div class="listInfo">
+								<a href="#" onclick="csDetailView(${vo.cnId})" style="text-decoration: line-through;">${vo.cnTitle}</a>
+							</div>
 						</c:if>
-							<c:if test="${vo.cnDeactivate == 'N'.toString()}">
-						<div class="reqColorSmall"></div>
+						<c:if test="${vo.cnDeactivate eq 'N'.toString()}">
+							<div class="reqColorSmall"></div>
+							<div class="listInfo">
+								<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
+							</div>
 						</c:if>
-						<div class="listInfo">
-							<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
-						</div>
 					</div>
 					</c:forEach>
 				</div>
-				<div id="high" class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<div id="high">
 					<h4>중요</h4>
 					<c:forEach var="vo" items="${highList}">
-					<div id="highList" id="urgentList" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true">
-						<div class="reqColorSmall"></div>
-						<div class="listInfo">
-							<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
-						</div>
+					<div id="highList">
+						<c:if test="${vo.cnDeactivate eq 'Y'.toString()}">
+							<div class="reqColorSmall" style="background-color: #DE4F4F"></div>
+							<div class="listInfo">
+								<a href="#" onclick="csDetailView(${vo.cnId})" style="text-decoration: line-through;">${vo.cnTitle}</a>
+							</div>
+						</c:if>
+						<c:if test="${vo.cnDeactivate eq 'N'.toString()}">
+							<div class="reqColorSmall"></div>
+							<div class="listInfo">
+								<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
+							</div>
+						</c:if>
 					</div>
 					</c:forEach>
 				</div>
@@ -63,10 +74,18 @@
 					<h4>보통</h4>
 					<c:forEach var="vo" items="${normalList}">
 					<div id="normalList">
-						<div class="reqColorSmall"></div>
-						<div class="listInfo">
-							<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
-						</div>
+						<c:if test="${vo.cnDeactivate eq 'Y'.toString()}">
+							<div class="reqColorSmall" style="background-color: #DE4F4F"></div>
+							<div class="listInfo">
+								<a href="#" onclick="csDetailView(${vo.cnId})" style="text-decoration: line-through;">${vo.cnTitle}</a>
+							</div>
+						</c:if>
+						<c:if test="${vo.cnDeactivate eq 'N'.toString()}">
+							<div class="reqColorSmall"></div>
+							<div class="listInfo">
+								<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
+							</div>
+						</c:if>
 					</div>
 					</c:forEach>
 				</div>
@@ -74,10 +93,18 @@
 					<h4>낮음</h4>
 					<c:forEach var="vo" items="${lowList}">
 					<div id="lowList">
-						<div class="reqColorSmall"></div>
-						<div class="listInfo">
-							<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
+						<c:if test="${vo.cnDeactivate eq 'Y'.toString()}">
+							<div class="reqColorSmall" style="background-color: #DE4F4F"></div>
+							<div class="listInfo">
+							<a href="#" onclick="csDetailView(${vo.cnId})" style="text-decoration: line-through;">${vo.cnTitle}</a>
 						</div>
+						</c:if>
+						<c:if test="${vo.cnDeactivate eq 'N'.toString()}">
+							<div class="reqColorSmall"></div>
+							<div class="listInfo">
+								<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
+							</div>
+						</c:if>
 					</div>
 					</c:forEach>
 				</div>
@@ -100,27 +127,10 @@
 		</div>
 	</section>
 	<script type="text/javascript">
-		/* function dragStart(event) {
-		  event.dataTransfer.setData("Text", event.target.id);
-		}
-		
-		function dragging(event) {
-		  document.getElementById("demo").innerHTML = "The p element is being dragged";
-		}
-		
-		function allowDrop(event) {
-		  event.preventDefault();
-		}
-		
-		function drop(event) {
-		  event.preventDefault();
-		  var data = event.dataTransfer.getData("Text");
-		  event.target.appendChild(document.getElementById(data));
-		  document.getElementById("demo").innerHTML = "The p element was dropped";
-		} */
 		function csDetailView(cnId) {
     		$("#csDetailContent").children().remove();
     		$("#csDisableBtn").remove();
+    		$("#csDiasabled").remove();
     		$.ajax({
     			url:"getCSDetail.do",
     			data:{"cnId": cnId},
@@ -141,9 +151,14 @@
     						prior = "낮음";
     					}
     					if ("${rightNo}" == 0){
-    						$(".csH1").append("<button id='csDisableBtn' onclick='disableCS("+cnId+")'>비활성화</button>");
+    						if(result.cnDeactivate == 'N'){
+    							$(".csH1").append("<button id='csDisableBtn' onclick='disableCS("+cnId+")'>비활성화</button>");
+    							var html = "<h4>제목</h4><p>"+result.cnTitle+"</p><h4>내용</h4><p>"+result.cnContent+"</p><h4>우선순위 <a href='#' onclick='updatePriority("+cnId+")'><i class='fas fa-sync-alt'></i></a></h4><p>"+prior+"</p>";
+    						}else if(result.cnDeactivate == 'Y'){
+    							$(".csH1").append("<button id='csDiasabled'>비활성화 되었음</button>");
+    							var html = "<h4>제목</h4><p>"+result.cnTitle+"</p><h4>내용</h4><p>"+result.cnContent+"</p><h4>우선순위</h4><p>"+prior+"</p>";
+    						}
     					}
-    					var html = "<h4>제목</h4><p>"+result.cnTitle+"</p><h4>내용</h4><p>"+result.cnContent+"</p><h4>우선순위</h4><p>"+prior+"</p>";
     					$("#csDetailContent").append(html);
     				}
     			},
@@ -165,7 +180,9 @@
 	    			dataType: "json",
 	    			success: function(result){
 	    				if(result > 0){
+	    					$("#csDetailModal").css("display", "none");
 	    					alert("비활성화 완료");
+	    					window.location.reload();
 	    				}
 	    			},
 	    			error : function(e) {

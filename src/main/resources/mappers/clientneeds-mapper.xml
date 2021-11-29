@@ -11,16 +11,16 @@
 	</resultMap>
 	<!-- 팀 목표 조회 -->
 	<select id="getUrgentList" parameterType="int" resultMap="ClientNeedsRM">
-		select * from client_needs where pro_no = #{proNo} and cn_priority = 1 order by cn_id
+		select * from client_needs where pro_no = #{proNo} and cn_priority = 1 order by cn_id desc
 	</select>
 	<select id="getHighList" parameterType="int" resultMap="ClientNeedsRM">
-		select * from client_needs where pro_no = #{proNo} and cn_priority = 2 order by cn_id
+		select * from client_needs where pro_no = #{proNo} and cn_priority = 2 order by cn_id desc
 	</select>
 	<select id="getNormalList" parameterType="int" resultMap="ClientNeedsRM">
-		select * from client_needs where pro_no = #{proNo} and cn_priority = 3 order by cn_id
+		select * from client_needs where pro_no = #{proNo} and cn_priority = 3 order by cn_id desc
 	</select>
 	<select id="getLowList" parameterType="int" resultMap="ClientNeedsRM">
-		select * from client_needs where pro_no = #{proNo} and cn_priority = 4 order by cn_id
+		select * from client_needs where pro_no = #{proNo} and cn_priority = 4 order by cn_id desc
 	</select>
 	<insert id="insertCS" parameterType="ClientNeeds">
 		insert into client_needs(cn_id, pro_no, cn_title, cn_content, cn_priority) values(client_needs_seq.nextval, #{proNo}, #{cnTitle}, #{cnContent}, #{cnPriority})
