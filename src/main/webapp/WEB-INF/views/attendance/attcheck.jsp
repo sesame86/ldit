@@ -34,16 +34,26 @@
 					<p>Today's 출근시각</p>
 				</div>
 				<div class="div_time">
-					<p>00:00:00</p>
+					<c:choose>
+						<c:when test="${empty attStartFormat}"><p id="checkin_time">00:00:00</p></c:when>
+						<c:when test="${!empty attStartFormat}"><p id="checkin_time">${attStartFormat}</p></c:when>
+					</c:choose>
 				</div>
 				<div class="div_title">
 					<p>Today's 퇴근시각</p>
 				</div>
 				<div class="div_time">
-					<p>00:00:00</p>
+					<c:choose>
+						<c:when test="${empty attEndFormat}"><p id="checkout_time">00:00:00</p></c:when>
+						<c:when test="${!empty attEndFormat}"><p id="checkout_time">${attEndFormat}</p></c:when>
+					</c:choose>
 				</div>
 				<div class="div_btn">
-					<a href="javascript:fnCheckin()" class="btn_click" id="btn_checkin">출근</a>
+					 	<a href="javascript:fnCheckin()" class="btn_click" id="btn_check">출근</a>
+		<!-- 			<c:choose>
+						<c:when test="${!empty attEndFormat}"><a href="javascript:fnCheckin()" class="btn_click" id="btn_check">출근</a></c:when>
+						<c:when test="${empty attEndFormat && !empty attStartFormat}"><a href="javascript:fnCheckOut()" class="btn_click" id="btn_check">퇴근</a></c:when>
+					</c:choose> -->
 				</div>
 			</div>
 			<div class="div_restin">
@@ -57,16 +67,26 @@
 					<p>최근 휴식시작</p>
 				</div>
 				<div class="div_time">
-					<p>00:00:00</p>
+					<c:choose>
+						<c:when test="${empty restStartFormat}"><p id="restin_time">00:00:00</p></c:when>
+						<c:when test="${!empty restStartFormat}"><p id="restin_time">${restStartFormat}</p></c:when>
+					</c:choose>
 				</div>
 				<div class="div_title">
 					<p>최근 휴식종료</p>
 				</div>
 				<div class="div_time">
-					<p>00:00:00</p>
+					<c:choose>
+						<c:when test="${empty restEndFormat}"><p id="restout_time">00:00:00</p></c:when>
+						<c:when test="${!empty restEndFormat}"><p id="restout_time">${restEndFormat}</p></c:when>
+					</c:choose>
 				</div>
 				<div class="div_btn">
-					<a href="" class="btn_click" id="btn_restin">휴식 시작</a>
+					<a href="javascript:fnRestIn()" class="btn_click" id="btn_rest">휴식 시작</a>
+				<!--	<c:choose>
+						<c:when test="${!empty restEndFormat}"><a href="javascript:fnRestIn()" class="btn_click" id="btn_rest">휴식 시작</a></c:when>
+						<c:when test="${empty restEndFormat}"><a href="javascript:fnRestOut()" class="btn_click" id="btn_rest">휴식 종료</a></c:when>
+					</c:choose>  -->	
 				</div>
 			</div>
 			<div class="div_apply">
@@ -159,19 +179,23 @@
 
 
 <script>
+
 function fnCheckin(){
 	console.log("버튼눌림");
 	$.ajax({
 		url : "checkin"
-		, data: {stfNo : 119}
+		, data: {stfNo : 20213333}
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
-			console.log("돌아옴");
 			console.log(data);
-			//alert(data);
-			$("#btn_checkin").removeAttr('id');
-			$("#btn_checkin").attr('id', "btn_checkout");
+			if(data != "00:00:00"){
+			$("#btn_check").attr('href', "javascript:fnCheckOut()");
+			$("#btn_check").html("퇴근");
+			$("#checkin_time").html(data);
+			} else {
+				alert("출근등록에 실패했습니다.");
+			}
 		}
 		, error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 
@@ -180,44 +204,74 @@ function fnCheckin(){
 	});
 }
 
-/*$("#btn_checkin").on("click", function(){
+function fnCheckOut(){
 	console.log("버튼눌림");
 	$.ajax({
-		url : "checkin"
-		, data: {stfNo : 119}
+		url : "checkout"
+		, data: {stfNo : 20213333}
 		, type : "post"
-		, contentType:"json"
 		, dataType: "json"
 		, success: function(data) {
-			console.log("돌아옴");
-			alert(data);
-			$("this").removeAttr('id');
-			$("this").attr('id', "btn_checkout");
+			if(data != "00:00:00"){
+			$("#btn_check").attr('href', "javascript:fnCheckin()");
+			$("#btn_check").html("출근");
+			$("#checkout_time").html(data);
+			} else {
+				alert("퇴근등록에 실패했습니다.");
+			}
 		}
 		, error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 
 					 + "message : " + request.responseText + "\n" 
 					 + "error : " + errorData);}
 	});
-});*/
+}
 
-$("#btn_restin").on("click", function(){
+function fnRestIn(){
 	console.log("버튼눌림");
 	$.ajax({
-		url : "checkin"
+		url : "restin"
+		, data: {stfNo : 20213333}
 		, type : "post"
-		, contentType:"json"
 		, dataType: "json"
 		, success: function(data) {
-			console.log("돌아옴");
-			alert(data);
+			if(data != "00:00:00"){
+			$("#btn_rest").attr('href', "javascript:fnRestOut()");
+			$("#btn_rest").html("휴식 종료");
+			$("#restin_time").html(data);
+			} else {
+				alert("휴식등록에 실패했습니다.");
+			}
 		}
 		, error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 
 					 + "message : " + request.responseText + "\n" 
 					 + "error : " + errorData);}
 	});
-});
+}
+
+function fnRestOut(){
+	console.log("버튼눌림");
+	$.ajax({
+		url : "restout"
+		, data: {brNo : 1}
+		, type : "post"
+		, dataType: "json"
+		, success: function(data) {
+			if(data != "00:00:00"){
+			$("#btn_rest").attr('href', "javascript:fnRestIn()");
+			$("#btn_rest").html("휴식 시작");
+			$("#restout_time").html(data);
+			} else {
+				alert("휴식종료에 실패했습니다.");
+			}
+		}
+		, error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData);}
+	});
+}
 
 
 function restin_showhide(){
