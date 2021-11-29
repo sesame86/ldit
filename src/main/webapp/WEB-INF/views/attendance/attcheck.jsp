@@ -173,11 +173,11 @@
 <script>
 
 $(document).ready(function(){
-	if("${attStartFormat}" != null){
+	if("${attStartFormat}" === "00:00:00"){
 		$("#btn_check").attr('href', "javascript:fnCheckOut()");
 		$("#btn_check").html("퇴근");
 	}
-	if("${restStartFormat}" != null){
+	if("${restStartFormat}" === "00:00:00"){
 		$("#btn_rest").attr('href', "javascript:fnRestOut()");
 		$("#btn_rest").html("휴식 종료");
 	}
