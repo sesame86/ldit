@@ -142,6 +142,13 @@ h1{
 .csH1{
 	margin: 1.4rem;
 }
+select{
+	width: 30%;
+	padding: 0.7rem;
+    margin-top: 1.4rem;
+    font-size: 1rem;
+    text-align: center;
+}
 #csDisableBtn{
 	display: inline-block;
 	border: 0;

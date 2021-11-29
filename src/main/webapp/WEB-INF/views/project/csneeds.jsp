@@ -125,6 +125,21 @@
 		      </div>
 		    </div>
 		</div>
+		<!-- 고객 요구사항 update modal -->
+        <div id="csDetailModal">
+		    <div class="modal-content">
+		      <div class="container">
+		        <div id="csBasic">
+		        	<span onclick="closeModal()" id="cancleBtn"><i class="fas fa-times"></i></span>
+			        <h1 class="csUpdateH1">고객 요구사항</h1>
+			        <div id="csDetailContent">
+			        </div>
+		        </div>
+		        <div id="goalList">
+		        </div>
+		      </div>
+		    </div>
+		</div>
 	</section>
 	<script type="text/javascript">
 		function csDetailView(cnId) {
@@ -138,7 +153,6 @@
     			type: "GET",
     			dataType: "json",
     			success: function(result){
-    				console.log(result.length);
     				if(result != null){
     					$("#csDetailModal").css("display", "block");
     					if(result.cnPriority == 1){
@@ -153,7 +167,7 @@
     					if ("${rightNo}" == 0){
     						if(result.cnDeactivate == 'N'){
     							$(".csH1").append("<button id='csDisableBtn' onclick='disableCS("+cnId+")'>비활성화</button>");
-    							var html = "<h4>제목</h4><p>"+result.cnTitle+"</p><h4>내용</h4><p>"+result.cnContent+"</p><h4>우선순위 <a href='#' onclick='updatePriority("+cnId+")'><i class='fas fa-sync-alt'></i></a></h4><p>"+prior+"</p>";
+    							var html = "<h4>제목</h4><p>"+result.cnTitle+"</p><h4>내용</h4><p>"+result.cnContent+"</p><h4>우선순위 <a href='#' onclick='updatePriority("+cnId+")'><i class='fas fa-sync-alt'></i></a></h4><p id='updatePr'>"+prior+"</p>";
     						}else if(result.cnDeactivate == 'Y'){
     							$(".csH1").append("<button id='csDiasabled'>비활성화 되었음</button>");
     							var html = "<h4>제목</h4><p>"+result.cnTitle+"</p><h4>내용</h4><p>"+result.cnContent+"</p><h4>우선순위</h4><p>"+prior+"</p>";
@@ -190,6 +204,9 @@
 			        }
 	    		})
 			}
+		}
+		function updatePriority(cnId) {
+			$("#updatePr").html("<select id='updatePr'><option value='1'>긴급</option><option value='2'>높음</option><option value='3'>보통</option><option value='4'>낮음</option></select>");
 		}
 	</script>
 </body>
