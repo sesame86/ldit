@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mycompany.ldit.staff.model.StaffService;
 import com.mycompany.ldit.staff.model.vo.Staff;
 
-@Controller("einquire")
+@Controller
 public class EmployeeInquireController {
 
 	@Autowired

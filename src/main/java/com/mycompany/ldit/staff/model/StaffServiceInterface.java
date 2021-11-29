@@ -11,7 +11,7 @@ public interface StaffServiceInterface {
 	public List<Staff> einquire(Staff vo);
 
 	//직원 등록
-	public int join(Staff staff);
+	public int eregist(Staff staff);
 
 	//JH
 	//01_01 사원 로그인 체크

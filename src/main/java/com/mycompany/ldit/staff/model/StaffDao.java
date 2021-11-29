@@ -25,8 +25,15 @@ public class StaffDao implements StaffDaoInterface {
 	}
 	
 	// 직원 등록
-	public int join(Staff staff) {
-		return sqlSession.insert("Staff.join", staff);
+	public int eregist(Staff staff) {
+		return sqlSession.insert("StaffNS.eregist", staff);
+	}
+	
+	// 직원 정보 수정
+
+	// 직원 삭제
+	public int edelete(Staff staff) {
+		return sqlSession.delete("StaffNS.edelete", staff);
 	}
 	
 	//JH

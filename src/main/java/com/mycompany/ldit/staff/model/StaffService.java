@@ -23,10 +23,10 @@ public class StaffService implements StaffServiceInterface{
 
 	//직원 등록
 	@Override
-	public int join(Staff staff) {
+	public int eregist(Staff staff) {
 		int result = 0;
 		try {
-			result = staffDao.join(staff);
+			result = staffDao.eregist(staff);
 			System.out.println("직원 등록 성공 여부 :" + result);
 		} catch(Exception e) {
 			e.printStackTrace();

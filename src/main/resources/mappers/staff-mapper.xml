@@ -43,9 +43,11 @@ STF_NOTHERE          DATE      -->
 			<result property="deptName" column="DEPT_NAME"/>
 		</association>
 	</resultMap>
+	
 	<!-- 직원 등록 -->
-	<insert id="join" parameterType="string">
-		insert into staff (#{stfNo}, #{deptNo}, #{stfLvl}, #{stfName}, #{stfId}, #{stfPasswd}, #{stfImg}, #{stfSign}, #{stfPhone}, #{stfMail}, #{stfEnroll})
+	<insert id="eregist" parameterType="Staff">
+		insert into staff (STF_NO, DEPT_NO, STF_LVL, STF_NAME, STF_ID, STF_PASSWD, STF_IMG, STF_SIGN, STF_PHONE, STF_MAIL, STF_ENROLL)
+		values (#{stfNo}, #{deptNo}, #{stfLvl}, #{stfName}, #{stfId}, #{stfPasswd}, #{stfImg}, #{stfSign}, #{stfPhone}, #{stfMail}, #{stfEnroll})
 	</insert>
 	
 	<!-- 조직도 -->
@@ -53,15 +55,25 @@ STF_NOTHERE          DATE      -->
 		select s.stf_name, s.stf_img, s.stf_phone, s.stf_mail, d.dept_name from staff s join department d on s.dept_no = d.dept_no
 	</select>
 	
+	<!-- 직원 삭제 -->
+	<delete id="edelete" parameterType="Staff">
+		delete from staff where stf_no = #{stfNo}
+	</delete>
+	
+	<!-- 직원 정보 수정 -->
+	<update id="eupdate" parameterType="Staff">
+	
+	</update>
+	
 	<!--  JH  -->
 	<select id="loginCheck" resultType="String" parameterType="Staff">
-	select stf_name from staff
-	where stf_id =#{stfId} AND stf_passwd = #{stfPasswd}
+		select stf_name from staff
+		where stf_id =#{stfId} AND stf_passwd = #{stfPasswd}
 	</select>
 	
-	<select id="viewStaff" resultMap="staffRM" parameterType="Staff">
-	select stf_name, stf_id, stf_no
-	from staff
-	where stf_id = #{stfId}
+	<select id="viewStaff" resultType="Staff" parameterType="Staff">
+		select stf_name, stf_id, stf_no
+		from staff
+		where stf_id = #{stfId}
 	</select>
 </mapper>

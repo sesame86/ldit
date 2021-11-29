@@ -1,7 +1,5 @@
 package com.mycompany.ldit.staff.model.vo;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 import com.mycompany.ldit.department.model.vo.Department;
@@ -19,8 +17,8 @@ public class Staff {
 	private String stfSign;
 	private String stfPhone;
 	private String stfMail;
-	private Date stfEnroll;
-	private Date stfNothere;
+	private String stfEnroll;
+	private String stfNothere;
 	private String deptName;
 	private Department department;
 	
@@ -116,19 +114,19 @@ public class Staff {
 		this.stfMail = stfMail;
 	}
 
-	public Date getStfEnroll() {
+	public String getStfEnroll() {
 		return stfEnroll;
 	}
 
-	public void setStfEnroll(Date stfEnroll) {
+	public void setStfEnroll(String stfEnroll) {
 		this.stfEnroll = stfEnroll;
 	}
 
-	public Date getStfNothere() {
+	public String getStfNothere() {
 		return stfNothere;
 	}
 
-	public void setStfNothere(Date stfNothere) {
+	public void setStfNothere(String stfNothere) {
 		this.stfNothere = stfNothere;
 	}
 

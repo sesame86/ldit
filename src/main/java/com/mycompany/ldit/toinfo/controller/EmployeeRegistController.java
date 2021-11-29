@@ -16,54 +16,55 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mycompany.ldit.staff.model.StaffService;
 import com.mycompany.ldit.staff.model.vo.Staff;
 
-@Controller("eregist")
+@Controller
 public class EmployeeRegistController {
 	@Autowired
 	private StaffService staffservice;
 	
-	@RequestMapping(value="join", method=RequestMethod.GET)
-	public ModelAndView join(ModelAndView mv) {
-		mv.setViewName("join");
-		return mv;
-	}
-	
-	@RequestMapping(value="join", method=RequestMethod.POST)
-	public ModelAndView join(Staff staff, @RequestParam("stfNo") int stfNo, @RequestParam("deptNo") int deptNo, @RequestParam("stfLvl") String stfLvl
-			, @RequestParam("stfName") String stfName, @RequestParam("stfId") String stfId, @RequestParam("stfPasswd") String stfPasswd
-			, @RequestParam("stfImg") String stfImg, @RequestParam("stfSign") String stfSign, @RequestParam("stfPhone") String stfPhone
-			, @RequestParam("stfMail") String stfMail, @RequestParam("stfEnroll") Date stfEnroll
-			, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
-		int result = 0;
-		try {
-			System.out.println("직원 등록 컨트롤러1 : " + result);
-			staff.setStfNo(stfNo);
-			staff.setDeptNo(deptNo);
-			staff.setStfLvl(stfLvl);
-			staff.setStfName(stfName);
-			staff.setStfId(stfId);
-			staff.setStfPasswd(stfPasswd);
-			staff.setStfImg(stfImg);
-			staff.setStfSign(stfSign);
-			staff.setStfPhone(stfPhone);
-			staff.setStfMail(stfMail);
-			staff.setStfEnroll(stfEnroll);
-			result=staffservice.join(staff);
-			
-			System.out.println(staff);
-			System.out.println("직원 등록 컨트롤러2 : " + result);
-			
-			if(result == 1) {
-				String msg = "직원 등록이 완료되었습니다.";
-				rttr.addFlashAttribute("msg", msg);
-				mv.setViewName("redirect:/");
-			} else {
-				String msg = "직원 등록에 실패했습니다.";
-				rttr.addFlashAttribute("msg", msg);
-				mv.setViewName("redirect:/");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return mv;
-	}
+	@RequestMapping(value = "eregist", method = RequestMethod.GET)
+    public ModelAndView eregist(ModelAndView mv) {
+       mv.setViewName("employee/eregist");
+       return mv;
+    }
+   
+   @RequestMapping(value = "eregist", method=RequestMethod.POST)
+   public ModelAndView eregist(Staff vo, @RequestParam("stfNo") int stfNo,
+          @RequestParam("deptNo") int deptNo,@RequestParam("stfLvl") String stfLvl,@RequestParam("stfName") String stfName,
+          @RequestParam("stfId") String stfId,@RequestParam("stfPasswd") String stfPasswd,@RequestParam("stfImg") String stfImg,@RequestParam("stfSign") String stfSign,
+          @RequestParam("stfPhone") String stfPhone,@RequestParam("stfMail") String stfMail,@RequestParam("stfEnroll") String stfEnroll,
+          HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
+       int result=0;
+       
+       try {
+          System.out.println(result);
+          
+          vo.setStfNo(stfNo);
+          vo.setDeptNo(deptNo);
+          vo.setStfLvl(stfLvl);
+          vo.setStfName(stfName);
+          vo.setStfId(stfId);
+          vo.setStfPasswd(stfPasswd);
+          vo.setStfImg(stfImg);
+          vo.setStfSign(stfSign); 
+          vo.setStfPhone(stfPhone);
+          vo.setStfMail(stfMail);
+          vo.setStfEnroll(stfEnroll);
+          
+          result = staffservice.eregist(vo);
+          System.out.println(result);
+          if(result==1) {
+             String msg = "회원 정보가 등록되었습니다.";
+             rttr.addFlashAttribute("msg", msg);
+             mv.setViewName("redirect:eregist");
+          }else {
+             String msg = "회원 정보 등록에 실패하였습니다.";
+             rttr.addFlashAttribute("msg", msg);
+             mv.setViewName("redirect:eregist");
+          }
+          
+       } catch (Exception e) {
+          e.printStackTrace();
+       }
+       return mv;
+    }
 }
