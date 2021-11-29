@@ -34,4 +34,7 @@ public class ClientNeedsDao {
 	public int disableCS(int cnId) throws Exception {
 		return sqlSession.update("ClientNeeds.disableCS", cnId);
 	}
+	public int updateCS(ClientNeeds cvo) throws Exception {
+		return sqlSession.update("ClientNeeds.updateCS", cvo);
+	}
 }

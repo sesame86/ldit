@@ -31,9 +31,7 @@ public class RequirementsRegistController {
 		String viewpage = "redirect:csneeds";
 		System.out.println(cvo);
 		try {
-			System.out.println("진입");
 			int result = ClientNeedsService.insertCS(cvo);
-			System.out.println(result);
 		}catch (Exception e) {
 			e.getStackTrace();
 		}

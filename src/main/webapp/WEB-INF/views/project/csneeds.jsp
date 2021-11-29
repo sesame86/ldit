@@ -125,21 +125,6 @@
 		      </div>
 		    </div>
 		</div>
-		<!-- 고객 요구사항 update modal -->
-        <div id="csDetailModal">
-		    <div class="modal-content">
-		      <div class="container">
-		        <div id="csBasic">
-		        	<span onclick="closeModal()" id="cancleBtn"><i class="fas fa-times"></i></span>
-			        <h1 class="csUpdateH1">고객 요구사항</h1>
-			        <div id="csDetailContent">
-			        </div>
-		        </div>
-		        <div id="goalList">
-		        </div>
-		      </div>
-		    </div>
-		</div>
 	</section>
 	<script type="text/javascript">
 		function csDetailView(cnId) {
@@ -164,15 +149,19 @@
     					}else if(result.cnPriority == 4){
     						prior = "낮음";
     					}
-    					if ("${rightNo}" == 0){
-    						if(result.cnDeactivate == 'N'){
-    							$(".csH1").append("<button id='csDisableBtn' onclick='disableCS("+cnId+")'>비활성화</button>");
-    							var html = "<h4>제목</h4><p>"+result.cnTitle+"</p><h4>내용</h4><p>"+result.cnContent+"</p><h4>우선순위 <a href='#' onclick='updatePriority("+cnId+")'><i class='fas fa-sync-alt'></i></a></h4><p id='updatePr'>"+prior+"</p>";
-    						}else if(result.cnDeactivate == 'Y'){
-    							$(".csH1").append("<button id='csDiasabled'>비활성화 되었음</button>");
-    							var html = "<h4>제목</h4><p>"+result.cnTitle+"</p><h4>내용</h4><p>"+result.cnContent+"</p><h4>우선순위</h4><p>"+prior+"</p>";
-    						}
-    					}
+    					var html = "<form action='updatecs.do' method='post'><h4>제목</h4><p>"+result.cnTitle+"</p><h4>내용</h4><p>"+result.cnContent+"</p>";
+    					if(result.cnDeactivate == 'N'){
+							if ("${rightNo}" == 0){
+								$(".csH1").append("<button id='csDisableBtn' onclick='disableCS("+cnId+")'>비활성화</button>");
+								html += "<h4>우선순위 <a href='#' onclick='updatePriority("+cnId+")'><i class='fas fa-sync-alt'></i></a></h4><p id='updatePr'>"+prior+"</p>";
+							}else{
+								html += "<h4>우선순위</h4><p>"+prior+"</p>";
+							}
+						}else if(result.cnDeactivate == 'Y'){
+							$(".csH1").append("<button id='csDiasabled'>비활성화 되었음</button>");
+							html += "<h4>우선순위</h4><p>"+prior+"</p>";
+						}
+    					html += "</form>";
     					$("#csDetailContent").append(html);
     				}
     			},
@@ -206,7 +195,8 @@
 			}
 		}
 		function updatePriority(cnId) {
-			$("#updatePr").html("<select id='updatePr'><option value='1'>긴급</option><option value='2'>높음</option><option value='3'>보통</option><option value='4'>낮음</option></select>");
+			$("#csDetailContent form").append("<input type='hidden' name='cnId' value="+cnId+">");
+			$("#updatePr").html("<select id='updatePr' name='cnPriority'><option value='1'>긴급</option><option value='2'>높음</option><option value='3'>보통</option><option value='4'>낮음</option></select> <button type='submit' id='updateBtn'>수정</button>");
 		}
 	</script>
 </body>

@@ -13,4 +13,5 @@ public interface ClientNeedsService {
 	public int insertCS(ClientNeeds cvo) throws Exception;
 	public ClientNeeds getCSDetail(int cnId) throws Exception;
 	public int disableCS(int cnId) throws Exception;
+	public int updateCS(ClientNeeds cvo) throws Exception;
 }

@@ -144,12 +144,12 @@ h1{
 }
 select{
 	width: 30%;
-	padding: 0.7rem;
+	padding: 0.3rem 0.7rem;
     margin-top: 1.4rem;
     font-size: 1rem;
     text-align: center;
 }
-#csDisableBtn{
+#csDisableBtn, #updateBtn{
 	display: inline-block;
 	border: 0;
 	margin: 1.4rem;
@@ -159,7 +159,7 @@ select{
 	border-radius: 0.3rem;
 	font-size: 0.8rem;
 }
-#csDisableBtn:hover {
+#csDisableBtn:hover, #updateBtn:hover{
 	background-color: #3498DB;
 	color: white;
 }

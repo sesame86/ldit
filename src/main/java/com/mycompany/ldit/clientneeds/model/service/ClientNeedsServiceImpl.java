@@ -41,4 +41,8 @@ public class ClientNeedsServiceImpl implements ClientNeedsService{
 	public int disableCS(int cnId) throws Exception {
 		return ClientNeedsDao.disableCS(cnId);
 	}
+	@Override
+	public int updateCS(ClientNeeds cvo) throws Exception {
+		return ClientNeedsDao.updateCS(cvo);
+	}
 }

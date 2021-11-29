@@ -32,4 +32,7 @@
 	<update id="disableCS" parameterType="int">
 		update client_needs set cn_deactivate = 'Y' where cn_id = #{cnId}
 	</update>
+	<update id="updateCS" parameterType="ClientNeeds">
+		update client_needs set cn_priority = #{cnPriority} where cn_id = #{cnId}
+	</update>
 </mapper>
