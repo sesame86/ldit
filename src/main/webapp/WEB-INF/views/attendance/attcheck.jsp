@@ -50,10 +50,6 @@
 				</div>
 				<div class="div_btn">
 					 	<a href="javascript:fnCheckin()" class="btn_click" id="btn_check">출근</a>
-		<!-- 			<c:choose>
-						<c:when test="${!empty attEndFormat}"><a href="javascript:fnCheckin()" class="btn_click" id="btn_check">출근</a></c:when>
-						<c:when test="${empty attEndFormat && !empty attStartFormat}"><a href="javascript:fnCheckOut()" class="btn_click" id="btn_check">퇴근</a></c:when>
-					</c:choose> -->
 				</div>
 			</div>
 			<div class="div_restin">
@@ -83,10 +79,6 @@
 				</div>
 				<div class="div_btn">
 					<a href="javascript:fnRestIn()" class="btn_click" id="btn_rest">휴식 시작</a>
-				<!--	<c:choose>
-						<c:when test="${!empty restEndFormat}"><a href="javascript:fnRestIn()" class="btn_click" id="btn_rest">휴식 시작</a></c:when>
-						<c:when test="${empty restEndFormat}"><a href="javascript:fnRestOut()" class="btn_click" id="btn_rest">휴식 종료</a></c:when>
-					</c:choose>  -->	
 				</div>
 			</div>
 			<div class="div_apply">
@@ -180,11 +172,23 @@
 
 <script>
 
+$(document).ready(function(){
+	if("${attStartFormat}" != null){
+		$("#btn_check").attr('href', "javascript:fnCheckOut()");
+		$("#btn_check").html("퇴근");
+	}
+	if("${restStartFormat}" != null){
+		$("#btn_rest").attr('href', "javascript:fnRestOut()");
+		$("#btn_rest").html("휴식 종료");
+	}
+});
+
+
 function fnCheckin(){
 	console.log("버튼눌림");
 	$.ajax({
 		url : "checkin"
-		, data: {stfNo : 20213333}
+		, data: {stfId : "${loginUser.stfNo}"}
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
@@ -208,7 +212,7 @@ function fnCheckOut(){
 	console.log("버튼눌림");
 	$.ajax({
 		url : "checkout"
-		, data: {stfNo : 20213333}
+		, data: {stfId : "${loginUser.stfNo}"}
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
@@ -231,7 +235,7 @@ function fnRestIn(){
 	console.log("버튼눌림");
 	$.ajax({
 		url : "restin"
-		, data: {stfNo : 20213333}
+		, data: {stfId : "${loginUser.stfNo}"}
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
@@ -254,7 +258,7 @@ function fnRestOut(){
 	console.log("버튼눌림");
 	$.ajax({
 		url : "restout"
-		, data: {brNo : 1}
+		, data: {stfId : "${loginUser.stfNo}", brNo : "${brNo}"}
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {

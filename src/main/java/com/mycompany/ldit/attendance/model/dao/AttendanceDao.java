@@ -1,6 +1,7 @@
 package com.mycompany.ldit.attendance.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,9 @@ public class AttendanceDao {
 
 	public String getLatestBrEnd(int stfNo) {
 		return sqlSession.selectOne("aboutAtt.getLatestBrEnd", stfNo);
+	}
+	
+	public int getBrNo(Map<String, Object> map1) {
+		return sqlSession.selectOne("aboutAtt.getBrNo", map1);
 	}
 }

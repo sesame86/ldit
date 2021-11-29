@@ -90,4 +90,9 @@ Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_
 	]]>
 </select>
 
+<select id="getBrNo" parameterType="map" resultType="_int">
+	<![CDATA[ 
+	select br_no from work_break where stf_no = #{stfNo} and to_char(br_start, 'hh24:mi:ss') = #{restStartFormat}
+	]]>
+</select>
 </mapper>

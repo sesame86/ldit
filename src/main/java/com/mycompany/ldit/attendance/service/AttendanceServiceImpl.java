@@ -1,6 +1,7 @@
 package com.mycompany.ldit.attendance.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,6 +68,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public String getLatestBrEnd(int stfNo) {
 		return attDao.getLatestBrEnd(stfNo);
+	}
+
+	@Override
+	public int getBrNo(Map<String, Object> map1) {
+		return attDao.getBrNo(map1);
 	}
 	
 

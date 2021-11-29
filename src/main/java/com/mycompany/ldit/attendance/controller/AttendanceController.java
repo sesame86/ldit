@@ -35,12 +35,11 @@ public class AttendanceController {
 	}
 
 	@RequestMapping(value="attcheck", method = RequestMethod.GET)
-	public ModelAndView attMainMethod(ModelAndView mv/*, @RequestParam(value="stfNo", required=false) int stfNo*/) {
+	public ModelAndView attMainMethod(ModelAndView mv, @RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo) {
 		mv.setViewName("attendance/attcheck");
 		
-		//임시
-		int stfNo = 20213333;
-		
+
+		System.out.println("받은 stfNo 값은? "+stfNo);
 		String attStartFormat = null;
 		attStartFormat = attService.getAttStart(stfNo);
 		String attEndFormat = null;
@@ -49,6 +48,14 @@ public class AttendanceController {
 		restStartFormat = attService.getLatestBrStart(stfNo);
 		String restEndFormat = null;
 		restEndFormat = attService.getLatestBrEnd(stfNo);
+		if(restStartFormat != null) {
+			Map<String, Object> map1 = new HashMap<String, Object>();
+			map1.put("restStartFormat", restStartFormat);
+			map1.put("stfNo", stfNo);
+			int brNo = attService.getBrNo(map1);
+			mv.addObject("brNo", brNo);
+		}
+		
 		
 		mv.addObject("attStartFormat", attStartFormat);
 		mv.addObject("attEndFormat", attEndFormat);
@@ -61,12 +68,12 @@ public class AttendanceController {
 	
 	@RequestMapping(value="checkin", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String checkinMethod(/*@RequestParam(value="stfNo", required=false) int stfNo*/) throws IOException{
+	public String checkinMethod(@RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo) throws IOException{
 		
 		System.out.println("checkinMethod진입");
 		
 		//임시
-		int stfNo = 20213333;
+		//int stfNo = 20213333;
 		
 		int resultOfExist = attService.countAttStart(stfNo);
 		System.out.println("resultOfExist: "+resultOfExist);
@@ -87,12 +94,12 @@ public class AttendanceController {
 	
 	@RequestMapping(value="checkout", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String checkoutMethod(/*@RequestParam(value="stfNo", required=false) int stfNo*/) {
+	public String checkoutMethod(@RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo) {
 		
 		System.out.println("checkout메소드 진입");
 		
 		//임시
-		int stfNo = 20213333;
+	//	int stfNo = 20213333;
 		
 		
 		int resultOfCheckout = attService.updateCheckout(stfNo);
@@ -109,12 +116,12 @@ public class AttendanceController {
 	
 	@RequestMapping(value="restin", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String restinMethod(/*@RequestParam(value="stfNo", required=false) int stfNo*/) {
+	public String restinMethod(@RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo) {
 		
 		System.out.println("restIn메소드 진입");
 		
 		//임시
-		int stfNo = 20213333;
+	//	int stfNo = 20213333;
 		
 		int resultOfRestin = attService.insertRestin(stfNo);
 		
@@ -132,12 +139,12 @@ public class AttendanceController {
 	
 	@RequestMapping(value="restout", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String restoutMethod(/*@RequestParam(value="stfNo", required=false) int stfNo, @RequestParam(value="brNo", required=false) int brNo*/) {
+	public String restoutMethod(@RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo, @RequestParam(value="brNo", required=false) int brNo) {
 		
 		System.out.println("restOut메소드 진입");
 		
 		//임시
-		int brNo = 1;
+	//	int brNo = 1;
 		
 		int resultOfRestout = attService.updateBrEnd(brNo);
 		
