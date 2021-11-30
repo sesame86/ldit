@@ -9,7 +9,7 @@ import com.mycompany.ldit.staff.model.vo.Staff;
 public interface StaffDaoInterface {
 
 	// 조직도
-	public List<Staff> einquire() throws Exception;
+	public List<Staff> organization();
 
 	// 직원등록
 	public int eregist(Staff staff);

@@ -51,7 +51,7 @@ STF_NOTHERE          DATE      -->
 	</insert>
 	
 	<!-- 조직도 -->
-	<select id="einquire" resultMap="staffRM" parameterType="int">
+	<select id="organization" resultMap="staffRM" parameterType="int">
 		select s.stf_name, s.stf_img, s.stf_phone, s.stf_mail, d.dept_name from staff s join department d on s.dept_no = d.dept_no
 	</select>
 	
@@ -59,6 +59,11 @@ STF_NOTHERE          DATE      -->
 	<delete id="edelete" parameterType="Staff">
 		delete from staff where stf_no = #{stfNo}
 	</delete>
+	
+	<!-- 전체 직원 정보 조회 -->
+	<select id="organization1" resultMap="staffRM" parameterType="int">
+		select * from staff s join department d on s.dept_no = d.dept_no
+	</select>
 	
 	<!-- 직원 정보 수정 -->
 	<update id="eupdate" parameterType="Staff">

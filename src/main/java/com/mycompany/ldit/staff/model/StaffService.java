@@ -17,8 +17,8 @@ public class StaffService implements StaffServiceInterface{
 	
 	//조직도
 	@Override
-	public List<Staff> einquire(Staff vo) {
-		return staffDao.einquire();
+	public List<Staff> organization(Staff vo) {
+		return staffDao.organization();
 	}
 
 	//직원 등록

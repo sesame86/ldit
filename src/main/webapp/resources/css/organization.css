@@ -1,0 +1,106 @@
+@charset "UTF-8";
+h1 {
+	font-size : 2.5rem;
+	padding-top : 5%;
+	padding-bottom : 6%;
+	padding-left : 20%;
+}
+
+.staffContainer {
+	display:flex;
+	align-items:center;
+	flex-deriection:column;
+}
+
+P{
+	text-align:center;
+}
+
+#deptNM1{
+	font-size:3rem;
+	float:left;
+	width:30%;
+	text-align:center;
+}
+#staffInfo1{
+	float:left;
+	width:70%;
+}
+#deptNM2{
+	padding-left:13%;
+	font-size:3rem;
+	float:left;
+	width:30%;
+	text-align:center;
+}
+#staffInfo2{
+	float:left;
+	width:70%;
+}
+#deptNM3{
+	padding-left:13%;
+	font-size:3rem;
+	float:left;
+	width:30%;
+	text-align:center;
+}
+#staffInfo3{
+	float:left;
+	width:70%;
+}
+#deptNM4{
+	padding-left:13%;
+	font-size:3rem;
+	float:left;
+	width:30%;
+	text-align:center;
+}
+#staffInfo4{
+	float:left;
+	width:70%;
+}
+#deptNM5{
+	padding-left:13%;
+	font-size:3rem;
+	float:left;
+	width:30%;
+	text-align:center;
+}
+#staffInfo5{
+	float:left;
+	width:70%;
+}
+
+.deptName{
+	width:7%;
+	height:4rem;
+}
+.staffImg {
+	width:7%;
+	height:4rem;
+	position:relative;
+	right:-5rem;
+}
+.staffName {
+	width:10%;
+	height:3rem;
+	font-size:1.5rem;
+	position:relative;
+	top:-3rem;
+	right:-2rem;
+}
+.staffPhone {
+	width:10%;
+	height:3rem;
+	font-size:1.5rem;
+	position:relative;
+	top:-3rem;
+	right:-5rem;
+}
+.staffMail {
+	width:10%;
+	height:3rem;
+	font-size:1.5rem;
+	position:relative;
+	right:12rem;
+}

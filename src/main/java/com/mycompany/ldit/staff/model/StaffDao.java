@@ -20,8 +20,8 @@ public class StaffDao implements StaffDaoInterface {
 	private SqlSession sqlSession;
 	
 	// 조직도
-	public List<Staff> einquire(){
-		return sqlSession.selectList("StaffNS.einquire");
+	public List<Staff> organization(){
+		return sqlSession.selectList("StaffNS.organization");
 	}
 	
 	// 직원 등록

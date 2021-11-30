@@ -8,7 +8,7 @@ import com.mycompany.ldit.staff.model.vo.Staff;
 
 public interface StaffServiceInterface {
 	//조직도
-	public List<Staff> einquire(Staff vo);
+	public List<Staff> organization(Staff vo);
 
 	//직원 등록
 	public int eregist(Staff staff);
