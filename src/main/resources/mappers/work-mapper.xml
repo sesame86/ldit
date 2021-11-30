@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
+<mapper namespace="Work">
+	<resultMap type="Work" id="WorkRm">
+		<id property="workId" column="work_id"/>
+		<result property="stfNo" column="stf_no"/>
+		<result property="workTitle" column="work_title"/>
+		<result property="workContent" column="work_content"/>
+		<result property="workStart" column="work_start"/>
+		<result property="workEnd" column="work_end"/>
+		<result property="workFinish" column="work_finish"/>
+	</resultMap>
+	<select id="getWorkList">
+		select * from work where stf_no = #{stf_no}
+	</select>
+	<insert id="insertWork" parameterType="Work">
+		insert into work values(work_seq.nextval, #{stfNo}, #{workTitle}, #{workContent}, #{workStart}, #{workEnd}, #{workFinish})
+	</insert>
 </mapper>
