@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Work">
-	<resultMap type="Work" id="WorkRm">
+	<resultMap type="Work" id="WorkRM">
 		<id property="workId" column="work_id"/>
 		<result property="stfNo" column="stf_no"/>
 		<result property="workTitle" column="work_title"/>
@@ -10,10 +10,20 @@
 		<result property="workEnd" column="work_end"/>
 		<result property="workFinish" column="work_finish"/>
 	</resultMap>
-	<select id="getWorkList">
-		select * from work where stf_no = #{stf_no}
+	<select id="getWorkList" parameterType="int" resultMap="WorkRM">
+		select * from work where stf_no = #{stfNo}
+	</select>
+	<select id="getWorkDetial" parameterType="int" resultMap="WorkRM">
+		select * from work where work_id = #{workId}
 	</select>
 	<insert id="insertWork" parameterType="Work">
 		insert into work values(work_seq.nextval, #{stfNo}, #{workTitle}, #{workContent}, #{workStart}, #{workEnd}, #{workFinish})
 	</insert>
+	<delete id="deleteWork" parameterType="int">
+		delete from work where work_id = #{workId}
+	</delete>
+	<update id="updateWork" parameterType="Work">
+		update work set work_title=#{workTitle}, work_content=#{workContent}, work_start=#{workStart}, work_end=#{workEnd}, work_finish=#{workFinish}
+		where work_id = #{workId}
+	</update>
 </mapper>

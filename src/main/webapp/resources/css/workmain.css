@@ -6,9 +6,9 @@ section{
     overflow: auto;
 }
 #calendarCon{
-	width: 95%;
-	height: 96%;
-	margin: 1rem auto;
+	width: 85%;
+	height: 85%;
+	margin: 3rem auto 0 auto;
 }
 #calendar{
 	width: 100%;
@@ -19,6 +19,10 @@ section{
 	display: flex;
 	align-items: center;
 }
+.fc-day-sat .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion { color:#de4f4f; }     /* 토요일 */
+.fc-day-sun .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion { color:#de4f4f; }    /* 일요일 */
+.fc-day-sat{ background-color: rgba(222, 79, 79, 0.1); }
+.fc-day-sun{ background-color: rgba(222, 79, 79, 0.1); }
 #contextMenu {
   position: absolute;
   display: none;
@@ -35,7 +39,7 @@ section{
 #contextMenu .dropdown-menu li{
 	margin: 1rem;
 }
-#workAddModal{
+#workAddModal, #workSelectModal, #workUpdateModal{
 	z-index:3;
 	display: none;
 	padding-top:100px;
@@ -45,7 +49,7 @@ section{
 	width:100%;
 	height:100%;
 	background-color:rgb(0,0,0);
-	background-color:rgba(0,0,0,0.4)
+	background-color:rgba(0,0,0,0.4);
 }
 .modal-content{
 	margin:auto;
@@ -55,6 +59,8 @@ section{
 	outline:0;
 	width: 37rem;
 	height: 80%;
+	border-radius: 0.4rem;
+	overflow: auto;
 }
 .container{
 	width:100%;
@@ -69,7 +75,6 @@ section{
 #workCon{
 	clear: both;
 	width: 100%;
-	height: 60%;
 	display: block;
 	margin: auto;
 }
@@ -80,13 +85,14 @@ section{
 	right: 1rem;
 }
 .workH1{
+	float: left;
 	font-size: 2rem;
-    margin: 1rem;
+    margin: 2rem;
 }
 #workAddFrm{
     width: 70%;
     height: 100%;
-    margin: 8% auto;
+    margin: auto;
 }
 #workGrid{
 	width: 100%;
@@ -124,4 +130,34 @@ textarea, select{
 #submitBtn:hover {
 	background-color: #3498DB;
 	color: white;
+}
+#workSelectGrid{
+	width: 70%;
+	height: 100%;
+	display: grid;
+    grid-template-columns: 30% 70%;
+    margin: 3rem 10% 3rem 10%;
+    gap: 1rem 0;
+}
+.workFont{
+	font-weight: bold;
+}
+#workSelectGrid p{
+	clear: both;
+    font-size: 1.15rem;
+    margin: auto;
+}
+#workTitleCheck, #workContentCheck, #workStartCheck, #workEndCheck, #workFinishCheck{
+	width: 100%;
+	background-color: #F7F9FA;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+	border-radius: 0.3rem;
+	padding: 1rem;
+}
+.workReBtn{
+	font-size: 1.5rem;
+	margin: 0.5rem;
+}
+.clear{
+	clear: both;
 }

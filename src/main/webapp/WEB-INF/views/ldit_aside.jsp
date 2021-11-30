@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <aside class="right-aside">
 	<!--여기 작성 2-->
-	<button class="aside-accordion">일정</button>
+	<button class="aside-accordion" onclick="location.href='workmain'">일정</button>
           <div class="panel">
               <a href="#"></a>
           </div>

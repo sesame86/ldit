@@ -1,5 +1,8 @@
 package com.mycompany.ldit.work.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +19,21 @@ import com.mycompany.ldit.work.model.vo.Work;
 public class CalendarController {
 	@Autowired
 	private WorkService WorkService;
-	
+
 	@RequestMapping(value = "/workmain", method = RequestMethod.GET)
-	public String workmain() {
-		return "work/workmain";
+	public ModelAndView getWorkList(ModelAndView mv,HttpSession session, HttpServletRequest request) {
+		String viewpage = "work/workmain";
+		Staff loginUser = (Staff)session.getAttribute("loginUser");
+		List<Work> wvo = null;
+		try {
+			wvo = WorkService.getWorkList(loginUser.getStfNo());
+			//mv.addObject("workList", wvo);
+			request.setAttribute("workList", wvo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
 	}
 	@RequestMapping(value = "/workadd", method = RequestMethod.POST)
 	public ModelAndView insertWork(ModelAndView mv, Work wvo, HttpSession session) {
@@ -29,7 +43,6 @@ public class CalendarController {
 		try {
 			int result = 0;
 			result = WorkService.insertWork(wvo);
-			System.out.println("result1:"+result);
 		}catch (Exception e) {
 			e.getStackTrace();
 		}
