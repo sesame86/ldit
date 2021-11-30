@@ -54,9 +54,9 @@
 			        <form id="workAddFrm" action="workadd" method="post">
 			        	<div id="workGrid">
 			        		<label>업무 제목</label>
-					        <input id="workTitle" name="workTitle">
+					        <input id="workTitle" name="workTitle" required="required">
 					        <label>업무 내용</label>
-					        <textarea rows="5" id="workContent" name="workContent"></textarea>
+					        <textarea rows="5" id="workContent" name="workContent" required="required"></textarea>
 					        <label>업무 시작일</label>
 					        <input type="date" id="workStart" name="workStart">
 					        <label>업무 마감일</label>
