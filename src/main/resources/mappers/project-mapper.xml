@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
+<mapper namespace="Project">
+	<resultMap type="Project" id="projectRM">
+		<id property="proNo" column="pro_no"/>
+		<result property="proTitle" column="pro_title"/>
+		<result property="proContent" column="pro_content"/>
+		<result property="proStart" column="pro_start"/>
+		<result property="proEnd" column="pro_end"/>
+		<result property="proManager" column="pro_manager"/>
+		<result property="proStatus" column="pro_status"/>
+	</resultMap>
+	
+	<!-- 프로젝트 등록 -->
+	<insert id="insertPJ" parameterType="Project">
+		<!-- 책임자는 로그인한 사원번호 넣어줘야함 -->
+		insert into PROJECT values (project_seq.nextval, #{proTitle}, #{proContent}, #{proStart}, #{proEnd}, '20210530', 'N')
+	</insert>
 </mapper>

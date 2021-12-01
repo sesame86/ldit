@@ -31,38 +31,36 @@
             <h1>Project 개설</h1>
             <article>
                 <form id="pjAddFrm" action="pjadd" method="post">
-<!--                     <div class="textBox"><label>시작일</label></div>
-                    <input type="date" id="startDate" name="projectStart"><br>
-                    <div class="textBox"><label>종료일</label></div>
-                    <input type="date" id="endDate" name="projectEnd"><br> -->
                     <div class="textBox" id="calendar">
                     	<label>시작일</label>
-                    	<input type="date" id="startDate" name="projectStart">
+                    	<input type="date" id="proStart" name="proStart">
                     	<label>종료일</label>
-                    	<input type="date" id="endDate" name="projectEnd">
+                    	<input type="date" id="proEnd" name="proEnd">
                    	</div>
                    	<br>
                     <div class="textBox" id="pjTitle">
                     	<label>프로젝트명</label>
-                    	<input type = "text" name = "stf_name" class = "stf_name_input" id = "stf_name_input" placeholder="제목을 입력해주세요">
+                    	<input type = "text" name = "proTitle" class = "stf_name_input" id = "proTitle" placeholder="제목을 입력해주세요">
                     </div>
                     <br>
                     <div class="textBox" id="pjTm">
                     	<label>프로젝트 TM</label>
 						<input type = "text" name = "stf_name" class = "stf_name_input" id = "stf_name_input" placeholder="이름으로 검색해주세요">
-                    	<button type="submit" id="submitAddBtn">검색</button>
+                    	<button type="submit" class="submitAddBtn" id="tMSearchBtn">검색</button>
                     </div>
                     <br>
                     <div class="textBox" id="pjContent">
                     	<label>프로젝트 내용</label>
-                    	<input type = "text" name = "stf_no" class = "stf_no_input" id = "stf_no_input" placeholder="내용을 입력해주세요">
+                    	<input type = "text" name = "proContent" class = "stf_no_input" id = "proContent" placeholder="내용을 입력해주세요">
                     </div>
                     <br>
-                    <div id="submitBtn">
-	                    <button type="submit" id="submitAddBtn">개설</button>
-	                    <button type="submit" id="submitCancelBtn">취소</button>
+                    <div class="submitBtn" id="pJAddBtnDiv">
+	                    <button type="submit" class="submitAddBtn" id="pJAddBtn">개설</button>
+	                    <button type="submit" class="submitAddBtn" id="pJCancelBtn">취소</button>
                     </div>
                 </form>
+                	<!-- <div class="submitBtn" id="pJCancelBtnDiv">
+                	</div> -->
             </article>
         </div>
     </section>

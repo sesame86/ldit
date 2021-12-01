@@ -45,7 +45,7 @@
 		<!-- <mapper resource="mappers/issue-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/issuecomment-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/msg-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/project-mapper.xml"/> -->
+		<mapper resource="mappers/project-mapper.xml"/>
 		<!-- <mapper resource="mappers/receivemsg-mapper.xml"/> -->
 		<mapper resource="mappers/right-mapper.xml"/>
 		<!-- <mapper resource="mappers/sendmsg-mapper.xml"/> -->
