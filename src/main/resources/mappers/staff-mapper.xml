@@ -61,8 +61,8 @@ STF_NOTHERE          DATE      -->
 	</delete>
 	
 	<!-- 전체 직원 정보 조회 -->
-	<select id="organization1" resultMap="staffRM" parameterType="int">
-		select * from staff s join department d on s.dept_no = d.dept_no
+	<select id="einquire" resultMap="staffRM" parameterType="int">
+		select * from staff s join department d on s.dept_no = d.dept_no order by s.stf_no ASC
 	</select>
 	
 	<!-- 직원 정보 수정 -->

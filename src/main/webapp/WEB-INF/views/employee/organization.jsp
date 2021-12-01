@@ -33,7 +33,7 @@
 					<c:if test="${vo.department.deptName =='임원'}">
 						<br><br>
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-						<label class="staffName">${vo.stfName}</label>
+						<label class="staffName"><button>${vo.stfName}</button></label>
 						<label class="staffPhone">${vo.stfPhone}</label>
 						<label class="staffMail">${vo.stfMail}</label><br><br><br>
 					</c:if>
@@ -49,7 +49,7 @@
 					<c:if test="${vo.department.deptName =='기획'}">
 						<br><br>
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-						<label class="staffName">${vo.stfName}</label>
+						<label class="staffName"><button>${vo.stfName}</button></label>
 						<label class="staffPhone">${vo.stfPhone}</label>
 						<label class="staffMail">${vo.stfMail}</label><br><br><br>
 					</c:if>
@@ -65,7 +65,7 @@
 					<c:if test="${vo.department.deptName =='인사'}">
 						<br><br>
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-						<label class="staffName">${vo.stfName}</label>
+						<label class="staffName"><button>${vo.stfName}</button></label>
 						<label class="staffPhone">${vo.stfPhone}</label>
 						<label class="staffMail">${vo.stfMail}</label><br><br><br>
 					</c:if>
@@ -81,7 +81,7 @@
 					<c:if test="${vo.department.deptName =='개발'}">
 						<br><br>
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-						<label class="staffName">${vo.stfName}</label>
+						<label class="staffName"><button>${vo.stfName}</button></label>
 						<label class="staffPhone">${vo.stfPhone}</label>
 						<label class="staffMail">${vo.stfMail}</label><br><br><br>
 					</c:if>
@@ -97,7 +97,7 @@
 					<c:if test="${vo.department.deptName =='영업'}">
 						<br><br>
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-						<label class="staffName">${vo.stfName}</label>
+						<label class="staffName"><button>${vo.stfName}</button></label>
 						<label class="staffPhone">${vo.stfPhone}</label>
 						<label class="staffMail">${vo.stfMail}</label><br><br><br>
 					</c:if>

@@ -15,19 +15,36 @@ public class StaffService implements StaffServiceInterface{
 	@Autowired
 	private StaffDao staffDao;
 	
-	//조직도
+	// 조직도
 	@Override
 	public List<Staff> organization(Staff vo) {
 		return staffDao.organization();
 	}
 
-	//직원 등록
+	// 직원 등록
 	@Override
 	public int eregist(Staff staff) {
 		int result = 0;
 		try {
 			result = staffDao.eregist(staff);
 			System.out.println("직원 등록 성공 여부 :" + result);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	// 직원 삭제를 위한 전체 직원 조회
+	public List<Staff> einquire(Staff vo){
+		return staffDao.einquire();
+	}
+	
+	// 직원 삭제
+	public int edelete(Staff staff) {
+		int result = 0;
+		try {
+			result = staffDao.edelete(staff);
+			System.out.println("직원 삭제 성공 여부:" + result);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -12,23 +12,23 @@ import com.mycompany.ldit.staff.model.StaffService;
 import com.mycompany.ldit.staff.model.vo.Staff;
 
 @Controller
-public class EmployeeInquireController {
+public class OrganizationChartController {
 
 	@Autowired
-	private StaffService staffService;
+	private StaffService staffservice;
 	
-	@RequestMapping(value="einquire", method=RequestMethod.GET)
-	public ModelAndView einquire(ModelAndView mv) {
+	@RequestMapping(value="organization", method=RequestMethod.GET)
+	public ModelAndView organization(ModelAndView mv) {
 		String viewpage ="";
 		Staff vo = new Staff();
 		List<Staff> orlist = null;
 		try {
-			viewpage="employee/einquire";
-			orlist = staffService.einquire(vo);
+			viewpage="employee/organization";
+			orlist = staffservice.organization(vo);
 			mv.addObject("orlist", orlist);
 		} catch(Exception e) {
 			mv.addObject("msg", "조직도를 불러올 때 문제가 발생했습니다.");
-			mv.addObject("url", "einquire");
+			mv.addObject("url", "organization");
 			e.printStackTrace();
 		}
 		mv.setViewName(viewpage);
