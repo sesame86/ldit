@@ -39,11 +39,16 @@ public class StaffService implements StaffServiceInterface{
 		return staffDao.einquire();
 	}
 	
+	// 직원 상세 정보
+	public Staff profile(int stfNo) {
+		return staffDao.profile(stfNo);
+	}
+	
 	// 직원 삭제
-	public int edelete(Staff staff) {
+	public int edelete(int stfNo) {
 		int result = 0;
 		try {
-			result = staffDao.edelete(staff);
+			result = staffDao.edelete(stfNo);
 			System.out.println("직원 삭제 성공 여부:" + result);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -60,9 +65,9 @@ public class StaffService implements StaffServiceInterface{
 	boolean result = staffDao.loginCheck(vo);
 	if(result) {//true 일 경우 세션에 등록
 		Staff vo2 = viewStaff(vo);
-		vo2.setStfPasswd("");
+		vo.setStfPasswd("");
 		//세션 변수 등록
-		session.setAttribute("loginUser", vo2);
+		session.setAttribute("loginUser", vo);
 		
 		
 		//session.setAttribute("stf_id", vo2.getStf_id());

@@ -19,46 +19,46 @@
 <!-- jquery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<title>직원 삭제</title>
+<title>직원 정보 삭제</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/ldit_header.jsp"%>
 	<%@ include file="/WEB-INF/views/ldit_aside.jsp"%>
 	<section>
-	<h1>직원 삭제</h1>
+	<h1>직원 정보 삭제</h1>
 		<div id="staffContainer" class="staffContainer">
-			<table id="staffTable">
-				<thead>
-					<tr>
-						<th>사원 번호</th>
-						<th>부서 명</th>
-						<th>직급</th>
-						<th>이름</th>
-						<th>아이디</th>
-						<th>프로필 사진</th>
-						<th>핸드폰 번호</th>
-						<th>이메일</th>
-						<th>입사일</th>
-						<th>퇴사일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="vo" items="${elist}">
-					<tr>
-						<td>${vo.stfNo}</td>
-						<td>${vo.department.deptName}</td>
-						<td>${vo.stfLvl}</td>
-						<td><button id="stfName">${vo.stfName}</button></td>
-						<td>${vo.stfId}</td>
-						<td><img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG"></td>
-						<td>${vo.stfPhone}</td>
-						<td>${vo.stfMail}</td>
-						<td>${vo.stfEnroll}</td>
-						<td>${vo.stfNothere}</td>
-					</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+				<table id="staffTable">
+					<thead>
+						<tr>
+							<th>사원 번호</th>
+							<th>부서 명</th>
+							<th>직급</th>
+							<th>이름</th>
+							<th>아이디</th>
+							<th>프로필 사진</th>
+							<th>핸드폰 번호</th>
+							<th>이메일</th>
+							<th>입사일</th>
+							<th>퇴사<th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="vo" items="${elist}">
+							<tr>
+								<td>${vo.stfNo}</td>
+								<td>${vo.department.deptName}</td>
+								<td>${vo.stfLvl}</td>
+								<td>${vo.stfName}</td>
+								<td>${vo.stfId}</td>
+								<td><img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG"></td>
+								<td>${vo.stfPhone}</td>
+								<td>${vo.stfMail}</td>
+								<td>${vo.stfEnroll}</td>
+								<td><button onclick="location.href='edelete2?stfNo=${vo.stfNo}'">퇴사</button></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 		</div>
 	</section>
 </body>

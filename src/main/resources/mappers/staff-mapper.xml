@@ -56,13 +56,19 @@ STF_NOTHERE          DATE      -->
 	</select>
 	
 	<!-- 직원 삭제 -->
-	<delete id="edelete" parameterType="Staff">
+	<delete id="edelete" parameterType="int">
 		delete from staff where stf_no = #{stfNo}
 	</delete>
 	
 	<!-- 전체 직원 정보 조회 -->
 	<select id="einquire" resultMap="staffRM" parameterType="int">
 		select * from staff s join department d on s.dept_no = d.dept_no order by s.stf_no ASC
+	</select>
+	
+	<!-- 직원 상세 정보 조회 -->
+	<select id="profile" resultMap="staffRM" parameterType="int">
+		select * from staff s join department d on s.dept_no = d.dept_no
+		where s.stf_no = #{stfNo}
 	</select>
 	
 	<!-- 직원 정보 수정 -->

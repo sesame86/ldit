@@ -36,9 +36,14 @@ public class StaffDao implements StaffDaoInterface {
 		return sqlSession.selectList("StaffNS.einquire");
 	}
 	
+	// 직원 상세 정보
+	public Staff profile(int stfNo) {
+		return sqlSession.selectOne("StaffNS.profile", stfNo);
+	}
+	
 	// 직원 삭제
-	public int edelete(Staff staff) {
-		return sqlSession.delete("StaffNS.edelete", staff);
+	public int edelete(int stfNo) {
+		return sqlSession.delete("StaffNS.edelete", stfNo);
 	}
 	
 	//JH

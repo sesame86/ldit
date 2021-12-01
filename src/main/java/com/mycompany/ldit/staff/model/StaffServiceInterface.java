@@ -16,8 +16,11 @@ public interface StaffServiceInterface {
 	// 직원 삭제를 위한 전체 직원 조회
 	public List<Staff> einquire(Staff vo);
 	
+	// 직원 상세 정보
+	public Staff profile(int stfNo);
+	
 	// 직원 삭제
-	public int edelete(Staff staff);
+	public int edelete(int stfNo);
 	
 	// JH
 	// 01_01 사원 로그인 체크
