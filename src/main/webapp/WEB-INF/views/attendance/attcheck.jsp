@@ -83,10 +83,22 @@
 			</div>
 			<div class="div_apply">
 				<div class="div_title">
-					<p>잔여 연차 수</p>
+					<p>발생 연차</p>
 				</div>
 				<div class="div_time">
-					<p>00</p>
+					<p>${calAplT}</p>
+				</div>
+				<div class="div_title">
+					<p>사용 연차</p>
+				</div>
+				<div class="div_time">
+					<p>${calAplU}</p>
+				</div>
+				<div class="div_title">
+					<p>잔여 연차</p>
+				</div>
+				<div class="div_time">
+					<p>${calAplT-calAplU}</p>
 				</div>
 				<div class="div_btn">
 					<a href="" class="btn_click" id="btn_apply">휴가/재택 신청</a>
@@ -173,11 +185,11 @@
 <script>
 
 $(document).ready(function(){
-	if("${attStartFormat}" === "00:00:00"){
+	if($("#checkin_time").text() != "00:00:00" && $("#checkout_time").text() == "00:00:00"){
 		$("#btn_check").attr('href', "javascript:fnCheckOut()");
 		$("#btn_check").html("퇴근");
 	}
-	if("${restStartFormat}" === "00:00:00"){
+	if($("#restin_time").text() != "00:00:00" && $("#restout_time").text() == "00:00:00"){
 		$("#btn_rest").attr('href', "javascript:fnRestOut()");
 		$("#btn_rest").html("휴식 종료");
 	}
@@ -194,9 +206,9 @@ function fnCheckin(){
 		, success: function(data) {
 			console.log(data);
 			if(data != "00:00:00"){
-			$("#btn_check").attr('href', "javascript:fnCheckOut()");
-			$("#btn_check").html("퇴근");
-			$("#checkin_time").html(data);
+				$("#btn_check").attr('href', "javascript:fnCheckOut()");
+				$("#btn_check").html("퇴근");
+				$("#checkin_time").html(data);
 			} else {
 				alert("출근등록에 실패했습니다.");
 			}
@@ -216,6 +228,7 @@ function fnCheckOut(){
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
+			console.log(data);
 			if(data != "00:00:00"){
 			$("#btn_check").attr('href', "javascript:fnCheckin()");
 			$("#btn_check").html("출근");
@@ -239,10 +252,11 @@ function fnRestIn(){
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
-			if(data != "00:00:00"){
+			console.log(data);
+			if(data.brStart != "00:00:00"){
 			$("#btn_rest").attr('href', "javascript:fnRestOut()");
 			$("#btn_rest").html("휴식 종료");
-			$("#restin_time").html(data);
+			$("#restin_time").html(data.brStart);
 			} else {
 				alert("휴식등록에 실패했습니다.");
 			}
@@ -262,6 +276,7 @@ function fnRestOut(){
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
+			console.log(data);
 			if(data != "00:00:00"){
 			$("#btn_rest").attr('href', "javascript:fnRestIn()");
 			$("#btn_rest").html("휴식 시작");

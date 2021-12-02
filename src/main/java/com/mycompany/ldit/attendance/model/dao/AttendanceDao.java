@@ -65,4 +65,12 @@ public class AttendanceDao {
 	public int getBrNo(Map<String, Object> map1) {
 		return sqlSession.selectOne("aboutAtt.getBrNo", map1);
 	}
+	
+	public int countAplTotal(int stfNo) {
+		return sqlSession.selectOne("aboutAtt.countAplTotal", stfNo);
+	}
+	
+	public int countAplUse(int stfNo) {
+		return sqlSession.selectOne("aboutAtt.countAplUse", stfNo);
+	}
 }

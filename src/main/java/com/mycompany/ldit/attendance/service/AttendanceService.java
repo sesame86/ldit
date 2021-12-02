@@ -18,4 +18,6 @@ public interface AttendanceService {
 	public String getLatestBrStart(int stfNo);
 	public String getLatestBrEnd(int stfNo);
 	public int getBrNo(Map<String, Object> map1);
+	public int countAplTotal(int stfNo);
+	public int countAplUse(int stfNo);
 }

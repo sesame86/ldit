@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.mycompany.ldit.attendance.model.vo.Apl;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.service.AttendanceServiceImpl;
 
@@ -57,10 +58,20 @@ public class AttendanceController {
 		}
 		
 		
+		int calAplT = attService.countAplTotal(stfNo);
+		int calAplU = attService.countAplUse(stfNo);
+		
+		
+		
+		
 		mv.addObject("attStartFormat", attStartFormat);
 		mv.addObject("attEndFormat", attEndFormat);
 		mv.addObject("restStartFormat", restStartFormat);
 		mv.addObject("restEndFormat", restEndFormat);
+		
+		mv.addObject("calAplT", calAplT);
+		mv.addObject("calAplU", calAplU);
+		
 		
 		return mv;
 	}
@@ -154,8 +165,19 @@ public class AttendanceController {
 		}
 		
 		Gson gson = new Gson();
-		String r = gson.toJson("restEndFormat");
+		String r = gson.toJson(restEndFormat);
 		return r;	
 	}
+	
+	@RequestMapping(value="restapply", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String restApplyMethod() {
+		Gson gson = new Gson();
+		String r = gson.toJson("");
+		return r;
+	}
+	
+	
+	
 
 }

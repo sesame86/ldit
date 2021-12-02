@@ -74,6 +74,16 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public int getBrNo(Map<String, Object> map1) {
 		return attDao.getBrNo(map1);
 	}
+
+	@Override
+	public int countAplTotal(int stfNo) {
+		return attDao.countAplTotal(stfNo);
+	}
+
+	@Override
+	public int countAplUse(int stfNo) {
+		return attDao.countAplUse(stfNo);
+	}
 	
 
 }

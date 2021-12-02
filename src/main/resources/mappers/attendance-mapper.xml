@@ -95,4 +95,21 @@ Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_
 	select br_no from work_break where stf_no = #{stfNo} and to_char(br_start, 'hh24:mi:ss') = #{restStartFormat}
 	]]>
 </select>
+
+
+<select id="countAplTotal" parameterType="_int" resultType="_int">
+	<![CDATA[ 
+	select count(*) from (select * from APL where STF_NO = #{stfNo}) where SYSDATE between APL_DATE and ADD_MONTHS(APL_DATE, '12')
+	]]>
+</select>
+
+<select id="countAplUse" parameterType="_int" resultType="_int">
+	<![CDATA[ 
+	select count(*) from (select * from APL where STF_NO = #{stfNo} and APL_STATE = '0') where SYSDATE between APL_DATE and ADD_MONTHS(APL_DATE, '12')
+	]]>
+</select>
+
+
+
+
 </mapper>
