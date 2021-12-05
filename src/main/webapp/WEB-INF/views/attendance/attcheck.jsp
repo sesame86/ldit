@@ -101,7 +101,7 @@
 					<p>${calAplT-calAplU}</p>
 				</div>
 				<div class="div_btn">
-					<a href="" class="btn_click" id="btn_apply">휴가/재택 신청</a>
+					<a href="javascript:fnApply()" class="btn_click" id="btn_apply">휴가/재택 신청</a>
 				</div>
 			</div>		
 		</article>
@@ -177,6 +177,14 @@
 					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
 					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
 				</div>
+			</div>
+			<!-- The Modal -->
+			<div id="myModal" class="modal">
+			  <!-- Modal content -->
+			  <div class="modal-content">
+			    <span class="close">&times;</span>
+			    <p>Some text in the Modal..</p>
+			  </div>
 			</div>
 		</article>
 	</section>
@@ -308,6 +316,23 @@ function wh_showhide(){
 	var t_drc = $("#div_wh_contents");
 	t_drc.toggle();
 }
+
+//Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+function fnApply() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
 
 </script>
 </body>

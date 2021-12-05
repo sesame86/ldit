@@ -73,6 +73,9 @@ public class AttendanceController {
 		mv.addObject("calAplU", calAplU);
 		
 		
+		//근무내역 상세조회
+		
+		
 		return mv;
 	}
 
