@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.ldit.attendance.model.dao.AttendanceDao;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
+import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
 
 @Service("attService")
 public class AttendanceServiceImpl implements AttendanceService {
@@ -83,6 +84,21 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public int countAplUse(int stfNo) {
 		return attDao.countAplUse(stfNo);
+	}
+
+	@Override
+	public WorkingHoursManage getWHM() {
+		return attDao.getWHM();
+	}
+
+	@Override
+	public int updateWHM(Map<String, Object> map1) {
+		return attDao.updateWHM(map1);
+	}
+
+	@Override
+	public int updateWHMOne(int weekHours) {
+		return attDao.updateWHMOne(weekHours);
 	}
 	
 

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+section {
+    width: 87%;
+    height: 94%;
+    float: right;
+    overflow: auto;
+}
+
+#article_a{
+	width: 90%;
+	max-width: 1080px;
+}
+
+
+
