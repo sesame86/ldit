@@ -20,7 +20,7 @@
 	<%@ include file="../ldit_aside.jsp" %>
 
 	<section>
-
+<!--  [[${brNo}]] -->
 		<article id="article_a">			
 			<h1><br>출퇴근 등록</h1>
 			<div class="div_checkin">
@@ -257,6 +257,7 @@ function fnRestIn(){
 			$("#btn_rest").attr('href', "javascript:fnRestOut()");
 			$("#btn_rest").html("휴식 종료");
 			$("#restin_time").html(data.brStart);
+			$("#restout_time").html("00:00:00");
 			} else {
 				alert("휴식등록에 실패했습니다.");
 			}

@@ -18,6 +18,13 @@ public class WorkingHoursManage {
 		this.whmCode = whmCode;
 		this.whmRestCode = whmRestCode;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "WorkingHoursManage [whmCode=" + whmCode + ", whmRestCode=" + whmRestCode + "]";
+	}
 
 	public String getWhmCode() {
 		return whmCode;

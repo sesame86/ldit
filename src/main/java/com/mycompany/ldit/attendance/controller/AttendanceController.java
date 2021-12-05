@@ -150,12 +150,13 @@ public class AttendanceController {
 	
 	@RequestMapping(value="restout", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String restoutMethod(@RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo, @RequestParam(value="brNo", required=false) int brNo) {
+	public String restoutMethod(@RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo, @RequestParam(value="brNo", required=false) String brno) {
 		
 		System.out.println("restOut메소드 진입");
 		
 		//임시
 	//	int brNo = 1;
+		int brNo = Integer.parseInt(brno);
 		
 		int resultOfRestout = attService.updateBrEnd(brNo);
 		

@@ -18,10 +18,12 @@
 <body>
 	<%@ include file="../ldit_header.jsp" %>
 	<%@ include file="../ldit_aside.jsp" %>
-
+	
+	
+	
 	<section>
 		<article id="article_a">
-			<form action="whmanage" method="post">
+			<form action="whmanage" method="post" onsubmit="return checkEnable();">
 				<fieldset>
 					<legend>근무계획설정</legend>
 						<div>
@@ -44,7 +46,7 @@
 								<div><input type="number" value="40" id="week_hours" name="week_hours"></div>							
 							</div>
 							<div>
-								<div>휴일 설정</div>
+								<div>근무일 설정</div>
 								<div>
 									<input type="checkbox" name="select_day" id="mon" class="select_day" value="월요일">
 									<label for="mon">월요일</label>
@@ -72,12 +74,11 @@
 							</div>
 						</div>
 				</fieldset>
+				<button>완료</button>
 			</form>
 		</article>
 	</section>
-
-
-
+	
 <script>
 $(document).ready(function(){
     $("input:radio[name=whm_type]").click(function(){
@@ -114,14 +115,37 @@ $(document).ready(function(){
 		$("#out_rest").attr("checked", true);
 	}
 });
+
+
+function checkEnable(){
+	if($("input[name=whm_type]:checked").val() == "0"){
+		var rcheck = $(".select_day:checked").length;
+		if (rcheck == 0) {
+			alert("근무일을 하루 이상 선택하세요.");
+			return false;
+			}
+    }else if($("input[name=whm_type]:checked").val() == "1"){
+		if(!$("#week_hours").val() || $("#week_hours").val() == 0){
+			alert("1주 소정근로시간을 입력해주세요.");
+			return false;
+		}
+    }
+    $("#week_hours").attr("disabled", false);
+    $(".select_time").attr("disabled", false);
+    $(".select_day").attr("disabled", false);
+}
 </script>
 
 
-
-
-
-
-
+<!--<c:if test="${loginUser.deptNo ne 3}">
+[[${loginUser.deptNo}]]
+	<script>
+ 		window.setTimeout(redirectFunc, 3000);
+ 		function redirectFunc() {
+ 			location.href="main";
+ 		}
+ 	</script>
+</c:if>-->
 
 
 </body>
