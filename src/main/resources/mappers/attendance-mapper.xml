@@ -135,22 +135,5 @@ update WHM_ZERO set WHM_ZERO_START = #{zeroStartFormat}, WHM_ZERO_END = #{zeroEn
 where WHM_ZERO_DAY = #{selectedDay}
 </update>
 
-<update id="updateWHMZero2" parameterType="map">
-	<![CDATA[ 
-	<foreach collection='zeroDay' item='zeroday'>
-	update whm_zero set whm_zero_start = #{zeroStartFormat}, whm_zero_end = #{zeroEndFormat}
-		<choose>
-			<when test="whm_zero_day = zeroday">
-				, whm_zero_yesno = 1
-			</when>
-			<otherwise>
-				, whm_zero_yesno = 0
-			</otherwise>
-		</choose>
-	</foreach>
-		]]>
-</update>
-
-
 
 </mapper>

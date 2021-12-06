@@ -24,6 +24,5 @@ public interface AttendanceService {
 	public int updateWHM(Map<String, Object> map1);
 	public int updateWHMOne(int weekHours);
 	public int updateWHMZero(Map<String, Object> map2);
-	public int updateWHMZero2(Map<String, Object> map2);
 	public int resetWHMZeroState();
 }

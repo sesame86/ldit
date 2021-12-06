@@ -100,11 +100,6 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public int updateWHMOne(int weekHours) {
 		return attDao.updateWHMOne(weekHours);
 	}
-
-	@Override
-	public int updateWHMZero2(Map<String, Object> map2) {
-		return attDao.updateWHMZero2(map2);
-	}
 	
 	@Override
 	public int resetWHMZeroState() {

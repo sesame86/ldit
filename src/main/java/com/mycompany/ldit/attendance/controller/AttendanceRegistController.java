@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
 
@@ -45,8 +47,6 @@ public class AttendanceRegistController {
 		String varZero = "0";
 		String varOne = "1";
 		
-		
-		
 		if(whmCode.equals(varZero)) {
 			System.out.println("진입");
 			map1.put("whmCode", whmCode);
@@ -76,13 +76,9 @@ public class AttendanceRegistController {
 				resultOfWHMZeroTotal += resultOfWHMZero;
 			}
 			
-			
-		//	int resultOfWHMZero2 = attService.updateWHMZero2(map2);
-			
 			System.out.println("고정근무제에서 resultOfWHMZeroTotal: "+resultOfWHMZeroTotal);
 			System.out.println("고정근무제에서 resultOfWHM: "+resultOfWHM);
 			System.out.println("고정근무제에서 resultOfReset: "+resultOfReset);
-			
 			
 		} else if(whmCode.equals(varOne)) {
 			map1.put("whmCode", whmCode);
@@ -95,11 +91,21 @@ public class AttendanceRegistController {
 			System.out.println("유연근무제에서 resultOfWHMOne: "+resultOfWHMOne);
 		}
 		
-		
-		
 		return "redirect:/whmanage";
 	}
 	
-	
+	@RequestMapping(value="xiuxiset", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String xiuxiSetMethod() {
+		
+		
+		
+		
+		
+		
+		Gson gson = new Gson();
+		String r = gson.toJson("");
+		return r;
+	}
 
 }
