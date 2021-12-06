@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
-import com.mycompany.ldit.attendance.service.AttendanceServiceImpl;
 
 @Controller
 public class AttendanceRegistController {
@@ -42,29 +42,57 @@ public class AttendanceRegistController {
 		System.out.println("whmCode: "+ whmCode);
 		System.out.println("whmRestCode: "+whmRestCode);
 		Map<String, Object> map1 = new HashMap<String, Object>();
-		if(whmCode == "0") {
+		String varZero = "0";
+		String varOne = "1";
+		
+		
+		
+		if(whmCode.equals(varZero)) {
 			System.out.println("진입");
 			map1.put("whmCode", whmCode);
 			map1.put("whmRestCode", whmRestCode);
-		//	int resultOfWHM = attService.updateWHM(map1);
-			
-			String zeroDay[] = request.getParameterValues("select_day");
+			int resultOfWHM = attService.updateWHM(map1);
 			
 			String zeroStart = request.getParameter("time_in");
 			String zeroEnd = request.getParameter("time_out");
 			System.out.println("zeroStart: "+zeroStart);
 			System.out.println("zeroEnd: "+zeroEnd);
-			Map<String, Object> map2 = new HashMap<String, Object>();
-			map2.put("zeroStart", zeroStart);
-			map2.put("zeroEnd", zeroEnd);
 			
-		} else if(whmCode == "1") {
+			String zeroStartFormat = zeroStart.replaceAll(":", "");
+			String zeroEndFormat = zeroEnd.replaceAll(":", "");
+			System.out.println(zeroStartFormat);
+			System.out.println(zeroEndFormat);
+
+			Map<String, Object> map2 = new HashMap<String, Object>();
+			String[] zeroDay = request.getParameterValues("select_day");
+			int resultOfReset =  attService.resetWHMZeroState();
+			int resultOfWHMZeroTotal = 0;
+			for (int i=0; i<zeroDay.length; i++) {
+				String selectedDay = zeroDay[i];
+				map2.put("zeroEndFormat", zeroEndFormat);
+				map2.put("zeroStartFormat", zeroStartFormat);
+				map2.put("selectedDay", selectedDay);
+				int resultOfWHMZero = attService.updateWHMZero(map2);
+				resultOfWHMZeroTotal += resultOfWHMZero;
+			}
+			
+			
+		//	int resultOfWHMZero2 = attService.updateWHMZero2(map2);
+			
+			System.out.println("고정근무제에서 resultOfWHMZeroTotal: "+resultOfWHMZeroTotal);
+			System.out.println("고정근무제에서 resultOfWHM: "+resultOfWHM);
+			System.out.println("고정근무제에서 resultOfReset: "+resultOfReset);
+			
+			
+		} else if(whmCode.equals(varOne)) {
 			map1.put("whmCode", whmCode);
 			map1.put("whmRestCode", whmRestCode);
-	//		int resultOfWHM = attService.updateWHM(map1);
+			int resultOfWHM = attService.updateWHM(map1);
 			int weekHours = Integer.parseInt(request.getParameter("week_hours"));
 			System.out.println("weekHours: "+weekHours);
-	//		int resultOfWHMOne = attService.updateWHMOne(weekHours);
+			int resultOfWHMOne = attService.updateWHMOne(weekHours);
+			System.out.println("유연근무제에서 resultOfWHM: "+resultOfWHM);
+			System.out.println("유연근무제에서 resultOfWHMOne: "+resultOfWHMOne);
 		}
 		
 		

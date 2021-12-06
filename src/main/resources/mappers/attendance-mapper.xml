@@ -115,21 +115,42 @@ Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_
 </select>
 
 <select id="getWHM" resultMap="WHM1">
-	<![CDATA[ 
 	select * from WH_MANAGE
-		]]>
 </select>
 
 <update id="updateWHM" parameterType="map">
-	<![CDATA[ 
 	update WH_MANAGE set WHM_CODE = #{whmCode}, WHM_REST_CODE = #{whmRestCode}
-		]]>
 </update>
 
 <update id="updateWHMOne" parameterType="_int">
-	<![CDATA[ 
 	update WHM_ONE set WHM_ONE_CODE = #{weekHours}
+</update>
+
+<update id="resetWHMZeroState">
+update WHM_ZERO set WHM_ZERO_YESNO = 0
+</update>
+
+<update id="updateWHMZero" parameterType="map">
+update WHM_ZERO set WHM_ZERO_START = #{zeroStartFormat}, WHM_ZERO_END = #{zeroEndFormat}, WHM_ZERO_YESNO = 1
+where WHM_ZERO_DAY = #{selectedDay}
+</update>
+
+<update id="updateWHMZero2" parameterType="map">
+	<![CDATA[ 
+	<foreach collection='zeroDay' item='zeroday'>
+	update whm_zero set whm_zero_start = #{zeroStartFormat}, whm_zero_end = #{zeroEndFormat}
+		<choose>
+			<when test="whm_zero_day = zeroday">
+				, whm_zero_yesno = 1
+			</when>
+			<otherwise>
+				, whm_zero_yesno = 0
+			</otherwise>
+		</choose>
+	</foreach>
 		]]>
 </update>
+
+
 
 </mapper>

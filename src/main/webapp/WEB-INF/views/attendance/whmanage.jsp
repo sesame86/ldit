@@ -67,9 +67,9 @@
 							<div>
 								<div>근무시간 설정</div>
 								<div>
-									  <input type="time" id="time_in" name="time_in" value="09:00:00" class="select_time">
+									  <input type="time" id="time_in" name="time_in" value="09:00:00" class="select_time" step="1">
 									  -
-									  <input type="time" id="time_out" name="time_out" value="18:00:00" class="select_time">
+									  <input type="time" id="time_out" name="time_out" value="18:00:00" class="select_time" step="1">
 								</div>
 							</div>
 						</div>
@@ -119,8 +119,8 @@ $(document).ready(function(){
 
 function checkEnable(){
 	if($("input[name=whm_type]:checked").val() == "0"){
-		var rcheck = $(".select_day:checked").length;
-		if (rcheck == 0) {
+		var lcheck = $(".select_day:checked").length;
+		if (lcheck == 0) {
 			alert("근무일을 하루 이상 선택하세요.");
 			return false;
 			}

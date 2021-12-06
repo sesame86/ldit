@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
 import com.mycompany.ldit.attendance.model.vo.Apl;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
-import com.mycompany.ldit.attendance.service.AttendanceServiceImpl;
+import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
 
 @Controller
 public class AttendanceController {
@@ -74,6 +75,10 @@ public class AttendanceController {
 		
 		
 		//근무내역 상세조회
+//		WorkingHoursManage whm = attService.getWHM();
+//		if(whm.getWhmCode()=="0") {
+//			
+//		}
 		
 		
 		return mv;
@@ -176,6 +181,15 @@ public class AttendanceController {
 	@RequestMapping(value="restapply", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String restApplyMethod() {
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		Gson gson = new Gson();
 		String r = gson.toJson("");
 		return r;

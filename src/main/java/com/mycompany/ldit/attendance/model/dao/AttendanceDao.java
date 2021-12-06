@@ -85,4 +85,16 @@ public class AttendanceDao {
 	public int updateWHMOne(int weekHours) {
 		return sqlSession.update("aboutAtt.updateWHMOne", weekHours);
 	}
+	
+	public int updateWHMZero2(Map<String, Object> map2) {
+		return sqlSession.update("aboutAtt.updateWHMZero2", map2);
+	}
+	
+	public int resetWHMZeroState() {
+		return sqlSession.update("aboutAtt.resetWHMZeroState");
+	}
+	
+	public int updateWHMZero(Map<String, Object> map2) {
+		return sqlSession.update("aboutAtt.updateWHMZero", map2);
+	}
 }

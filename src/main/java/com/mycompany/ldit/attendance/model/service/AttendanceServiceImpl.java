@@ -1,4 +1,4 @@
-package com.mycompany.ldit.attendance.service;
+package com.mycompany.ldit.attendance.model.service;
 
 import java.util.List;
 import java.util.Map;
@@ -99,6 +99,21 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public int updateWHMOne(int weekHours) {
 		return attDao.updateWHMOne(weekHours);
+	}
+
+	@Override
+	public int updateWHMZero2(Map<String, Object> map2) {
+		return attDao.updateWHMZero2(map2);
+	}
+	
+	@Override
+	public int resetWHMZeroState() {
+		return attDao.resetWHMZeroState();
+	}
+
+	@Override
+	public int updateWHMZero(Map<String, Object> map2) {
+		return attDao.updateWHMZero(map2);
 	}
 	
 

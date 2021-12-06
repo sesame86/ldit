@@ -1,4 +1,4 @@
-package com.mycompany.ldit.attendance.service;
+package com.mycompany.ldit.attendance.model.service;
 
 import java.util.Map;
 
@@ -23,4 +23,7 @@ public interface AttendanceService {
 	public WorkingHoursManage getWHM();
 	public int updateWHM(Map<String, Object> map1);
 	public int updateWHMOne(int weekHours);
+	public int updateWHMZero(Map<String, Object> map2);
+	public int updateWHMZero2(Map<String, Object> map2);
+	public int resetWHMZeroState();
 }
