@@ -67,7 +67,7 @@ public class StaffService implements StaffServiceInterface{
 		Staff vo2 = viewStaff(vo);
 		vo.setStfPasswd("");
 		//세션 변수 등록
-		session.setAttribute("loginUser", vo);
+		session.setAttribute("loginUser", vo2);
 		
 		
 		//session.setAttribute("stf_id", vo2.getStf_id());
