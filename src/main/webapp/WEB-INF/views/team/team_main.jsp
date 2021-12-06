@@ -133,9 +133,9 @@
 			        		<option value="28">4주일</option>
 			        	</select>
 			        	<label>시작일</label>
-			        	<input type="date" id="startDate" name="aimStart">
+			        	<input type="date" id="startDate" name="aimStart" required="required">
 			        	<label>마감일</label>
-			        	<input type="date" id="endDate" name="aimEnd">
+			        	<input type="date" id="endDate" name="aimEnd" required="required">
 		        	</div>
 		        	<button type="submit" id="sbBtn">등록</button>
 		        </form>

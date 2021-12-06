@@ -34,9 +34,9 @@
 					<div id="csGrid">
 						<input type="hidden" id="proNo" name="proNo" value="${proNo}">
 						<label>요구사항 제목</label>
-						<input id="cnTitle" name="cnTitle">
+						<input id="cnTitle" name="cnTitle" required="required">
 						<label>요구사항 내용</label>
-						<textarea id="cnContent" name="cnContent" rows="10"></textarea>
+						<textarea id="cnContent" name="cnContent" rows="10" required="required"></textarea>
 						<label>요구사항 우선순위</label>
 						<select name="cnPriority">
 							<option value="1">긴급</option>
