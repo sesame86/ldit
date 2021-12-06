@@ -63,9 +63,9 @@
                 	<form id="tmAddFrm" action="teamadd" method="post">
                 	<input type="hidden" name="proNo" value="${getProject.proNo}">
                     <label>팀명</label>
-                    <input id="teamTitle" name="teamTitle" value="${getUpdateTeam.teamTitle}"><br>
+                    <input id="teamTitle" name="teamTitle" value="${getUpdateTeam.teamTitle}" required="required"><br>
                     <label>책임자</label>
-                    <input id="tmInput" value="${getUpdateTeam.teamManager}"><br>
+                    <input id="tmInput" value="${getUpdateTeam.teamManager}" required="required"><br>
                     <p></p>
                     <div>
                     	<ul id="scPmList">
