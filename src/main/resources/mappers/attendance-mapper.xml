@@ -7,6 +7,11 @@
 	<result property="brStart" column="BR_START"/>
 </resultMap>
 
+<resultMap type="WHM" id="WHM1">
+	<id property="whmCode" column="WHM_CODE" />
+	<result property="whmRestCode" column="WHM_REST_CODE" />
+</resultMap>
+
 <select id="countAttStart" parameterType="_int" resultType="_int">
 	<![CDATA[ 
 	select count(ATT_START) from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
@@ -109,7 +114,22 @@ Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_
 	]]>
 </select>
 
+<select id="getWHM" resultMap="WHM1">
+	<![CDATA[ 
+	select * from WH_MANAGE
+		]]>
+</select>
 
+<update id="updateWHM" parameterType="map">
+	<![CDATA[ 
+	update WH_MANAGE set WHM_CODE = #{whmCode}, WHM_REST_CODE = #{whmRestCode}
+		]]>
+</update>
 
+<update id="updateWHMOne" parameterType="_int">
+	<![CDATA[ 
+	update WHM_ONE set WHM_ONE_CODE = #{weekHours}
+		]]>
+</update>
 
 </mapper>

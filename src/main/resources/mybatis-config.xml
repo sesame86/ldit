@@ -28,9 +28,9 @@
 		<!-- <typeAlias type="com.mycompany.ldit.teammember.model.vo.TeamMember" alias="TeamMember"/> -->
 		<typeAlias type="com.mycompany.ldit.work.model.vo.Work" alias="Work"/>
 		<typeAlias type="com.mycompany.ldit.attendance.model.vo.WorkBreak" alias="WorkBreak"/>
+		<typeAlias type="com.mycompany.ldit.attendance.model.vo.WorkingHoursManage" alias="WHM"/>
 		<!-- <typeAlias type="com.mycompany.ldit.workcomment.model.vo.WorkComment" alias="WorkComment"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.workinghourskinds.model.vo.WorkingHoursKinds" alias="WorkingHoursKinds"/> -->
-		<!-- <typeAlias type="com.mycompany.ldit.workinghoursmanage.model.vo.WorkingHoursManage" alias="WorkingHoursManage"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.xiuxi.model.vo.Xiuxi" alias="Xiuxi"/> -->
 	</typeAliases>
 	<mappers>

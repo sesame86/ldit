@@ -1,6 +1,5 @@
 package com.mycompany.ldit.attendance.model.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
+import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
 
 @Repository("attDao")
 public class AttendanceDao {
@@ -72,5 +72,17 @@ public class AttendanceDao {
 	
 	public int countAplUse(int stfNo) {
 		return sqlSession.selectOne("aboutAtt.countAplUse", stfNo);
+	}
+	
+	public WorkingHoursManage getWHM() {
+		return sqlSession.selectOne("aboutAtt.getWHM");
+	}
+	
+	public int updateWHM(Map<String, Object> map1) {
+		return sqlSession.update("aboutAtt.updateWHM", map1);
+	}
+	
+	public int updateWHMOne(int weekHours) {
+		return sqlSession.update("aboutAtt.updateWHMOne", weekHours);
 	}
 }

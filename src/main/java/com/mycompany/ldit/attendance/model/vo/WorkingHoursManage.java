@@ -1,75 +1,45 @@
 package com.mycompany.ldit.attendance.model.vo;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 @Component
 public class WorkingHoursManage {
 	
 	private static final long serialVersionUID = 1112L;
-	private int whDate;
-	private int whCode;
-	private Date whStart;
-	private Date whEnd;
-	private int whTotal;
-
+	private String whmCode;
+	private String whmRestCode;
+	
 	public WorkingHoursManage() {
+		super();
 	}
 
-	public WorkingHoursManage(int whDate, int whCode, Date whStart, Date whEnd, int whTotal) {
+	public WorkingHoursManage(String whmCode, String whmRestCode) {
 		super();
-		this.whDate = whDate;
-		this.whCode = whCode;
-		this.whStart = whStart;
-		this.whEnd = whEnd;
-		this.whTotal = whTotal;
+		this.whmCode = whmCode;
+		this.whmRestCode = whmRestCode;
 	}
+	
+	
 
 	@Override
 	public String toString() {
-		return "WorkingHoursManage [whDate=" + whDate + ", whCode=" + whCode + ", whStart=" + whStart + ", whEnd="
-				+ whEnd + ", whTotal=" + whTotal + "]";
+		return "WorkingHoursManage [whmCode=" + whmCode + ", whmRestCode=" + whmRestCode + "]";
 	}
 
-	public int getWhDate() {
-		return whDate;
+	public String getWhmCode() {
+		return whmCode;
+	}
+	
+	public void setWhmCode(String whmCode) {
+		this.whmCode = whmCode;
 	}
 
-	public void setWhDate(int whDate) {
-		this.whDate = whDate;
+	public String getWhmRestCode() {
+		return whmRestCode;
 	}
 
-	public int getWhCode() {
-		return whCode;
+	public void setWhmRestCode(String whmRestCode) {
+		this.whmRestCode = whmRestCode;
 	}
-
-	public void setWhCode(int whCode) {
-		this.whCode = whCode;
-	}
-
-	public Date getWhStart() {
-		return whStart;
-	}
-
-	public void setWhStart(Date whStart) {
-		this.whStart = whStart;
-	}
-
-	public Date getWhEnd() {
-		return whEnd;
-	}
-
-	public void setWhEnd(Date whEnd) {
-		this.whEnd = whEnd;
-	}
-
-	public int getWhTotal() {
-		return whTotal;
-	}
-
-	public void setWhTotal(int whTotal) {
-		this.whTotal = whTotal;
-	}
-
+	
 }

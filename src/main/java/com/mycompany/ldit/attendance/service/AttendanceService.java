@@ -1,9 +1,9 @@
 package com.mycompany.ldit.attendance.service;
 
-import java.util.List;
 import java.util.Map;
 
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
+import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
 
 public interface AttendanceService {
 	public int insertCheckin(int stfNo);
@@ -20,4 +20,7 @@ public interface AttendanceService {
 	public int getBrNo(Map<String, Object> map1);
 	public int countAplTotal(int stfNo);
 	public int countAplUse(int stfNo);
+	public WorkingHoursManage getWHM();
+	public int updateWHM(Map<String, Object> map1);
+	public int updateWHMOne(int weekHours);
 }
