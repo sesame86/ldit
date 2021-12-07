@@ -44,6 +44,12 @@ STF_NOTHERE          DATE      -->
 		</association>
 	</resultMap>
 	
+	<!-- 직원 정보 수정 -->
+	<update id="eupdate" parameterType="int">
+		update staff set stf_lvl=#{stfLvl}, stf_Passwd=#{stfPasswd}, stf_img=#{stfImg}, stf_phone=#{stfPhone}, stf_mail=#{stfMail}
+		where stf_id=#{stfId}
+	</update>
+	
 	<!-- 직원 등록 -->
 	<insert id="eregist" parameterType="Staff">
 		insert into staff (STF_NO, DEPT_NO, STF_LVL, STF_NAME, STF_ID, STF_PASSWD, STF_IMG, STF_SIGN, STF_PHONE, STF_MAIL, STF_ENROLL)
@@ -66,15 +72,10 @@ STF_NOTHERE          DATE      -->
 	</select>
 	
 	<!-- 직원 상세 정보 조회 -->
-	<select id="profile" resultMap="staffRM" parameterType="int">
+	<select id="profile" resultMap="staffRM" parameterType="Staff">
 		select * from staff s join department d on s.dept_no = d.dept_no
-		where s.stf_no = #{stfNo}
+		where s.stf_id = #{stfId}
 	</select>
-	
-	<!-- 직원 정보 수정 -->
-	<update id="eupdate" parameterType="Staff">
-	
-	</update>
 	
 	<!--  JH  -->
 	<select id="loginCheck" resultType="String" parameterType="Staff">

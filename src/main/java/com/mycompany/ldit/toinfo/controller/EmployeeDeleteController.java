@@ -31,19 +31,7 @@ public class EmployeeDeleteController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
-	
-//	@RequestMapping(value="profile", method=RequestMethod.GET)
-//	public ModelAndView profile(@RequestParam("stf_no") int stfNo, ModelAndView mv) {
-//		String viewpage="";
-//		try {
-//			viewpage="employee/profile";
-//			mv.addObject("profile",staffservice.profile(stfNo));
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		mv.setViewName(viewpage);
-//		return mv;
-//	}
+
 //	@RequestMapping(value = "memberDelete", method = RequestMethod.GET)
 //    public String memberDelete(@RequestParam("uid") String uid, Model model){
 //          System.out.println("삭제 id: "+uid);

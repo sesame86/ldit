@@ -30,15 +30,18 @@ public class StaffDao implements StaffDaoInterface {
 	}
 	
 	// 직원 정보 수정
-
+	public int eupdate(String stfId) {
+		return sqlSession.update("StaffNS.eupdate", stfId);
+	}
+	
 	// 직원 삭제를 위한 전체 직원 조회
 	public List<Staff> einquire(){
 		return sqlSession.selectList("StaffNS.einquire");
 	}
 	
 	// 직원 상세 정보
-	public Staff profile(int stfNo) {
-		return sqlSession.selectOne("StaffNS.profile", stfNo);
+	public Staff profile(Staff staff) {
+		return sqlSession.selectOne("StaffNS.profile", staff);
 	}
 	
 	// 직원 삭제

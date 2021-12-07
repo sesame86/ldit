@@ -21,7 +21,7 @@
   
           </div>
   
-          <button class="aside-accordion">조직도</button>
+          <button class="aside-accordion" onclick="location.href='organization'">조직도</button>
           <div class="panel">
               <a href="#"></a>
           </div>

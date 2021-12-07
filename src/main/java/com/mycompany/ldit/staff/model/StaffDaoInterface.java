@@ -17,7 +17,10 @@ public interface StaffDaoInterface {
 	public List<Staff> einquire();
 	
 	// 직원 상세 정보
-	public Staff profile(int stfNo);
+	public Staff profile(Staff staff);
+	
+	// 직원 정보 수정
+	public int eupdate(String stfId);
 	
 	// 직원 삭제
 	public int edelete(int stfNo);

@@ -34,14 +34,29 @@ public class StaffService implements StaffServiceInterface{
 		return result;
 	}
 	
-	// 직원 삭제를 위한 전체 직원 조회
-	public List<Staff> einquire(Staff vo){
-		return staffDao.einquire();
+	// 직원 정보 수정
+	@Override
+	public int eupdate(String stfId) {
+		int result=0;
+		try {
+			result=staffDao.eupdate(stfId);
+			System.out.println("직원 정보 수정 여부:" + result);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	// 직원 상세 정보
-	public Staff profile(int stfNo) {
-		return staffDao.profile(stfNo);
+	@Override
+	public Staff profile(Staff staff) {
+		return staffDao.profile(staff);
+	}
+	
+	// 직원 삭제를 위한 전체 직원 조회
+	@Override
+	public List<Staff> einquire(Staff vo){
+		return staffDao.einquire();
 	}
 	
 	// 직원 삭제
