@@ -24,7 +24,7 @@ public class ProjectOpenUpController {
 	
 	@RequestMapping(value = "/pjadd", method = RequestMethod.POST)
 	public ModelAndView insertPJ(ModelAndView mv, Project pJvo) {
-		String viewpage = "redirect:popen"; // 프로젝트 메인으로 변경해주기
+		String viewpage = "redirect:projectmain";
 		System.out.println(pJvo);
 		try {
 			int result = projectService.insertPJ(pJvo);

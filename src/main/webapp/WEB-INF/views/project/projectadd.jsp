@@ -56,11 +56,11 @@
                     <br>
                     <div class="submitBtn" id="pJAddBtnDiv">
 	                    <button type="submit" class="submitAddBtn" id="pJAddBtn">개설</button>
-	                    <button type="submit" class="submitAddBtn" id="pJCancelBtn">취소</button>
                     </div>
                 </form>
-                	<!-- <div class="submitBtn" id="pJCancelBtnDiv">
-                	</div> -->
+                	<div class="submitBtn" id="pJCancelBtnDiv">
+	                    <button type="submit" class="submitAddBtn" id="pJCancelBtn" onclick="location.href='projectmain'">취소</button>
+                	</div>
             </article>
         </div>
     </section>

@@ -40,7 +40,7 @@
           </div>
           
           <!-- 인사팀만 해당 버튼 보이도록 바꿔줘야함 - 김정기 -->
-          <button class="aside-accordion">권한관리</button>
+          <button class="aside-accordion" onclick="location.href='pmregist'">권한관리</button>
           <div class="panel">
               <a href="#"></a>
           </div>
