@@ -70,4 +70,16 @@ public class StaffDao implements StaffDaoInterface {
 	public void logout(HttpSession session) {
 		
 	}
+
+	@Override
+	public List<Staff> getSearchStaffForApproval(String user_name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Staff> getSearchStaffApp(String user_name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

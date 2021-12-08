@@ -35,4 +35,9 @@ public interface StaffDaoInterface {
 	// 02 사원 로그 아웃
 	public void logout(HttpSession session);
 
+	// 결재
+	public List<Staff> getSearchStaffForApproval(String user_name);
+
+	List<Staff> getSearchStaffApp(String user_name); // Approval 자동완성
+
 }

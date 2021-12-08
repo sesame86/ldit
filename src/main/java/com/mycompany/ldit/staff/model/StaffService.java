@@ -80,7 +80,7 @@ public class StaffService implements StaffServiceInterface{
 	boolean result = staffDao.loginCheck(vo);
 	if(result) {//true 일 경우 세션에 등록
 		Staff vo2 = viewStaff(vo);
-		vo.setStfPasswd("");
+		vo2.setStfPasswd("");
 		//세션 변수 등록
 		session.setAttribute("loginUser", vo2);
 		
@@ -107,4 +107,10 @@ public class StaffService implements StaffServiceInterface{
 		session.invalidate();
 	}
 	
+	//결재
+	@Override
+	public List<Staff> getSearchStaff(String user_name) {
+		
+		return StaffDao.getSearchStaffApp(user_name);
+	}
 }

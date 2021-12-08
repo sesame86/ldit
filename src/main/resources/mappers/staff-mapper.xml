@@ -84,7 +84,7 @@ STF_NOTHERE          DATE      -->
 	</select>
 	
 	<select id="viewStaff" resultMap="staffRM" parameterType="Staff">
-		select stf_name, stf_id, stf_no
+		select STF_NO, DEPT_NO, STF_LVL, STF_NAME, STF_ID, STF_PASSWD, STF_IMG, STF_SIGN, STF_PHONE, STF_MAIL, STF_ENROLL
 		from staff
 		where stf_id = #{stfId}
 	</select>

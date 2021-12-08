@@ -34,4 +34,7 @@ public interface StaffServiceInterface {
 
 	// 02 사원 로그 아웃
 	public void logout(HttpSession session);
+	
+	//결재
+	List<Staff> getSearchStaff(String userName); // Approval 자동완성
 }
