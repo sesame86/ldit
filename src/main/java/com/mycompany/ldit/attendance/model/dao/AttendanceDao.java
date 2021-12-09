@@ -1,5 +1,6 @@
 package com.mycompany.ldit.attendance.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
+import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 
 @Repository("attDao")
 public class AttendanceDao {
@@ -92,5 +94,9 @@ public class AttendanceDao {
 	
 	public int updateWHMZero(Map<String, Object> map2) {
 		return sqlSession.update("aboutAtt.updateWHMZero", map2);
+	}
+	
+	public List<Xiuxi> getXiuxiList(){
+		return sqlSession.selectList("aboutAtt.getXiuxiList");
 	}
 }

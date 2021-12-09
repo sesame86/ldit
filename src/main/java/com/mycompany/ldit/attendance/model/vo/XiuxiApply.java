@@ -9,17 +9,16 @@ public class XiuxiApply {
 	
 	private static final long serialVersionUID = 1112L;
 	private int xaNo;
-	private int xiuNo;
+	private String xiuNo;
 	private int stfNo;
-	private Date xaWhen;
+	private int xaWhen;
 	private Date xaStart;
 	private Date xaEnd;
 	
 	public XiuxiApply() {
-		super();
 	}
 
-	public XiuxiApply(int xaNo, int xiuNo, int stfNo, Date xaWhen, Date xaStart, Date xaEnd) {
+	public XiuxiApply(int xaNo, String xiuNo, int stfNo, int xaWhen, Date xaStart, Date xaEnd) {
 		super();
 		this.xaNo = xaNo;
 		this.xiuNo = xiuNo;
@@ -43,11 +42,11 @@ public class XiuxiApply {
 		this.xaNo = xaNo;
 	}
 
-	public int getXiuNo() {
+	public String getXiuNo() {
 		return xiuNo;
 	}
 
-	public void setXiuNo(int xiuNo) {
+	public void setXiuNo(String xiuNo) {
 		this.xiuNo = xiuNo;
 	}
 
@@ -59,11 +58,11 @@ public class XiuxiApply {
 		this.stfNo = stfNo;
 	}
 
-	public Date getXaWhen() {
+	public int getXaWhen() {
 		return xaWhen;
 	}
 
-	public void setXaWhen(Date xaWhen) {
+	public void setXaWhen(int xaWhen) {
 		this.xaWhen = xaWhen;
 	}
 
@@ -82,4 +81,5 @@ public class XiuxiApply {
 	public void setXaEnd(Date xaEnd) {
 		this.xaEnd = xaEnd;
 	}
+
 }

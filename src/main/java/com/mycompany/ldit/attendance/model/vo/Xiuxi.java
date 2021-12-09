@@ -6,47 +6,58 @@ import org.springframework.stereotype.Component;
 public class Xiuxi {
 	
 	private static final long serialVersionUID = 1112L;
-	private int xiuNo;
+	private String xiuNo;
 	private String xiuReason;
-	private int xiuOfficial;
-
+	private String xiuState;
+	private int xiuAplYesNo;
+	
 	public Xiuxi() {
 	}
-
-	public Xiuxi(int xiuNo, String xiuReason, int xiuOfficial) {
+	
+	public Xiuxi(String xiuNo, String xiuReason, String xiuState, int xiuAplYesNo) {
 		super();
 		this.xiuNo = xiuNo;
 		this.xiuReason = xiuReason;
-		this.xiuOfficial = xiuOfficial;
+		this.xiuState = xiuState;
+		this.xiuAplYesNo = xiuAplYesNo;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Xiuxi [xiuNo=" + xiuNo + ", xiuReason=" + xiuReason + ", xiuOfficial=" + xiuOfficial + "]";
+		return "Xiuxi [xiuNo=" + xiuNo + ", xiuReason=" + xiuReason + ", xiuState=" + xiuState + ", xiuAplYesNo="
+				+ xiuAplYesNo + "]";
 	}
 
-	public int getXiuNo() {
+	public String getXiuNo() {
 		return xiuNo;
 	}
-
-	public void setXiuNo(int xiuNo) {
+	
+	public void setXiuNo(String xiuNo) {
 		this.xiuNo = xiuNo;
 	}
-
+	
 	public String getXiuReason() {
 		return xiuReason;
 	}
-
+	
 	public void setXiuReason(String xiuReason) {
 		this.xiuReason = xiuReason;
 	}
-
-	public int getXiuOfficial() {
-		return xiuOfficial;
+	
+	public String getXiuState() {
+		return xiuState;
 	}
-
-	public void setXiuOfficial(int xiuOfficial) {
-		this.xiuOfficial = xiuOfficial;
+	
+	public void setXiuState(String xiuState) {
+		this.xiuState = xiuState;
+	}
+	
+	public int getXiuAplYesNo() {
+		return xiuAplYesNo;
+	}
+	
+	public void setXiuAplYesNo(int xiuAplYesNo) {
+		this.xiuAplYesNo = xiuAplYesNo;
 	}
 
 }

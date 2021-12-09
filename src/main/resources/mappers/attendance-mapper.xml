@@ -12,6 +12,13 @@
 	<result property="whmRestCode" column="WHM_REST_CODE" />
 </resultMap>
 
+<resultMap type="Xiuxi" id="xiuxiL">
+	<id property="xiuNo" column="XIU_NO"/>
+	<result property="xiuReason" column="XIU_REASON"/>
+	<result property="xiuState" column="XIU_STATE"/>
+	<result property="xiuAplYesNo" column="XIU_APL_YESNO"/>
+</resultMap>
+
 <select id="countAttStart" parameterType="_int" resultType="_int">
 	<![CDATA[ 
 	select count(ATT_START) from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
@@ -135,5 +142,8 @@ update WHM_ZERO set WHM_ZERO_START = #{zeroStartFormat}, WHM_ZERO_END = #{zeroEn
 where WHM_ZERO_DAY = #{selectedDay}
 </update>
 
+<select id="getXiuxiList" resultMap="xiuxiL">
+	select * from XIUXI order by (to_number(XIU_NO, 99))
+</select>
 
 </mapper>

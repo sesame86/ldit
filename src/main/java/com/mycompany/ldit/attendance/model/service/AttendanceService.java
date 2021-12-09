@@ -1,9 +1,11 @@
 package com.mycompany.ldit.attendance.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
+import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 
 public interface AttendanceService {
 	public int insertCheckin(int stfNo);
@@ -25,4 +27,5 @@ public interface AttendanceService {
 	public int updateWHMOne(int weekHours);
 	public int updateWHMZero(Map<String, Object> map2);
 	public int resetWHMZeroState();
+	public List<Xiuxi> getXiuxiList();
 }

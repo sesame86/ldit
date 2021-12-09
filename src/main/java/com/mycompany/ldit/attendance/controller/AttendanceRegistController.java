@@ -1,6 +1,7 @@
 package com.mycompany.ldit.attendance.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
+import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 
 @Controller
 public class AttendanceRegistController {
@@ -29,10 +31,12 @@ public class AttendanceRegistController {
 		
 		
 		WorkingHoursManage whm = attService.getWHM();
+		List<Xiuxi> xiuxiList = attService.getXiuxiList();
 	
 		System.out.println("getWHM: "+ whm);
 		
 		mv.addObject("whm", whm);
+		mv.addObject("xiuxiList", xiuxiList);
 		return mv;
 	}
 	

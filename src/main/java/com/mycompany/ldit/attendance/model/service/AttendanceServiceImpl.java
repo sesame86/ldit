@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.ldit.attendance.model.dao.AttendanceDao;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
+import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 
 @Service("attService")
 public class AttendanceServiceImpl implements AttendanceService {
@@ -110,6 +111,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public int updateWHMZero(Map<String, Object> map2) {
 		return attDao.updateWHMZero(map2);
 	}
-	
+
+	@Override
+	public List<Xiuxi> getXiuxiList() {
+		return attDao.getXiuxiList();
+	}
 
 }

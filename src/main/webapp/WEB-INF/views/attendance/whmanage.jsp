@@ -77,6 +77,47 @@
 				<button>완료</button>
 			</form>
 		</article>
+		<br>
+		<article id="artilce_b">
+			<div>
+				<button type="button" id="btn_add_xiuxi">추가</button>
+				<button type="button" id="btn_remove_xiuxi">삭제</button>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th><input type="checkbox" readonly="readonly"></th>
+						<th>휴가코드</th>
+						<th>휴가종류명</th>
+						<th>휴가차감여부</th>
+					</tr>
+				</thead>
+				<c:choose>
+					<c:when test="${!empty xiuxiList}">
+						<tbody>
+							<c:forEach items="${xiuxiList}" var="x">
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>${x.xiuNo}</td>
+									<td>${x.xiuReason}</td>
+									<c:choose>
+										<c:when test="${x.xiuAplYesNo eq 0}"><td>N</td></c:when>
+										<c:when test="${x.xiuAplYesNo eq 1}"><td>Y</td></c:when>
+									</c:choose>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</c:when>
+					<c:when test="${empty xiuxiList}">
+						<tbody>
+							<tr>
+								<td colspan="4">등록된 휴가가 없습니다.</td>
+							</tr>
+						</tbody>
+					</c:when>
+				</c:choose>
+			</table>
+		</article>
 	</section>
 	
 <script>
