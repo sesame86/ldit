@@ -16,4 +16,15 @@
 		<!-- 책임자는 로그인한 사원번호 넣어줘야함 -->
 		insert into PROJECT values (project_seq.nextval, #{proTitle}, #{proContent}, #{proStart}, #{proEnd}, '20210530', 'N')
 	</insert>
+	
+	<!-- 프로젝트 조회 -->
+	<select id="getNewList" parameterType="int" resultMap="projectRM">
+		select * from project where pro_no = #{proNo} and pro_status = 'N' order by pro_no desc
+	</select>
+	<select id="getContinueList" parameterType="int" resultMap="projectRM">
+		select * from project where pro_no = #{proNo} and pro_status = 'C' order by pro_no desc
+	</select>
+	<select id="getFinishList" parameterType="int" resultMap="projectRM">
+		select * from project where pro_no = #{proNo} and pro_status = 'F' order by pro_no desc
+	</select>
 </mapper>

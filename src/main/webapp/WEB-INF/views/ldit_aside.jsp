@@ -8,7 +8,7 @@
   
           <button class="aside-accordion">프로젝트<i class="fas fa-angle-down"></i> </button>
           <div class="panel">
-              <p class="pd1">프로젝트 조회</p>
+              <p class="pd1" onclick="location.href='projectmain'">프로젝트 조회</p>
               <p class="pd1">이슈</p>
               
           </div>
