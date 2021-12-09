@@ -97,7 +97,7 @@
 						<tbody>
 							<c:forEach items="${xiuxiList}" var="x">
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="ck_xiuxi" value="${x.xiuNo}"></td>
 									<td>${x.xiuNo}</td>
 									<td>${x.xiuReason}</td>
 									<c:choose>
@@ -118,6 +118,11 @@
 				</c:choose>
 			</table>
 		</article>
+		
+		
+		
+		
+		
 	</section>
 	
 <script>
@@ -175,6 +180,37 @@ function checkEnable(){
     $(".select_time").attr("disabled", false);
     $(".select_day").attr("disabled", false);
 }
+
+
+$("#btn_remove_xiuxi").click(function(){
+	var checkedXiuxi = [];
+	$("input[name='ck_xiuxi']:checked").each(function(i){
+		checkedXiuxi.push($(this).val());
+		console.log(checkedXiuxi);
+	});
+	if(checkedXiuxi.length){
+	$.ajax({
+		url : "xiuxiRemove"
+		, data : {"checkedXiuxi" : checkedXiuxi}
+		, type : "post"
+		, dataType: "json"
+		, success: function(data){
+			if(data >= checkedXiuxi.length-1){
+				alert("정상적으로 삭제되었습니다.");
+				location.reload();
+			}
+		}
+		, error : function(request, status, errorData){ 
+				 alert("error code : " + request.status + "\n" 
+						 + "message : " + request.responseText + "\n" 
+						 + "error : " + errorData);}
+	});} else {
+		alert("삭제할 항목을 선택해주세요.");
+	}
+});
+
+
+
 </script>
 
 

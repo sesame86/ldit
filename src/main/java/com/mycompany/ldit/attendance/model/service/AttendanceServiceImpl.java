@@ -117,4 +117,9 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return attDao.getXiuxiList();
 	}
 
+	@Override
+	public int deleteXiuxi(String checked) {
+		return attDao.deleteXiuxi(checked);
+	}
+
 }

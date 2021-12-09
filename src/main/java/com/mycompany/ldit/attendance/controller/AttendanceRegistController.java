@@ -1,16 +1,19 @@
 package com.mycompany.ldit.attendance.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -110,6 +113,23 @@ public class AttendanceRegistController {
 		Gson gson = new Gson();
 		String r = gson.toJson("");
 		return r;
+	}
+	
+	@RequestMapping(value="xiuxiRemove", method = RequestMethod.POST)
+	public void xiuxiRemoveMethod(@RequestParam(value="checkedXiuxi[]") List<String> checkedXiuxi, HttpServletResponse response) throws IOException{
+		response.setContentType("application/json; charset=utf-8");
+		
+		int resultOfRemoveXiuxi = -1;
+		for(String checked : checkedXiuxi) {
+			System.out.println(checked);
+			int result = attService.deleteXiuxi(checked);
+			resultOfRemoveXiuxi += result;
+		}
+		
+		PrintWriter out = response.getWriter(); 
+		out.println(resultOfRemoveXiuxi); 
+		out.flush(); 
+		out.close();
 	}
 
 }

@@ -28,4 +28,5 @@ public interface AttendanceService {
 	public int updateWHMZero(Map<String, Object> map2);
 	public int resetWHMZeroState();
 	public List<Xiuxi> getXiuxiList();
+	public int deleteXiuxi(String checked);
 }

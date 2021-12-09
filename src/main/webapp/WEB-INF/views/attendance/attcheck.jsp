@@ -193,11 +193,11 @@
 <script>
 
 $(document).ready(function(){
-	if($("#checkin_time").text() != "00:00:00" && $("#checkout_time").text() == "00:00:00"){
+	if("${attStartFormat}" != "" && "${attEndFormat}" == ""){
 		$("#btn_check").attr('href', "javascript:fnCheckOut()");
 		$("#btn_check").html("퇴근");
 	}
-	if($("#restin_time").text() != "00:00:00" && $("#restout_time").text() == "00:00:00"){
+	if("${restStartFormat}" != "" && "${restEndFormat}" == ""){
 		$("#btn_rest").attr('href', "javascript:fnRestOut()");
 		$("#btn_rest").html("휴식 종료");
 	}
@@ -281,7 +281,7 @@ function fnRestOut(){
 	console.log("버튼눌림");
 	$.ajax({
 		url : "restout"
-		, data: {stfId : "${loginUser.stfNo}", brNo : "${brNo}"}
+		, data: {brNo : "${brNo}"}
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {

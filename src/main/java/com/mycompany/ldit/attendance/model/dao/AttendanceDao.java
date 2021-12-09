@@ -99,4 +99,8 @@ public class AttendanceDao {
 	public List<Xiuxi> getXiuxiList(){
 		return sqlSession.selectList("aboutAtt.getXiuxiList");
 	}
+	
+	public int deleteXiuxi(String checked) {
+		return sqlSession.delete("aboutAtt.deleteXiuxi", checked);
+	}
 }

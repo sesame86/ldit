@@ -146,4 +146,8 @@ where WHM_ZERO_DAY = #{selectedDay}
 	select * from XIUXI order by (to_number(XIU_NO, 99))
 </select>
 
+<delete id="deleteXiuxi" parameterType="string">
+	delete from XIUXI where xiu_no = #{checked}
+</delete>
+
 </mapper>
