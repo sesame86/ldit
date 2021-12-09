@@ -91,9 +91,6 @@ public class AttendanceController {
 		
 		System.out.println("checkinMethod진입");
 		
-		//임시
-		//int stfNo = 20213333;
-		
 		int resultOfExist = attService.countAttStart(stfNo);
 		System.out.println("resultOfExist: "+resultOfExist);
 		String attStartFormat = "00:00:00";
@@ -117,10 +114,6 @@ public class AttendanceController {
 		
 		System.out.println("checkout메소드 진입");
 		
-		//임시
-	//	int stfNo = 20213333;
-		
-		
 		int resultOfCheckout = attService.updateCheckout(stfNo);
 		
 		String attEndFormat = "00:00:00";
@@ -139,8 +132,6 @@ public class AttendanceController {
 		
 		System.out.println("restIn메소드 진입");
 		
-		//임시
-	//	int stfNo = 20213333;
 		
 		int resultOfRestin = attService.insertRestin(stfNo);
 		
@@ -158,12 +149,10 @@ public class AttendanceController {
 	
 	@RequestMapping(value="restout", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String restoutMethod(@RequestParam(value="brNo", required=false) String brno) {
-		
+	public String restoutMethod(@RequestParam(value="brNo") String brno) {
 		System.out.println("restOut메소드 진입");
+
 		
-		//임시
-	//	int brNo = 1;
 		int brNo = Integer.parseInt(brno);
 		
 		int resultOfRestout = attService.updateBrEnd(brNo);
@@ -172,7 +161,7 @@ public class AttendanceController {
 		if(resultOfRestout>0){
 			restEndFormat = attService.getBrEnd(brNo);
 		}
-		
+
 		Gson gson = new Gson();
 		String r = gson.toJson(restEndFormat);
 		return r;	

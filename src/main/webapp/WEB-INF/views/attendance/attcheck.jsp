@@ -28,7 +28,7 @@
 					<p>Today's 근무시간</p>
 				</div>
 				<div class="div_time">
-					<p>00:00:00</p>
+					<p id="working_time">00:00:00</p>
 				</div>
 				<div class="div_title">
 					<p>Today's 출근시각</p>
@@ -178,14 +178,7 @@
 					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
 				</div>
 			</div>
-			<!-- The Modal -->
-			<div id="myModal" class="modal">
-			  <!-- Modal content -->
-			  <div class="modal-content">
-			    <span class="close">&times;</span>
-			    <p>Some text in the Modal..</p>
-			  </div>
-			</div>
+
 		</article>
 	</section>
 
@@ -217,6 +210,7 @@ function fnCheckin(){
 				$("#btn_check").attr('href', "javascript:fnCheckOut()");
 				$("#btn_check").html("퇴근");
 				$("#checkin_time").html(data);
+				location.reload();
 			} else {
 				alert("출근등록에 실패했습니다.");
 			}
@@ -241,6 +235,7 @@ function fnCheckOut(){
 			$("#btn_check").attr('href', "javascript:fnCheckin()");
 			$("#btn_check").html("출근");
 			$("#checkout_time").html(data);
+			location.reload();
 			} else {
 				alert("퇴근등록에 실패했습니다.");
 			}
@@ -253,7 +248,7 @@ function fnCheckOut(){
 }
 
 function fnRestIn(){
-	console.log("버튼눌림");
+	if("${attStartFormat}" != "" && "${attEndFormat}" == ""){	
 	$.ajax({
 		url : "restin"
 		, data: {stfId : "${loginUser.stfNo}"}
@@ -266,6 +261,7 @@ function fnRestIn(){
 			$("#btn_rest").html("휴식 종료");
 			$("#restin_time").html(data.brStart);
 			$("#restout_time").html("00:00:00");
+			location.reload();
 			} else {
 				alert("휴식등록에 실패했습니다.");
 			}
@@ -275,10 +271,13 @@ function fnRestIn(){
 					 + "message : " + request.responseText + "\n" 
 					 + "error : " + errorData);}
 	});
+	} else{
+		alert("출근 등록을 먼저 진행해주세요.");
+	}
 }
 
 function fnRestOut(){
-	console.log("버튼눌림");
+	if("${attStartFormat}" != "" && "${attEndFormat}" == ""){
 	$.ajax({
 		url : "restout"
 		, data: {brNo : "${brNo}"}
@@ -290,6 +289,7 @@ function fnRestOut(){
 			$("#btn_rest").attr('href', "javascript:fnRestIn()");
 			$("#btn_rest").html("휴식 시작");
 			$("#restout_time").html(data);
+			location.reload();
 			} else {
 				alert("휴식종료에 실패했습니다.");
 			}
@@ -299,8 +299,10 @@ function fnRestOut(){
 					 + "message : " + request.responseText + "\n" 
 					 + "error : " + errorData);}
 	});
+	} else {
+		alert("이미 퇴근했습니다.");
+	}
 }
-
 
 function restin_showhide(){
 	var t_drc = $("#div_restin_contents");
@@ -312,26 +314,22 @@ function home_showhide(){
 	t_drc.toggle();
 }
 
+
 function wh_showhide(){
 	var t_drc = $("#div_wh_contents");
 	t_drc.toggle();
 }
 
-//Get the modal
-var modal = document.getElementById("myModal");
+var myWorkingTime = setInterval(checkWorkingTime, 1000);
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-function fnApply() {
-  modal.style.display = "block";
+function checkWorkingTime(){
+	
+	
+	
+	document.getElementById("working_time").innerHTML = "";
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
+//
 
 
 </script>
