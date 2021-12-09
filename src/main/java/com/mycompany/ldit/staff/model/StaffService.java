@@ -111,6 +111,6 @@ public class StaffService implements StaffServiceInterface{
 	@Override
 	public List<Staff> getSearchStaff(String user_name) {
 		
-		return StaffDao.getSearchStaffApp(user_name);
+		return StaffDao.getSearchStaffApp();
 	}
 }

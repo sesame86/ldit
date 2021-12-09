@@ -82,4 +82,10 @@ public class StaffDao implements StaffDaoInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	//이거 확인해봐야됨
+	public static List<Staff> getSearchStaffApp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

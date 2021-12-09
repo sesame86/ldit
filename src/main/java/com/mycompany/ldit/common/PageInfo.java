@@ -115,4 +115,11 @@ public class PageInfo {
 		return endList > this.listCount ? this.listCount : endList;
 	}
 
+	
+	//수정 확인
+	public int getListLimit() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -34,8 +34,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.kh.wehub.member.model.vo.Member;
-import com.kh.wehub.message.model.vo.Message;
 import com.mycompany.ldit.approval.model.service.ApprovalService;
 import com.mycompany.ldit.approval.model.vo.Approval;
 import com.mycompany.ldit.common.PageInfo;
@@ -165,7 +163,7 @@ public class ApprovalController {
 
 		List<Staff> staffList = null;
 
-		staffList = stffService.selectMemberAllForApproval(loginUser.getUser_id());
+//		staffList = stffService.selectMemberAllForApproval(loginUser.getUser_id());
 
 		System.out.println("staffList : " + staffList);
 
@@ -184,7 +182,7 @@ public class ApprovalController {
 		int result2 = 0;
 		int result3 = 0;
 
-		approval.setAppWriterNo(loginUser.getUser_no());
+//		approval.setAppWriterNo(loginUser.getUser_no());
 
 		// 품의서 파일업로드 // 살려야한다...
 		if (upfile != null && !upfile.isEmpty()) {
@@ -194,21 +192,21 @@ public class ApprovalController {
 			System.out.println("renameFileName : " + renameFileName);
 
 			if (renameFileName != null) {
-				approval.setAppOriginalFileName(upfile.getOriginalFilename());
-				approval.setAppRenameFileName(renameFileName);
+//				approval.setAppOriginalFileName(upfile.getOriginalFilename());
+//				approval.setAppRenameFileName(renameFileName);
 
-				System.out.println("imgOriname : " + approval.getAppOriginalFileName() + " / imgRename : "
-						+ approval.getAppRenameFileName());
+//				System.out.println("imgOriname : " + approval.getAppOriginalFileName() + " / imgRename : "
+//						+ approval.getAppRenameFileName());
 			}
 		}
 
 		result = appService.saveLetterOfApproval(approval);
 
-		approval.setLoaAppNo(approval.getAppNo());
+//		approval.setLoaAppNo(approval.getAppNo());
 
 		result2 = appService.saveLetterOfApproval2(approval);
 
-		approval.setReceiveRefAppNo(approval.getAppNo());
+//		approval.setReceiveRefAppNo(approval.getAppNo());
 
 		result3 = appService.saveLetterOfApproval3(approval);
 
@@ -239,59 +237,59 @@ public class ApprovalController {
 
 	@ResponseBody
 	@RequestMapping(value = "/searchMemberInModal", method = { RequestMethod.GET })
-	public List<Member> searchMemberInModal(
-			@SessionAttribute(name = "loginMember", required = false) Member loginMember, Member member,
+	public List<Staff> searchMemberInModal(
+			@SessionAttribute(name = "loginMember", required = false)  Staff loginUser,  Staff staff,
 			@RequestParam(value = "searchData") String searchData) {
 
 		System.out.println("searchData : " + searchData);
 
-		List<Member> memberList = null;
+		List<Staff> memberList = null;
 
-		System.out.println("loginMember.getUser_id() : " + loginMember.getUser_id());
+//		System.out.println("loginMember.getUser_id() : " + loginUser.getUser_id());
 
-		memberList = service2.selectSearchedMemberForApproval(searchData, loginMember.getUser_id());
+//		memberList = stffService.selectSearchedMemberForApproval(searchData, loginUser.getUser_id());
 
 		return memberList;
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/letterOfApprovalUpdate", method = { RequestMethod.POST })
-	public int letterOfApprovalUpdate(@SessionAttribute(name = "loginMember", required = false) Member loginMember,
-			Approval approval, @RequestParam(value = "rejectReasonText") String rejectReasonText,
-			@RequestParam(value = "appNo") int appNo) {
-		int result = 0;
+//	@ResponseBody
+//	@RequestMapping(value = "/letterOfApprovalUpdate", method = { RequestMethod.POST })
+//	public int letterOfApprovalUpdate(@SessionAttribute(name = "loginMember", required = false) Staff loginUser,
+//			Approval approval, @RequestParam(value = "rejectReasonText") String rejectReasonText,
+//			@RequestParam(value = "appNo") int appNo) {
+//		int result = 0;
 
-		approval.setAppNo(appNo);
-		approval.setAppReason(rejectReasonText);
+//		approval.setAppNo(appNo);
+//		approval.setAppReason(rejectReasonText);
 
-		System.out.println("appNo : " + appNo);
-		System.out.println("rejectReasonText : " + rejectReasonText);
-		System.out.println("approval.getAppNo() : " + approval.getAppNo());
-		System.out.println("approval.getAppReason() : " + approval.getAppReason());
+//		System.out.println("appNo : " + appNo);
+//		System.out.println("rejectReasonText : " + rejectReasonText);
+//		System.out.println("approval.getAppNo() : " + approval.getAppNo());
+//		System.out.println("approval.getAppReason() : " + approval.getAppReason());
 
-		if (rejectReasonText != null) {
-			if (approval.getAppNo() != 0) {
-				result = appService.rejectUpdate(approval);
-				System.out.println("result: " + result);
-			}
-		} else {
-
-		}
-
-		return result;
-	}
+//		if (rejectReasonText != null) {
+//			if (approval.getAppNo() != 0) {
+//				result = appService.rejectUpdate(approval);
+//				System.out.println("result: " + result);
+//			}
+//		} else {
+//
+//		}
+//
+//		return result;
+//	}
 
 	// 자동완성
 	@ResponseBody
-	@RequestMapping(value = "/search/json", method = { RequestMethod.GET })
+//	@RequestMapping(value = "/search/json", method = { RequestMethod.GET})
 	public String searchJson(@RequestParam(value = "userName") String userName) {
 		System.out.println(userName);
 		List<Staff> memSearch = stffService.getSearchStaff(userName);
 
 		JsonArray array = new JsonArray();
 		for (int i = 0; i < memSearch.size(); i++) {
-			array.add(memSearch.get(i).getUser_name() + "_" + memSearch.get(i).getRank() + "_"
-					+ memSearch.get(i).getDept_name());
+//			array.add(memSearch.get(i).getUser_name() + "_" + memSearch.get(i).getRank() + "_"
+//					+ memSearch.get(i).getDept_name());
 		}
 
 		System.out.println(array);
@@ -383,58 +381,58 @@ public class ApprovalController {
 		return "/approval/leaveApplication";
 	}
 
-	@RequestMapping(value = "/updateLeave", method = { RequestMethod.POST })
-	public ModelAndView insertLeave(ModelAndView model, HttpServletRequest request,
-			@SessionAttribute(name = "loginUser", required = false) Staff loginUser, Approval approval) {
-
-		log.info("휴가 신청서 작성 컨트롤러 : " + approval);
-		int result = 0;
-		int result2 = 0;
-		int result3 = 0;
-
-		approval.setAppWriterNo(loginUser.getUser_no());
-
-		System.out.println(approval.getAppWriterNo() + "\n" + approval + "\n" + approval);
-		if (loginUser.getUser_no() == approval.getAppWriterNo()) {
-			System.out.println(loginUser.getUser_no() + " ,\n" + approval.getAppWriterNo());
-			result = appService.insertApproval(approval);
-
-			approval.setLeaveAppNo(approval.getAppNo());
-			approval.setReceiveRefAppNo(approval.getAppNo());
-
-			System.out.println("approval.getReceiveRefAppNo() : " + approval.getReceiveRefAppNo());
-
-			result2 = appService.insertLeave(approval);
-			result3 = appService.insertReceive(approval);
-
-//				System.out.println("97번줄 : " + appLeave.getLeaveAppNo());
-//				System.out.println("101 result : " + result + "\nresult2 : " + result2);
-
-			if (result > 0 && result2 > 0 && result3 > 0) {
-				model.addObject("msg", "휴가신청서가 정상적으로 등록되었습니다.");
-				model.addObject("location", "/approval/approvalList");
-			} else {
-				model.addObject("msg", "결재서류 등록을 실패하였습니다.");
-				model.addObject("location", "/approval/leaveApplication");
-			}
-		}
-
-		model.setViewName("common/msg");
-
-		return model;
-	}
+//	@RequestMapping(value = "/updateLeave", method = { RequestMethod.POST })
+//	public ModelAndView insertLeave(ModelAndView model, HttpServletRequest request,
+//			@SessionAttribute(name = "loginUser", required = false) Staff loginUser, Approval approval) {
+//
+//		log.info("휴가 신청서 작성 컨트롤러 : " + approval);
+//		int result = 0;
+//		int result2 = 0;
+//		int result3 = 0;
+//
+//		approval.setAppWriterNo(loginUser.getUser_no());
+//
+//		System.out.println(approval.getAppWriterNo() + "\n" + approval + "\n" + approval);
+//		if (loginUser.getUser_no() == approval.getAppWriterNo()) {
+//			System.out.println(loginUser.getUser_no() + " ,\n" + approval.getAppWriterNo());
+//			result = appService.insertApproval(approval);
+//
+//			approval.setLeaveAppNo(approval.getAppNo());
+//			approval.setReceiveRefAppNo(approval.getAppNo());
+//
+//			System.out.println("approval.getReceiveRefAppNo() : " + approval.getReceiveRefAppNo());
+//
+//			result2 = appService.insertLeave(approval);
+//			result3 = appService.insertReceive(approval);
+//
+////				System.out.println("97번줄 : " + appLeave.getLeaveAppNo());
+////				System.out.println("101 result : " + result + "\nresult2 : " + result2);
+//
+//			if (result > 0 && result2 > 0 && result3 > 0) {
+//				model.addObject("msg", "휴가신청서가 정상적으로 등록되었습니다.");
+//				model.addObject("location", "/approval/approvalList");
+//			} else {
+//				model.addObject("msg", "결재서류 등록을 실패하였습니다.");
+//				model.addObject("location", "/approval/leaveApplication");
+//			}
+//		}
+//
+//		model.setViewName("common/msg");
+//
+//		return model;
+//	}
 
 	/** 수신참조자 모달 내 멤버 리스트 불러오기 (leaveApplication) */
 
 	@RequestMapping(value = "/leaveApplication", method = { RequestMethod.GET })
-	public ModelAndView leaveApplication(@SessionAttribute(name = "loginMember", required = false) Member loginMember,
-			ModelAndView model, Staff loginUser) {
+	public ModelAndView leaveApplication(@SessionAttribute(name = "loginUser", required = false) Staff loginUser,
+			ModelAndView model, Staff staff) {
 
 		System.out.println("loginUser : " + loginUser);
 
 		List<Staff> memberList = null;
 
-		memberList = stffService.selectMemberAllForApproval(loginMember.getUser_id());
+//		memberList = stffService.selectMemberAllForApproval(loginUser.getUser_id());
 
 		System.out.println("memberList : " + memberList);
 
@@ -447,14 +445,14 @@ public class ApprovalController {
 	/** 수신참조자 모달 내 멤버 리스트 불러오기 (expenseReport) */
 
 	@RequestMapping(value = "/expenseReport", method = { RequestMethod.GET })
-	public ModelAndView expenseReport(@SessionAttribute(name = "loginMember", required = false) Member loginMember,
-			ModelAndView model, Member member) {
+	public ModelAndView expenseReport(@SessionAttribute(name = "loginUser", required = false) Staff loginUser,
+			ModelAndView model, Staff staff) {
 
-		System.out.println("loginMember : " + loginMember);
+		System.out.println("loginMember : " + loginUser);
 
 		List<Staff> memberList = null;
 
-		memberList = stffService.selectMemberAllForApproval(loginMember.getUser_id());
+//		memberList = stffService.selectMemberAllForApproval(loginUser.getUser_id());
 
 		System.out.println("memberList : " + memberList);
 
@@ -465,23 +463,23 @@ public class ApprovalController {
 	}
 
 	@RequestMapping(value = "/expenseReport", method = { RequestMethod.POST })
-	public ModelAndView expenseReportWrite(@SessionAttribute(name = "loginMember", required = false) Member loginMember,
+	public ModelAndView expenseReportWrite(@SessionAttribute(name = "loginMember", required = false)  Staff loginUser,
 			Approval approval, ModelAndView model) {
 		int result = 0;
 		int result2 = 0;
 		int result3 = 0;
 
-		approval.setAppWriterNo(loginMember.getUser_no());
-
-		result = appService.saveExpenseReport(approval);
-
-		approval.setErAppNo(approval.getAppNo());
-
-		result2 = appService.saveExpenseReport2(approval);
-
-		approval.setReceiveRefAppNo(approval.getAppNo());
-
-		result3 = appService.saveExpenseReport3(approval);
+//		approval.setAppWriterNo(loginUser.getUser_no());
+//
+//		result = appService.saveExpenseReport(approval);
+//
+//		approval.setErAppNo(approval.getAppNo());
+//
+//		result2 = appService.saveExpenseReport2(approval);
+//
+//		approval.setReceiveRefAppNo(approval.getAppNo());
+//
+//		result3 = appService.saveExpenseReport3(approval);
 
 		if (result > 0 && result2 > 0 && result3 > 0) {
 			model.addObject("msg", "지출결의서가 정상적으로 등록되었습니다.");
@@ -499,7 +497,7 @@ public class ApprovalController {
 	@RequestMapping(value = "/expenseReportView", method = { RequestMethod.GET })
 	public ModelAndView expenseReportView(@RequestParam("appNo") int appNo, ModelAndView model) {
 
-		Approval approval = service.findExpenseReportListByNo(appNo);
+		Approval approval = appService.findExpenseReportListByNo(appNo);
 		System.out.println("expenseReportView : " + approval);
 
 //		    String erDetailStr = approval.getErDetail();
@@ -566,8 +564,8 @@ public class ApprovalController {
 		String rootPath = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = rootPath + "/upload/approvalFile";
 
-		log.info("Root Path : " + rootPath);
-		log.info("Save Path : " + savePath);
+//		log.info("Root Path : " + rootPath);
+//		log.info("Save Path : " + savePath);
 
 		File folder = new File(savePath); // Save Path가 실제로 존재하지 않으면 폴더를 생성하는 로직
 

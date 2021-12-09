@@ -60,7 +60,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 
 	@Override
 	public List<Approval> getApprovalList(PageInfo pageInfo, String searchText) {
-		
+		// pageInfo.getListLimit(); ì´ê±° í™•ì¸í•´ë´ì•¼ë¨
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
 		
@@ -142,7 +142,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return result;
 	}
 
-	// ÈŞ°¡½ÅÃ»¼­ µî·Ï 
+	// íœ´ê°€ì‹ ì²­ì„œ ë“±ë¡ 
 	@Override
 	public int insertApproval(Approval approval) {
 		
@@ -194,7 +194,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return approvalDao.selectExpenseReportListDetail(appNo);
 	}
 	
-	// ÈŞ°¡½ÅÃ»¼­ »ó¼¼º¸±â
+	// íœ´ê°€ì‹ ì²­ì„œ ìƒì„¸ë³´ê¸°
     @Override
     public Approval findListByLeaveNo(int appNo) {
        System.out.println(appNo);
@@ -202,7 +202,7 @@ public class ApprovalServiceImpl implements ApprovalService {
        return approvalDao.viewAppLeaveList(appNo);
     }
     
-    // °áÀç ¼ö½ÅÂüÁ¶ÀÚ ÂÊÁöº¸³»±â
+    // ê²°ì¬ ìˆ˜ì‹ ì°¸ì¡°ì ìª½ì§€ë³´ë‚´ê¸°
     @Override
     public Approval findByAppNoMsg(int appNo) {
        System.out.println("findByAppNoMsg : " + appNo);
