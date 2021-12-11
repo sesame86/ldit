@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="TeamMember">
+	<resultMap type="Staff" id="StaffRM">
+		<id property="stfNo" column="stf_no"/>
+		<result property="deptNo" column="dept_no"/>
+		<result property="stfLvl" column="stf_lvl"/>
+		<result property="stfName" column="stf_name"/>
+		<result property="stfId" column="stf_id"/>
+		<result property="stfPasswd" column="stf_passwd"/>
+		<result property="stfImg" column="stf_img"/>
+		<result property="stfSign" column="stf_sign"/>
+		<result property="stfPhone" column="stf_phone"/>
+		<result property="stfMail" column="stf_mail"/>
+		<result property="stfEnroll" column="stf_enroll"/>
+		<result property="stfNothere" column="stf_nothere"/>
+		<result property="deptName" column="dept_name"/>
+	</resultMap>
 	<!-- 팀 멤버 등록 -->
 	<insert id="insertTeamMember" parameterType="TeamMember">
 		insert into team_member(team_id, stf_no) values(#{teamId}, #{stfNo})
@@ -9,4 +24,11 @@
 	<!-- <insert id="insertTeamMember" parameterType="TeamMember">
 		insert into team_member values(#{teamId}, #{stfNo})
 	</insert> -->
+	<select id="getTeamMemberUpdate" parameterType="int" resultMap="StaffRM">
+		select * from staff s join team_member tm on s.stf_no = tm.stf_no where tm.team_id = #{teamId}
+	</select>
+	<!-- 팀 멤버 update하기 전에 이미 있는 사람인지 확인 -->
+	<select id="checkDupidTeamMember" parameterType="TeamMember" resultType="int">
+		select count(*) from team_member where team_id=#{teamId} and stf_no=#{stfNo}
+	</select>
 </mapper>

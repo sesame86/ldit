@@ -1,6 +1,7 @@
 package com.mycompany.ldit.work.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,13 +38,16 @@ public class TeamOpenUpController {
 			viewpage = "team/team_add";
 			mv.addObject("getProject", vo);
 			String update = request.getParameter("update");
+			mv.addObject("update", update);
 			if(update != null) {
 				int updateInt = Integer.parseInt(update);
 				Team tvo = new Team();
+				List<Staff> stfList = null;
 				tvo = TeamService.getTeamUpdate(updateInt);
+				stfList = TeamMemberService.getTeamMemberUpdate(updateInt);
 				mv.addObject("getUpdateTeam", tvo);
+				mv.addObject("stfList", stfList);
 			}
-			mv.addObject("update", update);
 		}catch (Exception e) {
 			//viewpage = "error/commonError";
 			//mv.addObject("msg", "팀 개설에 문제가 생겼습니다.");
@@ -53,7 +57,7 @@ public class TeamOpenUpController {
 		return mv;
 	}
 	@RequestMapping(value = "/teamadd", method = RequestMethod.POST)
-	public ModelAndView postTeam(ModelAndView mv, Team tvo) {
+	public ModelAndView postTeam(ModelAndView mv, Team tvo, HttpServletRequest request) {
 		String viewpage = "redirect:teammain";
 		try {
 			int result1 = 0;
@@ -61,9 +65,8 @@ public class TeamOpenUpController {
 			int result3 = 0;
 			int getTeamId = 0;
 			//int checkTM = -1;
-			System.out.println(tvo);
-			result1 = TeamService.insertTeam(tvo);
-			System.out.println("result1:"+result1);
+			String update = request.getParameter("update");
+			System.out.println(update);
 			
 //			Right rvo = new Right();
 //			rvo.setProNo(tvo.getProNo());
@@ -72,18 +75,29 @@ public class TeamOpenUpController {
 //			if(checkTM == 0) {
 //				result2 = TeamService.insertTMRight(rvo);
 //			}
-			
-			getTeamId = TeamService.checkTeamId(tvo);
-			System.out.println("teamId " + getTeamId);
-			if(getTeamId != 0) {
+			if(update != null) { //팀 수정
+				int updateInt = Integer.parseInt(update);
 				System.out.println("진입1");
 				for(int i=0; i<tvo.getStaffList().size(); i++) {
 					System.out.println("진입2"+tvo.getStaffList().size());
 					TeamMember tmVo = new TeamMember();
-					tmVo.setTeamId(getTeamId);
+					tmVo.setTeamId(updateInt);
 					tmVo.setStfNo(tvo.getStaffList().get(i).getStfNo());
-					//System.out.println(teamVo);
-					result3 = TeamMemberService.insertTeamMember(tmVo);
+					int checkDupidTeamMember = TeamMemberService.checkDupidTeamMember(tmVo);
+					if(checkDupidTeamMember == 0) { //삽입
+						result3 = TeamMemberService.insertTeamMember(tmVo);
+					}//이미 있으면 무시
+				}
+			}else { //팀 개설
+				result1 = TeamService.insertTeam(tvo);
+				getTeamId = TeamService.checkTeamId(tvo);
+				if(getTeamId != 0) {
+					for(int i=0; i<tvo.getStaffList().size(); i++) {
+						TeamMember tmVo = new TeamMember();
+						tmVo.setTeamId(getTeamId);
+						tmVo.setStfNo(tvo.getStaffList().get(i).getStfNo());
+						result3 = TeamMemberService.insertTeamMember(tmVo);
+					}
 				}
 			}
 		}catch (Exception e) {

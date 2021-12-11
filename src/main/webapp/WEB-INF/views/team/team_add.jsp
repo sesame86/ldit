@@ -92,11 +92,13 @@
                 </c:if>
                 <c:if test="${update != null}">
                 	<form id="tmAddFrm" action="teamadd" method="post">
+                	<input type="hidden" name="update" value="${update}">
                 	<input type="hidden" name="proNo" value="${getProject.proNo}">
                     <label>팀명</label>
                     <input id="teamTitle" name="teamTitle" value="${getUpdateTeam.teamTitle}" required="required"><br>
                     <label>책임자</label>
                     <input id="tmInput" value="${getUpdateTeam.staff.stfName}" required="required"><br>
+                    <input name="teamManager" value="${getUpdateTeam.staff.stfNo}" type="hidden">
                     <p></p>
                     <div>
                     	<ul id="scPmList">
@@ -114,7 +116,12 @@
                     </div><p></p>
                     <br>
                     <div class="addResultCon">
-
+                    	<c:forEach var="vo" items="${stfList}" varStatus="status">
+                    	<input class=checkDupid type='hidden' name='staffList[${status.index}].stfNo' value='${vo.stfNo}'>
+                    	<a href='#' onclick='deleteTeamMember(${vo.stfNo})' id='icon_${vo.stfNo}'><i class='fas fa-user-minus'></i></a>
+                    	<img class='tmInfoImg' src='<%=request.getContextPath()%>/resources/image/${vo.stfImg}.png' id='img_${vo.stfNo}'>
+                    	<p id='name_${vo.stfNo}'>${vo.stfName}</p>
+                    	</c:forEach>
                     </div>
                     <p></p><p></p>
   
