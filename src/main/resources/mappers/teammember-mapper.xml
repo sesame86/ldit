@@ -2,12 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="TeamMember">
 	<!-- 팀 멤버 등록 -->
-	<insert id="insertTeamMember" parameterType="Team">
-		<selectKey keyProperty="no" order="BEFORE" resultType="long">
-	    	select last_number
-			from user_sequences
-			where sequence_name='TEAM_SEQ'
-	    </selectKey>
-		insert into team_member(team_id, stf_no) values(#{no}, #{staff.stfNo})
+	<insert id="insertTeamMember" parameterType="TeamMember">
+		insert into team_member(team_id, stf_no) values(#{teamId}, #{stfNo})
 	</insert>
+	<!-- 팀 멤버 등록 -->
+	<!-- <insert id="insertTeamMember" parameterType="TeamMember">
+		insert into team_member values(#{teamId}, #{stfNo})
+	</insert> -->
 </mapper>

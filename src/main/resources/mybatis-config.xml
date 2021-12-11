@@ -20,12 +20,12 @@
 		<!-- <typeAlias type="com.mycompany.ldit.pluswork.model.vo.PlusWork" alias="PlusWork"/> -->
 		<typeAlias type="com.mycompany.ldit.project.model.vo.Project" alias="Project"/>
 		<!-- <typeAlias type="com.mycompany.ldit.receivemsg.model.vo.ReceiveMsg" alias="ReceiveMsg"/> -->
-		<!-- <typeAlias type="com.mycompany.ldit.right.model.vo.Right" alias="Right"/> -->
+		<typeAlias type="com.mycompany.ldit.right.model.vo.Right" alias="Right"/>
 		<!-- <typeAlias type="com.mycompany.ldit.sendmsg.model.vo.SendMsg" alias="SendMsg"/> -->
 		<typeAlias type="com.mycompany.ldit.staff.model.vo.Staff" alias="Staff"/>
 		<typeAlias type="com.mycompany.ldit.team.model.vo.Team" alias="Team"/>
 		<typeAlias type="com.mycompany.ldit.teamaim.model.vo.TeamAim" alias="TeamAim"/>
-		<!-- <typeAlias type="com.mycompany.ldit.teammember.model.vo.TeamMember" alias="TeamMember"/> -->
+		<typeAlias type="com.mycompany.ldit.teammember.model.vo.TeamMember" alias="TeamMember"/>
 		<typeAlias type="com.mycompany.ldit.work.model.vo.Work" alias="Work"/>
 		<typeAlias type="com.mycompany.ldit.attendance.model.vo.WorkBreak" alias="WorkBreak"/>
 		<typeAlias type="com.mycompany.ldit.attendance.model.vo.Xiuxi" alias="Xiuxi"/>
@@ -51,7 +51,7 @@
 		<mapper resource="mappers/staff-mapper.xml"/>
 		<mapper resource="mappers/team-mapper.xml"/>
 		<mapper resource="mappers/teamaim-mapper.xml"/>
-		<!-- <mapper resource="mappers/teammember-mapper.xml"/> -->
+		<mapper resource="mappers/teammember-mapper.xml"/>
 		<mapper resource="mappers/work-mapper.xml"/>
 		<!-- <mapper resource="mappers/workcomment-mapper.xml"/> -->
 	</mappers>

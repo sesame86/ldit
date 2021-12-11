@@ -5,16 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mycompany.ldit.team.model.vo.Team;
+import com.mycompany.ldit.teammember.model.vo.TeamMember;
 
-@Repository("teamMemberDao")
+@Repository("TeamMemberDao")
 public class TeamMemberDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
 	@Transactional(rollbackFor = Exception.class)
-	public int insertTeamMember(Team tvo) {
-		System.out.println(tvo);
-		return sqlSession.insert("Team.insertTeamMember", tvo);
+	public int insertTeamMember(TeamMember tvo) {
+		return sqlSession.insert("TeamMember.insertTeamMember", tvo);
 	}
 }

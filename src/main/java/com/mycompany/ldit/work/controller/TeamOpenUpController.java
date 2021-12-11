@@ -17,11 +17,13 @@ import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.team.model.service.TeamService;
 import com.mycompany.ldit.team.model.vo.Team;
 import com.mycompany.ldit.teammember.model.service.TeamMemberService;
+import com.mycompany.ldit.teammember.model.vo.TeamMember;
 
 @Controller
 public class TeamOpenUpController {
 	@Autowired
 	private TeamService TeamService;
+	@Autowired
 	private TeamMemberService TeamMemberService;
 	
 	@RequestMapping(value = "/teamadd", method = RequestMethod.GET)
@@ -56,19 +58,34 @@ public class TeamOpenUpController {
 		try {
 			int result1 = 0;
 			int result2 = 0;
+			int result3 = 0;
+			int getTeamId = 0;
+			//int checkTM = -1;
 			System.out.println(tvo);
 			result1 = TeamService.insertTeam(tvo);
-			for(int i=0; i<tvo.getStaffList().size(); i++) {
-				Team teamVo = new Team();
-				Staff staffVo = new Staff();
-				teamVo.setProNo(tvo.getProNo());
-				staffVo.setStfNo(tvo.getStaffList().get(i).getStfNo());
-				teamVo.setStaff(staffVo);
-				result2 = TeamMemberService.insertTeamMember(teamVo);
-			}
-			//result2 = TeamMemberService.insertTeamMember(tvo);
 			System.out.println("result1:"+result1);
-			System.out.println("result2:"+result2);
+			
+//			Right rvo = new Right();
+//			rvo.setProNo(tvo.getProNo());
+//			rvo.setStfNo(tvo.getTeamManager());
+//			checkTM = TeamService.checkDupidTM(rvo);
+//			if(checkTM == 0) {
+//				result2 = TeamService.insertTMRight(rvo);
+//			}
+			
+			getTeamId = TeamService.checkTeamId(tvo);
+			System.out.println("teamId " + getTeamId);
+			if(getTeamId != 0) {
+				System.out.println("진입1");
+				for(int i=0; i<tvo.getStaffList().size(); i++) {
+					System.out.println("진입2"+tvo.getStaffList().size());
+					TeamMember tmVo = new TeamMember();
+					tmVo.setTeamId(getTeamId);
+					tmVo.setStfNo(tvo.getStaffList().get(i).getStfNo());
+					//System.out.println(teamVo);
+					result3 = TeamMemberService.insertTeamMember(tmVo);
+				}
+			}
 		}catch (Exception e) {
 			e.getStackTrace();
 		}

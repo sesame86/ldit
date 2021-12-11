@@ -1,7 +1,7 @@
 package com.mycompany.ldit.teammember.model.service;
 
-import com.mycompany.ldit.team.model.vo.Team;
+import com.mycompany.ldit.teammember.model.vo.TeamMember;
 
 public interface TeamMemberService {
-	public int insertTeamMember(Team tvo) throws Exception;
+	public int insertTeamMember(TeamMember tvo) throws Exception;
 }

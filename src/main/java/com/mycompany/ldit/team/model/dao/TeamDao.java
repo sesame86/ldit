@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.ldit.project.model.vo.Project;
+import com.mycompany.ldit.right.model.vo.Right;
 import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.team.model.vo.Team;
 
@@ -38,6 +39,16 @@ public class TeamDao {
 	@Transactional(rollbackFor = Exception.class)
 	public int insertTeam(Team tvo) {
 		return sqlSession.insert("Team.insertTeam", tvo);
+	}
+	public int checkTeamId(Team tvo) {
+		return sqlSession.selectOne("Team.checkTeamId", tvo);
+	}
+	@Transactional(rollbackFor = Exception.class)
+	public int insertTMRight(Right rvo) {
+		return sqlSession.insert("Team.insertTMRight", rvo);
+	}
+	public int checkDupidTM(Right rvo) {
+		return sqlSession.selectOne("Team.checkDupidTM", rvo);
 	}
 	public int getStaffRight(int stfNo) {
 		return sqlSession.selectOne("Team.getStaffRight", stfNo);

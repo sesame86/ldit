@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.ldit.project.model.vo.Project;
+import com.mycompany.ldit.right.model.vo.Right;
 import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.team.model.dao.TeamDao;
 import com.mycompany.ldit.team.model.vo.Team;
@@ -42,6 +43,18 @@ public class TeamServiceImpl implements TeamService{
 	@Override
 	public int insertTeam(Team tvo) throws Exception {
 		return TeamDao.insertTeam(tvo);
+	}
+	@Override
+	public int checkTeamId(Team tvo) throws Exception {
+		return TeamDao.checkTeamId(tvo);
+	}
+	@Override
+	public int insertTMRight(Right rvo) throws Exception {
+		return TeamDao.insertTMRight(rvo);
+	}
+	@Override
+	public int checkDupidTM(Right rvo) throws Exception {
+		return TeamDao.checkDupidTM(rvo);
 	}
 	@Override
 	public int getStaffRight(int stfNo) throws Exception {

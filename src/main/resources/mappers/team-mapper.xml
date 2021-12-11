@@ -44,14 +44,14 @@
 		<result property="stfNothere" column="stf_nothere"/>
 		<result property="deptName" column="dept_name"/>
 	</resultMap>
-	<resultMap type="Team" id="updateTeamRM">
+	<resultMap type="Team" id="insertOrUpdateRM">
 		<id property="teamId" column="team_id"/>
 		<result property="proNo" column="pro_no"/>
 		<result property="teamTitle" column="team_title"/>
-		<association property="staff" javaType="Staff">
-			<id property="stfId" column="stf_id"/>
+		<collection property="staff" javaType="Staff">
+			<id property="stfNo" column="stf_no"/>
 			<result property="stfName" column="stf_name"/>
-		</association>
+		</collection>
 	</resultMap>
 	<!-- 팀 메인 조회 -->
 	<select id="getOneProjectTeam" parameterType="int" resultMap="TeamJoinAimJoinStaff">
@@ -84,12 +84,24 @@
 	<insert id="insertTeam" parameterType="Team">
 		insert into team values(team_seq.nextval, #{proNo}, #{teamTitle}, #{teamManager})
 	</insert>
+	<!-- 팀 아이디 확인 -->
+	<select id="checkTeamId" parameterType="Team" resultType="int">
+		select team_id from team where team_title=#{teamTitle} and team_manager=#{teamManager} and pro_no=#{proNo}
+	</select>
+	<!-- 팀 매니저 확인 -->
+<!-- 	<select id="checkDupidTM" parameterType="Right" resultType="int">
+		select count(*) from right where pro_no=#{proNo} and stf_no=#{stfNo}
+	</select> -->
+	<!-- 팀 매니저 권한 등록 -->
+<!-- 	<insert id="insertTMRight" parameterType="Right">
+		insert into right values(#{proNo}, #{stfNo}, right_seq.nextval)
+	</insert> -->
 	<!-- 권한 확인 -->
 	<select id="getStaffRight" parameterType="Staff" resultType="int">
 		select nvl(r.right_no, -1) right_no from right r right join staff s on r.stf_no = s.stf_no where s.stf_no = #{stfNo}
 	</select>
 	<!-- update시 팀 정보 조회 -->
-	<select id="getTeamUpdate" parameterType="int" resultMap="updateTeamRM">
+	<select id="getTeamUpdate" parameterType="int" resultMap="insertOrUpdateRM">
 		select t.team_id, t.team_title, s.stf_no, s.stf_name from team t join staff s on t.team_manager = s.stf_no where team_id = #{teamId}
 	</select>
 </mapper>
