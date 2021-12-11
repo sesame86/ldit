@@ -44,6 +44,15 @@
 		<result property="stfNothere" column="stf_nothere"/>
 		<result property="deptName" column="dept_name"/>
 	</resultMap>
+	<resultMap type="Team" id="updateTeamRM">
+		<id property="teamId" column="team_id"/>
+		<result property="proNo" column="pro_no"/>
+		<result property="teamTitle" column="team_title"/>
+		<association property="staff" javaType="Staff">
+			<id property="stfId" column="stf_id"/>
+			<result property="stfName" column="stf_name"/>
+		</association>
+	</resultMap>
 	<!-- 팀 메인 조회 -->
 	<select id="getOneProjectTeam" parameterType="int" resultMap="TeamJoinAimJoinStaff">
 		select * from(select t.team_id, t.pro_no, t.team_title, ta.aim_id, ta.aim_status, ta.aim_finish, s.stf_name,
@@ -80,7 +89,7 @@
 		select nvl(r.right_no, -1) right_no from right r right join staff s on r.stf_no = s.stf_no where s.stf_no = #{stfNo}
 	</select>
 	<!-- update시 팀 정보 조회 -->
-	<select id="getTeamUpdate" parameterType="int" resultMap="TeamRM">
-		select * from team where team_id = #{teamId}
+	<select id="getTeamUpdate" parameterType="int" resultMap="updateTeamRM">
+		select t.team_id, t.team_title, s.stf_no, s.stf_name from team t join staff s on t.team_manager = s.stf_no where team_id = #{teamId}
 	</select>
 </mapper>

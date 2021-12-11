@@ -65,7 +65,7 @@
                     <label>팀명</label>
                     <input id="teamTitle" name="teamTitle" value="${getUpdateTeam.teamTitle}" required="required"><br>
                     <label>책임자</label>
-                    <input id="tmInput" value="${getUpdateTeam.teamManager}" required="required"><br>
+                    <input id="tmInput" value="${getUpdateTeam.TeamManager}" required="required"><br>
                     <p></p>
                     <div>
                     	<ul id="scPmList">
@@ -96,7 +96,7 @@
                     <label>팀명</label>
                     <input id="teamTitle" name="teamTitle" value="${getUpdateTeam.teamTitle}" required="required"><br>
                     <label>책임자</label>
-                    <input id="tmInput" value="${getUpdateTeam.teamManager}" required="required"><br>
+                    <input id="tmInput" value="${getUpdateTeam.staff.stfName}" required="required"><br>
                     <p></p>
                     <div>
                     	<ul id="scPmList">
@@ -234,6 +234,7 @@
 			return result;
 		}
     	function deleteTeamMember(no) {
+			$("#icon_"+no).prev().remove();
 			$("#icon_"+no).remove();
 			$("#img_"+no).remove();
 			$("#name_"+no).remove();

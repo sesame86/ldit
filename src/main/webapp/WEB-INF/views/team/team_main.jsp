@@ -63,7 +63,7 @@
                         <div class="cardGrid">
                             <p>TM</p>
                             <div>${vo.staff.stfName}</div>
-                            <p onclick="teamGoalList(${vo.teamId})">팀목표</p>
+                            <p onclick="teamGoalList(${vo.teamId})" class="handCursor">팀목표</p>
                             <c:if test="${vo.teamAim.aimFinish == 'N'.charAt(0)}">
                             	<c:if test="${vo.teamAim.aimStatus == 0}">
 	                            <progress value="${vo.teamAim.aimStatus}" max="100" id="mainPbarBlue"></progress>

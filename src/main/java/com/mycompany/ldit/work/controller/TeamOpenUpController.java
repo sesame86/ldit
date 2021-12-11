@@ -56,6 +56,7 @@ public class TeamOpenUpController {
 		try {
 			int result1 = 0;
 			int result2 = 0;
+			System.out.println(tvo);
 			result1 = TeamService.insertTeam(tvo);
 			for(int i=0; i<tvo.getStaffList().size(); i++) {
 				Team teamVo = new Team();
