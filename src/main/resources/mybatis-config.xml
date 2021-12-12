@@ -10,7 +10,7 @@
 		<!-- <typeAlias type="com.mycompany.ldit.appdoc.model.vo.AppDoc" alias="AppDoc"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.appdocfile.model.vo.AppDocFile" alias="AppDocFile"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.appdoctype.model.vo.AppDocType" alias="AppDocType"/> -->
-		<!-- <typeAlias type="com.mycompany.ldit.attendance.model.vo.Attendance" alias="Attendance"/> -->
+		<typeAlias type="com.mycompany.ldit.attendance.model.vo.Attendance" alias="Attendance"/>
 		<!-- <typeAlias type="com.mycompany.ldit.bookmark.model.vo.BookMark" alias="BookMark"/> -->
 		<typeAlias type="com.mycompany.ldit.clientneeds.model.vo.ClientNeeds" alias="ClientNeeds"/>
 		<typeAlias type="com.mycompany.ldit.department.model.vo.Department" alias="Department"/>
@@ -54,5 +54,6 @@
 		<mapper resource="mappers/teammember-mapper.xml"/>
 		<mapper resource="mappers/work-mapper.xml"/>
 		<!-- <mapper resource="mappers/workcomment-mapper.xml"/> -->
+		<mapper resource="mappers/main-mapper.xml"/>
 	</mappers>
 </configuration>
