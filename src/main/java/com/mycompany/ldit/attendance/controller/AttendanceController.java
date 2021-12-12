@@ -8,12 +8,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -21,7 +24,9 @@ import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
 import com.mycompany.ldit.attendance.model.vo.Apl;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
+import com.mycompany.ldit.staff.model.vo.Staff;
 
+@SessionAttributes("msg")
 @Controller
 public class AttendanceController {
 	
@@ -29,11 +34,20 @@ public class AttendanceController {
 	private AttendanceServiceImpl attService;
 
 	@RequestMapping(value="attcheck", method = RequestMethod.GET)
-	public ModelAndView attMainMethod(ModelAndView mv, @RequestParam(value="stfNo", required=false) int stfNo) {
+	public ModelAndView attMainMethod(ModelAndView mv, HttpSession session) {
 		mv.setViewName("attendance/attcheck");
 		
-
-		System.out.println("받은 stfNo 값은? "+stfNo);
+		Staff loginUser = (Staff)session.getAttribute("loginUser");
+		if(loginUser == null) {
+			System.out.println("로그인정보 없음. 메인으로 이동");
+			mv.setViewName("main");
+			String msgLogout = "접근 권한이 없습니다. 로그인 정보를 확인해주세요.";
+			mv.addObject("msg", msgLogout);
+			return mv;
+		}
+		int stfNo = loginUser.getStfNo();
+	
+		System.out.println("받은 stfNo 값은? " + stfNo);
 		String attStartFormat = null;
 		attStartFormat = attService.getAttStart(stfNo);
 		String attEndFormat = null;
@@ -78,9 +92,13 @@ public class AttendanceController {
 	
 	@RequestMapping(value="checkin", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String checkinMethod(@RequestParam(value="stfNo", required=false) int stfNo) throws IOException{
+	public String checkinMethod(@RequestParam(value="stfNo", required=false) String stfno) throws IOException{
 		
 		System.out.println("checkinMethod진입");
+		
+		int stfNo = Integer.parseInt(stfno);
+		System.out.println("출근 stfno"+stfno);
+		System.out.println("출근 stfNo"+stfNo);
 		
 		int resultOfExist = attService.countAttStart(stfNo);
 		System.out.println("resultOfExist: "+resultOfExist);
@@ -101,10 +119,11 @@ public class AttendanceController {
 	
 	@RequestMapping(value="checkout", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String checkoutMethod(@RequestParam(value="stfNo", required=false) int stfNo) {
+	public String checkoutMethod(@RequestParam(value="stfNo", required=false) String stfno) {
 		
 		System.out.println("checkout메소드 진입");
 		
+		int stfNo = Integer.parseInt(stfno);
 		int resultOfCheckout = attService.updateCheckout(stfNo);
 		
 		String attEndFormat = "00:00:00";
@@ -119,11 +138,11 @@ public class AttendanceController {
 	
 	@RequestMapping(value="restin", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String restinMethod(@RequestParam(value="stfNo", required=false) int stfNo) {
+	public String restinMethod(@RequestParam(value="stfNo", required=false) String stfno) {
 		
 		System.out.println("restIn메소드 진입");
 		
-		
+		int stfNo = Integer.parseInt(stfno);
 		int resultOfRestin = attService.insertRestin(stfNo);
 		
 		WorkBreak wb = null;

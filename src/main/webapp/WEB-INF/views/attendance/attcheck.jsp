@@ -201,7 +201,7 @@ function fnCheckin(){
 	console.log("버튼눌림");
 	$.ajax({
 		url : "checkin"
-		, data: {stfId : "${loginUser.stfNo}"}
+		, data: {stfNo : "${loginUser.stfNo}"}
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
@@ -226,7 +226,7 @@ function fnCheckOut(){
 	console.log("버튼눌림");
 	$.ajax({
 		url : "checkout"
-		, data: {stfId : "${loginUser.stfNo}"}
+		, data: {stfNo : "${loginUser.stfNo}"}
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
@@ -251,7 +251,7 @@ function fnRestIn(){
 	if("${attStartFormat}" != "" && "${attEndFormat}" == ""){	
 	$.ajax({
 		url : "restin"
-		, data: {stfId : "${loginUser.stfNo}"}
+		, data: {stfNo : "${loginUser.stfNo}"}
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
@@ -320,16 +320,6 @@ function wh_showhide(){
 	t_drc.toggle();
 }
 
-var myWorkingTime = setInterval(checkWorkingTime, 1000);
-
-function checkWorkingTime(){
-	
-	
-	
-	document.getElementById("working_time").innerHTML = "";
-}
-
-//
 
 
 </script>
