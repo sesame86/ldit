@@ -27,17 +27,9 @@ public class AttendanceController {
 	
 	@Autowired
 	private AttendanceServiceImpl attService;
-	
-	@RequestMapping(value="testcut", method=RequestMethod.GET)
-	public ModelAndView testMethodGet(ModelAndView mv, @RequestParam(value="stfNo", required=false) int stfNo) throws IOException{
-		mv.setViewName("attendance/testcut");
-	
-		
-		return mv;
-	}
 
 	@RequestMapping(value="attcheck", method = RequestMethod.GET)
-	public ModelAndView attMainMethod(ModelAndView mv, @RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo) {
+	public ModelAndView attMainMethod(ModelAndView mv, @RequestParam(value="stfNo", required=false) int stfNo) {
 		mv.setViewName("attendance/attcheck");
 		
 
@@ -73,12 +65,11 @@ public class AttendanceController {
 		mv.addObject("calAplT", calAplT);
 		mv.addObject("calAplU", calAplU);
 		
+		//휴가신청 상세내역
 		
-		//근무내역 상세조회
-//		WorkingHoursManage whm = attService.getWHM();
-//		if(whm.getWhmCode()=="0") {
-//			
-//		}
+		
+		//
+		
 		
 		
 		return mv;
@@ -87,7 +78,7 @@ public class AttendanceController {
 	
 	@RequestMapping(value="checkin", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String checkinMethod(@RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo) throws IOException{
+	public String checkinMethod(@RequestParam(value="stfNo", required=false) int stfNo) throws IOException{
 		
 		System.out.println("checkinMethod진입");
 		
@@ -110,7 +101,7 @@ public class AttendanceController {
 	
 	@RequestMapping(value="checkout", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String checkoutMethod(@RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo) {
+	public String checkoutMethod(@RequestParam(value="stfNo", required=false) int stfNo) {
 		
 		System.out.println("checkout메소드 진입");
 		
@@ -128,7 +119,7 @@ public class AttendanceController {
 	
 	@RequestMapping(value="restin", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String restinMethod(@RequestParam(value="stfNo", required=false, defaultValue="20213333") int stfNo) {
+	public String restinMethod(@RequestParam(value="stfNo", required=false) int stfNo) {
 		
 		System.out.println("restIn메소드 진입");
 		
