@@ -3,6 +3,7 @@ package com.mycompany.ldit.attendance.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
+import com.mycompany.ldit.attendance.model.vo.XiuxiApply;
 
 @Repository("attDao")
 public class AttendanceDao {
@@ -102,5 +104,20 @@ public class AttendanceDao {
 	
 	public int deleteXiuxi(String checked) {
 		return sqlSession.delete("aboutAtt.deleteXiuxi", checked);
+	}
+	
+	public int countXAList(int stfNo) {
+		return sqlSession.selectOne("attCheck.countXAList", stfNo);
+	}
+	
+	public List<XiuxiApply> getxiuxiApplyList(int stfNo, int currentPage, int limitInOnePage, String keyValue){
+		String onlyAble = "onlyAble";
+		int startRow = (currentPage-1) * limitInOnePage;
+		RowBounds row = new RowBounds(startRow, limitInOnePage);
+		if(keyValue.equals(onlyAble)) {
+			return sqlSession.selectList("attCheck.getxiuxiApplyListOnly", stfNo, row);						
+		} else {
+			return sqlSession.selectList("attCheck.getxiuxiApplyList", stfNo, row);			
+		}
 	}
 }

@@ -10,7 +10,6 @@
 		<!-- <typeAlias type="com.mycompany.ldit.appdoc.model.vo.AppDoc" alias="AppDoc"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.appdocfile.model.vo.AppDocFile" alias="AppDocFile"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.appdoctype.model.vo.AppDocType" alias="AppDocType"/> -->
-		<typeAlias type="com.mycompany.ldit.attendance.model.vo.Attendance" alias="Attendance"/>
 		<!-- <typeAlias type="com.mycompany.ldit.bookmark.model.vo.BookMark" alias="BookMark"/> -->
 		<typeAlias type="com.mycompany.ldit.clientneeds.model.vo.ClientNeeds" alias="ClientNeeds"/>
 		<typeAlias type="com.mycompany.ldit.department.model.vo.Department" alias="Department"/>
@@ -27,9 +26,11 @@
 		<typeAlias type="com.mycompany.ldit.teamaim.model.vo.TeamAim" alias="TeamAim"/>
 		<typeAlias type="com.mycompany.ldit.teammember.model.vo.TeamMember" alias="TeamMember"/>
 		<typeAlias type="com.mycompany.ldit.work.model.vo.Work" alias="Work"/>
+		<typeAlias type="com.mycompany.ldit.attendance.model.vo.Attendance" alias="Attendance"/>
 		<typeAlias type="com.mycompany.ldit.attendance.model.vo.WorkBreak" alias="WorkBreak"/>
 		<typeAlias type="com.mycompany.ldit.attendance.model.vo.Xiuxi" alias="Xiuxi"/>
 		<typeAlias type="com.mycompany.ldit.attendance.model.vo.WorkingHoursManage" alias="WHM"/>
+		<typeAlias type="com.mycompany.ldit.attendance.model.vo.XiuxiApply" alias="XiuxiApply"/>
 		<!-- <typeAlias type="com.mycompany.ldit.workcomment.model.vo.WorkComment" alias="WorkComment"/> -->
 	</typeAliases>
 	<mappers>
@@ -38,6 +39,7 @@
 		<!-- <mapper resource="mappers/appdocfile-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/appdoctype-mapper.xml"/> -->
 		<mapper resource="mappers/attendance-mapper.xml"/>
+		<mapper resource="mappers/attcheck-mapper.xml"/>
 		<!-- <mapper resource="mappers/bookmark-mapper.xml"/> -->
 		<mapper resource="mappers/clientneeds-mapper.xml"/>
 		<mapper resource="mappers/department-mapper.xml"/>

@@ -1,7 +1,5 @@
 package com.mycompany.ldit.attendance.model.vo;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,7 +14,6 @@ public class Attendance {
 	public Attendance() {
 		super();
 	}
-	
 
 	public Attendance(int attNo, int stfNo, String attStart, String attEnd) {
 		super();
@@ -26,6 +23,11 @@ public class Attendance {
 		this.attEnd = attEnd;
 	}
 
+	@Override
+	public String toString() {
+		return "Attendance [attNo=" + attNo + ", stfNo=" + stfNo + ", attStart=" + attStart + ", attEnd=" + attEnd
+				+ "]";
+	}
 
 	public int getAttNo() {
 		return attNo;
@@ -59,5 +61,4 @@ public class Attendance {
 		this.attEnd = attEnd;
 	}
 
-	
 }

@@ -1,7 +1,5 @@
 package com.mycompany.ldit.attendance.model.vo;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,13 +10,15 @@ public class XiuxiApply {
 	private String xiuNo;
 	private int stfNo;
 	private int xaWhen;
-	private Date xaStart;
-	private Date xaEnd;
+	private String xaStart;
+	private String xaEnd;
+	private Xiuxi xiuxi;
 	
 	public XiuxiApply() {
+		super();
 	}
 
-	public XiuxiApply(int xaNo, String xiuNo, int stfNo, int xaWhen, Date xaStart, Date xaEnd) {
+	public XiuxiApply(int xaNo, String xiuNo, int stfNo, int xaWhen, String xaStart, String xaEnd, Xiuxi xiuxi) {
 		super();
 		this.xaNo = xaNo;
 		this.xiuNo = xiuNo;
@@ -26,12 +26,13 @@ public class XiuxiApply {
 		this.xaWhen = xaWhen;
 		this.xaStart = xaStart;
 		this.xaEnd = xaEnd;
+		this.xiuxi = xiuxi;
 	}
 
 	@Override
 	public String toString() {
 		return "XiuxiApply [xaNo=" + xaNo + ", xiuNo=" + xiuNo + ", stfNo=" + stfNo + ", xaWhen=" + xaWhen
-				+ ", xaStart=" + xaStart + ", xaEnd=" + xaEnd + "]";
+				+ ", xaStart=" + xaStart + ", xaEnd=" + xaEnd + ", xiuxi=" + xiuxi + "]";
 	}
 
 	public int getXaNo() {
@@ -66,20 +67,28 @@ public class XiuxiApply {
 		this.xaWhen = xaWhen;
 	}
 
-	public Date getXaStart() {
+	public String getXaStart() {
 		return xaStart;
 	}
 
-	public void setXaStart(Date xaStart) {
+	public void setXaStart(String xaStart) {
 		this.xaStart = xaStart;
 	}
 
-	public Date getXaEnd() {
+	public String getXaEnd() {
 		return xaEnd;
 	}
 
-	public void setXaEnd(Date xaEnd) {
+	public void setXaEnd(String xaEnd) {
 		this.xaEnd = xaEnd;
 	}
 
+	public Xiuxi getXiuxi() {
+		return xiuxi;
+	}
+
+	public void setXiuxi(Xiuxi xiuxi) {
+		this.xiuxi = xiuxi;
+	}
+	
 }

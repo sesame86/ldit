@@ -1,7 +1,5 @@
 package com.mycompany.ldit.attendance.model.vo;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,8 +15,6 @@ public class WorkBreak {
 	public WorkBreak() {
 		super();
 	}
-	
-	
 
 	public WorkBreak(int brNo, int attNo, int stfNo, String brStart, String brEnd) {
 		super();
@@ -29,15 +25,11 @@ public class WorkBreak {
 		this.brEnd = brEnd;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "WorkBreak [brNo=" + brNo + ", attNo=" + attNo + ", stfNo=" + stfNo + ", brStart=" + brStart + ", brEnd="
 				+ brEnd + "]";
 	}
-
-
 
 	public int getBrNo() {
 		return brNo;
@@ -82,6 +74,5 @@ public class WorkBreak {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 	
 }

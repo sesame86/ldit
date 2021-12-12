@@ -10,6 +10,7 @@ import com.mycompany.ldit.attendance.model.dao.AttendanceDao;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
+import com.mycompany.ldit.attendance.model.vo.XiuxiApply;
 
 @Service("attService")
 public class AttendanceServiceImpl implements AttendanceService {
@@ -121,5 +122,16 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public int deleteXiuxi(String checked) {
 		return attDao.deleteXiuxi(checked);
 	}
+
+	@Override
+	public int countXAList(int stfNo) {
+		return attDao.countXAList(stfNo);
+	}
+
+	@Override
+	public List<XiuxiApply> getxiuxiApplyList(int stfNo, int currentPage, int limitInOnePage, String keyValue) {
+		return attDao.getxiuxiApplyList(stfNo, currentPage, limitInOnePage, keyValue);
+	}
+
 
 }

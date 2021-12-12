@@ -15,14 +15,17 @@ public class Apl {
 		super();
 	}
 
+	public Apl(int aplNo, int stfNo, String aplDate, String aplState) {
+		super();
+		this.aplNo = aplNo;
+		this.stfNo = stfNo;
+		this.aplDate = aplDate;
+		this.aplState = aplState;
+	}
+
 	@Override
 	public String toString() {
 		return "Apl [aplNo=" + aplNo + ", stfNo=" + stfNo + ", aplDate=" + aplDate + ", aplState=" + aplState + "]";
-	}
-
-	public Apl(int stfNo) {
-		super();
-		this.stfNo = stfNo;
 	}
 
 	public int getAplNo() {
@@ -56,8 +59,5 @@ public class Apl {
 	public void setAplState(String aplState) {
 		this.aplState = aplState;
 	}
-	
-	
-	
 	
 }

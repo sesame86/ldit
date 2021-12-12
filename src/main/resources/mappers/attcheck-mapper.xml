@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="attCheck">
+
+<resultMap type="XiuxiApply" id="xaList">
+	<id property="xaNo" column="XA_NO"/>
+	<result property="xiuNo" column="XIU_NO"/>
+	<result property="xaWhen" column="XA_WHEN"/>
+	<result property="xaStart" column="XA_START"/>
+	<result property="xaEnd" column="XA_END"/>
+	<association property="xiuxi" javaType="Xiuxi">
+		<result property="xiuReason" column="XIU_REASON"/>
+		<result property="xiuState" column="XIU_APL_YESNO"/>
+		<result property="xiuAplYesNo" column="XIU_APL_YESNO"/>
+	</association>
+</resultMap>
+
+
+
+<select id="countXAList" parameterType="_int" resultType="_int">
+	select count(*) from XIUXI_APPLY where STF_NO = #{stfNo}
+</select>
+
+<select id="getxiuxiApplyList" parameterType="_int" resultMap="xaList">
+	<![CDATA[ 
+    select XA_NO, XIU_NO, XA_WHEN, to_char(XA_START, 'YY/MM/DD HH24:MI:SS') XA_START
+	, to_char(XA_END, 'YY/MM/DD HH24:MI:SS') XA_END
+	, xiu.XIU_REASON, xiu.XIU_APL_YESNO, xiu.XIU_STATE
+    from XIUXI_APPLY xa INNER JOIN XIUXI xiu using (XIU_NO)
+    where STF_NO = #{stfNo} order by XA_END desc
+		]]>
+</select>
+
+<select id="getxiuxiApplyListOnly" parameterType="_int" resultMap="xaList">
+	<![CDATA[ 
+	select XA_NO, XIU_NO, XA_WHEN, to_char(XA_START, 'YY/MM/DD HH24:MI:SS') XA_START
+	, to_char(XA_END, 'YY/MM/DD HH24:MI:SS') XA_END
+	, xiu.XIU_REASON, xiu.XIU_APL_YESNO, xiu.XIU_STATE
+    from XIUXI_APPLY xa INNER JOIN XIUXI xiu using (XIU_NO)
+    where STF_NO = #{stfNo} and (XA_START > SYSDATE + 1) order by XA_START
+		]]>
+</select>
+
+
+
+
+</mapper>

@@ -1,15 +1,14 @@
 package com.mycompany.ldit.attendance.controller;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
-import com.mycompany.ldit.attendance.model.vo.Apl;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
-import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
+import com.mycompany.ldit.attendance.model.vo.XiuxiApply;
 import com.mycompany.ldit.staff.model.vo.Staff;
 
 @SessionAttributes("msg")
@@ -64,12 +62,8 @@ public class AttendanceController {
 			mv.addObject("brNo", brNo);
 		}
 		
-		
 		int calAplT = attService.countAplTotal(stfNo);
 		int calAplU = attService.countAplUse(stfNo);
-		
-		
-		
 		
 		mv.addObject("attStartFormat", attStartFormat);
 		mv.addObject("attEndFormat", attEndFormat);
@@ -78,13 +72,6 @@ public class AttendanceController {
 		
 		mv.addObject("calAplT", calAplT);
 		mv.addObject("calAplU", calAplU);
-		
-		//휴가신청 상세내역
-		
-		
-		//
-		
-		
 		
 		return mv;
 	}
@@ -181,17 +168,48 @@ public class AttendanceController {
 	@ResponseBody
 	public String restApplyMethod() {
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		Gson gson = new Gson();
 		String r = gson.toJson("");
 		return r;
+	}
+	
+	@RequestMapping(value="getXAList", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> xiuxiApplyListMethod(@RequestParam(value="stfNo", required=false) String stfno
+			,@RequestParam(value="currentPage", required=false) String currentpage
+			,@RequestParam(value="keyValue", required=false) String keyValue){
+		Map<String, Object> xaMap = new HashMap<String, Object>();
+		
+		int stfNo = Integer.parseInt(stfno);
+		System.out.println("getXAList stfNo"+stfNo);
+		int currentPage = 1;
+		int limitInOnePage = 5;
+		if(currentpage != null) {
+			currentPage = Integer.parseInt(currentpage);
+		}
+		if(keyValue == null) {
+			keyValue = "allAble";
+		}
+		
+		//전체 게시글 수 
+		int xaListCount = attService.countXAList(stfNo);
+		//총 페이지 수 계산
+		int maxPage = (int)((double)xaListCount / limitInOnePage + 0.9); 
+		// 현재 페이지에 보여줄 시작 페이지 번호
+		int startPage = (((int)((double)currentPage / limitInOnePage + 0.9)) - 1) * limitInOnePage + 1;
+		int endPage = startPage + limitInOnePage - 1; 
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		
+		//휴가신청 상세내역
+		List<XiuxiApply> xiuxiApplyList = null;
+		xiuxiApplyList = attService.getxiuxiApplyList(stfNo, currentPage, limitInOnePage, keyValue);
+		
+		System.out.println("xiuxiApplyList: "+xiuxiApplyList);
+		
+		xaMap.put("xiuxiApplyList", xiuxiApplyList);
+		return xaMap;
 	}
 	
 	

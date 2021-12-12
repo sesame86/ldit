@@ -10,7 +10,7 @@ public class WorkingHoursKinds {
 	private String whName;
 
 	public WorkingHoursKinds() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public WorkingHoursKinds(int whCode, String whName) {

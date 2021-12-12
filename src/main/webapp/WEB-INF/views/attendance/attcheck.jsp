@@ -111,7 +111,7 @@
 			
 		</article>
 		<article id="article_c">
-			<h1><br>휴가신청 상세내역</h1>
+			<h1><br>휴가신청 상세내역<input type="checkbox" value="allAble"></h1>
 			<div>
 				<div class="div_restin_title">
 					<div class="div_restin_closer">
@@ -126,10 +126,16 @@
 			 	</div>
 				<div class="div_restin_contents" id="div_restin_contents">
 					<!-- for문 -->
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
+					<c:forEach items="${xiuxiApplyList}" var="xa">
+						<div>
+							<ul>
+								<li>${xa.xaStart} - ${xa.xaEnd}</li>
+								<li>${xa.xaWhen}</li>
+								<li>${xa.xiuReason}</li>
+								<li>${xa.xiuAplYesNo}</li>
+							</ul>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</article>
@@ -194,6 +200,29 @@ $(document).ready(function(){
 		$("#btn_rest").attr('href', "javascript:fnRestOut()");
 		$("#btn_rest").html("휴식 종료");
 	}
+	$.ajax({
+		url : "getXAList"
+		, data : {stfNo : "${loginUser.stfNo}"
+					, currentPage : "1" 
+					, keyValue : "allAble"
+					}
+		, type : "get"
+		, dataType: "json"
+		, success: function(data) {
+			console.log(data);
+			if(data.length==0){
+				$("#div_restin_contents").empty(); 
+				$("#div_restin_contents").append("<ul><li>신청한 휴가 내역이 없습니다.</li></ul>");
+				alert("데이터 없음");
+			} else {
+				console.log(data);
+			}
+			}
+		, error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData);}
+	});
 });
 
 

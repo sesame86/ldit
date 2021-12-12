@@ -18,8 +18,6 @@ public class WorkingHoursManage {
 		this.whmCode = whmCode;
 		this.whmRestCode = whmRestCode;
 	}
-	
-	
 
 	@Override
 	public String toString() {
