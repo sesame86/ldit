@@ -1,8 +1,8 @@
 @charset "UTF-8";
 section {
-    width: 87%;
+    /*width: 87%;*/
     height: 94%;
-    float: right;
+    float: left;
     overflow: auto;
 }
 #a1{
@@ -260,6 +260,9 @@ progress {
 /*세로*/
 /*스마트폰*/
 @media only screen and (max-width:  767px) and (orientation: portrait){
+	section {
+	    width: 87%;
+	}
     #home{
         position: absolute;
         top: 20%;
@@ -321,6 +324,9 @@ progress {
 }
 /*태블릿 pc*/
 @media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: portrait){
+	section {
+	    width: 83%;
+	}
     #home{
         position: absolute;
         top: 20%;
@@ -342,16 +348,25 @@ progress {
 }
 /*데스크탑*/
 @media only screen and (min-width:  960px) and (orientation: portrait){
+	section {
+	    width: 78%;
+	}
 }
 /*가로*/
 /*스마트폰*/
 @media only screen and (max-width:  767px) and (orientation: portrait) and (orientation: landscape){
+	section {
+	    width: 83%;
+	}
 	#todayWork, #myInfo, #restInfo{
 	    width: 100% !important;
 	}
 }
 /*태블릿 pc*/
 @media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: landscape){
+	section {
+	    width: 83%;
+	}
     #home{
         position: absolute;
         top: 0;
@@ -379,6 +394,11 @@ progress {
 }
 /*데스크탑*/
 @media only screen and (min-width:  960px) and (orientation: landscape){
+	section {
+	    width: 78%;
+	    position: absolute;
+	    left: 15%;
+	}
 }
 
 /*오늘의일정 관련 */

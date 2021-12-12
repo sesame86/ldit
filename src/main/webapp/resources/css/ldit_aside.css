@@ -17,15 +17,17 @@ header{
 }
 /*aside*/
 .right-aside{
-	width: 13%;
+	/*width: 13%;*/
 	height: 94%;
 	float: left;
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 	background-color: #F7F9FA;
 }
-
+.right-aside p{
+	font-size: 1rem;
+}
 .aside-accordion {
-	background-color: #eee;
+	background-color: #F7F9FA;
 	color: #444;
 	cursor: pointer;
 	padding:  1.2rem;/*18px;*/
@@ -35,9 +37,6 @@ header{
 	outline: none;
 	font-size: 1rem;/*15px;*/
 	transition: 0.4s;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-		"Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .active, .aside-accordion:hover {
@@ -55,4 +54,70 @@ header{
 	font-size : 1rem;
 	text-align: center;
 	padding: 0.8rem;
+}
+.float-L{
+	float: left;
+	display: inline;
+}
+.float-R{
+	float: right;
+}
+.mobile-hidden{
+	display: inline;
+}
+/*세로*/
+/*스마트폰*/
+@media only screen and (max-width:  767px) and (orientation: portrait){
+	.mobile-hidden{
+		display: none;
+	}
+	.float-R{
+		display: none;
+	}
+	.right-aside{
+		max-width: 4rem;
+	}
+	.right-aside i{
+		font-size: 1.5rem;
+	}
+}
+/*태블릿 pc*/
+@media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: portrait){
+	.right-aside{
+		max-width: 10rem;
+	}
+}
+/*데스크탑*/
+@media only screen and (min-width:  960px) and (orientation: portrait){
+	.right-aside{
+		max-width: 13rem;
+	}
+}
+/*가로*/
+/*스마트폰*/
+@media only screen and (max-width:  767px) and (orientation: portrait) and (orientation: landscape){
+	.mobile-hidden{
+		display: none;
+	}
+		.float-R{
+		display: none;
+	}
+	.right-aside{
+		max-width: 4rem;
+	}
+	.right-aside i{
+		font-size: 1.5rem;
+	}
+}
+/*태블릿 pc*/
+@media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: landscape){
+	.right-aside{
+		max-width: 10rem;
+	}
+}
+/*데스크탑*/
+@media only screen and (min-width:  960px) and (orientation: landscape){
+	.right-aside{
+		max-width: 13rem;
+	}
 }
