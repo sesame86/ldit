@@ -89,7 +89,7 @@
             <h1 class="mobileTitle">내정보</h1>
             <div id="myInfo">
                 <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                <h3 id="miName">홍길동</h3>
+                <h3 id="miName">${loginUser.stfName}</h3>
                 <p id="miHour">오늘의 근무시간 00:00:00</p>
                 <div id="miToday">
                     <p id="miGo">출근</p>
@@ -123,62 +123,26 @@
             <h1 id="msgTitle">쪽지 즐겨찾기</h1>
             <h1 class="mobileTitle">진행중인 프로젝트</h1>
             <div id="myProject">
+            <c:forEach var="pVo" items="${projectVo}">
                 <div class="mpContainer">
-                    <div class="reqColorSmall"></div>
+                	<c:if test="${pVo.proStatus == 'N'.charAt(0)}">
+                		<div class="reqColorSmall" style="background-color: #3498DB"></div>
+                    </c:if>
+                    <c:if test="${pVo.proStatus == 'C'.charAt(0)}">
+                    	<div class="reqColorSmall" style="background-color: #27AE60"></div>
+                    </c:if>
                         <div class="mpInfo">
-                        <h4>프로젝트명</h4>
-                        <p>2021/11/11 ~ 2021/12/20</p>
+                        <h4>${pVo.proTitle}</h4>
+                        <p>${pVo.proStart} ~ ${pVo.proEnd}</p>
                     </div>
-                    <div class="reqColorBig">새로운 요청</div>
+                    <c:if test="${pVo.proStatus == 'N'.charAt(0)}">
+                    	<div class="reqColorBig" style="background-color: #3498DB">새로운 요청</div>
+                    </c:if>
+                    <c:if test="${pVo.proStatus == 'C'.charAt(0)}">
+                    	<div class="reqColorBig" style="background-color: #27AE60">진행중</div>
+                    </c:if>
                 </div>
-                <div class="mpContainer">
-                    <div class="reqColorSmall"></div>
-                        <div class="mpInfo">
-                        <h4>프로젝트명</h4>
-                        <p>2021/11/11 ~ 2021/12/20</p>
-                    </div>
-                    <div class="reqColorBig">새로운 요청</div>
-                </div>
-                <div class="mpContainer">
-                    <div class="reqColorSmall"></div>
-                        <div class="mpInfo">
-                        <h4>프로젝트명</h4>
-                        <p>2021/11/11 ~ 2021/12/20</p>
-                    </div>
-                    <div class="reqColorBig">새로운 요청</div>
-                </div>
-                <div class="mpContainer">
-                    <div class="reqColorSmall" style="background-color: #27AE60;"></div>
-                        <div class="mpInfo">
-                        <h4>프로젝트명</h4>
-                        <p>2021/11/11 ~ 2021/12/20</p>
-                    </div>
-                    <div class="reqColorBig" style="background-color: #27AE60;">진행중</div>
-                </div>
-                <div class="mpContainer">
-                    <div class="reqColorSmall" style="background-color: #27AE60;"></div>
-                        <div class="mpInfo">
-                        <h4>프로젝트명</h4>
-                        <p>2021/11/11 ~ 2021/12/20</p>
-                    </div>
-                    <div class="reqColorBig" style="background-color: #27AE60;">진행중</div>
-                </div>
-                <div class="mpContainer">
-                    <div class="reqColorSmall" style="background-color: #27AE60;"></div>
-                        <div class="mpInfo">
-                        <h4>프로젝트명</h4>
-                        <p>2021/11/11 ~ 2021/12/20</p>
-                    </div>
-                    <div class="reqColorBig" style="background-color: #27AE60;">진행중</div>
-                </div>
-                <div class="mpContainer">
-                    <div class="reqColorSmall" style="background-color: #27AE60;"></div>
-                        <div class="mpInfo">
-                        <h4>프로젝트명</h4>
-                        <p>2021/11/11 ~ 2021/12/20</p>
-                    </div>
-                    <div class="reqColorBig" style="background-color: #27AE60;">진행중</div>
-                </div>
+             </c:forEach>
             </div>
             <h1 class="mobileTitle">쪽지 즐겨찾기</h1>
             <div id="msgBookmark">

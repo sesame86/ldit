@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//myb atis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Main">
+	<resultMap type="Attendance" id="attendanceRM">
+		<id property="attNo" column="att_no"/>
+		<result property="stfNo" column="stf_no"/>
+		<result property="attStart" column="att_start"/>
+		<result property="attEnd" column="att_end"/>
+	</resultMap>
+	<resultMap type="Project" id="projectRM">
+		<id property="proNo" column="pro_no"/>
+		<result property="proTitle" column="pro_title"/>
+		<result property="proContent" column="pro_content"/>
+		<result property="proStart" column="pro_start"/>
+		<result property="proEnd" column="pro_end"/>
+		<result property="proManager" column="pro_manager"/>
+		<result property="proStatus" column="pro_status"/>
+	</resultMap>
+	<select id="getAttendance" parameterType="int" resultMap="attendanceRM">
+		select att_no, stf_no from attendance where stf_no = #{stfNo} and TO_CHAR(att_start,'YYYYMMDD') = TO_CHAR(sysdate,'YYYYMMDD')
+	</select>
+	<select id="getUserProject" parameterType="int" resultMap="projectRM">
+		select distinct p.* from project p join team t on p.pro_no=t.pro_no join team_member tm on t.team_id = tm.team_id where p.pro_status!='F' and tm.stf_no=#{stfNo} or t.team_manager=#{stfNo}
+	</select>
+</mapper>
