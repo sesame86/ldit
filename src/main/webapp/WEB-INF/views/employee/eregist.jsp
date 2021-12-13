@@ -26,53 +26,49 @@
 	<%@ include file="/WEB-INF/views/ldit_aside.jsp"%>
 	
 	<h3> 직원 등록</h3>
-	<section>
 		<form action="eregist" method="post">
-			<label>
-				<span>사원 번호 :</span><input type="number" name="stfNo" placeholder="숫자를 입력해주세요."><br>
-			</label>
-			<label for="select-deptNo">부서 번호 :</label>
-			<select id="select-deptNo" name="deptNo">
-				<option value=1>임원</option>
-				<option value=2>기획</option>
-				<option value=3>인사</option>
-				<option value=4>개발</option>
-				<option value=5>영업</option>
-			</select><br>
-			<label for="select-stfLvl">직급 :</label>
-			<select id="select-stfLvl" name="stfLvl">
-				<option value="사원">사원</option>
-				<option value="전무이사">전무이사</option>
-				<option value="상무이사">상무이사</option>
-				<option value="대표이사">대표이사</option>					
-			</select><br>
-			<label>
-				<span>이름 :</span><input type="text" name="stfName" placeholder="문자를 입력해주세요."><br>
-			</label>
-			<label>
-				<span>아이디 :</span><input type="text" name="stfId" placeholder="문자를 입력해주세요."><br>
-			</label>
-			<label>
-				<span>비밀번호 :</span><input type="text" name="stfPasswd" placeholder="문자를 입력해주세요."><br>
-			</label>
-			<label>
-				<span>프로필 사진 :</span><input type="text" name="stfImg"><br>
-			</label>
-			<label>
-				<span>서명:</span><input type="text" name="stfSign"><br>
-			</label>
-			<label>
-				<span>핸드폰 번호 :</span><input type="text" name="stfPhone" placeholder="-까지 입력해주세요."><br>
-			</label>
-			<label>
-				<span>이메일 :</span><input type="email" name="stfMail" placeholder="문자를 입력해주세요."><br>
-			</label>
-			<label>
-				<span>입사일 :</span><input type="date" name="stfEnroll" ><br>
-			</label>
-			<button type="reset">리셋</button>
-			<button>등록</button> 
+			<div id="divImg">
+				<label class="inf">프로필 사진 : </label>
+				<input type="text" name="stfImg" class="inf2"/><br><br><br><br><br>
+				<label class="inf">서명:</label>
+				<input type="text" name="stfSign" class="inf2"/>
+			</div>
+			<div id="divInformation">
+				<label class="inf">사원 번호 :</label>
+				<input type="number" name="stfNo" class="inf2" placeholder="숫자를 입력해주세요."/>
+				<label for="select-deptNo" class="inf">부서 번호 :</label>
+				<select id="select-deptNo" name="deptNo" class="inf2">
+					<option value=1>임원</option>
+					<option value=2>기획</option>
+					<option value=3>인사</option>
+					<option value=4>개발</option>
+					<option value=5>영업</option>
+				</select>
+			
+				<label for="select-stfLvl" class="inf">직급 :</label>
+				<select id="select-stfLvl" name="stfLvl" class="inf2">
+					<option value="사원">사원</option>
+					<option value="전무이사">전무이사</option>
+					<option value="상무이사">상무이사</option>
+					<option value="대표이사">대표이사</option>					
+				</select>
+				<br><br><br><br><br><label class="inf">이름 :</label>
+				<input type="text" name="stfName" class="inf2" placeholder="문자를 입력해주세요."/>
+				<label class="inf">아이디 :</label>
+				<input type="text" name="stfId" class="inf2" placeholder="문자를 입력해주세요."/>
+				<label class="inf">비밀번호 :</label>
+				<input type="text" name="stfPasswd" class="inf2" placeholder="문자를 입력해주세요.">
+				<br><br><br><br><br><label class="inf">핸드폰 번호 :</label>
+				<input type="text" name="stfPhone" class="inf2" placeholder="-까지 입력해주세요.">
+				<label class="inf">이메일 :</label>
+				<input type="email" name="stfMail" class="inf2" placeholder="문자를 입력해주세요.">
+				<label class="inf">입사일 :</label>
+				<input type="text" name="stfEnroll" class="inf2" placeholder="YYYY-MM-DD 형식"/><br><br><br><br><br>
+			</div>
+			<div id="divBtn">
+				<button type="submit" id="regist" class="rBtn">등록</button>
+				<button type="reset" id="reset" class="rBtn">리셋</button>
+			</div> 
 		</form>
-	</section>
 </body>
 </html>

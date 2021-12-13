@@ -45,8 +45,8 @@ STF_NOTHERE          DATE      -->
 	</resultMap>
 	
 	<!-- 직원 정보 수정 -->
-	<update id="eupdate" parameterType="int">
-		update staff set stf_lvl=#{stfLvl}, stf_Passwd=#{stfPasswd}, stf_img=#{stfImg}, stf_phone=#{stfPhone}, stf_mail=#{stfMail}
+	<update id="eupdate" parameterType="Staff">
+		update staff set dept_no=#{deptNo}, stf_lvl=#{stfLvl}, stf_passwd=#{stfPasswd}, stf_phone=#{stfPhone}, stf_mail=#{stfMail}
 		where stf_id=#{stfId}
 	</update>
 	
@@ -73,7 +73,7 @@ STF_NOTHERE          DATE      -->
 	
 	<!-- 직원 상세 정보 조회 -->
 	<select id="profile" resultMap="staffRM" parameterType="Staff">
-		select * from staff s join department d on s.dept_no = d.dept_no
+		select s.stf_no, d.dept_name, s.stf_lvl, s.stf_name, s.stf_id, s.stf_passwd, s.stf_phone, s.stf_mail, s.stf_enroll from staff s join department d on s.dept_no = d.dept_no
 		where s.stf_id = #{stfId}
 	</select>
 	
@@ -84,7 +84,7 @@ STF_NOTHERE          DATE      -->
 	</select>
 	
 	<select id="viewStaff" resultMap="staffRM" parameterType="Staff">
-		select STF_NO, DEPT_NO, STF_LVL, STF_NAME, STF_ID, STF_PASSWD, STF_IMG, STF_SIGN, STF_PHONE, STF_MAIL, STF_ENROLL
+		select *
 		from staff
 		where stf_id = #{stfId}
 	</select>

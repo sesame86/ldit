@@ -24,7 +24,6 @@
 <body>
 	<%@ include file="/WEB-INF/views/ldit_header.jsp"%>
 	<%@ include file="/WEB-INF/views/ldit_aside.jsp"%>
-	<section>
 	<h1>직원 정보 삭제</h1>
 		<div id="staffContainer" class="staffContainer">
 				<table id="staffTable">
@@ -60,6 +59,5 @@
 					</tbody>
 				</table>
 		</div>
-	</section>
 </body>
 </html>

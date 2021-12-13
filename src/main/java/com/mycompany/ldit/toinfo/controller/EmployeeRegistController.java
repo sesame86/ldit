@@ -27,11 +27,12 @@ public class EmployeeRegistController {
    
    @RequestMapping(value = "eregist", method=RequestMethod.POST)
    public ModelAndView eregist(Staff vo, @RequestParam("stfNo") int stfNo,
-          @RequestParam("deptNo") int deptNo,@RequestParam("stfLvl") String stfLvl,@RequestParam("stfName") String stfName,
-          @RequestParam("stfId") String stfId,@RequestParam("stfPasswd") String stfPasswd,@RequestParam("stfImg") String stfImg,@RequestParam("stfSign") String stfSign,
-          @RequestParam("stfPhone") String stfPhone,@RequestParam("stfMail") String stfMail,@RequestParam("stfEnroll") String stfEnroll,
-          HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
+          @RequestParam("deptNo") int deptNo, @RequestParam("stfLvl") String stfLvl, @RequestParam("stfName") String stfName,
+          @RequestParam("stfId") String stfId, @RequestParam("stfPasswd") String stfPasswd, @RequestParam("stfImg") String stfImg, @RequestParam("stfSign") String stfSign,
+          @RequestParam("stfPhone") String stfPhone, @RequestParam("stfMail") String stfMail, @RequestParam("stfEnroll") String stfEnroll,
+          HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
        int result=0;
+       
        
        try {
           System.out.println(result);
@@ -50,7 +51,7 @@ public class EmployeeRegistController {
           
           result = staffservice.eregist(vo);
           System.out.println(result);
-          if(result==1) {
+          if(result==1) { 
              String msg = "회원 정보가 등록되었습니다.";
              rttr.addFlashAttribute("msg", msg);
              mv.setViewName("redirect:eregist");

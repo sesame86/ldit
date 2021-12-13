@@ -1,1 +1,49 @@
 @charset "UTF-8";
+h3 {
+	font-size : 2.5rem;
+	padding-top : 5%;
+	padding-bottom : 6%;
+	padding-left : 20%;
+}
+
+#divImg{
+	float:left;
+	width:20%;
+	text-align:center;
+	height:20rem;
+}
+
+#stfImg{
+	width:10rem;
+	height:10rem;
+}
+
+#divInformation{
+	float:left;
+	width:67%;
+}
+
+.uBtn{
+	font-size:2rem;
+	background-color:white;
+	border:none;
+	cursor:pointer;
+}
+
+#update{
+	padding-left:40rem;
+	padding-right:3rem;
+}
+
+.inf{
+	display:inline-block;
+	text-align:left;
+	width:7rem;
+}
+
+.inf2{
+	display:inline-block;
+	text-align:left;
+	margin-right:5rem;
+	width:7rem;
+}

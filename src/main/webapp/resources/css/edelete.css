@@ -6,9 +6,9 @@ h1 {
 	padding-left : 20%;
 }
 
-.staffContainer {
-	display:flex;
-	align-items:center;
+#staffContainer {
+	width:90%;
+	padding-left:5rem;
 }
 
 table {
