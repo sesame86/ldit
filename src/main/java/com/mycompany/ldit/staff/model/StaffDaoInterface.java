@@ -20,7 +20,7 @@ public interface StaffDaoInterface {
 	public Staff profile(Staff staff);
 	
 	// 직원 정보 수정
-	public int eupdate(String stfId);
+	public int eupdate(Staff staff);
 	
 	// 직원 삭제
 	public int edelete(int stfNo);

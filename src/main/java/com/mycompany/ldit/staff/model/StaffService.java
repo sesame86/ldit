@@ -36,10 +36,10 @@ public class StaffService implements StaffServiceInterface{
 	
 	// 직원 정보 수정
 	@Override
-	public int eupdate(String stfId) {
+	public int eupdate(Staff staff) {
 		int result=0;
 		try {
-			result=staffDao.eupdate(stfId);
+			result=staffDao.eupdate(staff);
 			System.out.println("직원 정보 수정 여부:" + result);
 		} catch(Exception e) {
 			e.printStackTrace();

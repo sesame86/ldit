@@ -23,7 +23,7 @@ public interface StaffServiceInterface {
 	public int edelete(int stfNo);
 	
 	// 직원 정보 수정
-	public int eupdate(String stfId);
+	public int eupdate(Staff staff);
 	
 	// JH
 	// 01_01 사원 로그인 체크

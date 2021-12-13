@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <aside class="right-aside">
+
+<!-- jquery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
 	<!--여기 작성 2-->
 	<button class="aside-accordion" onclick="location.href='workmain'"><i class="far fa-calendar-alt"></i><p class="mobile-hidden">&nbsp&nbsp 일정</p></button>
           <div class="panel">
@@ -21,11 +25,19 @@
   
           </div>
   
-          <button class="aside-accordion" onclick="location.href='organization'"><i class="fas fa-sitemap"></i><p class="mobile-hidden">&nbsp&nbsp 조직도</p></button>
+          <button class="aside-accordion"><p class="float-L"><i class="fas fa-sitemap"></i><p class="mobile-hidden">&nbsp&nbsp 조직도</p><i class="fas fa-angle-down float-R"></i></p> </button>
+          <c:if test="${loginUser.deptNo==3}">
           <div class="panel">
-              <a href="#"></a>
+			<p class="pd1" onclick="location.href='organization'">조직도</p>
+          	<p class="pd1" onclick="location.href='eregist'">직원 등록</p>
+          	<p class="pd1" onclick="location.href='edelete'">직원 퇴사</p>                            
           </div>
-  
+  		</c:if>
+  		<c:if test="${loginUser.deptNo!=3}">
+  		<div class="panel">
+			<p class="pd1" onclick="location.href='organization'">조직도</p>                            
+          </div>
+  		</c:if>
           <button class="aside-accordion"><p class="float-L"><i class="far fa-envelope"></i><p class="mobile-hidden">&nbsp&nbsp 쪽지</p><i class="fas fa-angle-down float-R"></i></p></button>
           <div class="panel"  >
               <p class="pd1">쪽지보내기</p>
