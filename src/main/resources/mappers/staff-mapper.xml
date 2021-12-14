@@ -77,6 +77,11 @@ STF_NOTHERE          DATE      -->
 		where s.stf_id = #{stfId}
 	</select>
 	
+	<!-- 아이디 중복 체크 -->
+	<select id="duplicate"	parameterType="Staff">
+		select stf_id
+		from staff
+	</select>
 	<!--  JH  -->
 	<select id="loginCheck" resultType="String" parameterType="Staff">
 		select stf_name from staff

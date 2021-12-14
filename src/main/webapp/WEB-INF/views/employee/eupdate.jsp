@@ -26,6 +26,7 @@
 	<%@ include file="/WEB-INF/views/ldit_aside.jsp"%>
 	
 	<h3>개인 정보 수정 </h3>
+	<section>
 	<form action="eupdate2" method="post">
 		<div id="divImg">
 			<label><img id="stfImg" src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG"></label><br><br><br>
@@ -127,9 +128,10 @@
 		<label class="inf2">${loginUser.stfEnroll}</label><br><br><br><br><br><br><br>
 		</div>
 		<div id="divBtn">
-			<button type="submit" id="update" class="uBtn">수정</button>
+			<button type="submit" id="update" class="uBtn">수정</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<button type="button" id="cancel" onclick="location.href='main'" class="uBtn">취소</button>
 		</div>
 	</form>
+	</section>
 </body>
 </html>
