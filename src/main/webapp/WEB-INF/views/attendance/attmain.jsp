@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/ldit_header.css" /><!-- header css -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/ldit_aside.css" /><!-- main css -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/basic.css" /><!-- basic css -->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/attcheck.css" /><!-- basic css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/attmain.css" /><!-- basic css -->
 </head>
 <body>
 	<%@ include file="../ldit_header.jsp" %>
