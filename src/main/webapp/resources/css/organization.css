@@ -12,6 +12,10 @@ h1 {
 	flex-deriection:column;
 }
 
+#bar{
+	width:70%;
+}
+
 P{
 	text-align:center;
 }
@@ -103,8 +107,4 @@ P{
 	font-size:1.5rem;
 	position:relative;
 	right:12rem;
-}
-
-#bar{
-	width:70%;
 }

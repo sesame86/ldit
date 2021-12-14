@@ -6,9 +6,12 @@ h3 {
 	padding-left : 20%;
 }
 
+section {
+	padding-left:20rem;
+}
 #divImg{
 	float:left;
-	width:20%;
+	width:30%;
 	text-align:center;
 	height:20rem;
 }
@@ -30,9 +33,8 @@ h3 {
 	cursor:pointer;
 }
 
-#update{
+#divBtn {
 	padding-left:40rem;
-	padding-right:3rem;
 }
 
 .inf{
