@@ -19,7 +19,7 @@
   
           <button class="aside-accordion"><p class="float-L"><i class="fas fa-columns"></i><p class="mobile-hidden">&nbsp&nbsp 근무계획</p><i class="fas fa-angle-down float-R"></i></p> </button>
           <div class="panel">
-              <p class="pd1" onclick="location.href='attcheck'">출퇴근 관리</p>
+              <p class="pd1" onclick="location.href='attmain'">출퇴근 관리</p>
               <p class="pd1" onclick="location.href='whmanage'">근태계획 설정</p>
               <p class="pd1">근태현황 조회</p>
   

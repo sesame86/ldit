@@ -193,7 +193,6 @@ $("#btn_remove_xiuxi").click(function(){
 		url : "xiuxiRemove"
 		, data : {"checkedXiuxi" : checkedXiuxi}
 		, type : "post"
-		, dataType: "json"
 		, success: function(data){
 			if(data >= checkedXiuxi.length-1){
 				alert("정상적으로 삭제되었습니다.");

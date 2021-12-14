@@ -11,6 +11,7 @@ import com.mycompany.ldit.attendance.model.vo.XiuxiApply;
 public interface AttendanceService {
 	int insertCheckin(int stfNo);
 	String getAttStart(int stfNo);
+	String getAttStartF(int stfNo);
 	int countAttStart(int stfNo);
 	int updateCheckout(int stfNo);
 	String getAttEnd(int stfNo);
@@ -18,6 +19,7 @@ public interface AttendanceService {
 	WorkBreak getRestStart(int stfNo);
 	int updateBrEnd(int brNo);
 	String getBrEnd(int brNo);
+	WorkBreak getWorkBreak(int brNo);
 	String getLatestBrStart(int stfNo);
 	String getLatestBrEnd(int stfNo);
 	int getBrNo(Map<String, Object> map1);
@@ -30,6 +32,8 @@ public interface AttendanceService {
 	int resetWHMZeroState();
 	List<Xiuxi> getXiuxiList();
 	int deleteXiuxi(String checked);
-	int countXAList(int stfNo);
+	int countXAList(Map<String, Object> map1);
 	List<XiuxiApply> getxiuxiApplyList(int stfNo, int currentPage, int limitInOnePage, String keyValue);
+	Map<String, Object> getElapsedWTime(int stfNo);
+	Map<String, Object> getElapsedRTime(Map<String, Object> mapS);
 }

@@ -17,8 +17,11 @@
 
 
 
-<select id="countXAList" parameterType="_int" resultType="_int">
+<select id="countXAList" parameterType="map" resultType="_int">
 	select count(*) from XIUXI_APPLY where STF_NO = #{stfNo}
+	<if test="keyValue != null and keyValue.equals('onlyAble')">
+	 and (XA_START > SYSDATE + 1)
+	</if>
 </select>
 
 <select id="getxiuxiApplyList" parameterType="_int" resultMap="xaList">

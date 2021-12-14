@@ -34,6 +34,10 @@ public class AttendanceDao {
 		return sqlSession.selectOne("aboutAtt.getAttStart", stfNo);
 	}
 	
+	public String getAttStartF(int stfNo) {
+		return sqlSession.selectOne("aboutAtt.getAttStartF", stfNo);
+	}
+	
 	public int updateCheckout(int stfNo) {
 		return sqlSession.update("aboutAtt.updateCheckout", stfNo);
 	}
@@ -56,6 +60,10 @@ public class AttendanceDao {
 	
 	public String getBrEnd(int brNo) {
 		return sqlSession.selectOne("aboutAtt.getBrEnd", brNo);
+	}
+
+	public WorkBreak getWorkBreak(int brNo) {
+		return sqlSession.selectOne("aboutAtt.getWorkBreak", brNo);
 	}
 	
 	public String getLatestBrStart(int stfNo) {
@@ -106,8 +114,8 @@ public class AttendanceDao {
 		return sqlSession.delete("aboutAtt.deleteXiuxi", checked);
 	}
 	
-	public int countXAList(int stfNo) {
-		return sqlSession.selectOne("attCheck.countXAList", stfNo);
+	public int countXAList(Map<String, Object> map1) {
+		return sqlSession.selectOne("attCheck.countXAList", map1);
 	}
 	
 	public List<XiuxiApply> getxiuxiApplyList(int stfNo, int currentPage, int limitInOnePage, String keyValue){
@@ -120,4 +128,13 @@ public class AttendanceDao {
 			return sqlSession.selectList("attCheck.getxiuxiApplyList", stfNo, row);			
 		}
 	}
+	
+	public Map<String, Object> getElapsedWTime(int stfNo) {
+		return sqlSession.selectOne("aboutAtt.getElapsedWTime", stfNo);
+	}
+	
+	public Map<String, Object> getElapsedRTime(Map<String, Object> mapS) {
+		return sqlSession.selectOne("aboutAtt.getElapsedRTime", mapS);
+	}
+	
 }

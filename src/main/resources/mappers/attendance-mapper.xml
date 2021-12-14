@@ -7,6 +7,14 @@
 	<result property="brStart" column="BR_START"/>
 </resultMap>
 
+<resultMap type="WorkBreak" id="WorkBreak2">
+	<id property="brNo" column="BR_NO" />
+	<result property="brStart" column="BR_START"/>
+	<result property="brEnd" column="BR_END"/>
+	<result property="attNo" column="ATT_NO"/>
+	<result property="stfNo" column="STF_NO"/>
+</resultMap>
+
 <resultMap type="WHM" id="WHM1">
 	<id property="whmCode" column="WHM_CODE" />
 	<result property="whmRestCode" column="WHM_REST_CODE" />
@@ -38,6 +46,12 @@ Insert into ATTENDANCE (ATT_NO, STF_NO, ATT_START) values (
 <select id="getAttStart" parameterType="_int" resultType="string">
 	<![CDATA[ 
 	select to_char(ATT_START, 'hh24:mi:ss') ATT_START from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+			]]>
+</select>
+
+<select id="getAttStartF" parameterType="_int" resultType="string">
+	<![CDATA[ 
+	select to_char(ATT_START, 'YYYYMMDDhh24miss') ATT_START from attendance where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
 			]]>
 </select>
 
@@ -83,6 +97,12 @@ Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_
 <select id="getBrEnd" parameterType="_int" resultType="string">
 	<![CDATA[ 
 	select to_char(BR_END, 'hh24:mi:ss') BR_END from WORK_BREAK where BR_NO = #{brNo}
+	]]>
+</select>
+
+<select id="getWorkBreak" parameterType="_int" resultMap="WorkBreak2">
+	<![CDATA[ 
+	select to_char(BR_END, 'hh24:mi:ss') BR_END, att_no from WORK_BREAK where BR_NO = #{brNo}
 	]]>
 </select>
 
@@ -149,5 +169,32 @@ where WHM_ZERO_DAY = #{selectedDay}
 <delete id="deleteXiuxi" parameterType="string">
 	delete from XIUXI where xiu_no = #{checked}
 </delete>
+
+<select id="getElapsedWTime" parameterType="_int" resultType="map">
+	<![CDATA[ 
+  		select to_char(extract(HOUR FROM diff), '09') as eh
+        ,to_char(extract(MINUTE FROM diff), '09') as em
+        ,to_char(extract(SECOND FROM diff), '09') as es
+        from(select (atte-atts) as diff from (select rownum,
+        to_timestamp(to_char(ATT_START, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') atts,
+        to_timestamp(to_char(ATT_END, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') atte 
+        from (select * from ATTENDANCE order by ATT_END desc) 
+        where STF_NO = 20210222 and rownum =1))
+  	]]>
+</select>
+
+<select id="getElapsedRTime" parameterType="map" resultType="map">
+	<![CDATA[ 
+        select to_char(sum(beh), '09') eh,  to_char(sum(bem), '09') em,  to_char(sum(bes), '09') es
+        from (select extract(HOUR FROM diff) AS beh
+        ,extract(MINUTE FROM diff) AS bem
+        ,extract(SECOND FROM diff) AS bes
+            from (SELECT (be-bs) as diff 
+            from (select to_timestamp(to_char(BR_START, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') bs
+                , to_timestamp(to_char(BR_END, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') be 
+                    from WORK_BREAK
+                    where STF_NO=#{stfNo} and (to_char(BR_START, 'YYYYMMDD') = #{attNo}))))
+  	]]>
+</select>
 
 </mapper>

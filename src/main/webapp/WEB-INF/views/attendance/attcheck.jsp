@@ -34,19 +34,13 @@
 					<p>Today's 출근시각</p>
 				</div>
 				<div class="div_time">
-					<c:choose>
-						<c:when test="${empty attStartFormat}"><p id="checkin_time">00:00:00</p></c:when>
-						<c:when test="${!empty attStartFormat}"><p id="checkin_time">${attStartFormat}</p></c:when>
-					</c:choose>
+					<p id="checkin_time">00:00:00</p>
 				</div>
 				<div class="div_title">
 					<p>Today's 퇴근시각</p>
 				</div>
 				<div class="div_time">
-					<c:choose>
-						<c:when test="${empty attEndFormat}"><p id="checkout_time">00:00:00</p></c:when>
-						<c:when test="${!empty attEndFormat}"><p id="checkout_time">${attEndFormat}</p></c:when>
-					</c:choose>
+					<p id="checkout_time">00:00:00</p>
 				</div>
 				<div class="div_btn">
 					 	<a href="javascript:fnCheckin()" class="btn_click" id="btn_check">출근</a>
@@ -57,25 +51,19 @@
 					<p>Today's 휴게시간</p>
 				</div>
 				<div class="div_time">
-					<p>00:00:00</p>
+					<p id="rest_time">00:00:00</p>
 				</div>
 				<div class="div_title">
 					<p>최근 휴식시작</p>
 				</div>
 				<div class="div_time">
-					<c:choose>
-						<c:when test="${empty restStartFormat}"><p id="restin_time">00:00:00</p></c:when>
-						<c:when test="${!empty restStartFormat}"><p id="restin_time">${restStartFormat}</p></c:when>
-					</c:choose>
+					<p id="restin_time">00:00:00</p>
 				</div>
 				<div class="div_title">
 					<p>최근 휴식종료</p>
 				</div>
 				<div class="div_time">
-					<c:choose>
-						<c:when test="${empty restEndFormat}"><p id="restout_time">00:00:00</p></c:when>
-						<c:when test="${!empty restEndFormat}"><p id="restout_time">${restEndFormat}</p></c:when>
-					</c:choose>
+					<p id="restout_time">00:00:00</p>
 				</div>
 				<div class="div_btn">
 					<a href="javascript:fnRestIn()" class="btn_click" id="btn_rest">휴식 시작</a>
@@ -86,38 +74,39 @@
 					<p>발생 연차</p>
 				</div>
 				<div class="div_time">
-					<p>${calAplT}</p>
+					<p id="calAplT">00개</p>
 				</div>
 				<div class="div_title">
 					<p>사용 연차</p>
 				</div>
 				<div class="div_time">
-					<p>${calAplU}</p>
+					<p id="calAplU">00개</p>
 				</div>
 				<div class="div_title">
 					<p>잔여 연차</p>
 				</div>
 				<div class="div_time">
-					<p>${calAplT-calAplU}</p>
+					<p id="calApl">00개</p>
 				</div>
 				<div class="div_btn">
 					<a href="javascript:fnApply()" class="btn_click" id="btn_apply">휴가/재택 신청</a>
 				</div>
 			</div>		
 		</article>
-		<article id="article_b">
+<!--		<article id="article_b">
 		
 			<h1>차트</h1>
 			
-		</article>
+		</article>   -->
 		<article id="article_c">
-			<h1><br>휴가신청 상세내역<input type="checkbox" value="allAble"></h1>
+			<h1><br>휴가신청 상세내역<input type="checkbox" name="check_able1" value="onlyAble"></h1>
 			<div>
 				<div class="div_restin_title">
 					<div class="div_restin_closer">
 						<ul class="restin_ul_title">
 							<li><a href="javascript:restin_showhide();" class="btn_i"><i class="fas fa-minus"></i></a></li>
-							<li>신청기간</li>
+							<li>휴가시작일자</li>
+							<li>휴가종료일자</li>
 							<li>신청일</li>
 							<li>신청사유</li>
 							<li>연차사용여부</li>
@@ -125,17 +114,9 @@
 					</div>
 			 	</div>
 				<div class="div_restin_contents" id="div_restin_contents">
-					<!-- for문 -->
-					<c:forEach items="${xiuxiApplyList}" var="xa">
-						<div>
-							<ul>
-								<li>${xa.xaStart} - ${xa.xaEnd}</li>
-								<li>${xa.xaWhen}</li>
-								<li>${xa.xiuReason}</li>
-								<li>${xa.xiuAplYesNo}</li>
-							</ul>
-						</div>
-					</c:forEach>
+				</div>
+				<div class="div_restin_paging" id="div_restin_paging">
+					<ul></ul>
 				</div>
 			</div>
 		</article>
@@ -146,17 +127,16 @@
 					<div class="div_home_closer">
 						<ul class="home_ul_title">
 							<li><a href="javascript:home_showhide();" class="btn_i"><i class="fas fa-minus"></i></a></li>
-							<li>신청기간</li>
+							<li>재택시작일자</li>
+							<li>재택종료일자</li>
 							<li>신청일</li>
-							<li>승인여부</li>
 						</ul>
 					</div>
 			 	</div>
 				<div class="div_home_contents" id="div_home_contents">
-					<!-- for문 -->
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
+				</div>
+				<div class="div_home_paging" id="div_home_paging">
+					<ul></ul>
 				</div>
 			</div>		
 		</article>
@@ -190,58 +170,197 @@
 
 
 <script>
+let ckInterval = "";
+let attStartFormat = "";
+let attEndFormat = "";
+let restStartFormat = "";
+let restEndFormat = "";
+let attStart = "";
+let calAplT = "";
+let calAplU = "";
+let elapsedWTime = "";
+let elapsedRTime = "";
+let brNo = "";
 
 $(document).ready(function(){
-	if("${attStartFormat}" != "" && "${attEndFormat}" == ""){
-		$("#btn_check").attr('href', "javascript:fnCheckOut()");
-		$("#btn_check").html("퇴근");
-	}
-	if("${restStartFormat}" != "" && "${restEndFormat}" == ""){
-		$("#btn_rest").attr('href', "javascript:fnRestOut()");
-		$("#btn_rest").html("휴식 종료");
-	}
 	$.ajax({
-		url : "getXAList"
-		, data : {stfNo : "${loginUser.stfNo}"
-					, currentPage : "1" 
-					, keyValue : "allAble"
-					}
-		, type : "get"
+		url : "attmaingetdata"
+		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
+			
 			console.log(data);
-			if(data.length==0){
-				$("#div_restin_contents").empty(); 
-				$("#div_restin_contents").append("<ul><li>신청한 휴가 내역이 없습니다.</li></ul>");
-				alert("데이터 없음");
-			} else {
-				console.log(data);
+			attStartFormat = data.attStartFormat;
+			attEndFormat = data.attEndFormat;
+			restStartFormat = data.restStartFormat;
+			restEndFormat = data.restEndFormat;
+			attStart = data.attStart;
+			calAplT = data.calAplT;
+			calAplU = data.calAplU;
+			brNo = data.brNo;
+			elapsedWTime = data.elapsedWTime;
+			elapsedRTime = data.elapsedRTime;
+			
+			$("#checkin_time").html(attStartFormat);
+			$("#checkout_time").html(attEndFormat);
+			$("#restin_time").html(restStartFormat);
+			$("#restout_time").html(restEndFormat);
+			
+			$("#working_time").html(elapsedWTime);
+			$("#rest_time").html(elapsedRTime);
+			
+			$("#calAplT").html(calAplT);
+			$("#calAplU").html(calAplU);
+			$("#calApl").html(calAplT-calAplU);
+			
+			if(!isNull(attStartFormat) && isNull(attEndFormat)){
+				ckInterval = setInterval(countTime, 1000);
+				$("#btn_check").attr('href', "javascript:fnCheckOut()");
+				$("#btn_check").html("퇴근");
 			}
+			if(!isNull(attStartFormat) && !isNull(attEndFormat)){
+				$("#btn_check").attr('href', "#");
+				$("#btn_check").addClass('notable');
+				$("#btn_check").html("출근");
 			}
+			if(!isNull(restStartFormat) && isNull(restEndFormat)){
+				$("#btn_rest").attr('href', "javascript:fnRestOut()");
+				$("#btn_rest").html("휴식 종료");
+			}	
+		}
 		, error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 
 					 + "message : " + request.responseText + "\n" 
 					 + "error : " + errorData);}
 	});
+ 	
 });
 
+// getPageRest(1);
+//$("input[name=check_able1]").change(function() {
+//    if($(this).is(":checked")) { 
+//    	getPageRest(1);
+//    } else {
+//    	getPageRest(1);
+//    }
+//});
+
+function isNull(obj) {
+	return (typeof obj != "undefined" && obj != null && obj != "") ? false : true;
+}
+
+function countTime() {
+	var nowDate = new Date();
+	var str;
+	console.log(nowDate);
+	if(attStart.length<7){
+		attStartFormat = attStartFormat.replaceAll(":", "");
+		str = nowDate.getFullYear()+addZero(nowDate.getMonth(), 2)+addZero(nowDate.getDate(), 2)+attStartFormat;
+	} else {
+		str = attStart;
+	}
+	var by = str.substr(0,4);
+	var bmm = str.substr(4,2)-1;
+	var bd = str.substr(6,2);
+	var bh = str.substr(8,2);
+	var bm = str.substr(10,2);
+	var bs = str.substr(12,2);
+	var checkinDate = new Date(by, bmm, bd, bh, bm, bs);
+	console.log(checkinDate);
+	var gapTime = nowDate.getTime()-checkinDate.getTime();
+	console.log(gapTime);
+	var wh = Math.floor((gapTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var wm = Math.floor((gapTime % (1000 * 60 * 60)) / (1000 * 60));
+	var ws = Math.floor((gapTime % (1000 * 60)) / 1000);
+	var totalWorkingTime = addZero(wh,2)+":"+addZero(wm,2)+":"+addZero(ws,2);
+	$("#working_time").html("");
+	$("#working_time").html(totalWorkingTime);	
+}
+
+function addZero(num, digits){
+	var zero = '';
+	num = num.toString();
+	if (num.length < digits) {
+		for (var i = 0; i < digits - num.length; i++)
+	    zero += '0';
+	  }
+	return zero + num;
+}
+
+function getPageRest(page) {
+	var keyValue = $("input[name=check_able1]:checked").val();
+	console.log(keyValue);
+	$.ajax({
+		url : "getXAList"
+		, data : {stfNo : "${loginUser.stfNo}"
+					, currentPage : page 
+					, keyValue : keyValue
+					}
+		, type : "get"
+		, dataType: "json"
+		, success: function(data) {
+			console.log(data);
+			var result = data.xiuxiApplyList;
+			if(result.length==0){
+				$("#div_restin_contents").html("");
+				$("#div_restin_contents").html('<ul><li class="li_no_xaList">신청한 휴가 내역이 없습니다.</li></ul>');
+			} else {
+				<!--리스트불러오기-->
+				var r = '';				
+				$.each(result, function(i){
+					r +='<div>';
+					r +='<ul>';
+					r +='<li>'+result[i].xaStart+'</li>';
+					r +='<li>'+result[i].xaEnd+'</li>';					
+					r +='<li>'+result[i].xaWhen+'</li>';
+					r +='<li>'+result[i].xiuxi.xiuReason+'</li>';					
+					if(result[i].xiuxi.xiuAplYesNo == 0){
+					r +='<li>'+"N"+'</li>';		
+					} else if(result[i].xiuxi.xiuAplYesNo == 1){
+					r +='<li>'+"Y"+'</li>';		
+					}
+					r +='</ul>';
+					r +='</div>';
+				})
+				$("#div_restin_contents").html("");
+				$("#div_restin_contents").html(r);
+				<!--페이징처리-->
+				var p = '';
+				for(var d=data.startPage; d<=data.endPage; d++){
+					if(d==data.currentPage){
+						p += '<li>'+'<a href="javascript:getPageRest('+d+')" name="a_current" class="a_current">'+d+'</a>'+'</li>';
+					}else{
+						p += '<li>'+'<a href="javascript:getPageRest('+d+')">'+d+'</a>'+'</li>';
+					}
+				}
+				$("#div_restin_paging > ul").html("");
+				$("#div_restin_paging > ul").html(p);
+			} 
+		}
+		, error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData);}
+	});
+}
 
 function fnCheckin(){
-	console.log("버튼눌림");
 	$.ajax({
 		url : "checkin"
 		, data: {stfNo : "${loginUser.stfNo}"}
 		, type : "post"
-		, dataType: "json"
 		, success: function(data) {
 			console.log(data);
-			if(data != "00:00:00"){
+			
+			if(!isNull(data)){
+				attStart = "";
+				attStartFormat = data;
+				ckInterval = setInterval(countTime, 1000);
 				$("#btn_check").attr('href', "javascript:fnCheckOut()");
 				$("#btn_check").html("퇴근");
-				$("#checkin_time").html(data);
-				location.reload();
+				$("#checkin_time").html(attStartFormat);
 			} else {
-				alert("출근등록에 실패했습니다.");
+				alert("출근 등록에 실패했습니다.");
 			}
 		}
 		, error : function(request, status, errorData){ 
@@ -257,16 +376,17 @@ function fnCheckOut(){
 		url : "checkout"
 		, data: {stfNo : "${loginUser.stfNo}"}
 		, type : "post"
-		, dataType: "json"
 		, success: function(data) {
 			console.log(data);
-			if(data != "00:00:00"){
-			$("#btn_check").attr('href', "javascript:fnCheckin()");
+			if(!isNull(data)){
+			$("#btn_check").attr('href', "#");
+			$("#btn_check").addClass('notable');
 			$("#btn_check").html("출근");
 			$("#checkout_time").html(data);
-			location.reload();
+			clearInterval(ckInterval);
 			} else {
 				alert("퇴근등록에 실패했습니다.");
+				location.reload();
 			}
 		}
 		, error : function(request, status, errorData){ 
@@ -277,7 +397,7 @@ function fnCheckOut(){
 }
 
 function fnRestIn(){
-	if("${attStartFormat}" != "" && "${attEndFormat}" == ""){	
+	if(!isNull(attStartFormat) && isNull(attEndFormat)){
 	$.ajax({
 		url : "restin"
 		, data: {stfNo : "${loginUser.stfNo}"}
@@ -285,12 +405,12 @@ function fnRestIn(){
 		, dataType: "json"
 		, success: function(data) {
 			console.log(data);
-			if(data.brStart != "00:00:00"){
+			if(!isNull(data)){
+			brNo = data.brNo;
 			$("#btn_rest").attr('href', "javascript:fnRestOut()");
 			$("#btn_rest").html("휴식 종료");
 			$("#restin_time").html(data.brStart);
 			$("#restout_time").html("00:00:00");
-			location.reload();
 			} else {
 				alert("휴식등록에 실패했습니다.");
 			}
@@ -306,19 +426,22 @@ function fnRestIn(){
 }
 
 function fnRestOut(){
-	if("${attStartFormat}" != "" && "${attEndFormat}" == ""){
+	if(!isNull(attStartFormat) && isNull(attEndFormat)){
 	$.ajax({
 		url : "restout"
-		, data: {brNo : "${brNo}"}
+		, data: {brNo : brNo}
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
 			console.log(data);
-			if(data != "00:00:00"){
+			if(!isNull(data)){
 			$("#btn_rest").attr('href', "javascript:fnRestIn()");
 			$("#btn_rest").html("휴식 시작");
-			$("#restout_time").html(data);
-			location.reload();
+			restEndFormat = data.restEndFormat;
+			elapsedRTime = data.elapsedRTime;
+			$("#restout_time").html(restEndFormat);
+			$("#rest_time").html(elapsedRTime);
+
 			} else {
 				alert("휴식종료에 실패했습니다.");
 			}

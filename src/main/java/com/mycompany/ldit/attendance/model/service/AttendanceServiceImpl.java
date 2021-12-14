@@ -27,6 +27,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public String getAttStart(int stfNo) {
 		return attDao.getAttStart(stfNo);
 	}
+	
+	@Override
+	public String getAttStartF(int stfNo) {
+		return attDao.getAttStartF(stfNo);
+	}
 
 	@Override
 	public int countAttStart(int stfNo) {
@@ -61,6 +66,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public String getBrEnd(int brNo) {
 		return attDao.getBrEnd(brNo);
+	}
+	
+	@Override
+	public WorkBreak getWorkBreak(int brNo) {
+		return attDao.getWorkBreak(brNo);
 	}
 
 	@Override
@@ -124,14 +134,25 @@ public class AttendanceServiceImpl implements AttendanceService {
 	}
 
 	@Override
-	public int countXAList(int stfNo) {
-		return attDao.countXAList(stfNo);
+	public int countXAList(Map<String, Object> map1) {
+		return attDao.countXAList(map1);
 	}
 
 	@Override
 	public List<XiuxiApply> getxiuxiApplyList(int stfNo, int currentPage, int limitInOnePage, String keyValue) {
 		return attDao.getxiuxiApplyList(stfNo, currentPage, limitInOnePage, keyValue);
 	}
+
+	@Override
+	public Map<String, Object> getElapsedWTime(int stfNo) {
+		return attDao.getElapsedWTime(stfNo);
+	}
+
+	@Override
+	public Map<String, Object> getElapsedRTime(Map<String, Object> mapS) {
+		return attDao.getElapsedRTime(mapS);
+	}
+
 
 
 }
