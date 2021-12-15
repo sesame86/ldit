@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/ldit_aside.css" /><!-- main css -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/basic.css" /><!-- basic css -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/whmanage.css" /><!-- whmanage css -->
+<link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- 테이블 css from w3schools -->
 </head>
 <body>
 	<%@ include file="../ldit_header.jsp" %>
@@ -79,10 +80,10 @@
 					<button type="button" id="btn_add_xiuxi" class="btn_apply">추&nbsp;&nbsp;&nbsp;&nbsp;가</button>
 					<button type="button" id="btn_remove_xiuxi" class="btn_apply">삭&nbsp;&nbsp;&nbsp;&nbsp;제</button>
 				</div>
-				<table>
+				<table class="w3-table w3-striped w3-border">
 					<thead>
 						<tr>
-							<th><input type="checkbox" readonly="readonly"></th>
+							<th><input type="checkbox" id="checkbox_all"></th>
 							<th>휴가코드</th>
 							<th>휴가종류명</th>
 							<th>휴가차감여부</th>
@@ -93,8 +94,7 @@
 							<tbody>
 								<c:forEach items="${xiuxiList}" var="x">
 									<tr>
-										<td><input type="checkbox" name="ck_xiuxi"
-											value="${x.xiuNo}"></td>
+										<td><input type="checkbox" name="ck_xiuxi" value="${x.xiuNo}"></td>
 										<td>${x.xiuNo}</td>
 										<td>${x.xiuReason}</td>
 										<c:choose>
@@ -179,92 +179,98 @@ function openTab(evt, tabName){
 	evt.currentTarget.className += " active";
 }
 
-$(document).ready(function(){
-    $("input:radio[name=whm_type]").click(function(){
-        if($("input[name=whm_type]:checked").val() == "0"){
-            $("#week_hours").attr("disabled", true);
-            $(".select_time").attr("disabled", false);
-            $(".select_day").attr("disabled", false);
-        }else if($("input[name=whm_type]:checked").val() == "1"){
-              $(".select_time").attr("disabled", true);
-              $(".select_day").attr("disabled", true);
-              $("#week_hours").attr("disabled", false);
-        }
-    });
-});
-
-$(document).ready(function(){
-	if("${whm.whmCode}"=="0"){
-		$("#whm_fix").attr("checked", true);
-	} else if("${whm.whmCode}"=="1") {
-		$("#whm_week").attr("checked", true);
-	}
-	if($("input[name=whm_type]:checked").val() == "0"){
-        $("#week_hours").attr("disabled", true);
-        $(".select_time").attr("disabled", false);
-        $(".select_day").attr("disabled", false);
-    }else if($("input[name=whm_type]:checked").val() == "1"){
-          $(".select_time").attr("disabled", true);
-          $(".select_day").attr("disabled", true);
-          $("#week_hours").attr("disabled", false);
-    }
-	if("${whm.whmRestCode}" == "0"){
-		$("#in_rest").attr("checked", true);
-	} else if("${whm.whmRestCode}" == "1"){
-		$("#out_rest").attr("checked", true);
-	}
-});
 
 
-function checkEnable(){
-	if($("input[name=whm_type]:checked").val() == "0"){
-		var lcheck = $(".select_day:checked").length;
-		if (lcheck == 0) {
-			alert("근무일을 하루 이상 선택하세요.");
-			return false;
-			}
-    }else if($("input[name=whm_type]:checked").val() == "1"){
-		if(!$("#week_hours").val() || $("#week_hours").val() == 0){
-			alert("1주 소정근로시간을 입력해주세요.");
-			return false;
+	$("input:radio[name=whm_type]").click(function() {
+		if ($("input[name=whm_type]:checked").val() == "0") {
+			$("#week_hours").attr("disabled", true);
+			$(".select_time").attr("disabled", false);
+			$(".select_day").attr("disabled", false);
+		} else if ($("input[name=whm_type]:checked").val() == "1") {
+			$(".select_time").attr("disabled", true);
+			$(".select_day").attr("disabled", true);
+			$("#week_hours").attr("disabled", false);
 		}
-    }
-    $("#week_hours").attr("disabled", false);
-    $(".select_time").attr("disabled", false);
-    $(".select_day").attr("disabled", false);
-}
-
-
-$("#btn_remove_xiuxi").click(function(){
-	var checkedXiuxi = [];
-	$("input[name='ck_xiuxi']:checked").each(function(i){
-		checkedXiuxi.push($(this).val());
-		console.log(checkedXiuxi);
 	});
-	if(checkedXiuxi.length){
-	$.ajax({
-		url : "xiuxiRemove"
-		, data : {"checkedXiuxi" : checkedXiuxi}
-		, type : "post"
-		, success: function(data){
-			if(data >= checkedXiuxi.length-1){
-				alert("정상적으로 삭제되었습니다.");
-				location.reload();
+
+	$("#checkbox_all").click(function () {
+		if($("input:checkbox[id='checkbox_all']").prop("checked")){
+			$("input:checkbox[name='ck_xiuxi']").prop("checked", true);
+		} else {
+			$("input:checkbox[name='ck_xiuxi']").prop("checked", false);
+		}
+	});
+
+	$(document).ready(function() {
+		if ("${whm.whmCode}" == "0") {
+			$("#whm_fix").attr("checked", true);
+		} else if ("${whm.whmCode}" == "1") {
+			$("#whm_week").attr("checked", true);
+		}
+		if ($("input[name=whm_type]:checked").val() == "0") {
+			$("#week_hours").attr("disabled", true);
+			$(".select_time").attr("disabled", false);
+			$(".select_day").attr("disabled", false);
+		} else if ($("input[name=whm_type]:checked").val() == "1") {
+			$(".select_time").attr("disabled", true);
+			$(".select_day").attr("disabled", true);
+			$("#week_hours").attr("disabled", false);
+		}
+		if ("${whm.whmRestCode}" == "0") {
+			$("#in_rest").attr("checked", true);
+		} else if ("${whm.whmRestCode}" == "1") {
+			$("#out_rest").attr("checked", true);
+		}
+	});
+
+	function checkEnable() {
+		if ($("input[name=whm_type]:checked").val() == "0") {
+			var lcheck = $(".select_day:checked").length;
+			if (lcheck == 0) {
+				alert("근무일을 하루 이상 선택하세요.");
+				return false;
+			}
+		} else if ($("input[name=whm_type]:checked").val() == "1") {
+			if (!$("#week_hours").val() || $("#week_hours").val() == 0) {
+				alert("1주 소정근로시간을 입력해주세요.");
+				return false;
 			}
 		}
-		, error : function(request, status, errorData){ 
-				 alert("error code : " + request.status + "\n" 
-						 + "message : " + request.responseText + "\n" 
-						 + "error : " + errorData);}
-	});} else {
-		alert("삭제할 항목을 선택해주세요.");
+		$("#week_hours").attr("disabled", false);
+		$(".select_time").attr("disabled", false);
+		$(".select_day").attr("disabled", false);
 	}
-});
 
-
-
-
-
+	$("#btn_remove_xiuxi").click(
+			function() {
+				var checkedXiuxi = [];
+				$("input[name='ck_xiuxi']:checked").each(function(i) {
+					checkedXiuxi.push($(this).val());
+					console.log(checkedXiuxi);
+				});
+				if (checkedXiuxi.length) {
+					$.ajax({
+						url : "xiuxiRemove",
+						data : {
+							"checkedXiuxi" : checkedXiuxi
+						},
+						type : "post",
+						success : function(data) {
+							if (data >= checkedXiuxi.length - 1) {
+								alert("정상적으로 삭제되었습니다.");
+								location.reload();
+							}
+						},
+						error : function(request, status, errorData) {
+							alert("error code : " + request.status + "\n"
+									+ "message : " + request.responseText
+									+ "\n" + "error : " + errorData);
+						}
+					});
+				} else {
+					alert("삭제할 항목을 선택해주세요.");
+				}
+			});
 </script>
 
 
