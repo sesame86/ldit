@@ -29,7 +29,7 @@
 	<!-- 이부분(beans:bean id="AuthLoginInterceptor", interceptors부분)을 주석 처리하시면 
 		로그인 없이 페이지 볼수 있음 -->
 	<!-- 인터셉터 객체 생성 -->
-	<!--  
+
 	<beans:bean id="AuthLoginInterceptor"
 		class="com.mycompany.ldit.common.AuthLoginInterceptor">
 	</beans:bean>
@@ -40,6 +40,6 @@
 			<beans:ref bean="AuthLoginInterceptor" />
 		</interceptor>
 	</interceptors>
-	-->
+
 
 </beans:beans>
