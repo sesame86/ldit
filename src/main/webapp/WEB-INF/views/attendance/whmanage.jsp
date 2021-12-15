@@ -23,109 +23,162 @@
 	
 	<section>
 		<article id="article_a">
+			<h1>근무제도 관리</h1>
 			<form action="whmanage" method="post" onsubmit="return checkEnable();">
-				<fieldset>
-					<legend>근무계획설정</legend>
-						<div>
-							<div>
-								<div>근무제도 선택</div>
-								<div>								
-									<label for="whm_fix">고정근무제</label><input type="radio" id="whm_fix" name="whm_type" value="0">
-									<label for="whm_week">근무유연제</label><input type="radio" id="whm_week" name="whm_type" value="1">	
-								</div>
-							</div>
-							<div>
-								<div>휴식제도 선택</div>
-								<div>
-									<label for="in_rest">휴식시간 포함</label><input type="radio" id="in_rest" name="rest_type" value="0">
-									<label for="out_rest">휴식시간 제외</label><input type="radio" id="out_rest" name="rest_type" value="1">								
-								</div>
-							</div>
-							<div>
-								<div>소정근무시간</div>
-								<div><input type="number" value="40" id="week_hours" name="week_hours"></div>							
-							</div>
-							<div>
-								<div>근무일 설정</div>
-								<div>
-									<input type="checkbox" name="select_day" id="mon" class="select_day" value="월요일">
-									<label for="mon">월요일</label>
-									<input type="checkbox" name="select_day" id="tues" class="select_day" value="화요일">
-									<label for="tues">화요일</label>
-									<input type="checkbox" name="select_day" id="wed" class="select_day" value="수요일">
-									<label for="wed">수요일</label>
-									<input type="checkbox" name="select_day" id="thurs" class="select_day" value="목요일">
-									<label for="thurs">목요일</label>
-									<input type="checkbox" name="select_day" id="fri" class="select_day" value="금요일">
-									<label for="fri">금요일</label>
-									<input type="checkbox" name="select_day" id="sat" class="select_day" value="토요일">
-									<label for="sat">토요일</label>
-									<input type="checkbox" name="select_day" id="sun" class="select_day" value="일요일">
-									<label for="sun">일요일</label>
-								</div>
-							</div>
-							<div>
-								<div>근무시간 설정</div>
-								<div>
-									  <input type="time" id="time_in" name="time_in" value="09:00:00" class="select_time" step="1">
-									  -
-									  <input type="time" id="time_out" name="time_out" value="18:00:00" class="select_time" step="1">
-								</div>
-							</div>
-						</div>
-				</fieldset>
-				<button>완료</button>
+				<div id="div_whm_outer">
+					<h1>근무제도 선택</h1>
+					<div>
+						<label for="whm_fix">고정근무제</label>
+						<input type="radio"	id="whm_fix" name="whm_type" value="0">
+						<label for="whm_week">근무유연제</label>
+						<input type="radio" id="whm_week" name="whm_type" value="1">
+					</div>
+					<h1>휴식제도 선택</h1>
+					<div>
+						<label for="in_rest">휴식시간 포함</label>
+						<input type="radio"	id="in_rest" name="rest_type" value="0">
+						<label for="out_rest">휴식시간 제외</label>
+						<input type="radio" id="out_rest" name="rest_type" value="1">
+					</div>
+					<h1>소정근무시간</h1>
+					<div>
+						<input type="number" value="40" id="week_hours" name="week_hours">
+					</div>
+					<h1>근무일 설정</h1>
+					<div>
+						<input type="checkbox" name="select_day" id="mon" class="select_day" value="월요일">
+						<label for="mon">월요일</label>
+						<input type="checkbox" name="select_day" id="tues" class="select_day" value="화요일">
+						<label for="tues">화요일</label>
+						<input type="checkbox" name="select_day" id="wed" class="select_day" value="수요일">
+						<label for="wed">수요일</label>
+						<input type="checkbox" name="select_day" id="thurs" class="select_day" value="목요일">
+						<label for="thurs">목요일</label>
+						<input type="checkbox" name="select_day" id="fri" class="select_day" value="금요일">
+						<label for="fri">금요일</label>
+						<input type="checkbox" name="select_day" id="sat" class="select_day" value="토요일"> 
+						<label for="sat">토요일</label>
+						<input type="checkbox" name="select_day" id="sun" class="select_day" value="일요일">
+						<label for="sun">일요일</label>
+					</div>
+					<h1>근무시간 설정</h1>
+					<div>
+					<input type="time" id="time_in" name="time_in" value="09:00:00" class="select_time" step="1">
+					-
+					<input type="time" id="time_out" name="time_out" value="18:00:00" class="select_time" step="1">
+					</div>
+				</div>
+				<button class="btn_whn_manage">완&nbsp;&nbsp;&nbsp;&nbsp;료</button>
 			</form>
 		</article>
 		<br>
-		<article id="artilce_b">
-			<div>
-				<button type="button" id="btn_add_xiuxi">추가</button>
-				<button type="button" id="btn_remove_xiuxi">삭제</button>
-			</div>
-			<table>
-				<thead>
-					<tr>
-						<th><input type="checkbox" readonly="readonly"></th>
-						<th>휴가코드</th>
-						<th>휴가종류명</th>
-						<th>휴가차감여부</th>
-					</tr>
-				</thead>
-				<c:choose>
-					<c:when test="${!empty xiuxiList}">
-						<tbody>
-							<c:forEach items="${xiuxiList}" var="x">
+		<article id="article_b">
+			<h1>휴가코드 관리</h1>
+			<div id="div_apply_outer">
+				<div id="div_btnapply_outer">
+					<button type="button" id="btn_add_xiuxi" class="btn_apply">추&nbsp;&nbsp;&nbsp;&nbsp;가</button>
+					<button type="button" id="btn_remove_xiuxi" class="btn_apply">삭&nbsp;&nbsp;&nbsp;&nbsp;제</button>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th><input type="checkbox" readonly="readonly"></th>
+							<th>휴가코드</th>
+							<th>휴가종류명</th>
+							<th>휴가차감여부</th>
+						</tr>
+					</thead>
+					<c:choose>
+						<c:when test="${!empty xiuxiList}">
+							<tbody>
+								<c:forEach items="${xiuxiList}" var="x">
+									<tr>
+										<td><input type="checkbox" name="ck_xiuxi"
+											value="${x.xiuNo}"></td>
+										<td>${x.xiuNo}</td>
+										<td>${x.xiuReason}</td>
+										<c:choose>
+											<c:when test="${x.xiuAplYesNo eq 0}">
+												<td>N</td>
+											</c:when>
+											<c:when test="${x.xiuAplYesNo eq 1}">
+												<td>Y</td>
+											</c:when>
+										</c:choose>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</c:when>
+						<c:when test="${empty xiuxiList}">
+							<tbody>
 								<tr>
-									<td><input type="checkbox" name="ck_xiuxi" value="${x.xiuNo}"></td>
-									<td>${x.xiuNo}</td>
-									<td>${x.xiuReason}</td>
-									<c:choose>
-										<c:when test="${x.xiuAplYesNo eq 0}"><td>N</td></c:when>
-										<c:when test="${x.xiuAplYesNo eq 1}"><td>Y</td></c:when>
-									</c:choose>
+									<td colspan="4">등록된 휴가가 없습니다.</td>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</c:when>
-					<c:when test="${empty xiuxiList}">
-						<tbody>
-							<tr>
-								<td colspan="4">등록된 휴가가 없습니다.</td>
-							</tr>
-						</tbody>
-					</c:when>
-				</c:choose>
-			</table>
+							</tbody>
+						</c:when>
+					</c:choose>
+				</table>
+			</div>
 		</article>
-		
-		
-		
-		
-		
-	</section>
+	</section>	
+	
+		<div class="modal hidden">
+			<div class="modal_overlay">
+				<div class="modal_content">
+					<div class="tab">
+						<div><button class="tablinks" onclick="openTab(event, 'm_div_restapply')">휴가신청</button></div>
+						<div><button class="tablinks" onclick="openTab(event, 'm_div_whomeapply')">재택근무신청</button></div>
+						<div id="m_div_restapply" class="tabcontent">
+							<form method="post" action="#">
+								<p>사유</p>
+								<select>
+									<option>개인일정</option>
+								</select>
+								<p>연차 사용여부</p>
+								<input type="text" readonly="readonly" value="">
+								<p>일자</p>
+								<div></div>
+								<button type="button">신청</button>							
+							</form>
+						</div>
+						<div id="m_div_whomeapply" class="tabcontent">
+							<form method="post" action="#">
+								<p>일자</p>
+								<div></div>
+								<button type="button">신청</button>							
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	
 <script>
+
+const openButton = document.getElementById("btn_add_xiuxi");
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".modal_overlay");
+openButton.addEventListener("click", function(){
+	modal.classList.remove("hidden");
+});
+overlay.addEventListener("click", function(){
+	modal.classList.add("hidden");
+});
+
+function openTab(evt, tabName){
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+	    tabcontent[i].style.display = "none";
+	  }
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+	    tablinks[i].className = tablinks[i].className.replace(" active", "");
+	  }
+	document.getElementById(tabName).style.display = "block";
+	evt.currentTarget.className += " active";
+}
+
 $(document).ready(function(){
     $("input:radio[name=whm_type]").click(function(){
         if($("input[name=whm_type]:checked").val() == "0"){
@@ -207,6 +260,8 @@ $("#btn_remove_xiuxi").click(function(){
 		alert("삭제할 항목을 선택해주세요.");
 	}
 });
+
+
 
 
 
