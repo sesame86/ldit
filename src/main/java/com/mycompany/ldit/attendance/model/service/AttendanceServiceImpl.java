@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.ldit.attendance.model.dao.AttendanceDao;
+import com.mycompany.ldit.attendance.model.vo.Attendance;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
@@ -17,6 +18,42 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 	@Autowired
 	private AttendanceDao attDao;
+	
+	@Override
+	public Attendance getTodayAttendance(int stfNo) {
+		return attDao.getTodayAttendance(stfNo);
+	}
+	
+	public String getAttStartDateTime(Map<String, Object> mapMS) {
+		return attDao.getAttStartDateTime(mapMS);
+	}
+	
+	@Override
+	public Map<String, Object> getElapsedWTime(Map<String, Object> mapMS) {
+		return attDao.getElapsedWTime(mapMS);
+	}
+
+	@Override
+	public Map<String, Object> getElapsedRTime(Map<String, Object> mapMS) {
+		return attDao.getElapsedRTime(mapMS);
+	}
+	
+	@Override
+	public WorkBreak getLatestWB(Map<String, Object> mapMS) {
+		return attDao.getLatestWB(mapMS);
+	}
+	
+	@Override
+	public int countAplTotal(int stfNo) {
+		return attDao.countAplTotal(stfNo);
+	}
+
+	@Override
+	public int countAplUse(int stfNo) {
+		return attDao.countAplUse(stfNo);
+	}
+	
+	
 
 	@Override
 	public int insertCheckin(int stfNo) {
@@ -26,11 +63,6 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public String getAttStart(int stfNo) {
 		return attDao.getAttStart(stfNo);
-	}
-	
-	@Override
-	public String getAttStartF(int stfNo) {
-		return attDao.getAttStartF(stfNo);
 	}
 
 	@Override
@@ -88,15 +120,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return attDao.getBrNo(map1);
 	}
 
-	@Override
-	public int countAplTotal(int stfNo) {
-		return attDao.countAplTotal(stfNo);
-	}
 
-	@Override
-	public int countAplUse(int stfNo) {
-		return attDao.countAplUse(stfNo);
-	}
 
 	@Override
 	public WorkingHoursManage getWHM() {
@@ -143,15 +167,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return attDao.getxiuxiApplyList(stfNo, currentPage, limitInOnePage, keyValue);
 	}
 
-	@Override
-	public Map<String, Object> getElapsedWTime(int stfNo) {
-		return attDao.getElapsedWTime(stfNo);
-	}
+	
 
-	@Override
-	public Map<String, Object> getElapsedRTime(Map<String, Object> mapS) {
-		return attDao.getElapsedRTime(mapS);
-	}
+
+
+
 
 
 

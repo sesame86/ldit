@@ -171,11 +171,12 @@
 
 <script>
 let ckInterval = "";
+let attNoFormat = "";
 let attStartFormat = "";
 let attEndFormat = "";
 let restStartFormat = "";
 let restEndFormat = "";
-let attStart = "";
+let attStartDateTime = "";
 let calAplT = "";
 let calAplU = "";
 let elapsedWTime = "";
@@ -188,18 +189,17 @@ $(document).ready(function(){
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
-			
 			console.log(data);
-			attStartFormat = data.attStartFormat;
-			attEndFormat = data.attEndFormat;
-			restStartFormat = data.restStartFormat;
-			restEndFormat = data.restEndFormat;
-			attStart = data.attStart;
+			attStartFormat = data.att.attStart;
+			attEndFormat = data.att.attEnd;
+			attStartDateTime = data.attStartDateTime;
+			elapsedRTime = data.att.attRestAll;				
+			elapsedWTime = data.elapsedWTime;
+			restStartFormat = data.wb.brStart;
+			restEndFormat = data.wb.brEnd;
+			brNo = data.wb.brNo;
 			calAplT = data.calAplT;
 			calAplU = data.calAplU;
-			brNo = data.brNo;
-			elapsedWTime = data.elapsedWTime;
-			elapsedRTime = data.elapsedRTime;
 			
 			$("#checkin_time").html(attStartFormat);
 			$("#checkout_time").html(attEndFormat);
@@ -253,11 +253,11 @@ function countTime() {
 	var nowDate = new Date();
 	var str;
 	console.log(nowDate);
-	if(attStart.length<7){
+	if(attStartDateTime.length<7){
 		attStartFormat = attStartFormat.replaceAll(":", "");
 		str = nowDate.getFullYear()+addZero(nowDate.getMonth(), 2)+addZero(nowDate.getDate(), 2)+attStartFormat;
 	} else {
-		str = attStart;
+		str = attStartDateTime;
 	}
 	var by = str.substr(0,4);
 	var bmm = str.substr(4,2)-1;
@@ -353,7 +353,7 @@ function fnCheckin(){
 			console.log(data);
 			
 			if(!isNull(data)){
-				attStart = "";
+				attStartDateTime = "";
 				attStartFormat = data;
 				ckInterval = setInterval(countTime, 1000);
 				$("#btn_check").attr('href', "javascript:fnCheckOut()");

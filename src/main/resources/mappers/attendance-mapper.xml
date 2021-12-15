@@ -2,9 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="aboutAtt">
 
+<resultMap type="Attendance" id="TodayAttendance">
+	<result property="attNo" column="ATT_NO"/>
+	<result property="stfNo" column="STF_NO"/>
+	<result property="attStart" column="ATT_START"/>
+	<result property="attEnd" column="ATT_END"/>
+	<result property="attRestAll" column="ATT_RESTALL"/>
+</resultMap>
+
 <resultMap type="WorkBreak" id="WorkBreak1">
 	<id property="brNo" column="BR_NO" />
 	<result property="brStart" column="BR_START"/>
+	<result property="brEnd" column="BR_END"/>
 </resultMap>
 
 <resultMap type="WorkBreak" id="WorkBreak2">
@@ -27,6 +36,64 @@
 	<result property="xiuAplYesNo" column="XIU_APL_YESNO"/>
 </resultMap>
 
+<select id="getTodayAttendance" parameterType="_int" resultMap="TodayAttendance">
+	<![CDATA[ 
+	select ATT_NO, to_char(ATT_START, 'hh24:mi:ss') ATT_START, to_char(ATT_END, 'hh24:mi:ss') ATT_END, ATT_RESTALL
+		from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
+  	]]>		
+</select>
+
+<select id="getAttStartDateTime" parameterType="map" resultType="string">
+	select to_char(ATT_START, 'YYYYMMDDhh24miss') ATT_START from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = #{thisAttNo}
+</select>
+
+<select id="getElapsedWTime" parameterType="map" resultType="map">
+	<![CDATA[ 
+  		select to_char(extract(HOUR FROM diff), '09') as eh
+        ,to_char(extract(MINUTE FROM diff), '09') as em
+        ,to_char(extract(SECOND FROM diff), '09') as es
+    	    from(select (atte-atts) as diff from (select rownum,
+       		to_timestamp(to_char(ATT_START, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') atts,
+        	to_timestamp(to_char(ATT_END, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') atte 
+        		from ATTENDANCE
+        		where STF_NO = #{stfNo} and ATT_NO = #{thisAttNo}))
+  	]]>
+</select>
+
+<select id="getElapsedRTime" parameterType="map" resultType="map">
+	<![CDATA[ 
+        select to_char(sum(beh), '09') eh,  to_char(sum(bem), '09') em,  to_char(sum(bes), '09') es
+        	from (select extract(HOUR FROM diff) AS beh
+       		,extract(MINUTE FROM diff) AS bem
+        	,extract(SECOND FROM diff) AS bes
+            	from (SELECT (be-bs) as diff 
+            		from (select to_timestamp(to_char(BR_START, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') bs
+                		, to_timestamp(to_char(BR_END, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') be 
+                    		from WORK_BREAK
+                    		where STF_NO = #{stfNo} and ATT_NO = #{thisAttNo})))
+  	]]>
+</select>
+
+<select id="getLatestWB" parameterType="map" resultMap="WorkBreak1">
+	<![CDATA[ 
+	select BR_NO, to_char(BR_START, 'hh24:mi:ss') BR_START, to_char(BR_END, 'hh24:mi:ss') BR_END 
+		from (select * from WORK_BREAK where STF_NO = #{stfNo} and ATT_NO = #{thisAttNo} order by BR_NO desc)
+		where rownum = 1
+  	]]>
+</select>
+
+<select id="countAplTotal" parameterType="_int" resultType="_int">
+	<![CDATA[ 
+	select count(*) from (select * from APL where STF_NO = #{stfNo}) where SYSDATE between APL_DATE and ADD_MONTHS(APL_DATE, '12')
+	]]>
+</select>
+
+<select id="countAplUse" parameterType="_int" resultType="_int">
+	<![CDATA[ 
+	select count(*) from (select * from APL where STF_NO = #{stfNo} and APL_STATE = '0') where SYSDATE between APL_DATE and ADD_MONTHS(APL_DATE, '12')
+	]]>
+</select>
+
 <select id="countAttStart" parameterType="_int" resultType="_int">
 	<![CDATA[ 
 	select count(ATT_START) from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
@@ -46,12 +113,6 @@ Insert into ATTENDANCE (ATT_NO, STF_NO, ATT_START) values (
 <select id="getAttStart" parameterType="_int" resultType="string">
 	<![CDATA[ 
 	select to_char(ATT_START, 'hh24:mi:ss') ATT_START from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
-			]]>
-</select>
-
-<select id="getAttStartF" parameterType="_int" resultType="string">
-	<![CDATA[ 
-	select to_char(ATT_START, 'YYYYMMDDhh24miss') ATT_START from attendance where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
 			]]>
 </select>
 
@@ -128,19 +189,6 @@ Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_
 	]]>
 </select>
 
-
-<select id="countAplTotal" parameterType="_int" resultType="_int">
-	<![CDATA[ 
-	select count(*) from (select * from APL where STF_NO = #{stfNo}) where SYSDATE between APL_DATE and ADD_MONTHS(APL_DATE, '12')
-	]]>
-</select>
-
-<select id="countAplUse" parameterType="_int" resultType="_int">
-	<![CDATA[ 
-	select count(*) from (select * from APL where STF_NO = #{stfNo} and APL_STATE = '0') where SYSDATE between APL_DATE and ADD_MONTHS(APL_DATE, '12')
-	]]>
-</select>
-
 <select id="getWHM" resultMap="WHM1">
 	select * from WH_MANAGE
 </select>
@@ -169,32 +217,5 @@ where WHM_ZERO_DAY = #{selectedDay}
 <delete id="deleteXiuxi" parameterType="string">
 	delete from XIUXI where xiu_no = #{checked}
 </delete>
-
-<select id="getElapsedWTime" parameterType="_int" resultType="map">
-	<![CDATA[ 
-  		select to_char(extract(HOUR FROM diff), '09') as eh
-        ,to_char(extract(MINUTE FROM diff), '09') as em
-        ,to_char(extract(SECOND FROM diff), '09') as es
-        from(select (atte-atts) as diff from (select rownum,
-        to_timestamp(to_char(ATT_START, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') atts,
-        to_timestamp(to_char(ATT_END, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') atte 
-        from (select * from ATTENDANCE order by ATT_END desc) 
-        where STF_NO = 20210222 and rownum =1))
-  	]]>
-</select>
-
-<select id="getElapsedRTime" parameterType="map" resultType="map">
-	<![CDATA[ 
-        select to_char(sum(beh), '09') eh,  to_char(sum(bem), '09') em,  to_char(sum(bes), '09') es
-        from (select extract(HOUR FROM diff) AS beh
-        ,extract(MINUTE FROM diff) AS bem
-        ,extract(SECOND FROM diff) AS bes
-            from (SELECT (be-bs) as diff 
-            from (select to_timestamp(to_char(BR_START, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') bs
-                , to_timestamp(to_char(BR_END, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') be 
-                    from WORK_BREAK
-                    where STF_NO=#{stfNo} and (to_char(BR_START, 'YYYYMMDD') = #{attNo}))))
-  	]]>
-</select>
 
 </mapper>
