@@ -52,6 +52,21 @@ public class AttendanceDao {
 	
 	
 	
+	public int countXiuNo(String xiuNo) {
+		return sqlSession.selectOne("whmanage.countXiuNo", xiuNo);
+	}
+	
+	public int insertXiuxi(Map<String, Object> mapM) {
+		return sqlSession.insert("whmanage.insertXiuxi", mapM);
+	}
+	
+	public int deleteXiuxi(String checked) {
+		return sqlSession.delete("whmanage.deleteXiuxi", checked);
+	}
+	
+	
+	
+	
 	
 	public int countAttStart(int stfNo){
 		int r = -1;
@@ -88,6 +103,9 @@ public class AttendanceDao {
 	
 	public int updateBrEnd(int brNo) {
 		return sqlSession.update("aboutAtt.updateBrEnd", brNo);
+	}
+	public int updateBrEndForce(Map<String, Object> map1) {
+		return sqlSession.update("aboutAtt.updateBrEndForce", map1);
 	}
 	
 	public String getBrEnd(int brNo) {
@@ -135,9 +153,6 @@ public class AttendanceDao {
 		return sqlSession.selectList("aboutAtt.getXiuxiList");
 	}
 	
-	public int deleteXiuxi(String checked) {
-		return sqlSession.delete("aboutAtt.deleteXiuxi", checked);
-	}
 	
 	public int countXAList(Map<String, Object> map1) {
 		return sqlSession.selectOne("attCheck.countXAList", map1);

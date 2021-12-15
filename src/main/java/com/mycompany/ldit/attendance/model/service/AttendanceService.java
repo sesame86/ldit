@@ -20,6 +20,10 @@ public interface AttendanceService {
 	
 	
 	
+	int countXiuNo(String xiuNo);
+	int insertXiuxi(Map<String, Object> mapM);
+	int deleteXiuxi(String checked);
+	
 	
 	int insertCheckin(int stfNo);
 	String getAttStart(int stfNo);
@@ -40,7 +44,6 @@ public interface AttendanceService {
 	int updateWHMZero(Map<String, Object> map2);
 	int resetWHMZeroState();
 	List<Xiuxi> getXiuxiList();
-	int deleteXiuxi(String checked);
 	int countXAList(Map<String, Object> map1);
 	List<XiuxiApply> getxiuxiApplyList(int stfNo, int currentPage, int limitInOnePage, String keyValue);
 

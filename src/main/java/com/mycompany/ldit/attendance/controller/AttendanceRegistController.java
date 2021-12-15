@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,27 +102,42 @@ public class AttendanceRegistController {
 		return "redirect:/whmanage";
 	}
 	
-	@RequestMapping(value="xiuxiset", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@RequestMapping(value="ckDuplXiuNo", method = RequestMethod.POST)
 	@ResponseBody
-	public String xiuxiSetMethod() {
-		
-		
-		
-		
-		
-		
-		Gson gson = new Gson();
-		String r = gson.toJson("");
-		return r;
+	public int ckDuplXiuNo(@RequestParam(value="xiuNo") String xiuNo) {
+		int result = -1;
+		System.out.println("진입함");
+		//xiuNo가 이미 존재하는지 확인
+		result = attService.countXiuNo(xiuNo);
+		System.out.println("result: "+result);
+		return result;
 	}
 	
-	@RequestMapping(value="xiuxiRemove", method = RequestMethod.POST)
+	@RequestMapping(value="xiuxiset", method = RequestMethod.POST)
+	public String xiuxiSetMethod(HttpServletRequest request) {
+		Map<String, Object> mapM = new HashMap<String, Object>();
+		
+		String xiuNo = request.getParameter("xiu_no");
+		String xiuReason = request.getParameter("xiu_reason");
+		int xiuAPL = Integer.parseInt(request.getParameter("xiu_apl_yesno"));
+		
+		mapM.put("xiuNo", xiuNo);
+		mapM.put("xiuReason", xiuReason);
+		mapM.put("xiuAPL", xiuAPL);
+		System.out.println("mapM: "+mapM);
+		
+		int result = attService.insertXiuxi(mapM);
+		System.out.println("attService.insertXiuxi(mapM)의 값은"+result);
+		return "redirect:/whmanage";
+	}
+	
+	@RequestMapping(value="xiuxiremove", method = RequestMethod.POST)
 	public void xiuxiRemoveMethod(@RequestParam(value="checkedXiuxi[]") List<String> checkedXiuxi, HttpServletResponse response) throws IOException{
 		response.setContentType("application/json; charset=utf-8");
 		
 		int resultOfRemoveXiuxi = -1;
 		for(String checked : checkedXiuxi) {
-			System.out.println(checked);
+			System.out.println("checkedd의 값: "+checked);
 			int result = attService.deleteXiuxi(checked);
 			resultOfRemoveXiuxi += result;
 		}
@@ -131,5 +147,6 @@ public class AttendanceRegistController {
 		out.flush(); 
 		out.close();
 	}
+	
 
 }

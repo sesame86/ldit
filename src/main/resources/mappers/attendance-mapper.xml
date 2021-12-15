@@ -38,7 +38,18 @@
 
 <select id="getTodayAttendance" parameterType="_int" resultMap="TodayAttendance">
 	<![CDATA[ 
-	select ATT_NO, to_char(ATT_START, 'hh24:mi:ss') ATT_START, to_char(ATT_END, 'hh24:mi:ss') ATT_END, ATT_RESTALL
+	select ATT_NO, to_char(ATT_START, 'hh24:mi:ss') ATT_START, to_char(ATT_END, 'hh24:mi:ss') ATT_END
+	, (
+		select replace((to_char(sum(beh), '09')||':'||to_char(sum(bem),'09')||':'||to_char(sum(bes), '09')),' ', '')
+        	from (select extract(HOUR FROM diff) AS beh
+       		,extract(MINUTE FROM diff) AS bem
+        	,extract(SECOND FROM diff) AS bes
+            	from (SELECT (be-bs) as diff 
+            		from (select to_timestamp(to_char(BR_START, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') bs
+                		, to_timestamp(to_char(BR_END, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') be 
+                    		from WORK_BREAK
+                    		where STF_NO =#{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD')))))
+	) as ATT_RESTALL
 		from ATTENDANCE where STF_NO = #{stfNo} and ATT_NO = to_number(to_char(SYSDATE, 'YYYYMMDD'))
   	]]>		
 </select>
@@ -151,10 +162,14 @@ Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_
 
 <update id="updateBrEnd" parameterType="_int">
 	<![CDATA[
-	Update WORK_BREAK set BR_END = SYSDATE where BR_NO = #{brNo}
+	Update WORK_BREAK set BR_END = SYSDATE where BR_NO = #{brNo} and BR_END is null
 		]]>
 </update>
-
+<update id="updateBrEndForce" parameterType="map">
+	<![CDATA[
+	Update WORK_BREAK set BR_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = #{thisAttNo} and BR_END is null
+	]]>
+</update>
 <select id="getBrEnd" parameterType="_int" resultType="string">
 	<![CDATA[ 
 	select to_char(BR_END, 'hh24:mi:ss') BR_END from WORK_BREAK where BR_NO = #{brNo}
@@ -163,7 +178,7 @@ Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_
 
 <select id="getWorkBreak" parameterType="_int" resultMap="WorkBreak2">
 	<![CDATA[ 
-	select to_char(BR_END, 'hh24:mi:ss') BR_END, att_no from WORK_BREAK where BR_NO = #{brNo}
+	select to_char(BR_START, 'hh24:mi:ss') BR_START, to_char(BR_END, 'hh24:mi:ss') BR_END, att_no from WORK_BREAK where BR_NO = #{brNo}
 	]]>
 </select>
 
@@ -214,8 +229,5 @@ where WHM_ZERO_DAY = #{selectedDay}
 	select * from XIUXI order by (to_number(XIU_NO, 99))
 </select>
 
-<delete id="deleteXiuxi" parameterType="string">
-	delete from XIUXI where xiu_no = #{checked}
-</delete>
 
 </mapper>

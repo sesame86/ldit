@@ -77,8 +77,7 @@
 			<h1>휴가코드 관리</h1>
 			<div id="div_apply_outer">
 				<div id="div_btnapply_outer">
-					<button type="button" id="btn_add_xiuxi" class="btn_apply">추&nbsp;&nbsp;&nbsp;&nbsp;가</button>
-					<button type="button" id="btn_remove_xiuxi" class="btn_apply">삭&nbsp;&nbsp;&nbsp;&nbsp;제</button>
+					<button type="button" id="btn_add_xiuxi" class="btn_apply">추&nbsp;&nbsp;&nbsp;&nbsp;가</button><button type="button" id="btn_remove_xiuxi" class="btn_apply">삭&nbsp;&nbsp;&nbsp;&nbsp;제</button>
 				</div>
 				<table class="w3-table w3-striped w3-border">
 					<thead>
@@ -93,16 +92,16 @@
 						<c:when test="${!empty xiuxiList}">
 							<tbody>
 								<c:forEach items="${xiuxiList}" var="x">
-									<tr>
+									<tr class="tr_read_data">
 										<td><input type="checkbox" name="ck_xiuxi" value="${x.xiuNo}"></td>
 										<td>${x.xiuNo}</td>
 										<td>${x.xiuReason}</td>
 										<c:choose>
 											<c:when test="${x.xiuAplYesNo eq 0}">
-												<td>N</td>
+												<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N</td>
 											</c:when>
 											<c:when test="${x.xiuAplYesNo eq 1}">
-												<td>Y</td>
+												<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y</td>
 											</c:when>
 										</c:choose>
 									</tr>
@@ -122,64 +121,52 @@
 		</article>
 	</section>	
 	
-		<div class="modal hidden">
-			<div class="modal_overlay">
-				<div class="modal_content">
-					<div class="tab">
-						<div><button class="tablinks" onclick="openTab(event, 'm_div_restapply')">휴가신청</button></div>
-						<div><button class="tablinks" onclick="openTab(event, 'm_div_whomeapply')">재택근무신청</button></div>
-						<div id="m_div_restapply" class="tabcontent">
-							<form method="post" action="#">
-								<p>사유</p>
-								<select>
-									<option>개인일정</option>
-								</select>
-								<p>연차 사용여부</p>
-								<input type="text" readonly="readonly" value="">
-								<p>일자</p>
-								<div></div>
-								<button type="button">신청</button>							
-							</form>
-						</div>
-						<div id="m_div_whomeapply" class="tabcontent">
-							<form method="post" action="#">
-								<p>일자</p>
-								<div></div>
-								<button type="button">신청</button>							
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+<!--휴가코드 추가 모달 창-->
+<div id="modal_wrapper" class="modal_wrapper">
+
+  <!-- Modal content -->
+  <div class="modal_content">
+  	<h1>휴가코드 추가</h1>
+  	<form action="xiuxiset" method="post" onsubmit="return checkReason();">
+	    <div><label for="xiuxi_code">휴가코드&nbsp;:&nbsp;&nbsp;</label><input type="number" name="xiu_no" id="xiuxi_code" required min="0" max="99"><span id="result_checkDuplicate"></span></div>
+	    <div><label for="xiuxi_reason">휴가사유&nbsp;:&nbsp;&nbsp;</label><input type="text" name="xiu_reason" id="xiuxi_reason" required placeholder="10자 이내로 입력하세요"></div>
+		<div>
+			<input type="radio" id="apl_yes" name="xiu_apl_yesno" class="xiu_apl_yesno" value="1" checked><label for="apl_yes">&nbsp;연차적용</label>
+			<input type="radio" id="apl_no" name="xiu_apl_yesno" class="xiu_apl_yesno" value="0"><label for="apl_no">&nbsp;연차미적용</label>
 		</div>
+		<div><button class="btn_xiuxi_apply">등록</button></div>
+	</form>
+  </div>
+
+</div>
 	
 <script>
 
-const openButton = document.getElementById("btn_add_xiuxi");
-const modal = document.querySelector(".modal");
-const overlay = document.querySelector(".modal_overlay");
-openButton.addEventListener("click", function(){
-	modal.classList.remove("hidden");
-});
-overlay.addEventListener("click", function(){
-	modal.classList.add("hidden");
-});
+var modal = document.getElementById("modal_wrapper");
+var btn = document.getElementById("btn_add_xiuxi");
 
-function openTab(evt, tabName){
-	var i, tabcontent, tablinks;
-	tabcontent = document.getElementsByClassName("tabcontent");
-	for (i = 0; i < tabcontent.length; i++) {
-	    tabcontent[i].style.display = "none";
-	  }
-	tablinks = document.getElementsByClassName("tablinks");
-	for (i = 0; i < tablinks.length; i++) {
-	    tablinks[i].className = tablinks[i].className.replace(" active", "");
-	  }
-	document.getElementById(tabName).style.display = "block";
-	evt.currentTarget.className += " active";
+btn.onclick = function() {
+  modal.style.display = "block";
+  modal.style.display = "flex";
 }
 
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
+window.addEventListener("keyup", function(e) {
+    if(modal.style.display = "block" && e.key === "Escape") {
+   	modal.style.display = "none";
+    }
+});
+
+	$("#xiuxi_reason").on("keyup", function() {
+		if ($(this).val().length > 10) {
+			$(this).val($(this).val().substring(0, 10));
+		}
+	});
 
 	$("input:radio[name=whm_type]").click(function() {
 		if ($("input[name=whm_type]:checked").val() == "0") {
@@ -223,23 +210,84 @@ function openTab(evt, tabName){
 		}
 	});
 
-	function checkEnable() {
-		if ($("input[name=whm_type]:checked").val() == "0") {
-			var lcheck = $(".select_day:checked").length;
-			if (lcheck == 0) {
-				alert("근무일을 하루 이상 선택하세요.");
-				return false;
-			}
-		} else if ($("input[name=whm_type]:checked").val() == "1") {
-			if (!$("#week_hours").val() || $("#week_hours").val() == 0) {
-				alert("1주 소정근로시간을 입력해주세요.");
-				return false;
-			}
+function checkEnable() {
+	if ($("input[name=whm_type]:checked").val() == "0") {
+		var lcheck = $(".select_day:checked").length;
+		if (lcheck == 0) {
+			alert("근무일을 하루 이상 선택하세요.");
+			return false;
 		}
-		$("#week_hours").attr("disabled", false);
-		$(".select_time").attr("disabled", false);
-		$(".select_day").attr("disabled", false);
+	} else if ($("input[name=whm_type]:checked").val() == "1") {
+		if (!$("#week_hours").val() || $("#week_hours").val() == 0) {
+			alert("1주 소정근로시간을 입력해주세요.");
+			return false;
+		}
 	}
+	$("#week_hours").attr("disabled", false);
+	$(".select_time").attr("disabled", false);
+	$(".select_day").attr("disabled", false);
+}
+	
+function checkReason() {
+	var reasonBefore = $("#xiuxi_reason").val();
+	console.log(reasonBefore);
+	var reasonAfter = $.trim($("#xiuxi_reason").val());
+	console.log(reasonAfter);
+	isNull(reasonAfter);
+	if(isNull(reasonAfter)){
+		alert("관리할 휴가사유를 입력해주세요");
+		return false;
+	}
+	$("#xiuxi_reason").val(reasonAfter);
+	return true;
+}
+
+function isNull(obj) {
+	return (typeof obj != "undefined" && obj != null && obj != "") ? false : true;
+}
+	$("#xiuxi_code").keyup(ckDuplXiuNo);
+
+function ckDuplXiuNo() {
+	$("#result_checkDuplicate").html("");
+	var xiuNo = $("#xiuxi_code").val();
+	var regExpNum = /^[0-9]{1,2}$/;
+	if (!regExpNum.test(xiuNo)) {
+		$("#result_checkDuplicate").html("0~99 사이 코드만 입력해주세요");
+		$("#xiuxi_code").focus();
+	} else {
+		if (!isNull(xiuNo)) {
+			$.ajax({
+				url : "ckDuplXiuNo",
+				data : {
+					"xiuNo" : xiuNo
+				},
+				type : "post",
+				success : function(data) {
+					console.log(data);
+					if (data == 0) {
+						$("#xiuxi_code").css('color', 'blue');
+						$("#xiuxi_code").css('border-color', 'blue');
+						$("#result_checkDuplicate").html("사용가능한 코드입니다");
+					} else {
+						$("#xiuxi_code").css('color', 'red');
+						$("#xiuxi_code").css('border-color', 'red');
+						$("#result_checkDuplicate")
+								.html("이미 사용하고 있는 코드입니다");
+					}
+				},
+				error : function(request, status, errorData) {
+					alert("error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + errorData);
+				}
+			});
+		} else {
+			$("#xiuxi_code").css('color', 'red');
+			$("#xiuxi_code").css('border-color', 'red');
+			$("#result_checkDuplicate").html("코드를 입력해주세요");
+		}
+	}
+}
 
 	$("#btn_remove_xiuxi").click(
 			function() {
@@ -250,12 +298,13 @@ function openTab(evt, tabName){
 				});
 				if (checkedXiuxi.length) {
 					$.ajax({
-						url : "xiuxiRemove",
+						url : "xiuxiremove",
 						data : {
 							"checkedXiuxi" : checkedXiuxi
 						},
 						type : "post",
 						success : function(data) {
+							console.log(data);
 							if (data >= checkedXiuxi.length - 1) {
 								alert("정상적으로 삭제되었습니다.");
 								location.reload();

@@ -64,7 +64,7 @@ public class AttendanceController {
 		}
 		int stfNo = loginUser.getStfNo();
 
-		// 오늘 날짜 Attendance 테이블 읽어오기
+		// 오늘 날짜 Attendance 테이블 읽어오기 + 총 휴식시간 포함
 		Attendance att = null;
 		att = attService.getTodayAttendance(stfNo);
 		System.out.println("화면진입 시 att폼의 결과는?: " + att);
@@ -100,8 +100,11 @@ public class AttendanceController {
 			// 오늘 날짜 WORK_BREAK 읽어오기
 			wb = attService.getLatestWB(mapMS);
 			System.out.println("화면진입 시 wb폼의 결과는?: " + wb);
+
 		}
-		mapM.put("wb", wb);
+		if(wb !=null) {
+			mapM.put("wb", wb);
+		}
 
 		// 1년 내 부여된 연차
 		int calAplT = attService.countAplTotal(stfNo);
@@ -150,7 +153,7 @@ public class AttendanceController {
 		int stfNo = Integer.parseInt(stfno);
 		String result = "";
 		
-		//퇴근시간 update
+		//퇴근시간 update + 휴식 강제 종료도 함께하기
 		int resultOfCheckout = attService.updateCheckout(stfNo);
 
 		//퇴근시각 읽어오기
@@ -174,7 +177,8 @@ public class AttendanceController {
 
 		if (resultOfRestin > 0) {
 			WorkBreak wb = attService.getRestStart(stfNo);
-			result = wb.toString();
+			Gson gson = new Gson();
+			result = gson.toJson(wb);
 		}
 		
 		return result;
@@ -201,21 +205,11 @@ public class AttendanceController {
 
 		// 총 휴식 시간 계산하기
 		Map<String, Object> elapsedRTime = new HashMap<String, Object>();
-		if (restEndFormat != null) {
+		if (restEndFormat != null &&  !restEndFormat.equals("00:00:00")) {
 			Staff loginUser = (Staff) session.getAttribute("loginUser");
 			int stfNo = loginUser.getStfNo();
 
-			Map<String, Object> mapS = new HashMap<String, Object>();
-			mapS.put("stfNo", stfNo);
-			String attStartDateOnly = String.valueOf(wb.getAttNo());
-			mapS.put("attNo", attStartDateOnly);
-			elapsedRTime = attService.getElapsedRTime(mapS);
-			String hours = String.valueOf(elapsedRTime.get("EH"));
-			String minutes = String.valueOf(elapsedRTime.get("EM"));
-			String seconds = String.valueOf(elapsedRTime.get("ES"));
-			String elapsedRTBefore = hours + ":" + minutes + ":" + seconds;
-			String elapsedRTAfter = elapsedRTBefore.replace(" ", "");
-			System.out.println("elapsedRTime: " + elapsedRTAfter);
+			String elapsedRTAfter = calRestTime(stfNo, wb.getAttNo());
 			mapM.put("elapsedRTime", elapsedRTAfter);
 		}
 
@@ -241,10 +235,7 @@ public class AttendanceController {
 	@RequestMapping(value = "restapply", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String restApplyMethod() {
-		
-		
-		
-		
+		//TODO:
 
 		Gson gson = new Gson();
 		String r = gson.toJson("");
@@ -300,6 +291,35 @@ public class AttendanceController {
 		Gson gson = new Gson();
 		String r = gson.toJson(xaMap);
 		return r;
-		}
+	}
 
+	private String calRestTime(int stfNo, int attNo) {
+		// parameter map형태로 만들기
+		Map<String, Object> mapS = new HashMap<String, Object>();
+		mapS.put("stfNo", stfNo);
+		mapS.put("thisAttNo", String.valueOf(attNo));
+		
+		// 총 휴식시간 DB에서 계산해 오기 
+		Map<String, Object> elapsedRTime = attService.getElapsedRTime(mapS);
+		
+		// 결과를 보기 좋게 바꾸기
+		String elapsedRTAfter = myFormatedTime(elapsedRTime);
+		
+		return elapsedRTAfter;
+	}
+	
+	private void calWorkingTime() {
+		
+	}
+	
+	private String myFormatedTime(Map<String, Object> elapsedTime) {
+		String hours = String.valueOf(elapsedTime.get("EH"));
+		String minutes = String.valueOf(elapsedTime.get("EM"));
+		String seconds = String.valueOf(elapsedTime.get("ES"));
+		String elapsedTBefore = hours + ":" + minutes + ":" + seconds;
+		String elapsedTAfter = elapsedTBefore.replace(" ", "");
+		System.out.println("elapsedRTime: " + elapsedTAfter);
+		return elapsedTAfter;
+	}
+	
 }

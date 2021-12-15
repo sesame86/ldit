@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="whmanage">
+
+
+
+
+
+<select id="countXiuNo" parameterType="string" resultType="_int">
+	select count(XIU_NO) from XIUXI where XIU_NO = (to_char(#{xiuNo}, '09'))
+</select>
+
+<insert id="insertXiuxi" parameterType="map">
+	Insert into XIUXI (XIU_NO, XIU_REASON, XIU_APL_YESNO) values (replace(to_char(#{xiuNo}, '09'), ' ', ''), #{xiuReason}, #{xiuAPL})
+</insert>
+
+<delete id="deleteXiuxi" parameterType="string">
+	delete from XIUXI where XIU_NO = #{checked}
+</delete>
+
+</mapper>
