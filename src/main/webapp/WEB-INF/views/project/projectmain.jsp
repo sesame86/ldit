@@ -34,7 +34,7 @@
 			<div class="flexContainer">
 				<div id="new">
 					<h4>예정</h4>
-					console.log(${newList});
+					<%-- console.log(${newList}); --%>
 					<c:forEach var="vo" items="${newList}">
 					<div id="newList">
 							<div class="reqColorSmall"></div>

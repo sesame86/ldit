@@ -33,14 +33,14 @@
                 <form id="pjAddFrm" action="pjadd" method="post">
                     <div class="textBox" id="calendar">
                     	<label>시작일</label>
-                    	<input type="date" id="proStart" name="proStart">
+                    	<input type="date" id="proStart" name="proStart" required="required">
                     	<label>종료일</label>
-                    	<input type="date" id="proEnd" name="proEnd">
+                    	<input type="date" id="proEnd" name="proEnd" required="required">
                    	</div>
                    	<br>
                     <div class="textBox" id="pjTitle">
                     	<label>프로젝트명</label>
-                    	<input type = "text" name = "proTitle" class = "stf_name_input" id = "proTitle" placeholder="제목을 입력해주세요">
+                    	<input type = "text" name = "proTitle" class = "stf_name_input" id = "proTitle" placeholder="제목을 입력해주세요" required="required">
                     </div>
                     <br>
                     <div class="textBox" id="pjTm">
@@ -51,7 +51,7 @@
                     <br>
                     <div class="textBox" id="pjContent">
                     	<label>프로젝트 내용</label>
-                    	<input type = "text" name = "proContent" class = "stf_no_input" id = "proContent" placeholder="내용을 입력해주세요">
+                    	<input type = "text" name = "proContent" class = "stf_no_input" id = "proContent" placeholder="내용을 입력해주세요" required="required">
                     </div>
                     <br>
                     <div class="submitBtn" id="pJAddBtnDiv">
