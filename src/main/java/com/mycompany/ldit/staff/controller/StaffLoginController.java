@@ -28,7 +28,7 @@ public class StaffLoginController {
 	StaffServiceInterface staffService;
 	
 	// 로그인 화면
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
 	public String home() {
 		return "login";
 	}
