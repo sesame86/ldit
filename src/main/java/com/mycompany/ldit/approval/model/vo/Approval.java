@@ -15,9 +15,9 @@ public class Approval {
 
 		private String finalApprover;
 
-		private Date appCheckSysdate; // °áÀç°á°úÀÏ½Ã
+		private Date appCheckSysdate; // ê²°ì¬ê²°ê³¼ì¼ì‹œ
 
-		private String appReason; // ¹İ·Á»çÀ¯
+		private String appReason; // ë°˜ë ¤ì‚¬ìœ 
 
 		private String appOriginalFileName;
 
@@ -25,9 +25,9 @@ public class Approval {
 
 		private int appWriterNo; // member.getUser_no
 
-		private String appCheckProgress; // APP_CHECK_PROGRESS IN ('°áÀç´ë±â', '°áÀçÁß', '°áÀç¿Ï·á')
+		private String appCheckProgress; // APP_CHECK_PROGRESS IN ('ê²°ì¬ëŒ€ê¸°', 'ê²°ì¬ì¤‘', 'ê²°ì¬ì™„ë£Œ')
 
-		private String appKinds; // °áÀç Á¾·ù
+		private String appKinds; // ê²°ì¬ ì¢…ë¥˜
 
 		private String appPresent;
 
@@ -43,31 +43,31 @@ public class Approval {
 
 		// App_Receive_Ref
 
-		private int receiveRefNo; // ¿Ö????
+		private int receiveRefNo; // ì™œ????
 
-		private int receiveRefAppNo; // ¼ö½ÅÂüÁ¶ Å×ÀÌºí approval ½ÃÄö½º
+		private int receiveRefAppNo; // ìˆ˜ì‹ ì°¸ì¡° í…Œì´ë¸” approval ì‹œí€€ìŠ¤
 
-		private String referList; // ¼ö½ÅÂüÁ¶³»¿ª
+		private String referList; // ìˆ˜ì‹ ì°¸ì¡°ë‚´ì—­
 
 		// App_Loa
-		private int loaNo; // LOA ½ÃÄö½º
+		private int loaNo; // LOA ì‹œí€€ìŠ¤
 
-		private int loaAppNo; // APP ½ÃÄö½º
+		private int loaAppNo; // APP ì‹œí€€ìŠ¤
 
-		private String loaTitle; // Á¦¸ñ
+		private String loaTitle; // ì œëª©
 
-		private String loaContent; // »ó¼¼³»¿ë
+		private String loaContent; // ìƒì„¸ë‚´ìš©
 
 		private String loaStatus;
 
-		private String loaPresent; // °áÀçÇöÈ²
+		private String loaPresent; // ê²°ì¬í˜„í™©
 
 		// App_Leave
 		private int leaveNo;
 
 		private int leaveAppNo;
 
-		private String leaveClassify; // ÈŞ°¡±¸ºĞ
+		private String leaveClassify; // íœ´ê°€êµ¬ë¶„
 
 		private Date leaveStart;
 
@@ -75,11 +75,11 @@ public class Approval {
 
 		private String leaveDetail;
 
-		private String leaveStatus; // ¹®¼­»óÅÂ
+		private String leaveStatus; // ë¬¸ì„œìƒíƒœ
 
-		private String leavePreasent; // °áÀç»óÅÂ
+		private String leavePreasent; // ê²°ì¬ìƒíƒœ
 
-		private String appEmergncyCall; // ºñ»ó¿¬¶ô¸Á
+		private String appEmergncyCall; // ë¹„ìƒì—°ë½ë§
 
 		// App_ER
 		private int erNo;
@@ -88,23 +88,23 @@ public class Approval {
 
 		private Date erDeadline;
 
-		private String erClassify; // °èÁ¤°ú¸ñ
+		private String erClassify; // ê³„ì •ê³¼ëª©
 
 		private String allAmount;
 
 		private String erTitle;
 
-		private String erDetail; // Àû¿ä
+		private String erDetail; // ì ìš”
 
-		private String erAmount; // ±İ¾×
+		private String erAmount; // ê¸ˆì•¡
 
-		private String erReference; // ºñ°í
+		private String erReference; // ë¹„ê³ 
 
-		private String erStatus; // ¹®¼­»óÅÂ
+		private String erStatus; // ë¬¸ì„œìƒíƒœ
 
-		private String erPresent; // °áÀç»óÅÂ
+		private String erPresent; // ê²°ì¬ìƒíƒœ
 
-		private String monetaryUnit; // È­Æó´ÜÀ§
+		private String monetaryUnit; // í™”íë‹¨ìœ„
 
 		public int getAppNo() {
 			return appNo;
