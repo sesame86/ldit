@@ -241,6 +241,19 @@ public class AttendanceController {
 		String r = gson.toJson("");
 		return r;
 	}
+	
+	@RequestMapping(value = "whomeapply", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String whomeApplyMethod() {
+		//TODO:
+
+		Gson gson = new Gson();
+		String r = gson.toJson("");
+		return r;
+	}
+	
+	
+	
 
 	@RequestMapping(value = "getXAList", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	@ResponseBody

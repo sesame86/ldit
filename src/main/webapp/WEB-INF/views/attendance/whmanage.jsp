@@ -123,7 +123,6 @@
 	
 <!--휴가코드 추가 모달 창-->
 <div id="modal_wrapper" class="modal_wrapper">
-
   <!-- Modal content -->
   <div class="modal_content">
   	<h1>휴가코드 추가</h1>
@@ -137,7 +136,6 @@
 		<div><button class="btn_xiuxi_apply">등록</button></div>
 	</form>
   </div>
-
 </div>
 	
 <script>

@@ -167,9 +167,51 @@
 
 		</article>
 	</section>
+	
+	
+	<div id="modal_wrapper" class="modal_wrapper">
+		<div class="modal_content">
+			<div class="div_tab">
+				<button id="btn_m_first" class="btn_tablink">휴가 신청</button><button class="btn_tablink">재택 신청</button>
+			</div>
+			<div id="div_m_restapply" class="div_tabcontent">
+				<form action="" method="post">
+					<div id="div_m_restapply_content">
+						<h1>휴가 신청서</h1>
+						<label for="select_restReason">사유</label>
+						<select id="select_restReason" name="xiuNo" required>
+							<option disabled>--선택하기--</option>
+						</select>
+						<label for="from_apl">연차 적용여부</label>
+	                        <c:choose>
+	                            <c:when test=""><input type="text" id="from_apl" readonly>Y</c:when>
+	                            <c:when test=""><input type="text" id="from_apl" readonly>N</c:when>
+	                        </c:choose>
+						<label for="">시작일자</label>
+						<input type="date" id="xaStart" name="xaStart" required>
+						<label for="">종료일자</label>
+						<input type="date" id="xaEnd" name="xaEnd" required>
+	                    <button class="">등록</button>
+					</div>
+				</form>
+			</div>
+			<div id="div_m_whomeapply" class="div_tabcontent">
+				<form action="" method="post">
+					<div id="div_m_whomeapply_content">
+						<h1>재택근무 신청서</h1>
+						<label for="">시작일자</label>
+						<input type="date" id="whStart" name="whStart" required>
+						<label for="">종료일자</label>
+						<input type="date" id="whEnd" name="whEnd" required>
+	                    <button class="">등록</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 
-<script>
+	<script>
 let ckInterval = "";
 let attNoFormat = "";
 let attStartFormat = "";
@@ -470,6 +512,37 @@ function fnRestOut(){
 		alert("이미 퇴근했습니다.");
 	}
 }
+
+$(".div_tab > button").on('click', function(){
+    var thisOne = $(this);
+    var idx = thisOne.index();
+    var pOne = thisOne.closest('.modal_content');
+    pOne.find('.div_tab button').removeClass('on');
+    pOne.find('.div_tabcontent').removeClass('on');
+    pOne.find('.div_tabcontent:eq('+idx+')').addClass('on');
+    thisOne.addClass('on');
+});
+
+var modal = document.getElementById("modal_wrapper");
+
+function fnApply(){
+	$("#btn_m_first").addClass('on');
+	$("#div_m_restapply").addClass('on');
+	modal.style.display = "block";
+ 	modal.style.display = "flex";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+window.addEventListener("keyup", function(e) {
+    if(modal.style.display = "block" && e.key === "Escape") {
+   	modal.style.display = "none";
+    }
+});
 
 function restin_showhide(){
 	var t_drc = $("#div_restin_contents");
