@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.ldit.attendance.model.vo.Attendance;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
@@ -18,6 +19,54 @@ public class AttendanceDao {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	public Attendance getTodayAttendance(int stfNo) {
+		return sqlSession.selectOne("aboutAtt.getTodayAttendance", stfNo);
+	}
+	
+	public String getAttStartDateTime(Map<String, Object> mapMS) {
+		return sqlSession.selectOne("aboutAtt.getAttStartDateTime", mapMS);
+	}
+	
+	public Map<String, Object> getElapsedWTime(Map<String, Object> mapMS) {
+		return sqlSession.selectOne("aboutAtt.getElapsedWTime", mapMS);
+	}
+	
+	public Map<String, Object> getElapsedRTime(Map<String, Object> mapMS) {
+		return sqlSession.selectOne("aboutAtt.getElapsedRTime", mapMS);
+	}
+	
+	public WorkBreak getLatestWB(Map<String, Object> mapMS) {
+		return sqlSession.selectOne("aboutAtt.getLatestWB", mapMS);
+	}
+	
+	public int countAplTotal(int stfNo) {
+		return sqlSession.selectOne("aboutAtt.countAplTotal", stfNo);
+	}
+	
+	public int countAplUse(int stfNo) {
+		return sqlSession.selectOne("aboutAtt.countAplUse", stfNo);
+	}
+	
+	
+	
+	
+	
+	public int countXiuNo(String xiuNo) {
+		return sqlSession.selectOne("whmanage.countXiuNo", xiuNo);
+	}
+	
+	public int insertXiuxi(Map<String, Object> mapM) {
+		return sqlSession.insert("whmanage.insertXiuxi", mapM);
+	}
+	
+	public int deleteXiuxi(String checked) {
+		return sqlSession.delete("whmanage.deleteXiuxi", checked);
+	}
+	
+	
+	
+	
 	
 	public int countAttStart(int stfNo){
 		int r = -1;
@@ -34,9 +83,7 @@ public class AttendanceDao {
 		return sqlSession.selectOne("aboutAtt.getAttStart", stfNo);
 	}
 	
-	public String getAttStartF(int stfNo) {
-		return sqlSession.selectOne("aboutAtt.getAttStartF", stfNo);
-	}
+
 	
 	public int updateCheckout(int stfNo) {
 		return sqlSession.update("aboutAtt.updateCheckout", stfNo);
@@ -56,6 +103,9 @@ public class AttendanceDao {
 	
 	public int updateBrEnd(int brNo) {
 		return sqlSession.update("aboutAtt.updateBrEnd", brNo);
+	}
+	public int updateBrEndForce(Map<String, Object> map1) {
+		return sqlSession.update("aboutAtt.updateBrEndForce", map1);
 	}
 	
 	public String getBrEnd(int brNo) {
@@ -78,13 +128,6 @@ public class AttendanceDao {
 		return sqlSession.selectOne("aboutAtt.getBrNo", map1);
 	}
 	
-	public int countAplTotal(int stfNo) {
-		return sqlSession.selectOne("aboutAtt.countAplTotal", stfNo);
-	}
-	
-	public int countAplUse(int stfNo) {
-		return sqlSession.selectOne("aboutAtt.countAplUse", stfNo);
-	}
 	
 	public WorkingHoursManage getWHM() {
 		return sqlSession.selectOne("aboutAtt.getWHM");
@@ -110,9 +153,6 @@ public class AttendanceDao {
 		return sqlSession.selectList("aboutAtt.getXiuxiList");
 	}
 	
-	public int deleteXiuxi(String checked) {
-		return sqlSession.delete("aboutAtt.deleteXiuxi", checked);
-	}
 	
 	public int countXAList(Map<String, Object> map1) {
 		return sqlSession.selectOne("attCheck.countXAList", map1);
@@ -127,14 +167,6 @@ public class AttendanceDao {
 		} else {
 			return sqlSession.selectList("attCheck.getxiuxiApplyList", stfNo, row);			
 		}
-	}
-	
-	public Map<String, Object> getElapsedWTime(int stfNo) {
-		return sqlSession.selectOne("aboutAtt.getElapsedWTime", stfNo);
-	}
-	
-	public Map<String, Object> getElapsedRTime(Map<String, Object> mapS) {
-		return sqlSession.selectOne("aboutAtt.getElapsedRTime", mapS);
 	}
 	
 }

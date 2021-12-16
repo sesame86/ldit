@@ -40,6 +40,7 @@
 		<!-- <mapper resource="mappers/appdoctype-mapper.xml"/> -->
 		<mapper resource="mappers/attendance-mapper.xml"/>
 		<mapper resource="mappers/attcheck-mapper.xml"/>
+		<mapper resource="mappers/whmanage-mapper.xml"/>
 		<!-- <mapper resource="mappers/bookmark-mapper.xml"/> -->
 		<mapper resource="mappers/clientneeds-mapper.xml"/>
 		<mapper resource="mappers/department-mapper.xml"/>

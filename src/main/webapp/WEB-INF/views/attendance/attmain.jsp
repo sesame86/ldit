@@ -171,11 +171,12 @@
 
 <script>
 let ckInterval = "";
+let attNoFormat = "";
 let attStartFormat = "";
 let attEndFormat = "";
 let restStartFormat = "";
 let restEndFormat = "";
-let attStart = "";
+let attStartDateTime = "";
 let calAplT = "";
 let calAplU = "";
 let elapsedWTime = "";
@@ -188,30 +189,21 @@ $(document).ready(function(){
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
-			
 			console.log(data);
-			attStartFormat = data.attStartFormat;
-			attEndFormat = data.attEndFormat;
-			restStartFormat = data.restStartFormat;
-			restEndFormat = data.restEndFormat;
-			attStart = data.attStart;
+			if(!isNull(data.att)){
+				attStartFormat = data.att.attStart;
+				attEndFormat = data.att.attEnd;
+				elapsedRTime = data.att.attRestAll;
+			} 
+			attStartDateTime = data.attStartDateTime;
+			elapsedWTime = data.elapsedWTime;
+			if(!isNull(data.wb)){
+				restStartFormat = data.wb.brStart;
+				restEndFormat = data.wb.brEnd;
+				brNo = data.wb.brNo;
+			}
 			calAplT = data.calAplT;
 			calAplU = data.calAplU;
-			brNo = data.brNo;
-			elapsedWTime = data.elapsedWTime;
-			elapsedRTime = data.elapsedRTime;
-			
-			$("#checkin_time").html(attStartFormat);
-			$("#checkout_time").html(attEndFormat);
-			$("#restin_time").html(restStartFormat);
-			$("#restout_time").html(restEndFormat);
-			
-			$("#working_time").html(elapsedWTime);
-			$("#rest_time").html(elapsedRTime);
-			
-			$("#calAplT").html(calAplT);
-			$("#calAplU").html(calAplU);
-			$("#calApl").html(calAplT-calAplU);
 			
 			if(!isNull(attStartFormat) && isNull(attEndFormat)){
 				ckInterval = setInterval(countTime, 1000);
@@ -222,11 +214,28 @@ $(document).ready(function(){
 				$("#btn_check").attr('href', "#");
 				$("#btn_check").addClass('notable');
 				$("#btn_check").html("출근");
+				// 휴식종료기능 controller에서 되고 "휴식 시작" 버튼 눌려지지 않도록 함.
+				$("#btn_rest").attr('href', "#");
+				$("#btn_rest").addClass('notable');
+				$("#btn_rest").html("휴식 시작");
 			}
 			if(!isNull(restStartFormat) && isNull(restEndFormat)){
 				$("#btn_rest").attr('href', "javascript:fnRestOut()");
 				$("#btn_rest").html("휴식 종료");
-			}	
+			}
+
+			$("#checkin_time").html(setDefaultValueAtNull(attStartFormat));
+			$("#checkout_time").html(setDefaultValueAtNull(attEndFormat));
+			$("#restin_time").html(setDefaultValueAtNull(restStartFormat));
+			$("#restout_time").html(setDefaultValueAtNull(restEndFormat));
+			
+			$("#working_time").html(setDefaultValueAtNull(elapsedWTime));
+			$("#rest_time").html(setDefaultValueAtNull(elapsedRTime));
+			
+			$("#calAplT").html(calAplT);
+			$("#calAplU").html(calAplU);
+			$("#calApl").html(calAplT-calAplU);
+			
 		}
 		, error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 
@@ -236,28 +245,21 @@ $(document).ready(function(){
  	
 });
 
-// getPageRest(1);
-//$("input[name=check_able1]").change(function() {
-//    if($(this).is(":checked")) { 
-//    	getPageRest(1);
-//    } else {
-//    	getPageRest(1);
-//    }
-//});
-
 function isNull(obj) {
 	return (typeof obj != "undefined" && obj != null && obj != "") ? false : true;
 }
-
+function setDefaultValueAtNull(obj) {
+	return (typeof obj != "undefined" && obj != null && obj != "") ? obj : "00:00:00";
+}
 function countTime() {
 	var nowDate = new Date();
 	var str;
 	console.log(nowDate);
-	if(attStart.length<7){
+	if(attStartDateTime.length<7){
 		attStartFormat = attStartFormat.replaceAll(":", "");
 		str = nowDate.getFullYear()+addZero(nowDate.getMonth(), 2)+addZero(nowDate.getDate(), 2)+attStartFormat;
 	} else {
-		str = attStart;
+		str = attStartDateTime;
 	}
 	var by = str.substr(0,4);
 	var bmm = str.substr(4,2)-1;
@@ -286,6 +288,15 @@ function addZero(num, digits){
 	  }
 	return zero + num;
 }
+
+getPageRest(1);
+$("input[name=check_able1]").change(function() {
+    if($(this).is(":checked")) { 
+    	getPageRest(1);
+    } else {
+    	getPageRest(1);
+    }
+});
 
 function getPageRest(page) {
 	var keyValue = $("input[name=check_able1]:checked").val();
@@ -353,7 +364,7 @@ function fnCheckin(){
 			console.log(data);
 			
 			if(!isNull(data)){
-				attStart = "";
+				attStartDateTime = "";
 				attStartFormat = data;
 				ckInterval = setInterval(countTime, 1000);
 				$("#btn_check").attr('href', "javascript:fnCheckOut()");
@@ -384,6 +395,10 @@ function fnCheckOut(){
 			$("#btn_check").html("출근");
 			$("#checkout_time").html(data);
 			clearInterval(ckInterval);
+			// 휴식종료기능 controller에서 되고 "휴식 시작" 버튼 눌려지지 않도록 함.
+			$("#btn_rest").attr('href', "#");
+			$("#btn_rest").addClass('notable');
+			$("#btn_rest").html("휴식 시작");
 			} else {
 				alert("퇴근등록에 실패했습니다.");
 				location.reload();
@@ -406,11 +421,11 @@ function fnRestIn(){
 		, success: function(data) {
 			console.log(data);
 			if(!isNull(data)){
-			brNo = data.brNo;
-			$("#btn_rest").attr('href', "javascript:fnRestOut()");
-			$("#btn_rest").html("휴식 종료");
-			$("#restin_time").html(data.brStart);
-			$("#restout_time").html("00:00:00");
+				brNo = data.brNo;
+				$("#btn_rest").attr('href', "javascript:fnRestOut()");
+				$("#btn_rest").html("휴식 종료");
+				$("#restin_time").html(data.brStart);
+				$("#restout_time").html("00:00:00");
 			} else {
 				alert("휴식등록에 실패했습니다.");
 			}
