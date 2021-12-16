@@ -13,8 +13,7 @@
 	
 	<!-- 프로젝트 등록 -->
 	<insert id="insertPJ" parameterType="Project">
-		<!-- 책임자는 로그인한 사원번호 넣어줘야함 -->
-		insert into PROJECT values (project_seq.nextval, #{proTitle}, #{proContent}, #{proStart}, #{proEnd}, '20210530', 'N')
+		insert into PROJECT values (project_seq.nextval, #{proTitle}, #{proContent}, #{proStart}, #{proEnd}, #{proManager}, 'N')
 	</insert>
 	
 	<!-- 프로젝트 조회 -->

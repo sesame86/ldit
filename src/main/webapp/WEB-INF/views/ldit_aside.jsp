@@ -57,10 +57,12 @@
           </div>
           
           <!-- 인사팀만 해당 버튼 보이도록 바꿔줘야함 - 김정기 -->
+          <c:if test="${loginUser.deptNo==3}">
           <button class="aside-accordion" onclick="location.href='pmregist'"><i class="far fa-id-badge"></i><p class="mobile-hidden">&nbsp&nbsp 권한관리</p></button>
           <div class="panel">
               <a href="#"></a>
           </div>
+          </c:if>
           <script>
            /*
            var acc = document.getElementsByClassName("accordion");

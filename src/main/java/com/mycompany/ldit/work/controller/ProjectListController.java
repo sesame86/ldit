@@ -38,7 +38,6 @@ public class ProjectListController {
 		try {
 			int proNo = 8;
 			Staff loginUser = (Staff)session.getAttribute("loginUser");
-			int rightNo = teamService.getStaffRight(loginUser.getStfNo());
 			
 			newList = projectService.getNewList(proNo);
 			continueList = projectService.getContinueList(proNo);
