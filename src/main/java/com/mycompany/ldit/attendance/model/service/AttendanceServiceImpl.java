@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.ldit.attendance.model.dao.AttendanceDao;
 import com.mycompany.ldit.attendance.model.vo.Attendance;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
-import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
+import com.mycompany.ldit.attendance.model.vo.WHManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 import com.mycompany.ldit.attendance.model.vo.XiuxiApply;
 
@@ -97,17 +97,17 @@ public class AttendanceServiceImpl implements AttendanceService {
 		result = attDao.updateCheckout(stfNo);
 
 		if(result > 0) {
-			//Åð±Ù½Ã °°Àº attNoÀÎ ÈÞ½ÄÀÌ ÀÖ´Ù¸é ÈÞ½Ä Á¾·á ÇÏ±â
+			//ï¿½ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ attNoï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½Þ½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½
 			Attendance att = attDao.getTodayAttendance(stfNo);
 			int thisAttNo = att.getAttNo();
 	
-			// parameter mapÇüÅÂ·Î ¸¸µé±â
+			// parameter mapï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 			Map<String, Object> mapS = new HashMap<String, Object>();
 			mapS.put("stfNo", stfNo);
 			mapS.put("thisAttNo", String.valueOf(thisAttNo));
 			
-			//ÈÞ½Ä Á¾·á ÇÏ±â
-			attDao.updateBrEndForce(mapS);  // Á¾·á °á°ú´Â 0 ÀÏ ¼ö ÀÖÀ¸¹Ç·Î ±»ÀÌ return °ªÀ» Ã³¸®ÇÏÁö ¾ÊÀ½.
+			//ï¿½Þ½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½
+			attDao.updateBrEndForce(mapS);  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ return ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		}
 		return result;
 	}
@@ -160,7 +160,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 
 	@Override
-	public WorkingHoursManage getWHM() {
+	public WHManage getWHM() {
 		return attDao.getWHM();
 	}
 

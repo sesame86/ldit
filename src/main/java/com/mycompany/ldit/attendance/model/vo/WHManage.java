@@ -3,17 +3,17 @@ package com.mycompany.ldit.attendance.model.vo;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WorkingHoursManage {
+public class WHManage {
 	
 	private static final long serialVersionUID = 1112L;
 	private String whmCode;
 	private String whmRestCode;
 	
-	public WorkingHoursManage() {
+	public WHManage() {
 		super();
 	}
 
-	public WorkingHoursManage(String whmCode, String whmRestCode) {
+	public WHManage(String whmCode, String whmRestCode) {
 		super();
 		this.whmCode = whmCode;
 		this.whmRestCode = whmRestCode;

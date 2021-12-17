@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.mycompany.ldit.attendance.model.vo.Attendance;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
-import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
+import com.mycompany.ldit.attendance.model.vo.WHManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 import com.mycompany.ldit.attendance.model.vo.XiuxiApply;
 
@@ -38,7 +38,7 @@ public interface AttendanceService {
 	String getLatestBrStart(int stfNo);
 	String getLatestBrEnd(int stfNo);
 	int getBrNo(Map<String, Object> map1);
-	WorkingHoursManage getWHM();
+	WHManage getWHM();
 	int updateWHM(Map<String, Object> map1);
 	int updateWHMOne(int weekHours);
 	int updateWHMZero(Map<String, Object> map2);

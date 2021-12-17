@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.ldit.attendance.model.vo.Attendance;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
-import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
+import com.mycompany.ldit.attendance.model.vo.WHManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 import com.mycompany.ldit.attendance.model.vo.XiuxiApply;
 
@@ -129,7 +129,7 @@ public class AttendanceDao {
 	}
 	
 	
-	public WorkingHoursManage getWHM() {
+	public WHManage getWHM() {
 		return sqlSession.selectOne("aboutAtt.getWHM");
 	}
 	

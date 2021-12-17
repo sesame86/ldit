@@ -148,20 +148,17 @@
 						<ul class="wh_ul_title">
 							<li><a href="javascript:wh_showhide();" class="btn_i"><i class="fas fa-minus"></i></a></li>
 							<li>근무일자</li>
+							<li>총 근무시간</li>
 							<li>출근시간</li>
 							<li>퇴근시간</li>
 							<li>휴식시간</li>
-							<li>추가근무</li>
-							<li>총 근무시간</li>
 						</ul>
 					</div>
 			 	</div>
 				<div class="div_wh_contents" id="div_wh_contents">
-					<!-- for문 -->
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
-					<div><ul><li>신청기간</li><li>ㄴㅇㄹㄴㅇㄹㄴㅇ</li><li></li></ul></div>
+				</div>
+				<div class="div_wh_paging" id="div_wh_paging">
+					<ul></ul>
 				</div>
 			</div>
 
@@ -183,15 +180,13 @@
 							<option disabled>--선택하기--</option>
 						</select>
 						<label for="from_apl">연차 적용여부</label>
-	                        <c:choose>
-	                            <c:when test=""><input type="text" id="from_apl" readonly>Y</c:when>
-	                            <c:when test=""><input type="text" id="from_apl" readonly>N</c:when>
-	                        </c:choose>
+	                        <input type="text" id="from_apl" readonly>
 						<label for="">시작일자</label>
 						<input type="date" id="xaStart" name="xaStart" required>
 						<label for="">종료일자</label>
 						<input type="date" id="xaEnd" name="xaEnd" required>
-	                    <button class="">등록</button>
+	                    <button id="btn_restRegist">등록</button>
+	                    <span class="span_btn_restRegist">설정된 휴가코드가 없습니다.<br>관리자에게 문의해주세요</span>
 					</div>
 				</form>
 			</div>
@@ -203,7 +198,7 @@
 						<input type="date" id="whStart" name="whStart" required>
 						<label for="">종료일자</label>
 						<input type="date" id="whEnd" name="whEnd" required>
-	                    <button class="">등록</button>
+	                    <button id="btn_whomeRegist">등록</button>
 					</div>
 				</form>
 			</div>
@@ -224,6 +219,11 @@ let calAplU = "";
 let elapsedWTime = "";
 let elapsedRTime = "";
 let brNo = "";
+let XiuApl = [];
+
+getPageRest(1);
+getPageWhome(1);
+getPageWork(1);
 
 $(document).ready(function(){
 	$.ajax({
@@ -244,6 +244,21 @@ $(document).ready(function(){
 				restEndFormat = data.wb.brEnd;
 				brNo = data.wb.brNo;
 			}
+			if(!isNull(data.xiuxiList)){
+				$.each(data.xiuxiList, function(i) {
+					var xiuNo = data.xiuxiList[i].xiuNo;
+					var xiuReason = data.xiuxiList[i].xiuReason;
+					var xiuAplYesNo = data.xiuxiList[i].xiuAplYesNo;
+					var opt = '<option value='+xiuNo+'>'+xiuReason+'</option>'
+					$("#select_restReason").append(opt);
+					XiuApl.push(xiuAplYesNo);
+				})
+			} else {
+				$('#btn_restRegist').attr('disabled');
+				$('#btn_restRegist').hover(function (){
+					$(".span_btn_restRegist").addClass('.on');
+				});
+			}
 			calAplT = data.calAplT;
 			calAplU = data.calAplU;
 			
@@ -256,7 +271,6 @@ $(document).ready(function(){
 				$("#btn_check").attr('href', "#");
 				$("#btn_check").addClass('notable');
 				$("#btn_check").html("출근");
-				// 휴식종료기능 controller에서 되고 "휴식 시작" 버튼 눌려지지 않도록 함.
 				$("#btn_rest").attr('href', "#");
 				$("#btn_rest").addClass('notable');
 				$("#btn_rest").html("휴식 시작");
@@ -331,7 +345,7 @@ function addZero(num, digits){
 	return zero + num;
 }
 
-getPageRest(1);
+//getPageRest(1);
 $("input[name=check_able1]").change(function() {
     if($(this).is(":checked")) { 
     	getPageRest(1);
@@ -512,6 +526,13 @@ function fnRestOut(){
 		alert("이미 퇴근했습니다.");
 	}
 }
+//XiuApl #from_apl
+$("select[name=xiuNo]").on('change', function() {
+	var idxS = $(this).index();
+	var idxKey = $("#from_apl").index();
+	//TODO//
+	$("#from_apl").val();
+});
 
 $(".div_tab > button").on('click', function(){
     var thisOne = $(this);

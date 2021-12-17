@@ -3,7 +3,7 @@ package com.mycompany.ldit.attendance.model.vo;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WorkingHoursZero {
+public class WHMZero {
 	
 	private static final long serialVersionUID = 1112L;
 	private String whmZeroDay;
@@ -11,10 +11,10 @@ public class WorkingHoursZero {
 	private String whmZeroEnd;
 	private int whmZeroYesNo;
 
-	public WorkingHoursZero() {
+	public WHMZero() {
 	}
 
-	public WorkingHoursZero(String whmZeroDay, String whmZeroStart, String whmZeroEnd, int whmZeroYesNo) {
+	public WHMZero(String whmZeroDay, String whmZeroStart, String whmZeroEnd, int whmZeroYesNo) {
 		super();
 		this.whmZeroDay = whmZeroDay;
 		this.whmZeroStart = whmZeroStart;

@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
 import com.mycompany.ldit.attendance.model.vo.Attendance;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
+import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 import com.mycompany.ldit.attendance.model.vo.XiuxiApply;
 import com.mycompany.ldit.staff.model.vo.Staff;
 
@@ -49,7 +50,7 @@ public class AttendanceController {
 	}
 
 	// 개인 근무관리 메인페이지 - 초기 정보 세팅
-	@RequestMapping(value = "attmaingetdata", method = RequestMethod.POST)
+	@RequestMapping(value = "attmaingetdata", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String attMainGetDataMethod(HttpSession session) {
 		Gson gson = new Gson();
@@ -113,6 +114,12 @@ public class AttendanceController {
 		// 사용가능한 연차
 		int calAplU = attService.countAplUse(stfNo);
 		mapM.put("calAplU", calAplU);
+		
+		//xiuxiList읽어오기
+		List<Xiuxi> xiuxiList = attService.getXiuxiList();
+		if(xiuxiList != null) {
+			mapM.put("xiuxiList", xiuxiList);			
+		}
 
 		String result = gson.toJson(mapM);
 		System.out.println(result);

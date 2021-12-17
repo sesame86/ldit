@@ -445,12 +445,14 @@ section {
     flex-direction: column;
 }
 
-#div_m_restapply_content > label, input{
+#div_m_restapply_content > input{
     display: block;
     width: 50%;
 }
 
 #div_m_restapply_content > label{
+	display: block;
+    width: 50%;
     margin-bottom: 2%;
     font-size: 1.2rem;
     font-weight: bold;
@@ -484,12 +486,14 @@ section {
     padding: 5px 2px;
 }
 
-#div_m_whomeapply_content > label, input{
+#div_m_whomeapply_content > input{
     display: block;
     width: 50%;
 }
 
 #div_m_whomeapply_content > label{
+	display: block;
+    width: 50%;
     margin-bottom: 2%;
     font-size: 1.2rem;
     font-weight: bold;
@@ -513,3 +517,21 @@ section {
 	background-color: #389dff;
 	font-size: 1rem;
 }
+
+.div_tabcontent button:hover{
+	cursor: pointer;
+}
+
+.span_btn_restRegist{
+	display: none;
+	font-size: 1rem;
+	color: red;
+	text-align: center;
+	margin-top: 1%;
+}
+
+.span_btn_restRegist.on{
+	display: block;
+}
+
+

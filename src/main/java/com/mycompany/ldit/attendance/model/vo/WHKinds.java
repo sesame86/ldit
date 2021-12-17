@@ -3,17 +3,17 @@ package com.mycompany.ldit.attendance.model.vo;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WorkingHoursKinds {
+public class WHKinds {
 	
 	private static final long serialVersionUID = 1112L;
 	private int whCode;
 	private String whName;
 
-	public WorkingHoursKinds() {
+	public WHKinds() {
 		super();
 	}
 
-	public WorkingHoursKinds(int whCode, String whName) {
+	public WHKinds(int whCode, String whName) {
 		super();
 		this.whCode = whCode;
 		this.whName = whName;

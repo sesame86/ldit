@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
-import com.mycompany.ldit.attendance.model.vo.WorkingHoursManage;
+import com.mycompany.ldit.attendance.model.vo.WHManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 
 @Controller
@@ -34,7 +34,7 @@ public class AttendanceRegistController {
 		mv.setViewName("attendance/whmanage");
 		
 		
-		WorkingHoursManage whm = attService.getWHM();
+		WHManage whm = attService.getWHM();
 		List<Xiuxi> xiuxiList = attService.getXiuxiList();
 	
 		System.out.println("getWHM: "+ whm);
