@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import com.google.gson.Gson;
 import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
 import com.mycompany.ldit.attendance.model.vo.WHManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
+import com.mycompany.ldit.staff.model.vo.Staff;
 
 @Controller
 public class AttendanceRegistController {
@@ -30,9 +32,17 @@ public class AttendanceRegistController {
 	private AttendanceServiceImpl attService;
 	
 	@RequestMapping(value="whmanage", method = RequestMethod.GET)
-	public ModelAndView whmanageMethod(ModelAndView mv) {
+	public ModelAndView whmanageMethod(ModelAndView mv, HttpSession session) {
 		mv.setViewName("attendance/whmanage");
 		
+		Staff loginUser = (Staff) session.getAttribute("loginUser");
+		int authAble = loginUser.getDeptNo();
+		if(authAble != 3) {
+			mv.setViewName("main");
+			String authMsg = "접근 권한이 없습니다";
+			mv.addObject("authMsg", authMsg);
+			return mv;
+		}
 		
 		WHManage whm = attService.getWHM();
 		List<Xiuxi> xiuxiList = attService.getXiuxiList();

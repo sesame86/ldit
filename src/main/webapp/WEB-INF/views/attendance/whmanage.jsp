@@ -20,8 +20,6 @@
 	<%@ include file="../ldit_header.jsp" %>
 	<%@ include file="../ldit_aside.jsp" %>
 	
-	
-	
 	<section>
 		<article id="article_a">
 			<h1>근무제도 관리</h1>
@@ -318,17 +316,6 @@ function ckDuplXiuNo() {
 				}
 			});
 </script>
-
-
-<!--<c:if test="${loginUser.deptNo ne 3}">
-[[${loginUser.deptNo}]]
-	<script>
- 		window.setTimeout(redirectFunc, 3000);
- 		function redirectFunc() {
- 			location.href="main";
- 		}
- 	</script>
-</c:if>-->
 
 
 </body>
