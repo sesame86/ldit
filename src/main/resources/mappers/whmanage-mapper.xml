@@ -7,7 +7,7 @@
 
 
 <select id="countXiuNo" parameterType="string" resultType="_int">
-	select count(XIU_NO) from XIUXI where XIU_NO = (to_char(#{xiuNo}, '09'))
+	select count(XIU_NO) from XIUXI where XIU_NO = replace(to_char(#{xiuNo}, '09'), ' ', '')
 </select>
 
 <insert id="insertXiuxi" parameterType="map">

@@ -106,7 +106,7 @@ public class AttendanceRegistController {
 	@ResponseBody
 	public int ckDuplXiuNo(@RequestParam(value="xiuNo") String xiuNo) {
 		int result = -1;
-		System.out.println("진입함");
+		System.out.println("진입함. xiuNo: "+xiuNo);
 		//xiuNo가 이미 존재하는지 확인
 		result = attService.countXiuNo(xiuNo);
 		System.out.println("result: "+result);

@@ -269,8 +269,7 @@ function ckDuplXiuNo() {
 					} else {
 						$("#xiuxi_code").css('color', 'red');
 						$("#xiuxi_code").css('border-color', 'red');
-						$("#result_checkDuplicate")
-								.html("이미 사용하고 있는 코드입니다");
+						$("#result_checkDuplicate").html("이미 사용하고 있는 코드입니다");
 					}
 				},
 				error : function(request, status, errorData) {
