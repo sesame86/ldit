@@ -37,6 +37,8 @@
 		</thead>
 		<tbody>
 		<c:forEach var="vo" items="${mlist}">
+			<h1>${vo.sendMsg}</h1>
+			<h1>${vo.sendMsg.sMTime}</h1>
 			<c:if test="${vo.sendMsg.stfNo == loginUser.stfNo}">
 				<tr>
 					<th><button>${vo.mTitle}</button></th>
