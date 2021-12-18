@@ -95,7 +95,7 @@
             <div id="myInfo">
                 <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                 <h3 id="miName">${loginUser.stfName}</h3>
-                <p id="miHour">오늘의 근무시간 ${elapsedWTime}</p>
+                <p id="miHour">오늘의 근무시간</p>
                 <div id="miToday">
                     <p id="miGo">출근</p>
                     <p id="miGoTime">${attStart}</p>
@@ -155,7 +155,7 @@
                     <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                     <div class="bmInfo">
                         <h4>김예은</h4>
-                        <p>개발팀</p>
+                        <p>개발부</p>
                     </div>
                     <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
                 </div>
@@ -163,8 +163,8 @@
                 <div class="bmContainer">
                     <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                     <div class="bmInfo">
-                        <h4>김예은</h4>
-                        <p>개발팀</p>
+                        <h4>신유리</h4>
+                        <p>인사부</p>
                     </div>
                     <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
                 </div>
@@ -172,8 +172,8 @@
                 <div class="bmContainer">
                     <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                     <div class="bmInfo">
-                        <h4>김예은</h4>
-                        <p>개발팀</p>
+                        <h4>김가희</h4>
+                        <p>개발부</p>
                     </div>
                     <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
                 </div>
@@ -181,8 +181,8 @@
                 <div class="bmContainer">
                     <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                     <div class="bmInfo">
-                        <h4>김예은</h4>
-                        <p>개발팀</p>
+                        <h4>추대경</h4>
+                        <p>개발부</p>
                     </div>
                     <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
                 </div>
@@ -190,8 +190,8 @@
                 <div class="bmContainer">
                     <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                     <div class="bmInfo">
-                        <h4>김예은</h4>
-                        <p>개발팀</p>
+                        <h4>노형욱</h4>
+                        <p>개발부</p>
                     </div>
                     <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
                 </div>
@@ -217,7 +217,8 @@
 		    
 		    var totalWorkingTime= addZero(hour,2)+":"+addZero(minute,2)+":"+addZero(second,2);
 		    $("#miHour").html("오늘의 근무시간 "+totalWorkingTime);
-		    
+	    }
+	    let workBreak = setInterval(function() {
 		    var brStart = "${wb.brStart}";
 		    var sbh = brStart.substr(0,2);
 		    var sbm = brStart.substr(3,2);
@@ -229,7 +230,7 @@
 		    var ebs = brEnd.substr(6,2);
 		    var wbtime= addZero(ebh-sbh,2)+":"+addZero(ebm-sbm,2)+":"+addZero(ebs-sbs,2);
 		    $("#restHour").html("오늘 총 휴식시간 "+wbtime);
-	    }
+		}, 1000);
 	    function addZero(num, digits){
 		    var zero = '';
 		    num = num.toString();
@@ -239,10 +240,21 @@
 		    }
 		    return zero + num;
 	    }
-	    /* var endTime = "${attEndFormat}";
+	    var endTime = "${attEndFormat}";
 	    if(endTime != null){
-	    	clearInterval(ckInterval);
-	    } */
+	    	clearInterval(attInfo);
+	    	var attStart = "${attStart}";
+		    var asbh = attStart.substr(0,2);
+		    var asbm = attStart.substr(3,2);
+		    var asbs = attStart.substr(6,2);
+		    
+		    var attEnd = "${attEndFormat}";
+		    var aebh = attEnd.substr(0,2);
+		    var aebm = attEnd.substr(3,2);
+		    var aebs = attEnd.substr(6,2);
+		    var total= addZero(aebh-asbh,2)+":"+addZero(aebm-asbm,2)+":"+addZero(aebs-asbs,2);
+		    $("#miHour").html("오늘 총 근무시간 "+total);
+	    }
     </script>
 </body>
 </html>
