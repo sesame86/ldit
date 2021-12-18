@@ -33,6 +33,23 @@ public class TeamGoalUpdateController {
 		}
 		return taVo;
 	}
+	@RequestMapping(value = "/gdetail.do", method = RequestMethod.GET)
+	@ResponseBody
+	public TeamAim getDetail(HttpServletRequest request) {
+		String teamIdStr = request.getParameter("teamId");
+		int teamId = 0;
+		if(teamIdStr != null) {
+			teamId = Integer.parseInt(teamIdStr);
+		}
+		TeamAim taVo = null;
+		try {
+			taVo = TeamAimService.getUpdateGoal(teamId);
+			System.out.println(taVo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return taVo;
+	}
 	@RequestMapping(value = "/goalupdate", method = RequestMethod.POST)
 	public ModelAndView updateTeamGoal(ModelAndView mv, TeamAim tAimVo) {
 		String viewpage = "redirect:teammain";

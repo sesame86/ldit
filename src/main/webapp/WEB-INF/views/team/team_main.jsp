@@ -142,6 +142,29 @@
 		      </div>
 		    </div>
 	    </div>
+	    <div id="tgselectList">
+		    <div class="modal-content">
+		      <div class="container">
+		        <div id="goalBasic">
+		        	<span onclick="closeModal()" id="cancleBtn"><i class="fas fa-times"></i></span>
+			        <h1 class="teamH1" id="modalTitle">팀 목표 상세조회</h1>
+		        </div>
+		        <form id="tgModalFrm">
+		        	<div id="tgForm">
+		        		<input type="hidden" id="teamId1" name="teamId1" value="0" readonly="readonly">
+		        		<label>목표 제목</label>
+			        	<input name="aimTitle1" id="aimTitle1" readonly="readonly">
+			        	<label>내용</label>
+			        	<textarea rows="8" name="aimContent1" id="aimContent1" readonly="readonly"></textarea>
+			        	<label>시작일</label>
+			        	<input type="date" id="startDate1" name="aimStart1" readonly="readonly">
+			        	<label>마감일</label>
+			        	<input type="date" id="endDate1" name="aimEnd1" readonly="readonly">
+		        	</div>
+		        </form>
+		      </div>
+		    </div>
+	    </div>
     </section>
     <script type="text/javascript">
     
@@ -166,7 +189,7 @@
 	    					text += "<div class='goalListCon'>";
 	    					text += "<div class='reqColorSmall' id='color_"+i+"'></div>";
 	    					text += "<div class='goalInfo'>";
-	    					text += "<h4>"+result[i].aimTitle+"</h4>";
+	    					text += "<h4 onclick='moveToTgList()'>"+result[i].aimTitle+"</h4>";
 	    					if ("${rightNo}" == 1){
 	    						if(result[i].aimStatus != 100 && result[i].aimFinish == 'N'){
 		    						text += "<button onclick='getUpdateGoal("+result[i].teamId+")'>수정</button>";
@@ -202,6 +225,7 @@
     	function closeModal() {
     		$("#teamGoalModal").css("display", "none");
     		$("#tgRegisterModal").css("display", "none");
+    		$("#tgselectList").css("display", "none");
 		}
     	function moveToAddgoal() {
     		$("#teamId").val($("#storeTeamId").val());
@@ -326,6 +350,29 @@
 			        }
 	    		})
 			}
+		}
+    	function moveToTgList() {
+    		$("#teamId").val($("#storeTeamId").val());
+    		$.ajax({
+    			url:"gdetail.do",
+    			data:{"teamId": $("#storeTeamId").val()},
+    			contentType: 'application/json; charset=utf-8',
+    			type: "GET",
+    			dataType: "json",
+    			success: function(result){
+    				//팀 목표 수정 모달로 이동
+					$("#teamGoalModal").css("display", "none");
+					$("#tgselectList").css("display", "block");
+					$("#tgModalFrm1").attr("action", "goalupdate");
+					$("#aimTitle1").val(result.aimTitle);
+					$("#aimContent1").val(result.aimContent);
+					$("#startDate1").val(formatSqlDate(result.aimStart));
+					$("#endDate1").val(formatSqlDate(result.aimEnd));
+    			},
+    			error : function(e) {
+    				alert("비활성화된 팀 목표는 확인할 수 없습니다.")
+		        }
+    		})
 		}
     </script>
 </body>

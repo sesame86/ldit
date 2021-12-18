@@ -123,7 +123,7 @@ h1{
     border-radius: 0.2rem;
 }
 /*team goal*/
-#teamGoalModal, #tgRegisterModal{
+#teamGoalModal, #tgRegisterModal, #tgselectList{
 	z-index:3;
 	display:none;
 	padding-top:100px;
