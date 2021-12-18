@@ -535,3 +535,9 @@ section {
 }
 
 
+input[type="checkbox"]{
+	zoom : 1.5;
+	position: relative;
+    top: 2px;
+    margin-left: 0.5%;
+}

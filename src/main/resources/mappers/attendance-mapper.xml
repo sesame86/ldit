@@ -38,7 +38,7 @@
 
 <select id="getTodayAttendance" parameterType="_int" resultMap="TodayAttendance">
 	<![CDATA[ 
-	select ATT_NO, to_char(ATT_START, 'hh24:mi:ss') ATT_START, to_char(ATT_END, 'hh24:mi:ss') ATT_END
+	select ATT_NO, STF_NO, to_char(ATT_START, 'hh24:mi:ss') ATT_START, to_char(ATT_END, 'hh24:mi:ss') ATT_END
 	, (
 		select replace((to_char(sum(beh), '09')||':'||to_char(sum(bem),'09')||':'||to_char(sum(bes), '09')),' ', '')
         	from (select extract(HOUR FROM diff) AS beh
@@ -229,5 +229,35 @@ where WHM_ZERO_DAY = #{selectedDay}
 	select * from XIUXI order by (to_number(XIU_NO, 99))
 </select>
 
+<insert id="insertXiuxiApply" parameterType="map">
+	 Insert into XIUXI_APPLY values(XIUXI_APPLY_SEQ.NEXTVAl, #{xiuNo}, #{stfNo}, to_number(to_char(SYSDATE, 'YYYYMMDD')),
+	 to_date(#{xaStart}, 'YYYYMMDD')
+	,to_date(#{xaEnd}, 'YYYYMMDD'))
+</insert>
+
+<insert id="insertWorkHomeApply" parameterType="map">
+	Insert into WORK_HOME_APPLY values(WORK_HOME_APPLY_SEQ.NEXTVAL, #{stfNo}, to_number(to_char(SYSDATE, 'YYYYMMDD'))
+	, to_date(#{whStart}, 'YYYYMMDD')
+	, to_date(#{whEnd}, 'YYYYMMDD')
+)
+</insert>
+
+<select id="getRestAll" parameterType="map" resultType="string">
+	<![CDATA[ 
+	 select replace((to_char(sum(beh), '09')||':'||to_char(sum(bem),'09')||':'||to_char(sum(bes), '09')),' ', '') ATT_RESTALL
+        	from (select extract(HOUR FROM diff) AS beh
+       		,extract(MINUTE FROM diff) AS bem
+        	,extract(SECOND FROM diff) AS bes
+            	from (SELECT (be-bs) as diff 
+            		from (select to_timestamp(to_char(BR_START, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') bs
+                		, to_timestamp(to_char(BR_END, 'YYYYMMDDHH24MISS'), 'YYYYMMDDHH24MISS') be 
+                    		from WORK_BREAK
+                    		where STF_NO = #{stfNo} and ATT_NO = #{thisAttNo} )))
+		]]>
+</select>
+
+<update id="updateRestAll" parameterType="map">
+	update ATTENDANCE set ATT_RESTALL = #{restAll} where STF_NO = #{stfNo} and ATT_NO = #{thisAttNo}
+</update>
 
 </mapper>

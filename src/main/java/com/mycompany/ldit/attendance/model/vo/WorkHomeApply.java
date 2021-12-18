@@ -9,6 +9,10 @@ public class WorkHomeApply {
 		private String whStart;
 		private String whEnd;
 		
+		public WorkHomeApply() {
+			super();
+		}
+
 		public WorkHomeApply(int whomeNo, int stfNo, int whWhen, String whStart, String whEnd) {
 			super();
 			this.whomeNo = whomeNo;
