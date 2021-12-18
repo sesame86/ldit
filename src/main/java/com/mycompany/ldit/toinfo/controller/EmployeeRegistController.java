@@ -54,11 +54,11 @@ public class EmployeeRegistController {
           if(result==1) { 
              String msg = "회원 정보가 등록되었습니다.";
              rttr.addFlashAttribute("msg", msg);
-             mv.setViewName("redirect:eregist");
+             mv.setViewName("main");
           }else {
              String msg = "회원 정보 등록에 실패하였습니다.";
              rttr.addFlashAttribute("msg", msg);
-             mv.setViewName("redirect:eregist");
+             mv.setViewName("main");
           }
           
        } catch (Exception e) {

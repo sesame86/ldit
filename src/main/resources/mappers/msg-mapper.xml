@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
+<mapper namespace="Msg">
+  <!-- M_NO      NOT NULL NUMBER        
+	M_TITLE   NOT NULL VARCHAR2(300) 
+	M_CONTENT          VARCHAR2(300)
+	private int m_no;
+	private String m_title;
+	private String m_content; -->
+	<resultMap type="Msg" id="msgRM">
+		<id property="mNo" column="M_NO"/>
+		<result property="mTitle" column="M_TITLE"/>
+		<result property="mContent" column="M_CONTENT"/>
+		<!-- <association property="staff" javaType="Staff">
+			<id property="stfNo" column="STF_NO"/>
+			<result property="stfId" column="STF_ID"/>
+		</association> -->
+		<association property="sendMsg" javaType="sendMsg">
+			<id property="sMNo" column="S_M_NO"/>
+			<result property="stfNo" column="STF_NO"/>
+			<result property="sMTime" column="S_M_TIME"/>
+		</association>
+		<association property="receiveMsg" javaType="receiveMsg">
+			<id property="rMNo" column="R_M_NO"/>
+			<result property="rMCheck" column="R_M_CHECK"/>
+		</association>
+	</resultMap>
+	
+	<!-- 쪽지 보내기 -->
+	<insert id="sendMsg" parameterType="Msg">
+	
+		insert into MSG values (MSG_SEQ.NEXTVAL, #{mTitle}, #{mContent})
+	</insert>
+	
+	<!-- 쪽지 번호 가져오기 -->
+	<select id="checkMNo" parameterType="Msg" resultType="int">
+		select MAX(m_no) from MSG 
+	</select>
+	
+	<!-- 보낸 쪽지 확인 -->
+	<select id="sendMsgCheck" resultMap="msgRM" parameterType="Msg">
+		select m.M_TITLE, s.S_M_TIME, r.R_M_CHECK
+		from MSG m join receive_msg r on m.m_no = r.m_no join send_msg s on m.m_no = s.m_no
+	</select>
 </mapper>

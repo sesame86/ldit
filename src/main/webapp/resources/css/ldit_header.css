@@ -52,9 +52,9 @@ nav ul li{
 /*JH*/
 #loginUser{
     position: absolute;
-    top: 20%;
+    top: 30%;
     right: 15%;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
 #logout{

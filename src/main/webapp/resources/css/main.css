@@ -53,8 +53,9 @@ section {
     width: 80%;
     height: 8%;
     margin: 1rem auto;
-    line-height: 1.8rem;
-    font-size: 0.8rem;
+    line-height: 2.2rem;
+    font-size: 1rem;
+    overflow: auto;
 }
 #miToday{
     clear: both;
@@ -78,6 +79,9 @@ section {
     border-radius: 0.2rem;
     width: 30%;
     height: 100%;
+    line-height: 2.2rem;
+    font-size: 1rem;
+    overflow: auto;
 }
 #miOut{
     float: left;
@@ -92,6 +96,9 @@ section {
     border-radius: 0.2rem;
     width: 30%;
     height: 100%;
+    line-height: 2.2rem;
+    font-size: 1rem;
+    overflow: auto;
 }
 #miWeekHour{
     clear: both;

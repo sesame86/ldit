@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
+<mapper namespace="SendMsg">
+<!-- private int sMNo;
+	   private int stfNo;
+	   private int mNo;
+	   private String sMTime;
+	   private String rStfId;
+	   S_M_NO   NOT NULL NUMBER       
+STF_NO   NOT NULL NUMBER       
+M_NO     NOT NULL NUMBER       
+S_M_TIME NOT NULL VARCHAR2(30) 
+R_STF_NO NOT NULL NUMBER      -->  
+	<resultMap type="SendMsg" id="SendMsgRM">
+		<id property="sMNo" column="S_M_NO"/>
+		<result property="stfNo" column="STF_NO"/>
+		<result property="mNo" column="M_NO"/>
+		<result property="sMTime" column="S_M_TIME"/>
+		<result property="rStfId" column="R_STF_Id"/>
+	</resultMap>
+	
+	<!-- 보낸 쪽지함에 쪽지 담기 -->
+	<insert id="sendBox" parameterType="SendMsg">
+		insert into send_msg values (SEND_MSG_SEQ.NEXTVAL, #{stfNo}, #{mNo}, to_char(SYSDATE, 'YYYY-MM-DD hh24:mi:ss'), #{rStfId})
+	</insert>
 </mapper>

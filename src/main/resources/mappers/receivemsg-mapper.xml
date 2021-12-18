@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
+<mapper namespace="ReceiveMsg">
+<!-- R_M_NO    NOT NULL NUMBER       
+STF_NO    NOT NULL NUMBER       
+M_NO      NOT NULL NUMBER       
+R_M_TIME  NOT NULL VARCHAR2(30) 
+R_M_CHECK NOT NULL NUMBER       
+S_STF_ID  NOT NULL VARCHAR2(30)
+private int rMNo;
+	   private int stfNo;
+	   private int mNo;
+	   private String rMTime;
+	   private int rMCheck;
+	   private String sStfId; -->
+	   <resultMap type="ReceiveMsg" id="ReceiveMsgRM">
+	   		<id property="rMNO" column="R_M_NO"/>
+	   		<result property="stfNo" column="STF_NO"/>
+	   		<result property="mNo" column="M_NO"/>
+	   		<result property="rMTime" column="R_M_TIME"/>
+	   		<result property="rMCheck" column="R_M_CHECK"/>
+	   		<result property="sStfId" column="S_STF_ID"/>
+	   </resultMap>
+	   
+	   <!-- 받은 쪽지함에 쪽지 담기 -->
+	   <insert id="receiveBox" parameterType="ReceiveMsg">
+	   		insert into receive_msg values (RECEIVE_MSG_SEQ.NEXTVAL, #{stfNo}, #{mNo}, to_char(SYSDATE, 'YYYY-MM-DD hh24:mi:ss'), #{rMCheck}, #{sStfId})
+	   </insert>
 </mapper>

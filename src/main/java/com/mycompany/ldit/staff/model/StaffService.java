@@ -15,6 +15,12 @@ public class StaffService implements StaffServiceInterface{
 	@Autowired
 	private StaffDao staffDao;
 	
+	// 받은 쪽지함의 받은 직원 사원 번호 가져오기
+	@Override
+	public int searchNo(String rStfId) {
+		return staffDao.searchNo(rStfId);
+	}
+	
 	// 조직도
 	@Override
 	public List<Staff> organization(Staff vo) {

@@ -17,9 +17,12 @@
 		<result property="proStatus" column="pro_status"/>
 	</resultMap>
 	<select id="getAttendance" parameterType="int" resultMap="attendanceRM">
-		select att_no, stf_no from attendance where stf_no = #{stfNo} and TO_CHAR(att_start,'YYYYMMDD') = TO_CHAR(sysdate,'YYYYMMDD')
+		select * from attendance where stf_no = #{stfNo} and TO_CHAR(att_start,'YYYYMMDD') = TO_CHAR(sysdate,'YYYYMMDD')
 	</select>
 	<select id="getUserProject" parameterType="int" resultMap="projectRM">
-		select distinct p.* from project p join team t on p.pro_no=t.pro_no join team_member tm on t.team_id = tm.team_id where p.pro_status!='F' and tm.stf_no=#{stfNo} or t.team_manager=#{stfNo}
+		select t1.pro_no, t1.pro_title, t1.pro_content, t1.pro_start, t1.pro_end, t1.pro_manager, t1.pro_status from(select p.*, rank() over (partition by p.pro_no order by t.team_id desc) as ranking
+		from project p left join team t on p.pro_no = t.pro_no left join team_member tm on t.team_id = tm.team_id
+        where p.pro_manager = #{stfNo} or t.team_manager = #{stfNo} or tm.stf_no = #{stfNo}) t1
+		where ranking = 1 and t1.pro_status != 'F' order by t1.pro_no desc
 	</select>
 </mapper>

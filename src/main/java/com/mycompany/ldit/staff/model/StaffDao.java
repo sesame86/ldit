@@ -19,6 +19,11 @@ public class StaffDao implements StaffDaoInterface {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 받은 쪽지함의 받은 직원 사원 번호 가져오기
+	public int searchNo(String rStfId) {
+		return sqlSession.selectOne("StaffNS.searchNo", rStfId);
+	}
+	
 	// 조직도
 	public List<Staff> organization(){
 		return sqlSession.selectList("StaffNS.organization");

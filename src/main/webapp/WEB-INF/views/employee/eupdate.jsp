@@ -25,61 +25,61 @@
 	<%@ include file="/WEB-INF/views/ldit_header.jsp"%>
 	<%@ include file="/WEB-INF/views/ldit_aside.jsp"%>
 	
-	<h3>개인 정보 수정 </h3>
-	<section>
+	<h1>개인 정보 수정 </h1>
 	<form action="eupdate2" method="post">
+	<div id="box">
 		<div id="divImg">
 			<label><img id="stfImg" src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG"></label><br><br><br>
 		</div>
 		<div id="divInformation">
 		<label class="inf">사원 번호 : </label>
-		<label class="inf2">${loginUser.stfNo}</label>
+		<label class="inf2">${loginUser.stfNo}</label><br><br><br>
 		<label for="deptNo" class="inf">부서이름 : </label>
 		<c:if test="${loginUser.department.deptName == '임원'}">
 			<select id="deptNo" name="deptNo" class="inf2">
 				<option value=1 selected>임원</option>
-				<option value=2>기획</option>
-				<option value=3>인사</option>
-				<option value=4>개발</option>					
-				<option value=5>영업</option>					
+				<option value=2>기획부</option>
+				<option value=3>인사부</option>
+				<option value=4>개발부</option>					
+				<option value=5>영업부</option>					
 			</select>
 		</c:if>
 		<c:if test="${loginUser.department.deptName == '기획'}">
 			<select id="deptNo" name="deptNo" class="inf2">
 				<option value=1>임원</option>
-				<option value=2 selected>기획</option>
-				<option value=3>인사</option>
-				<option value=4>개발</option>					
-				<option value=5>영업</option>					
+				<option value=2 selected>기획부</option>
+				<option value=3>인사부</option>
+				<option value=4>개발부</option>					
+				<option value=5>영업부</option>					
 			</select>
 		</c:if>
 		<c:if test="${loginUser.department.deptName == '인사'}">
 			<select id="deptNo" name="deptNo" class="inf2">
 				<option value=1>임원</option>
-				<option value=2>기획</option>
-				<option value=3 selected>인사</option>
-				<option value=4>개발</option>					
-				<option value=5>영업</option>					
+				<option value=2>기획부</option>
+				<option value=3 selected>인사부</option>
+				<option value=4>개발부</option>					
+				<option value=5>영업부</option>					
 			</select>
 		</c:if>
 		<c:if test="${loginUser.department.deptName == '개발'}">
 			<select id="deptNo" name="deptNo" class="inf2">
 				<option value=1>임원</option>
-				<option value=2>기획</option>
-				<option value=3>인사</option>
-				<option value=4 selected>개발</option>					
-				<option value=5>영업</option>					
+				<option value=2>기획부</option>
+				<option value=3>인사부</option>
+				<option value=4 selected>개발부</option>					
+				<option value=5>영업부</option>					
 			</select>
 		</c:if>
 		<c:if test="${loginUser.department.deptName == '영업'}">
 			<select id="deptNo" name="deptNo" class="inf2">
 				<option value=1>임원</option>
-				<option value=2>기획</option>
-				<option value=3>인사</option>
-				<option value=4>개발</option>					
-				<option value=5 selected>영업</option>					
+				<option value=2>기획부</option>
+				<option value=3>인사부</option>
+				<option value=4>개발부</option>					
+				<option value=5 selected>영업부</option>					
 			</select>
-		</c:if>
+		</c:if><br><br><br>
 		<label for="stfLvl" class="inf">직급 : </label>
 		<c:if test="${loginUser.stfLvl == '사원'}">
 			<select id="stfLvl" name="stfLvl" class="inf2">
@@ -112,26 +112,26 @@
 				<option value="상무이사">상무이사</option>
 				<option value="대표이사" selected>대표이사</option>					
 			</select>
-		</c:if>
-		<br><br><br><br><br><label class="inf">사원 이름 : </label>
-		<label class="inf2">${loginUser.stfName}</label>
+		</c:if><br><br><br>
+		<label class="inf">사원 이름 : </label>
+		<label class="inf2">${loginUser.stfName}</label><br><br><br>
 		<input type="hidden" id="stfId" name="stfId" value="${loginUser.stfId}"/>
 		<label class="inf">아이디 : </label>
-		<label class="inf2">${loginUser.stfId}</label>
+		<label class="inf2">${loginUser.stfId}</label><br><br><br>
 		<label class="inf">비밀번호 : </label>
-		<label><input type="text" id="stfPasswd" name="stfPasswd" class="inf2" value="${loginUser.stfPasswd}"/></label><br><br><br><br><br>
+		<label><input type="text" id="stfPasswd" name="stfPasswd" class="inf2" value="${loginUser.stfPasswd}"/></label><br><br><br>
 		<label class="inf">전화번호 : </label>
-		<label><input type="text" id="stfPhone" name="stfPhone" class="inf2" value="${loginUser.stfPhone}"/></label>
+		<label><input type="text" id="stfPhone" name="stfPhone" class="inf2" value="${loginUser.stfPhone}"/></label><br><br><br>
 		<label class="inf">이메일 : </label>
-		<label><input type="email" id="stfMail" name="stfMail" class="inf2" value="${loginUser.stfMail}"/></label>
+		<label><input type="email" id="stfMail" name="stfMail" class="inf2" value="${loginUser.stfMail}"/></label><br><br><br>
 		<label class="inf">입사일 : </label>
-		<label class="inf2">${loginUser.stfEnroll}</label><br><br><br><br><br><br><br>
+		<label class="inf2">${loginUser.stfEnroll}</label><br><br><br>
+		</div>
 		</div>
 		<div id="divBtn">
-			<button type="submit" id="update" class="uBtn">수정</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="submit" id="update" class="uBtn">수정</button>
 			<button type="button" id="cancel" onclick="location.href='main'" class="uBtn">취소</button>
 		</div>
 	</form>
-	</section>
 </body>
 </html>

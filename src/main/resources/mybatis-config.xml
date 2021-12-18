@@ -15,13 +15,12 @@
 		<typeAlias type="com.mycompany.ldit.department.model.vo.Department" alias="Department"/>
 		<!-- <typeAlias type="com.mycompany.ldit.issue.model.vo.Issue" alias="Issue"/> -->
 		<!-- <typeAlias type="com.mycompany.ldit.issuecomment.model.vo.IssueComment" alias="IssueComment"/> -->
-		<!-- <typeAlias type="com.mycompany.ldit.msg.model.vo.Msg" alias="Msg"/> -->
+		<typeAlias type="com.mycompany.ldit.msg.model.vo.Msg" alias="Msg"/>
 		<!-- <typeAlias type="com.mycompany.ldit.pluswork.model.vo.PlusWork" alias="PlusWork"/> -->
 		<typeAlias type="com.mycompany.ldit.project.model.vo.Project" alias="Project"/>
-		<!-- <typeAlias type="com.mycompany.ldit.receivemsg.model.vo.ReceiveMsg" alias="ReceiveMsg"/> -->
+		<typeAlias type="com.mycompany.ldit.receivemsg.model.vo.ReceiveMsg" alias="ReceiveMsg"/>
 		<typeAlias type="com.mycompany.ldit.right.model.vo.Right" alias="Right"/>
-		<!-- <typeAlias type="com.mycompany.ldit.sendmsg.model.vo.SendMsg" alias="SendMsg"/> -->
-		<!-- <typeAlias type="com.mycompany.ldit.workcomment.model.vo.WorkComment" alias="WorkComment"/> -->
+		<typeAlias type="com.mycompany.ldit.sendmsg.model.vo.SendMsg" alias="SendMsg"/>
 		<typeAlias type="com.mycompany.ldit.staff.model.vo.Staff" alias="Staff"/>
 		<typeAlias type="com.mycompany.ldit.team.model.vo.Team" alias="Team"/>
 		<typeAlias type="com.mycompany.ldit.teamaim.model.vo.TeamAim" alias="TeamAim"/>
@@ -47,11 +46,11 @@
 		<mapper resource="mappers/department-mapper.xml"/>
 		<!-- <mapper resource="mappers/issue-mapper.xml"/> -->
 		<!-- <mapper resource="mappers/issuecomment-mapper.xml"/> -->
-		<!-- <mapper resource="mappers/msg-mapper.xml"/> -->
+		<mapper resource="mappers/msg-mapper.xml"/>
 		<mapper resource="mappers/project-mapper.xml"/>
-		<!-- <mapper resource="mappers/receivemsg-mapper.xml"/> -->
+		<mapper resource="mappers/receivemsg-mapper.xml"/>
 		<mapper resource="mappers/right-mapper.xml"/>
-		<!-- <mapper resource="mappers/sendmsg-mapper.xml"/> -->
+		<mapper resource="mappers/sendmsg-mapper.xml"/>
 		<mapper resource="mappers/staff-mapper.xml"/>
 		<mapper resource="mappers/team-mapper.xml"/>
 		<mapper resource="mappers/teamaim-mapper.xml"/>

@@ -44,6 +44,11 @@ STF_NOTHERE          DATE      -->
 		</association>
 	</resultMap>
 	
+	<!-- 받은 쪽지함의 받는 직원의 사원 번호 가져오기 -->
+	<select id="searchNo" resultType="int" parameterType="String">
+		select stf_no from staff where stf_id = #{rStfId}
+	</select>
+	
 	<!-- 직원 정보 수정 -->
 	<update id="eupdate" parameterType="Staff">
 		update staff set dept_no=#{deptNo}, stf_lvl=#{stfLvl}, stf_passwd=#{stfPasswd}, stf_phone=#{stfPhone}, stf_mail=#{stfMail}
@@ -82,6 +87,7 @@ STF_NOTHERE          DATE      -->
 		select stf_id
 		from staff
 	</select>
+	
 	<!--  JH  -->
 	<select id="loginCheck" resultType="String" parameterType="Staff">
 		select stf_name from staff

@@ -7,6 +7,10 @@ import javax.servlet.http.HttpSession;
 import com.mycompany.ldit.staff.model.vo.Staff;
 
 public interface StaffDaoInterface {
+	
+	// 받은 쪽지함의 받은 직원 사원 번호 가져오기
+	public int searchNo(String rStfId);
+	
 	// 조직도
 	public List<Staff> organization();
 
