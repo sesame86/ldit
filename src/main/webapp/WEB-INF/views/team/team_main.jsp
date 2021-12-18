@@ -25,7 +25,6 @@
 	<%@ include file="/WEB-INF/views/ldit_header.jsp" %>
 	<%@ include file="/WEB-INF/views/ldit_aside.jsp" %>
 	<section>
-        <a id="leftArrow"><i class="fas fa-chevron-left"></i></a>
         <div id="teamContainer">
             <h1>Team</h1>
             <c:if test="${rightNo == 1}">
@@ -86,12 +85,6 @@
                 </article>
             </c:forEach>
             </div>
-        </div>
-        <a id="rigthArrow"><i class="fas fa-chevron-right"></i></a>
-        <div id="dotContainer">
-            <a><i class="fas fa-circle"></i></a>
-            <a><i class="fas fa-circle"></i></a>
-            <a><i class="fas fa-circle"></i></a>
         </div>
         <!-- team goal list modal -->
         <div id="teamGoalModal">
