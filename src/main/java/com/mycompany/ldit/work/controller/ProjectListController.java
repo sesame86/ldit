@@ -35,19 +35,22 @@ public class ProjectListController {
 		List<Project> newList = null;
 		List<Project> continueList = null;
 		List<Project> finishList = null;
+		List<Project> allList = null;
 		try {
-			int proNo = 8;
 			Staff loginUser = (Staff)session.getAttribute("loginUser");
+			Staff stfNo = new Staff();
+			stfNo.setStfNo(loginUser.getStfNo());
 			
-			newList = projectService.getNewList(proNo);
-			continueList = projectService.getContinueList(proNo);
-			finishList = projectService.getFinishList(proNo);
+			newList = projectService.getNewList(stfNo);
+			continueList = projectService.getContinueList(stfNo);
+			finishList = projectService.getFinishList(stfNo);
+			allList = projectService.getAllList(stfNo);
 			viewpage = "project/projectmain";
 
-			mv.addObject("proNo", proNo);
 			mv.addObject("newList", newList);
 			mv.addObject("continueList", continueList);
 			mv.addObject("finishList", finishList);
+			mv.addObject("allList", allList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

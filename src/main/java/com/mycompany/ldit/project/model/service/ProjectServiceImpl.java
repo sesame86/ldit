@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.ldit.project.model.dao.ProjectDao;
 import com.mycompany.ldit.project.model.vo.Project;
+import com.mycompany.ldit.staff.model.vo.Staff;
 
 @Service("ProjectService")
 public class ProjectServiceImpl implements ProjectService{
@@ -19,17 +20,28 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	@Override
-	public List<Project> getNewList(int proNo) throws Exception {
-		return projectDao.getNewList(proNo);
+	public List<Project> getNewList(Staff stfNo) throws Exception {
+		return projectDao.getNewList(stfNo);
 	}
 
 	@Override
-	public List<Project> getContinueList(int proNo) throws Exception {
-		return projectDao.getContinueList(proNo);
+	public List<Project> getContinueList(Staff stfNo) throws Exception {
+		return projectDao.getContinueList(stfNo);
 	}
 
 	@Override
-	public List<Project> getFinishList(int proNo) throws Exception {
-		return projectDao.getFinishList(proNo);
+	public List<Project> getFinishList(Staff stfNo) throws Exception {
+		return projectDao.getFinishList(stfNo);
 	}
+
+	@Override
+	public List<Project> getAllList(Staff stfNo) throws Exception {
+		return projectDao.getAllList(stfNo);
+	}
+
+	@Override
+	public List<Project> getDetailList(int proNo) throws Exception {
+		return projectDao.getDetailList(proNo);
+	}
+
 }

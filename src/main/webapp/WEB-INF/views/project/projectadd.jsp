@@ -31,7 +31,7 @@
             <h1>Project 개설</h1>
             <article>
                 <form id="pjAddFrm" action="pjadd" method="post">
-                    <input type="hidden" id="proManager" name="proManager" value="${loginUser.stfNo}">
+                    <input type="hidden" id="stfNo" name="stfNo" value="${loginUser.stfNo}">
                     <div class="textBox" id="calendar">
                     	<label>시작일</label>
                     	<input type="date" id="proStart" name="proStart" required="required">

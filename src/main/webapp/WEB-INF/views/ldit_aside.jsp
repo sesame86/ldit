@@ -13,7 +13,7 @@
           <button class="aside-accordion"><p class="float-L"><i class="far fa-file-alt"></i><p class="mobile-hidden">&nbsp&nbsp 프로젝트</p><i class="fas fa-angle-down float-R"></i></p> </button>
           <div class="panel">
               <p class="pd1" onclick="location.href='projectmain'">프로젝트 조회</p>
-              <p class="pd1">이슈</p>
+              <!-- <p class="pd1">이슈</p> -->
               
           </div>
   
@@ -52,11 +52,12 @@
               <a href="#"></a>
           </div>
           
-          <!-- 인사팀만 해당 버튼 보이도록 바꿔줘야함 - 김정기 -->
+          <c:if test="${loginUser.deptNo==3}">
           <button class="aside-accordion" onclick="location.href='pmregist'"><i class="far fa-id-badge"></i><p class="mobile-hidden">&nbsp&nbsp 권한관리</p></button>
           <div class="panel">
               <a href="#"></a>
           </div>
+          </c:if>
           <script>
            /*
            var acc = document.getElementsByClassName("accordion");

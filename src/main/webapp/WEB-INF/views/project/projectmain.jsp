@@ -34,15 +34,20 @@
 			<div class="flexContainer">
 				<div id="new">
 					<h4>예정</h4>
-					<%-- console.log(${newList}); --%>
+					<input type="hidden" id="stfNo" name="stfNo" value="${loginUser.stfNo}">
+					<%-- console.log(${detailList}); --%>
 					<c:forEach var="vo" items="${newList}">
 					<div id="newList">
-							<div class="reqColorSmall"></div>
+							<div class="reqColorSmallNew"></div>
 							<div class="listInfo">
-								<a href="#" onclick="csDetailView(${vo.proNo})">${vo.proTitle}</a>
 								<i class="fas fa-user-plus"></i>
+								<br>
+								<a href="#" onclick="location.href='pupdate'">제목 : ${vo.proTitle}</a>
+								<br>
 								<p class="date">시작일 : ${vo.proStart}</p>
+								<br>
 								<p class="date">마감일 : ${vo.proEnd}</p>
+								<input type="hidden" id="proNo" name="proNo" value="${vo.proNo}">
 							</div>
 					</div>
 					</c:forEach>
@@ -51,11 +56,16 @@
 					<h4>진행중</h4>
 					<c:forEach var="vo" items="${continueList}">
 					<div id="continueList">
-							<div class="reqColorSmall"></div>
+							<div class="reqColorSmallContinue"></div>
 							<div class="listInfo">
-								<a href="#" onclick="csDetailView(${vo.proNo})">${vo.proTitle}</a>
+								<i class="fas fa-user-plus"></i>
+								<br>
+								<a href="#" onclick="location.href='pupdate'">제목 : ${vo.proTitle}</a>
+								<br>
 								<p class="date">시작일 : ${vo.proStart}</p>
+								<br>
 								<p class="date">마감일 : ${vo.proEnd}</p>
+								<input type="hidden" id="proNo" name="proNo" value="${vo.proNo}">
 							</div>
 					</div>
 					</c:forEach>
@@ -64,11 +74,16 @@
 					<h4>완료</h4>
 					<c:forEach var="vo" items="${finishList}">
 					<div id="finishList">
-							<div class="reqColorSmall"></div>
+							<div class="reqColorSmallFinish"></div>
 							<div class="listInfo">
-								<a href="#" onclick="csDetailView(${vo.proNo})">${vo.proTitle}</a>
+								<i class="fas fa-user-plus"></i>
+								<br>
+								<a href="#" onclick="location.href='pupdate'">제목 : ${vo.proTitle}</a>
+								<br>
 								<p class="date">시작일 : ${vo.proStart}</p>
+								<br>
 								<p class="date">마감일 : ${vo.proEnd}</p>
+								<input type="hidden" id="proNo" name="proNo" value="${vo.proNo}">
 							</div>
 					</div>
 					</c:forEach>

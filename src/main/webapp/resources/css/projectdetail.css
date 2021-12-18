@@ -1,0 +1,342 @@
+@charset "UTF-8";
+section{
+    width: 87%;
+    height: 94%;
+    float: right;
+    overflow: auto;
+    position: relative;
+}
+
+h1{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#pjAdd{
+    width: 90%;
+    height: 90%;
+    margin: 3rem auto auto auto;
+}
+
+#pjAddFrm{
+    width: 70%;
+    height: 100%;
+    margin: 4% auto;
+    display: grid;
+}
+
+#calendar{
+    display: grid;
+    grid-template-columns: 15% 34% 15% 33%;
+    gap: 0 1%;
+}
+
+#pjTitle, #pjTm {
+	display: grid;
+	grid-template-columns: 15% 84%;
+    gap: 0 1%;
+}
+
+#pjContent {
+	height: 25rem;
+	display: grid;
+	grid-template-columns: 15% 84%;
+    gap: 0 1%;
+}
+
+.submitBtn {
+	margin-right: 15%;
+	text-align: right;
+}
+
+label{
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: auto;
+    margin-top: 1.4rem;
+}
+.textBox {
+    text-align: right;
+}
+
+input{
+    padding: 0.7rem;
+    margin-top: 1.4rem;
+}
+
+.inTextBox{
+	border: 1px solid black;
+    padding: 0.7rem;
+    margin-top: 1.2rem;
+    text-align: left;
+}
+
+.submitAddBtn{
+	border: 0;
+	margin: auto;
+	padding: 0.5rem 1rem;
+	background-color: #e5e8eb;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+	border-radius: 0.3rem;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.submitAddBtn:hover {
+	background-color: #3498DB;
+	color: white;
+}
+
+#submitCancelBtn{
+	border: 0;
+	margin: auto;
+	padding: 0.5rem 1rem;
+	background-color: #e5e8eb;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+	border-radius: 0.3rem;
+	font-size: 1rem;
+}
+
+#submitCancelBtn:hover {
+	background-color: #3498DB;
+	color: white;
+}
+
+#tmModal{
+	z-index:3;
+	display: none;
+	padding-top:100px;
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background-color:rgb(0,0,0);
+	background-color:rgba(0,0,0,0.4)
+}
+.modal-content{
+	margin:auto;
+	background-color:#fff;
+	position:relative;
+	padding:0;
+	outline:0;
+	width: 37rem;
+	height: 80%;
+}
+.container{
+	width:100%;
+	height:100%;
+	overflow: auto;
+}
+.container:after,.w3-container:before{
+	content:"";
+	display:table;
+	clear:both;
+}
+#tmBasic{
+	clear: both;
+	width: 100%;
+	height: 15%;
+	display: block;
+	margin: auto;
+}
+#cancleBtn{
+	position: absolute;
+	float: right;
+	top: 1rem;
+	right: 1rem;
+}
+#tmContent{
+	clear: both;
+	width: 80%;
+	margin: 1rem auto;
+}
+#tmContent h4{
+	font-size: 1.2rem;
+	display: inline-block;
+	margin: 1rem 0;
+	color: #5E6C84;
+}
+#tmContent h4 a i{
+	font-size: 1.2rem;
+}
+#tmContent p{
+	font-size: 1.2em;
+	margin: 0 2rem;
+	background-color: #F7F9FA;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+	border-radius: 0.3rem;
+	padding: 1rem;
+}
+.tmH1{
+	margin: 1.4rem;
+}
+#tmContent button{
+	display: block;
+	margin: auto;
+	border: 0;
+	margin-top: 1.2rem;
+	padding: 1rem 0;
+	background-color: #e5e8eb;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+	border-radius: 0.3rem;
+	font-size: 1rem;
+	cursor: pointer;
+	text-align: center;
+}
+#tmContent button:hover {
+	background-color: #3498DB;
+	color: white;
+}
+
+/*세로*/
+/*스마트폰*/
+@media only screen and (max-width:  767px) and (orientation: portrait){
+    #pjAddFrm{
+	    width: 90%;
+	}
+
+	#calendar{
+	    display: grid;
+	    grid-template-columns: 15% 34% 15% 33%;
+	    gap: 0 1%;
+	}
+	
+	#pjTitle, #pjTm {
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	}
+	
+	#pjContent {
+		height: 25rem;
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	}
+}
+/*태블릿 pc*/
+@media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: portrait){
+    #pjAddFrm{
+    	width: 70%;
+	}
+
+	#calendar{
+	    display: grid;
+	    grid-template-columns: 15% 34% 15% 33%;
+	    gap: 0 1%;
+	    font-size: 1rem;
+	}
+	
+	#pjTitle, #pjTm {
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	    font-size: 1rem;
+	}
+	
+	#pjContent {
+		height: 25rem;
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	    font-size: 1rem;
+	}
+}
+/*데스크탑*/
+@media only screen and (min-width:  960px) and (orientation: portrait){
+	#calendar{
+	    display: grid;
+	    grid-template-columns: 15% 34% 15% 33%;
+	    gap: 0 1%;
+	    font-size: 1.2rem;
+	}
+	
+	#pjTitle, #pjTm {
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	    font-size: 1.2rem;
+	}
+	
+	#pjContent {
+		height: 25rem;
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	    font-size: 1.2rem;
+	}
+}
+/*가로*/
+/*스마트폰*/
+@media only screen and (max-width:  767px) and (orientation: portrait) and (orientation: landscape){
+	#calendar{
+	    display: grid;
+	    grid-template-columns: 15% 34% 15% 33%;
+	    gap: 0 1%;
+	    font-size: 1.7rem;
+	}
+	
+	#pjTitle, #pjTm {
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	    font-size: 1.7rem;
+	}
+	
+	#pjContent {
+		height: 25rem;
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	    font-size: 1.7rem;
+	}
+}
+/*태블릿 pc*/
+@media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: landscape){
+	#calendar{
+	    display: grid;
+	    grid-template-columns: 15% 34% 15% 33%;
+	    gap: 0 1%;
+	    font-size: 1rem;
+	}
+	
+	#pjTitle, #pjTm {
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	    font-size: 1rem;
+	}
+	
+	#pjContent {
+		height: 25rem;
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	    font-size: 1rem;
+	}
+}
+/*데스크탑*/
+@media only screen and (min-width:  960px) and (orientation: landscape){
+    #calendar{
+	    display: grid;
+	    grid-template-columns: 15% 34% 15% 33%;
+	    gap: 0 1%;
+	    font-size: 1.2rem;
+	}
+	
+	#pjTitle, #pjTm {
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	    font-size: 1.2rem;
+	}
+	
+	#pjContent {
+		height: 25rem;
+		display: grid;
+		grid-template-columns: 15% 84%;
+	    gap: 0 1%;
+	    font-size: 1.2rem;
+	}
+}

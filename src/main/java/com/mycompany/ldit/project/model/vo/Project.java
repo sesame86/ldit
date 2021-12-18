@@ -11,6 +11,9 @@ public class Project {
 	private Date proEnd;
 	private String proManager;
 	private char proStatus;
+	private int stfNo; 
+	private int teamManager;
+	private String stfName;
 
 	public Project() {
 	}
@@ -18,7 +21,8 @@ public class Project {
 	@Override
 	public String toString() {
 		return "Project [proNo=" + proNo + ", proTitle=" + proTitle + ", proContent=" + proContent + ", proStart="
-				+ proStart + ", proEnd=" + proEnd + ", proManager=" + proManager + ", proStatus=" + proStatus + "]";
+				+ proStart + ", proEnd=" + proEnd + ", proManager=" + proManager + ", proStatus=" + proStatus
+				+ ", stfNo=" + stfNo + ", teamManager=" + teamManager + ", stfName=" + stfName + "]";
 	}
 
 	public int getProNo() {
@@ -75,5 +79,29 @@ public class Project {
 
 	public void setProStatus(char proStatus) {
 		this.proStatus = proStatus;
+	}
+
+	public int getStfNo() {
+		return stfNo;
+	}
+
+	public void setStfNo(int stfNo) {
+		this.stfNo = stfNo;
+	}
+
+	public int getTeamManager() {
+		return teamManager;
+	}
+
+	public void setTeamManager(int teamManager) {
+		this.teamManager = teamManager;
+	}
+
+	public String getStfName() {
+		return stfName;
+	}
+
+	public void setStfName(String stfName) {
+		this.stfName = stfName;
 	}
 }

@@ -54,18 +54,13 @@ public class ProjectOpenUpController {
 	@RequestMapping(value = "/tmregist", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Staff> getStaffList(HttpServletRequest request
-			, @RequestParam(value = "deptName", required = false) String getdeptName
 			, @RequestParam(value = "stfName", required = false) String getStfName
-			, @RequestParam(value = "stfNo", defaultValue = "0") int getStfNo) {
+			) {
 		
-		System.out.println("getDeptName : " + getdeptName);
 		System.out.println("getStfName : " + getStfName);
-		System.out.println("getStfNo : " + getStfNo);
 		
 		Staff vo = new Staff();
-		vo.setDeptName(getdeptName);
 		vo.setStfName(getStfName);
-		vo.setStfNo(getStfNo);
 		System.out.println("vo : " + vo);
 		
 		List<Staff> staffList = null;
