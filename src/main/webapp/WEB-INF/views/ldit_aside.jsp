@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <aside class="right-aside">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jquery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
@@ -20,8 +20,10 @@
           <button class="aside-accordion"><p class="float-L"><i class="fas fa-columns"></i><p class="mobile-hidden">&nbsp&nbsp 근무계획</p><i class="fas fa-angle-down float-R"></i></p> </button>
           <div class="panel">
               <p class="pd1" onclick="location.href='attmain'">출퇴근 관리</p>
+              <c:if test="${loginUser.deptNo eq 3}">
               <p class="pd1" onclick="location.href='whmanage'">근태계획 설정</p>
               <p class="pd1">근태현황 조회</p>
+              </c:if>
   
           </div>
   

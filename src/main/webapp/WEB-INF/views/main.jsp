@@ -23,6 +23,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test="${!empty authMsg}">
+	<script>
+		alert("${authMsg}");
+	</script>
+	</c:if>
 	<%@ include file="ldit_header.jsp" %>
 	<%@ include file="ldit_aside.jsp" %>
 	<section>
