@@ -19,6 +19,9 @@ public class WorkDao {
 	public List<Work> getWorkList(int workId) throws Exception {
 		return sqlSession.selectList("Work.getWorkList", workId);
 	}
+	public List<Work> getWorkListToday(int workId) throws Exception {
+		return sqlSession.selectList("Work.getWorkListToday", workId);
+	}
 	public Work getWorkDetial(int workId) throws Exception {
 		return sqlSession.selectOne("Work.getWorkDetial", workId);
 	}

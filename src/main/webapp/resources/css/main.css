@@ -264,6 +264,12 @@ progress {
     clear: both;
     margin: 0 1rem;
 }
+.bbbbb{
+	padding: 1rem;
+}
+#dayoffToday{
+	margin: 1rem
+}
 /*세로*/
 /*스마트폰*/
 @media only screen and (max-width:  767px) and (orientation: portrait){
@@ -435,7 +441,6 @@ progress {
         display: inline-block;
         border-radius: 0.3rem 0 0 0.3rem ;
     }
-    
     /* 휴식정보 관련 */
     #dayoffToday{
         clear: both;

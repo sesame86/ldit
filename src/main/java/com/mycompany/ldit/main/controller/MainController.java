@@ -18,6 +18,8 @@ import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.main.model.service.MainService;
 import com.mycompany.ldit.project.model.vo.Project;
 import com.mycompany.ldit.staff.model.vo.Staff;
+import com.mycompany.ldit.work.model.servie.WorkService;
+import com.mycompany.ldit.work.model.vo.Work;
 
 @Controller
 public class MainController {
@@ -25,6 +27,8 @@ public class MainController {
 	private MainService MainService;
 	@Autowired
 	private AttendanceService attService;
+	@Autowired
+	private WorkService WorkService;
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mv, HttpSession session) {
@@ -32,15 +36,11 @@ public class MainController {
 		Staff loginUser = (Staff)session.getAttribute("loginUser");
 		
 		try {
-			//내정보 가져오기, 근태(attendance: att_start, att_end)
-			//이름, 출근시간, 퇴근시간, 오늘 근무 시간(현재시간 - att_start)
-			//System.out.println(loginUser.getStfNo());
-			//Attendance atVo = MainService.getAttendance(loginUser.getStfNo());
-			//이거 왜 null오는지 확인해야함
-			//System.out.println(atVo);
-			//mv.addObject("atVo", atVo);
-			//주간 근무시간, 월간 근무시간(date의 같은달의 총 근무시간)
-			
+			//업무일정 들고오기
+			List<Work> wvo = null;
+			wvo = WorkService.getWorkListToday(loginUser.getStfNo());
+			//mv.addObject("workList", wvo);
+			mv.addObject("workList", wvo);
 			
 			Map<String, Object> mapM = new HashMap<String, Object>();
 			//setInterval용도 date 읽어오기
@@ -80,7 +80,7 @@ public class MainController {
 					String seconds = String.valueOf(elapsedWTime.get("ES"));
 					String elapsedWTBefore = hours + ":" + minutes + ":" + seconds;
 					String elapsedWTAfter = elapsedWTBefore.replace(" ", "");
-					System.out.println("elapsedWTime: " + elapsedWTAfter);
+					//System.out.println("elapsedWTime: " + elapsedWTAfter);
 					mapM.put("elapsedWTime", elapsedWTAfter);
 					mv.addObject("elapsedWTime", elapsedWTime);
 				}

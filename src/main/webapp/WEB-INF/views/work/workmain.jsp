@@ -112,7 +112,7 @@
 							<p class="workFont">업무 상태</p>
 							<p id="workFinishCheck"></p>
 						</div>
-						<hr class="clear">
+						<hr class="clear" style="border: 0">
 					</div>
 				</div>
 			</div>

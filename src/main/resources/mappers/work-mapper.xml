@@ -26,4 +26,9 @@
 		update work set work_title=#{workTitle}, work_content=#{workContent}, work_start=#{workStart}, work_end=#{workEnd}, work_finish=#{workFinish}
 		where work_id = #{workId}
 	</update>
+	<select id="getWorkListToday" parameterType="int" resultMap="WorkRM">
+		select t1.*
+		from(select * from work where stf_no = #{stfNo}) t1
+		where sysdate between t1.work_start and t1.work_end
+	</select>
 </mapper>

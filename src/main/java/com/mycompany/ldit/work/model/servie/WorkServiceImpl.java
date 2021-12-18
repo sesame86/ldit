@@ -21,6 +21,10 @@ public class WorkServiceImpl implements WorkService{
 		return WorkDao.getWorkList(stfNo);
 	}
 	@Override
+	public List<Work> getWorkListToday(int stfNo) throws Exception {
+		return WorkDao.getWorkListToday(stfNo);
+	}
+	@Override
 	public Work getWorkDetial(int workId) throws Exception {
 		return WorkDao.getWorkDetial(workId);
 	}
