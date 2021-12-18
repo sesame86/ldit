@@ -1,7 +1,6 @@
 package com.mycompany.ldit.work.controller;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -66,20 +65,14 @@ public class TeamOpenUpController {
 			int getTeamId = 0;
 			//int checkTM = -1;
 			String update = request.getParameter("update");
-			System.out.println(update);
 			
-//			Right rvo = new Right();
-//			rvo.setProNo(tvo.getProNo());
-//			rvo.setStfNo(tvo.getTeamManager());
-//			checkTM = TeamService.checkDupidTM(rvo);
-//			if(checkTM == 0) {
-//				result2 = TeamService.insertTMRight(rvo);
-//			}
 			if(update != null) { //팀 수정
 				int updateInt = Integer.parseInt(update);
-				System.out.println("진입1");
+				System.out.println(updateInt);
+				tvo.setTeamId(updateInt);
+				System.out.println(tvo);
+				result1 = TeamService.updateTeam(tvo);
 				for(int i=0; i<tvo.getStaffList().size(); i++) {
-					System.out.println("진입2"+tvo.getStaffList().size());
 					TeamMember tmVo = new TeamMember();
 					tmVo.setTeamId(updateInt);
 					tmVo.setStfNo(tvo.getStaffList().get(i).getStfNo());

@@ -15,6 +15,7 @@ public interface TeamService {
 	public List<Staff> searchTeamMember(String searchWord) throws Exception;
 	public Staff searchByNo(int searchNo) throws Exception;
 	public int insertTeam(Team tvo) throws Exception;
+	public int updateTeam(Team tvo) throws Exception;
 	public int checkTeamId(Team tvo) throws Exception;
 	public int insertTMRight(Right rvo) throws Exception;
 	public int checkDupidTM(Right rvo) throws Exception;

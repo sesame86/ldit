@@ -45,6 +45,10 @@ public class TeamServiceImpl implements TeamService{
 		return TeamDao.insertTeam(tvo);
 	}
 	@Override
+	public int updateTeam(Team tvo) throws Exception {
+		return TeamDao.updateTeam(tvo);
+	}
+	@Override
 	public int checkTeamId(Team tvo) throws Exception {
 		return TeamDao.checkTeamId(tvo);
 	}

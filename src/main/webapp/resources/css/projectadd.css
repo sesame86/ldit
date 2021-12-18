@@ -84,7 +84,9 @@ label{
 	background-color: #3498DB;
 	color: white;
 }
-
+#pJAddBtn{
+	margin-left: 7rem;
+}
 #submitCancelBtn{
 	border: 0;
 	margin: auto;

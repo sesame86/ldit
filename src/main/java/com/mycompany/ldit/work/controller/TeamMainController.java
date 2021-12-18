@@ -38,14 +38,14 @@ public class TeamMainController {
 			//0:PM, 1:TM, 2:팀원
 			Staff loginUser = (Staff)session.getAttribute("loginUser");
 			int rightNo = TeamService.getStaffRight(loginUser.getStfNo());
-			System.out.println(rightNo);
+			//System.out.println(rightNo);
 			if(rightNo == 0 || rightNo == 1) {
-				System.out.println("진입1");
+				//System.out.println("진입1");
 				//PM은 프로젝트에 속한 팀 전체 조회, TM은 프로젝트에 속한 팀 전체 조회
 				voList = TeamService.getOneProjectTeam(proNo);
-				System.out.println("1 "+voList);
+				//System.out.println("1 "+voList);
 			}else if(rightNo == 2) {
-				System.out.println("진입2");
+				//System.out.println("진입2");
 				//팀원은 프로젝트에 속한 팀중에서 자신이 속한 팀 조회
 				Team tvo = new Team();
 				Staff svo = new Staff();
@@ -53,7 +53,7 @@ public class TeamMainController {
 				svo.setStfNo(loginUser.getStfNo());
 				tvo.setStaff(svo);
 				voList = TeamService.getTeamMemberTeamList(tvo);
-				System.out.println("2 "+voList);
+				//System.out.println("2 "+voList);
 			}//권한에 속하지 않으면 아예 팀 메인 화면 접속하는 버튼이 안보임
 			viewpage = "team/team_main";
 			mv.addObject("getTeam", voList);
