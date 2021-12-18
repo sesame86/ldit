@@ -294,7 +294,7 @@ $(document).ready(function(){
 				restEndFormat = data.wb.brEnd;
 				brNo = data.wb.brNo;
 			}
-			if(data.xiuxiList != null){
+			if(!isNull(data.xiuxiList)){
 				$.each(data.xiuxiList, function(i) {
 					var xiuNo = data.xiuxiList[i].xiuNo;
 					var xiuReason = data.xiuxiList[i].xiuReason;
@@ -305,6 +305,9 @@ $(document).ready(function(){
 				});
 			} else {
 				$("#btn_restRegist").attr('disabled', 'true');
+				$("#btn_restRegist").css('cursor', 'not-allowed');
+				$("#btn_restRegist").css('background-color', '#CCC');
+				$("#btn_restRegist").css('border-color', '#CCC');
 				$("#btn_restRegist").hover(function (){
 				$(".span_btn_restRegist").addClass('.on');
 				});
