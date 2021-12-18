@@ -6,6 +6,9 @@ section{
     overflow: auto;
     position: relative;
 }
+i{
+	cursor: pointer;
+}
 #leftArrow{
     font-size: 2rem;
     position:absolute;

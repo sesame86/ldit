@@ -6,6 +6,9 @@ section{
     overflow: auto;
     position: relative;
 }
+i{
+	cursor: pointer;
+}
 h1{
     font-size: 2rem;
     margin-bottom: 1rem;
