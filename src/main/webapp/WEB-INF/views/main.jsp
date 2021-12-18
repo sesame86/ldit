@@ -158,7 +158,7 @@
         <h1 style="display: none;" id="test01">ddddd</h1>
     </section>
     <script type="text/javascript">
-	    let attInfo = setInterval(countTime, 1000);
+	    let attInfo = setInterval(countTime, 10000);
 	    function countTime() {
 		    var nowDate = new Date();
 		    var str = "${attStart}";
@@ -189,7 +189,7 @@
 		    var ebs = brEnd.substr(6,2);
 		    var wbtime= addZero(ebh-sbh,2)+":"+addZero(ebm-sbm,2)+":"+addZero(ebs-sbs,2);
 		    $("#restHour").html("오늘 총 휴식시간 "+wbtime);
-		}, 1000);
+		}, 10000);
 	    function addZero(num, digits){
 		    var zero = '';
 		    num = num.toString();
@@ -216,7 +216,7 @@
 	    }
 	    
 	    //쪽지 알림
-	    let msgAlert = setInterval(getalert, 1000);
+	    let msgAlert = setInterval(getalert, 10000);
 	    function getalert() {
 			//bell
 			$("#bellalert").remove();
