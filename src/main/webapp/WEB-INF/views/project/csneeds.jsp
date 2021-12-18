@@ -43,7 +43,7 @@
 							</div>
 						</c:if>
 						<c:if test="${vo.cnDeactivate eq 'N'.toString()}">
-							<div class="reqColorSmall"></div>
+							<div class="reqColorSmall" style="background-color: #FAED7D"></div>
 							<div class="listInfo">
 								<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
 							</div>
@@ -62,7 +62,7 @@
 							</div>
 						</c:if>
 						<c:if test="${vo.cnDeactivate eq 'N'.toString()}">
-							<div class="reqColorSmall"></div>
+							<div class="reqColorSmall" style="background-color: #CEF279"></div>
 							<div class="listInfo">
 								<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
 							</div>
@@ -81,7 +81,7 @@
 							</div>
 						</c:if>
 						<c:if test="${vo.cnDeactivate eq 'N'.toString()}">
-							<div class="reqColorSmall"></div>
+							<div class="reqColorSmall" style="background-color: #B2CCFF"></div>
 							<div class="listInfo">
 								<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
 							</div>
@@ -100,7 +100,7 @@
 						</div>
 						</c:if>
 						<c:if test="${vo.cnDeactivate eq 'N'.toString()}">
-							<div class="reqColorSmall"></div>
+							<div class="reqColorSmall" style="background-color: #FAEBFF"></div>
 							<div class="listInfo">
 								<a href="#" onclick="csDetailView(${vo.cnId})">${vo.cnTitle}</a>
 							</div>

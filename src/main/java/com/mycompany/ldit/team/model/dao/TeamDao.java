@@ -40,6 +40,10 @@ public class TeamDao {
 	public int insertTeam(Team tvo) {
 		return sqlSession.insert("Team.insertTeam", tvo);
 	}
+	@Transactional(rollbackFor = Exception.class)
+	public int updateTeam(Team tvo) {
+		return sqlSession.update("Team.updateTeam", tvo);
+	}
 	public int checkTeamId(Team tvo) {
 		return sqlSession.selectOne("Team.checkTeamId", tvo);
 	}

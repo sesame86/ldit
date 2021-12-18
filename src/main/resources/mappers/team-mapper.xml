@@ -84,6 +84,11 @@
 	<insert id="insertTeam" parameterType="Team">
 		insert into team values(team_seq.nextval, #{proNo}, #{teamTitle}, #{teamManager})
 	</insert>
+	<!-- 팀 수정 -->
+	<insert id="updateTeam" parameterType="Team">
+		update team set team_title = #{teamTitle}, team_manager=#{teamManager}
+		where team_id = ${teamId}
+	</insert>
 	<!-- 팀 아이디 확인 -->
 	<select id="checkTeamId" parameterType="Team" resultType="int">
 		select team_id from team where team_title=#{teamTitle} and team_manager=#{teamManager} and pro_no=#{proNo}
