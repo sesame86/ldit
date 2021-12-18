@@ -18,9 +18,7 @@
 <body>
 	<%@ include file="../ldit_header.jsp" %>
 	<%@ include file="../ldit_aside.jsp" %>
-
 	<section>
-<!--  [[${brNo}]] -->
 		<article id="article_a">			
 			<h1><br>출퇴근 등록</h1>
 			<div class="div_checkin">
@@ -121,7 +119,7 @@
 			</div>
 		</article>
 		<article id="article_d">
-			<h1><br>재택근무 상세내역</h1>
+			<h1><br>재택근무 상세내역<input type="checkbox" name="check_able2" value="onlyAble"></h1>
 			<div>
 				<div class="div_home_title">
 					<div class="div_home_closer">
@@ -172,12 +170,12 @@
 				<button id="btn_m_first" class="btn_tablink">휴가 신청</button><button class="btn_tablink">재택 신청</button>
 			</div>
 			<div id="div_m_restapply" class="div_tabcontent">
-				<form action="" method="post">
+				<form id="restApply" action="restapply" method="post">
 					<div id="div_m_restapply_content">
 						<h1>휴가 신청서</h1>
 						<label for="select_restReason">사유</label>
-						<select id="select_restReason" name="xiuNo" required>
-							<option disabled>--선택하기--</option>
+						<select id="select_restReason" class="select_restReason" name="xiuNo" required>
+							<option selected value="">--선택하기--</option>
 						</select>
 						<label for="from_apl">연차 적용여부</label>
 	                        <input type="text" id="from_apl" readonly>
@@ -191,7 +189,7 @@
 				</form>
 			</div>
 			<div id="div_m_whomeapply" class="div_tabcontent">
-				<form action="" method="post">
+				<form id="whomeApply" action="whomeapply" method="post">
 					<div id="div_m_whomeapply_content">
 						<h1>재택근무 신청서</h1>
 						<label for="">시작일자</label>
@@ -221,9 +219,62 @@ let elapsedRTime = "";
 let brNo = "";
 let XiuApl = [];
 
-getPageRest(1);
-getPageWhome(1);
-getPageWork(1);
+let today = new Date();
+let tomorrow = new Date(today.setDate(today.getDate()+1));
+let tomorrowYear = tomorrow.getFullYear();
+let tomorrowMonth = (tomorrow.getMonth()+1);
+let tomorrowDate = tomorrow.getDate();
+let minDate = tomorrowYear+"-"+tomorrowMonth+"-"+tomorrowDate;
+$("#xaStart").attr('min', minDate);
+$("#xaEnd").attr('min', minDate);
+$("#whStart").attr('min', minDate);
+$("#whEnd").attr('min', minDate);
+
+$(function(){
+	if("${chooseID}" != null){
+		location.href="#${chooseID}";		
+	}
+});
+
+$("#restApply").submit(function(){
+	var dateFrom = document.getElementById("xaStart");
+	var dateTo = document.getElementById("xaEnd");
+	dateFrom = new Date(dateFrom.value);
+	var fromYear = dateFrom.getFullYear();
+	var fromMonth = dateFrom.getMonth() + 1;
+	var fromDay = dateFrom.getDate();
+	dateFrom = fromYear +'/'+ fromMonth +'/'+fromDay;
+	dateTo = new Date(dateTo.value);
+	var toYear = dateTo.getFullYear();
+	var toMonth = dateTo.getMonth() + 1;
+	var toDay = dateTo.getDate();
+	dateTo = toYear +'/'+ toMonth +'/'+toDay;
+	if(dateFrom > dateTo){
+		alert("시작일자가 종료일자보다 먼저 일 수 없습니다.");
+		return false;
+	}
+	return true;
+});
+
+$("#whomeApply").submit(function(){
+	var dateFrom = document.getElementById("whStart");
+	var dateTo = document.getElementById("whEnd");
+	dateFrom = new Date(dateFrom.value);
+	var fromYear = dateFrom.getFullYear();
+	var fromMonth = dateFrom.getMonth() + 1;
+	var fromDay = dateFrom.getDate();
+	dateFrom = fromYear +'/'+ fromMonth +'/'+fromDay;
+	dateTo = new Date(dateTo.value);
+	var toYear = dateTo.getFullYear();
+	var toMonth = dateTo.getMonth() + 1;
+	var toDay = dateTo.getDate();
+	dateTo = toYear +'/'+ toMonth +'/'+toDay;
+	if(dateFrom > dateTo){
+		alert("시작일자가 종료일자보다 먼저 일 수 없습니다.");
+		return false;
+	}
+	return true;
+});
 
 $(document).ready(function(){
 	$.ajax({
@@ -231,7 +282,6 @@ $(document).ready(function(){
 		, type : "post"
 		, dataType: "json"
 		, success: function(data) {
-			console.log(data);
 			if(!isNull(data.att)){
 				attStartFormat = data.att.attStart;
 				attEndFormat = data.att.attEnd;
@@ -244,7 +294,7 @@ $(document).ready(function(){
 				restEndFormat = data.wb.brEnd;
 				brNo = data.wb.brNo;
 			}
-			if(!isNull(data.xiuxiList)){
+			if(data.xiuxiList != null){
 				$.each(data.xiuxiList, function(i) {
 					var xiuNo = data.xiuxiList[i].xiuNo;
 					var xiuReason = data.xiuxiList[i].xiuReason;
@@ -252,11 +302,11 @@ $(document).ready(function(){
 					var opt = '<option value='+xiuNo+'>'+xiuReason+'</option>'
 					$("#select_restReason").append(opt);
 					XiuApl.push(xiuAplYesNo);
-				})
+				});
 			} else {
-				$('#btn_restRegist').attr('disabled');
-				$('#btn_restRegist').hover(function (){
-					$(".span_btn_restRegist").addClass('.on');
+				$("#btn_restRegist").attr('disabled', 'true');
+				$("#btn_restRegist").hover(function (){
+				$(".span_btn_restRegist").addClass('.on');
 				});
 			}
 			calAplT = data.calAplT;
@@ -286,6 +336,9 @@ $(document).ready(function(){
 			$("#restout_time").html(setDefaultValueAtNull(restEndFormat));
 			
 			$("#working_time").html(setDefaultValueAtNull(elapsedWTime));
+			if(elapsedRTime == "::"){
+				elapsedRTime = "00:00:00";
+			}
 			$("#rest_time").html(setDefaultValueAtNull(elapsedRTime));
 			
 			$("#calAplT").html(calAplT);
@@ -307,6 +360,7 @@ function isNull(obj) {
 function setDefaultValueAtNull(obj) {
 	return (typeof obj != "undefined" && obj != null && obj != "") ? obj : "00:00:00";
 }
+
 function countTime() {
 	var nowDate = new Date();
 	var str;
@@ -345,7 +399,7 @@ function addZero(num, digits){
 	return zero + num;
 }
 
-//getPageRest(1);
+getPageRest(1);
 $("input[name=check_able1]").change(function() {
     if($(this).is(":checked")) { 
     	getPageRest(1);
@@ -356,9 +410,8 @@ $("input[name=check_able1]").change(function() {
 
 function getPageRest(page) {
 	var keyValue = $("input[name=check_able1]:checked").val();
-	console.log(keyValue);
 	$.ajax({
-		url : "getXAList"
+		url : "getxalist"
 		, data : {stfNo : "${loginUser.stfNo}"
 					, currentPage : page 
 					, keyValue : keyValue
@@ -409,6 +462,207 @@ function getPageRest(page) {
 					 + "message : " + request.responseText + "\n" 
 					 + "error : " + errorData);}
 	});
+}
+
+getPageWhome(1);
+$("input[name=check_able2]").change(function() {
+    if($(this).is(":checked")) { 
+    	getPageWhome(1);
+    } else {
+    	getPageWhome(1);
+    }
+});
+
+function getPageWhome(page) {
+	var keyValue = $("input[name=check_able2]:checked").val();
+	$.ajax({
+		url : "getwhomelist"
+		, data : {stfNo : "${loginUser.stfNo}"
+					, currentPage : page 
+					, keyValue : keyValue
+					}
+		, type : "get"
+		, dataType: "json"
+		, success: function(data) {
+			console.log(data);
+			var result = data.whomeList;
+			if(result.length==0){
+				$("#div_home_contents").html("");
+				$("#div_home_contents").html('<ul><li class="li_no_xaList">신청한 재택근무 내역이 없습니다.</li></ul>');
+			} else {
+				<!--리스트불러오기-->
+				var r = '';				
+				$.each(result, function(i){
+					r +='<div>';
+					r +='<ul>';
+					r +='<li>'+result[i].whStart+'</li>';
+					r +='<li>'+result[i].whEnd+'</li>';					
+					r +='<li>'+result[i].whWhen+'</li>';
+					r +='</ul>';
+					r +='</div>';
+				})
+				$("#div_home_contents").html("");
+				$("#div_home_contents").html(r);
+				<!--페이징처리-->
+				var p = '';
+				for(var d=data.startPage; d<=data.endPage; d++){
+					if(d==data.currentPage){
+						p += '<li>'+'<a href="javascript:getPageWhome('+d+')" name="a_current" class="a_current">'+d+'</a>'+'</li>';
+					}else{
+						p += '<li>'+'<a href="javascript:getPageWhome('+d+')">'+d+'</a>'+'</li>';
+					}
+				}
+				$("#div_home_paging > ul").html("");
+				$("#div_home_paging > ul").html(p);
+			} 
+		}
+		, error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData);}
+	});
+}
+
+getPageWork(1);
+function getPageWork(page) {
+	$.ajax({
+		url : "getattlist"
+		, data : {stfNo : "${loginUser.stfNo}"
+					, currentPage : page}
+		, type : "get"
+		, dataType: "json"
+		, success: function(data) {
+			var restCode = data.restCode;
+			var result = data.attList;
+			let totalWorkTime = "";
+			if(result.length==0){
+				$("#div_wh_contents").html("");
+				$("#div_wh_contents").html('<ul><li class="li_no_xaList">근무 내역이 없습니다.</li></ul>');
+			} else {
+				<!--리스트불러오기-->
+				var r = '';				
+				$.each(result, function(i){
+					let restAllTime = result[i].attRestAll;
+					let attSTime = "";
+					let attETime = "";
+					if(restAllTime=="::" || isNull(restAllTime)){
+						restAllTime = null;
+					}
+					r +='<div>';
+					r +='<ul>';
+					r +='<li>'+result[i].attNo+'</li>'; //근무일자
+					if(restCode == 1 && isNull(restAllTime)){
+						attSTime = attTimeFormat(result[i].attStart);
+						attETime = attTimeFormat(result[i].attEnd);
+						totalWorkTime = calTimeTwo(attSTime, attETime);
+					} else if(restCode == 1 && !isNull(restAllTime)) {
+						attSTime = attTimeFormat(result[i].attStart);
+						attETime = attTimeFormat(result[i].attEnd);
+						totalWorkTime = calTimeThree(attSTime, attETime, restAllTime);
+					} else {
+						attSTime = attTimeFormat(result[i].attStart);
+						attETime = attTimeFormat(result[i].attEnd);
+						totalWorkTime = calTimeTwo(attSTime, attETime);
+					}
+					r +='<li>'+totalWorkTime+'</li>'; //총근무시간
+					r +='<li>'+timeFormat(result[i].attStart)+'</li>'; //출근시각					
+					r +='<li>'+timeFormat(result[i].attEnd)+'</li>'; //퇴근시각
+					if(isNull(restAllTime)){
+						restAllTime = "00:00:00";
+					}
+					r +='<li>'+restAllTime+'</li>';
+					r +='</ul>';
+					r +='</div>';
+				})
+				$("#div_wh_contents").html("");
+				$("#div_wh_contents").html(r);
+				<!--페이징처리-->
+				var p = '';
+				for(var d=data.startPage; d<=data.endPage; d++){
+					if(d==data.currentPage){
+						p += '<li>'+'<a href="javascript:getPageWork('+d+')" name="a_current" class="a_current">'+d+'</a>'+'</li>';
+					}else{
+						p += '<li>'+'<a href="javascript:getPageWork('+d+')">'+d+'</a>'+'</li>';
+					}
+				}
+				$("#div_wh_paging > ul").html("");
+				$("#div_wh_paging > ul").html(p);
+			} 
+		}
+		, error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData);}
+	});
+}
+
+
+function timeFormat(e){
+	let getTime = e;
+	let getTimeH = getTime.substr(8,2);
+	let getTimeM = getTime.substr(10,2);
+	let getTimeS = getTime.substr(12,2);
+	let formattedTime = getTimeH+":"+getTimeM+":"+getTimeS;
+	return formattedTime;
+}
+
+
+function attTimeFormat(e){
+	var str = e;
+	var by = str.substr(0,4);
+	var bmm = str.substr(4,2)-1;
+	var bd = str.substr(6,2);
+	var bh = str.substr(8,2);
+	var bm = str.substr(10,2);
+	var bs = str.substr(12,2);
+	let attTimeAfter = new Date(by, bmm, bd, bh, bm, bs);
+	return attTimeAfter;
+}
+
+function calTimeTwo(x, y){
+	var gapTime = y-x;
+	var wh = Math.floor((gapTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var wm = Math.floor((gapTime % (1000 * 60 * 60)) / (1000 * 60));
+	var ws = Math.floor((gapTime % (1000 * 60)) / 1000);
+	var totalWorkingTime = addZero(wh,2)+":"+addZero(wm,2)+":"+addZero(ws,2);
+	return totalWorkingTime
+}
+
+function calTimeThree(x, y, z){
+	//퇴근시간-출근시간
+	var gapTime = y-x;
+	var wh = Math.floor((gapTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var wm = Math.floor((gapTime % (1000 * 60 * 60)) / (1000 * 60));
+	var ws = Math.floor((gapTime % (1000 * 60)) / 1000);
+	var calculatedTime = addZero(wh,2)+":"+addZero(wm,2)+":"+addZero(ws,2);
+	//휴식시간 포맷바꾸기
+	var nowDate = new Date();
+	let restTimeBefore = z.replaceAll(":", "");
+	var str = nowDate.getFullYear()+addZero(nowDate.getMonth(), 2)+addZero(nowDate.getDate(), 2)+restTimeBefore;
+	var ry = str.substr(0,4);
+	var rmm = str.substr(4,2)-1;
+	var rd = str.substr(6,2);
+	var rh = str.substr(8,2);
+	var rm = str.substr(10,2);
+	var rs = str.substr(12,2);
+	let restTimeAfter = new Date(ry, rmm, rd, rh, rm, rs);
+	//calculatedTime 포맷바꾸기
+	let calTimeBefore = calculatedTime.replaceAll(":", "");
+	var str = nowDate.getFullYear()+addZero(nowDate.getMonth(), 2)+addZero(nowDate.getDate(), 2)+calTimeBefore;
+	var cy = str.substr(0,4);
+	var cmm = str.substr(4,2)-1;
+	var cd = str.substr(6,2);
+	var ch = str.substr(8,2);
+	var cm = str.substr(10,2);
+	var cs = str.substr(12,2);
+	let calTimeAfter = new Date(cy, cmm, cd, ch, cm, cs);
+	//퇴근시간-출근시간-휴식시간
+	var gapTime = calTimeAfter - restTimeAfter;
+	var wh = Math.floor((gapTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var wm = Math.floor((gapTime % (1000 * 60 * 60)) / (1000 * 60));
+	var ws = Math.floor((gapTime % (1000 * 60)) / 1000);
+	var totalWorkingTime = addZero(wh,2)+":"+addZero(wm,2)+":"+addZero(ws,2);
+	return totalWorkingTime
 }
 
 function fnCheckin(){
@@ -526,12 +780,20 @@ function fnRestOut(){
 		alert("이미 퇴근했습니다.");
 	}
 }
-//XiuApl #from_apl
+
 $("select[name=xiuNo]").on('change', function() {
-	var idxS = $(this).index();
-	var idxKey = $("#from_apl").index();
-	//TODO//
-	$("#from_apl").val();
+	let idxs = $("#select_restReason option").index($("#select_restReason option:selected"));
+	if(idxs == 0){
+		$("#from_apl").val("");
+	} else {
+	let valueAPL = XiuApl.at(idxs);
+	if(valueAPL == 0){
+		valueAPL = "N";
+	} else {
+		valueAPL = "Y";
+	}
+	$("#from_apl").val(valueAPL);		
+	}
 });
 
 $(".div_tab > button").on('click', function(){

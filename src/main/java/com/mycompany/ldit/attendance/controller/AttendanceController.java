@@ -20,7 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
 import com.mycompany.ldit.attendance.model.vo.Attendance;
+import com.mycompany.ldit.attendance.model.vo.WHManage;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
+import com.mycompany.ldit.attendance.model.vo.WorkHomeApply;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 import com.mycompany.ldit.attendance.model.vo.XiuxiApply;
 import com.mycompany.ldit.staff.model.vo.Staff;
@@ -37,15 +39,6 @@ public class AttendanceController {
 	public ModelAndView attMainMethod(ModelAndView mv, HttpSession session) {
 		mv.setViewName("attendance/attmain");
 
-		// 로그인 없으면 메인으로 이동
-		Staff loginUser = (Staff) session.getAttribute("loginUser");
-		if (loginUser == null) {
-			System.out.println("로그인정보 없음. 메인으로 이동");
-			mv.setViewName("main");
-			String msgNoAuth = "접근 권한이 없습니다. 로그인 정보를 확인해주세요.";
-			mv.addObject("msg", msgNoAuth);
-			return mv;
-		}
 		return mv;
 	}
 
@@ -58,11 +51,7 @@ public class AttendanceController {
 
 		// stfNo 받아오기
 		Staff loginUser = (Staff) session.getAttribute("loginUser");
-		if (loginUser == null) {
-			String msgNoAuth = "접근 권한이 없습니다. 로그인 정보를 확인해주세요.";
-			mapM.put("msg", msgNoAuth);
-			return gson.toJson(mapM);
-		}
+
 		int stfNo = loginUser.getStfNo();
 
 		// 오늘 날짜 Attendance 테이블 읽어오기 + 총 휴식시간 포함
@@ -94,16 +83,14 @@ public class AttendanceController {
 				String seconds = String.valueOf(elapsedWTime.get("ES"));
 				String elapsedWTBefore = hours + ":" + minutes + ":" + seconds;
 				String elapsedWTAfter = elapsedWTBefore.replace(" ", "");
-				System.out.println("elapsedWTime: " + elapsedWTAfter);
 				mapM.put("elapsedWTime", elapsedWTAfter);
 			}
 
 			// 오늘 날짜 WORK_BREAK 읽어오기
 			wb = attService.getLatestWB(mapMS);
-			System.out.println("화면진입 시 wb폼의 결과는?: " + wb);
 
 		}
-		if(wb !=null) {
+		if (wb != null) {
 			mapM.put("wb", wb);
 		}
 
@@ -114,15 +101,14 @@ public class AttendanceController {
 		// 사용가능한 연차
 		int calAplU = attService.countAplUse(stfNo);
 		mapM.put("calAplU", calAplU);
-		
-		//xiuxiList읽어오기
+
+		// xiuxiList읽어오기
 		List<Xiuxi> xiuxiList = attService.getXiuxiList();
-		if(xiuxiList != null) {
-			mapM.put("xiuxiList", xiuxiList);			
+		if (xiuxiList != null) {
+			mapM.put("xiuxiList", xiuxiList);
 		}
 
 		String result = gson.toJson(mapM);
-		System.out.println(result);
 		return result;
 	}
 
@@ -159,11 +145,11 @@ public class AttendanceController {
 
 		int stfNo = Integer.parseInt(stfno);
 		String result = "";
-		
-		//퇴근시간 update + 휴식 강제 종료도 함께하기
+
+		// 퇴근시간 update + 휴식 강제 종료도 함께하기
 		int resultOfCheckout = attService.updateCheckout(stfNo);
 
-		//퇴근시각 읽어오기
+		// 퇴근시각 읽어오기
 		if (resultOfCheckout > 0) {
 			String attEndFormat = attService.getAttEnd(stfNo);
 			result = attEndFormat;
@@ -172,14 +158,15 @@ public class AttendanceController {
 		return result;
 	}
 
+	// 휴식시작 ajax
 	@RequestMapping(value = "restin", method = RequestMethod.POST)
 	@ResponseBody
 	public String restinMethod(@RequestParam(value = "stfNo") String stfno) {
-		
+
 		int stfNo = Integer.parseInt(stfno);
 		String result = "";
-		
-		//휴식시작 insert
+
+		// 휴식시작 insert
 		int resultOfRestin = attService.insertRestin(stfNo);
 
 		if (resultOfRestin > 0) {
@@ -187,14 +174,14 @@ public class AttendanceController {
 			Gson gson = new Gson();
 			result = gson.toJson(wb);
 		}
-		
+
 		return result;
 	}
 
+	// 휴식종료 ajax
 	@RequestMapping(value = "restout", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String restoutMethod(@RequestParam(value = "brNo") String brno, HttpSession session) {
-		System.out.println("restOut메소드 진입");
 		Map<String, Object> mapM = new HashMap<String, Object>();
 
 		int brNo = Integer.parseInt(brno);
@@ -212,7 +199,7 @@ public class AttendanceController {
 
 		// 총 휴식 시간 계산하기
 		Map<String, Object> elapsedRTime = new HashMap<String, Object>();
-		if (restEndFormat != null &&  !restEndFormat.equals("00:00:00")) {
+		if (restEndFormat != null && !restEndFormat.equals("00:00:00")) {
 			Staff loginUser = (Staff) session.getAttribute("loginUser");
 			int stfNo = loginUser.getStfNo();
 
@@ -239,39 +226,68 @@ public class AttendanceController {
 		return r;
 	}
 
-	@RequestMapping(value = "restapply", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public String restApplyMethod() {
-		//TODO:
+	// 휴가등록 form
+	@RequestMapping(value = "restapply", method = RequestMethod.POST)
+	public ModelAndView restApplyMethod(ModelAndView mv, HttpSession session,
+			@RequestParam(value = "xiuNo") String xiuNo, @RequestParam(value = "xaStart") String xastart,
+			@RequestParam(value = "xaEnd") String xaend) {
+		mv.setViewName("attendance/attmain");
+		Map<String, Object> mapM = new HashMap<String, Object>();
 
-		Gson gson = new Gson();
-		String r = gson.toJson("");
-		return r;
+		Staff loginUser = (Staff) session.getAttribute("loginUser");
+		int stfNo = loginUser.getStfNo();
+		String xaStart = xastart.replaceAll("-", "");
+		String xaEnd = xaend.replaceAll("-", "");
+
+		mapM.put("stfNo", stfNo);
+		mapM.put("xiuNo", xiuNo);
+		mapM.put("xaStart", xaStart);
+		mapM.put("xaEnd", xaEnd);
+
+		System.out.println(mapM);
+
+		int result = attService.insertXiuxiApply(mapM);
+
+		if (result > 0) {
+			// attService.update();
+		}
+
+		mv.addObject("chooseID", "article_c");
+		return mv;
 	}
-	
-	@RequestMapping(value = "whomeapply", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public String whomeApplyMethod() {
-		//TODO:
 
-		Gson gson = new Gson();
-		String r = gson.toJson("");
-		return r;
+	// 재택등록 form
+	@RequestMapping(value = "whomeapply", method = RequestMethod.POST)
+	public ModelAndView whomeApplyMethod(ModelAndView mv, HttpSession session,
+			@RequestParam(value = "whStart") String whstart, @RequestParam(value = "whEnd") String whend) {
+		mv.setViewName("attendance/attmain");
+		Map<String, Object> mapM = new HashMap<String, Object>();
+		System.out.println("재택등록 컨트롤러 진입");
+
+		Staff loginUser = (Staff) session.getAttribute("loginUser");
+		int stfNo = loginUser.getStfNo();
+		String whStart = whstart.replaceAll("-", "");
+		String whEnd = whend.replaceAll("-", "");
+
+		mapM.put("stfNo", stfNo);
+		mapM.put("whStart", whStart);
+		mapM.put("whEnd", whEnd);
+
+		int result = attService.insertWorkHomeApply(mapM);
+		System.out.println("result?" + result);
+		mv.addObject("chooseID", "article_d");
+		return mv;
 	}
-	
-	
-	
 
-	@RequestMapping(value = "getXAList", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	// 휴가등록 상세내역 ajax
+	@RequestMapping(value = "getxalist", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String xiuxiApplyListMethod(@RequestParam(value = "stfNo", required = false) String stfno,
+	public String xiuxiApplyListMethod(@RequestParam(value = "stfNo") String stfno,
 			@RequestParam(value = "currentPage", required = false) String currentpage,
 			@RequestParam(value = "keyValue", required = false) String keyValue) {
-		Map<String, Object> xaMap = new HashMap<String, Object>();
+		Map<String, Object> mapM = new HashMap<String, Object>();
 
-		System.out.println("keyValue?" + keyValue);
 		int stfNo = Integer.parseInt(stfno);
-		System.out.println("getXAList stfNo" + stfNo);
 		int currentPage = 1;
 		int limitInOnePage = 5;
 		if (currentpage != null) {
@@ -280,13 +296,11 @@ public class AttendanceController {
 		if (keyValue == null || keyValue.equals("")) {
 			keyValue = "allAble";
 		}
-		System.out.println("keyValue after?" + keyValue);
 		// 전체 게시글 수
 		Map<String, Object> map1 = new HashMap<String, Object>();
 		map1.put("stfNo", stfNo);
 		map1.put("keyValue", keyValue);
 		int xaListCount = attService.countXAList(map1);
-		System.out.println("xaListCount: " + xaListCount);
 		// 총 페이지 수 계산
 		int maxPage = (int) ((double) xaListCount / limitInOnePage + 0.9);
 		// 현재 페이지에 보여줄 시작 페이지 번호
@@ -300,16 +314,104 @@ public class AttendanceController {
 		List<XiuxiApply> xiuxiApplyList = null;
 		xiuxiApplyList = attService.getxiuxiApplyList(stfNo, currentPage, limitInOnePage, keyValue);
 
-		System.out.println("xiuxiApplyList: " + xiuxiApplyList);
-
-		xaMap.put("xiuxiApplyList", xiuxiApplyList);
-		xaMap.put("currentPage", currentPage);
-		xaMap.put("maxPage", maxPage);
-		xaMap.put("startPage", startPage);
-		xaMap.put("endPage", endPage);
+		mapM.put("xiuxiApplyList", xiuxiApplyList);
+		mapM.put("currentPage", currentPage);
+		mapM.put("maxPage", maxPage);
+		mapM.put("startPage", startPage);
+		mapM.put("endPage", endPage);
 
 		Gson gson = new Gson();
-		String r = gson.toJson(xaMap);
+		String r = gson.toJson(mapM);
+		return r;
+	}
+
+	// 재택근무 ajax
+	@RequestMapping(value = "getwhomelist", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String getWhomeListMethod(@RequestParam(value = "stfNo") String stfno,
+			@RequestParam(value = "currentPage", required = false) String currentpage,
+			@RequestParam(value = "keyValue", required = false) String keyValue) {
+		Map<String, Object> mapM = new HashMap<String, Object>();
+
+		int stfNo = Integer.parseInt(stfno);
+		int currentPage = 1;
+		int limitInOnePage = 5;
+		if (currentpage != null) {
+			currentPage = Integer.parseInt(currentpage);
+		}
+		if (keyValue == null || keyValue.equals("")) {
+			keyValue = "allAble";
+		}
+		// 전체 게시글 수
+		Map<String, Object> mapS = new HashMap<String, Object>();
+		mapS.put("stfNo", stfNo);
+		mapS.put("keyValue", keyValue);
+		int whomeListCount = attService.countWhomeList(mapS);
+		// 총 페이지 수 계산
+		int maxPage = (int) ((double) whomeListCount / limitInOnePage + 0.9);
+		// 현재 페이지에 보여줄 시작 페이지 번호
+		int startPage = (((int) ((double) currentPage / limitInOnePage + 0.9)) - 1) * limitInOnePage + 1;
+		int endPage = startPage + limitInOnePage - 1;
+		if (maxPage < endPage) {
+			endPage = maxPage;
+		}
+
+		// 재택근무 상세내역
+		List<WorkHomeApply> whomeList = null;
+		whomeList = attService.getWhomeList(stfNo, currentPage, limitInOnePage, keyValue);
+		System.out.println(whomeList);
+		mapM.put("whomeList", whomeList);
+		mapM.put("currentPage", currentPage);
+		mapM.put("maxPage", maxPage);
+		mapM.put("startPage", startPage);
+		mapM.put("endPage", endPage);
+
+		Gson gson = new Gson();
+		String r = gson.toJson(mapM);
+		return r;
+	}
+
+	// 근무내역 ajax
+	@RequestMapping(value = "getattlist", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String getAttListMethod(@RequestParam(value = "stfNo") String stfno,
+			@RequestParam(value = "currentPage", required = false) String currentpage) {
+		Map<String, Object> mapM = new HashMap<String, Object>();
+
+		int stfNo = Integer.parseInt(stfno);
+		int currentPage = 1;
+		int limitInOnePage = 5;
+		if (currentpage != null) {
+			currentPage = Integer.parseInt(currentpage);
+		}
+		// 전체 게시글 수
+		int attListCount = attService.countAttList(stfNo);
+		// 총 페이지 수 계산
+		int maxPage = (int) ((double) attListCount / limitInOnePage + 0.9);
+		// 현재 페이지에 보여줄 시작 페이지 번호
+		int startPage = (((int) ((double) currentPage / limitInOnePage + 0.9)) - 1) * limitInOnePage + 1;
+		int endPage = startPage + limitInOnePage - 1;
+		if (maxPage < endPage) {
+			endPage = maxPage;
+		}
+		
+		//근무제도 코드 가져오기
+		WHManage whm = attService.getWHM();
+		String restCode = whm.getWhmRestCode();
+
+//		// 근무내역 상세내역
+		List<Attendance> attList = null;
+		attList = attService.getAttList(stfNo, currentPage, limitInOnePage);
+		
+		mapM.put("attList", attList);
+		mapM.put("restCode", restCode);
+		mapM.put("currentPage", currentPage);
+		mapM.put("maxPage", maxPage);
+		mapM.put("startPage", startPage);
+		mapM.put("endPage", endPage);
+
+		Gson gson = new Gson();
+		String r = gson.toJson(mapM);
 		return r;
 	}
 
@@ -318,20 +420,16 @@ public class AttendanceController {
 		Map<String, Object> mapS = new HashMap<String, Object>();
 		mapS.put("stfNo", stfNo);
 		mapS.put("thisAttNo", String.valueOf(attNo));
-		
-		// 총 휴식시간 DB에서 계산해 오기 
+
+		// 총 휴식시간 DB에서 계산해 오기
 		Map<String, Object> elapsedRTime = attService.getElapsedRTime(mapS);
-		
+
 		// 결과를 보기 좋게 바꾸기
 		String elapsedRTAfter = myFormatedTime(elapsedRTime);
-		
+
 		return elapsedRTAfter;
 	}
-	
-	private void calWorkingTime() {
-		
-	}
-	
+
 	private String myFormatedTime(Map<String, Object> elapsedTime) {
 		String hours = String.valueOf(elapsedTime.get("EH"));
 		String minutes = String.valueOf(elapsedTime.get("EM"));
@@ -341,5 +439,5 @@ public class AttendanceController {
 		System.out.println("elapsedRTime: " + elapsedTAfter);
 		return elapsedTAfter;
 	}
-	
+
 }

@@ -15,7 +15,21 @@
 	</association>
 </resultMap>
 
+<resultMap type="WorkHomeApply" id="whomeList">
+	<id property="whomeNo" column="WHOME_NO"/>
+	<result property="stfNo" column="STF_NO"/>
+	<result property="whWhen" column="WH_WHEN"/>
+	<result property="whStart" column="WH_START"/>
+	<result property="whEnd" column="WH_END"/>
+</resultMap>
 
+<resultMap type="Attendance" id="attList">
+	<result property="attNo" column="ATT_NO"/>
+	<result property="stfNo" column="STF_NO"/>
+	<result property="attStart" column="ATT_START"/>
+	<result property="attEnd" column="ATT_END"/>
+	<result property="attRestAll" column="ATT_RESTALL"/>
+</resultMap>
 
 <select id="countXAList" parameterType="map" resultType="_int">
 	select count(*) from XIUXI_APPLY where STF_NO = #{stfNo}
@@ -40,11 +54,44 @@
 	, to_char(XA_END, 'YY/MM/DD HH24:MI:SS') XA_END
 	, xiu.XIU_REASON, xiu.XIU_APL_YESNO, xiu.XIU_STATE
     from XIUXI_APPLY xa INNER JOIN XIUXI xiu using (XIU_NO)
-    where STF_NO = #{stfNo} and (XA_START > SYSDATE + 1) order by XA_START
+    where STF_NO = #{stfNo} and (XA_START > SYSDATE + 1) order by XA_START asc
 		]]>
 </select>
 
+<select id="countWhomeList" parameterType="map" resultType="_int">
+	select count(*) from WORK_HOME_APPLY where STF_NO = #{stfNo}
+	<if test="keyValue != null and keyValue.equals('onlyAble')">
+	 and (WH_START > SYSDATE + 1)
+	</if>
+</select>
 
+<select id="getWhomeList" parameterType="_int" resultMap="whomeList">
+	<![CDATA[ 
+    select WHOME_NO, WH_WHEN, to_char(WH_START, 'YY/MM/DD HH24:MI:SS') WH_START
+	, to_char(WH_END, 'YY/MM/DD HH24:MI:SS') WH_END
+    from WORK_HOME_APPLY
+    where STF_NO = #{stfNo} order by WH_END desc
+		]]>
+</select>
 
+<select id="getWhomeListOnly" parameterType="_int" resultMap="whomeList">
+	<![CDATA[ 
+	select WHOME_NO, WH_WHEN, to_char(WH_START, 'YY/MM/DD HH24:MI:SS') WH_START
+	, to_char(WH_END, 'YY/MM/DD HH24:MI:SS') WH_END
+    from WORK_HOME_APPLY
+    where STF_NO = #{stfNo} and (WH_START > SYSDATE + 1) order by WH_START asc
+		]]>
+</select>
+
+<select id="countAttList" parameterType="_int" resultType="_int">
+	select count(*) from ATTENDANCE where STF_NO = #{stfNo}
+</select>
+
+<select id="getAttList" parameterType="map" resultMap="attList">
+	<![CDATA[ 
+	select ATT_NO, to_char(ATT_START, 'YYYYMMDDhh24miss') ATT_START, to_char(ATT_END, 'YYYYMMDDhh24miss') ATT_END
+	, ATT_RESTALL from ATTENDANCE where STF_NO = #{stfNo} order by ATT_START desc
+		]]>
+</select>
 
 </mapper>

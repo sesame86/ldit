@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.ldit.attendance.model.dao.AttendanceDao;
 import com.mycompany.ldit.attendance.model.vo.Attendance;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
+import com.mycompany.ldit.attendance.model.vo.WorkHomeApply;
 import com.mycompany.ldit.attendance.model.vo.WHManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 import com.mycompany.ldit.attendance.model.vo.XiuxiApply;
@@ -19,16 +20,16 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 	@Autowired
 	private AttendanceDao attDao;
-	
+
 	@Override
 	public Attendance getTodayAttendance(int stfNo) {
 		return attDao.getTodayAttendance(stfNo);
 	}
-	
+
 	public String getAttStartDateTime(Map<String, Object> mapMS) {
 		return attDao.getAttStartDateTime(mapMS);
 	}
-	
+
 	@Override
 	public Map<String, Object> getElapsedWTime(Map<String, Object> mapMS) {
 		return attDao.getElapsedWTime(mapMS);
@@ -38,12 +39,12 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public Map<String, Object> getElapsedRTime(Map<String, Object> mapMS) {
 		return attDao.getElapsedRTime(mapMS);
 	}
-	
+
 	@Override
 	public WorkBreak getLatestWB(Map<String, Object> mapMS) {
 		return attDao.getLatestWB(mapMS);
 	}
-	
+
 	@Override
 	public int countAplTotal(int stfNo) {
 		return attDao.countAplTotal(stfNo);
@@ -53,28 +54,21 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public int countAplUse(int stfNo) {
 		return attDao.countAplUse(stfNo);
 	}
-	
-	
-	
-	
-	
+
 	@Override
 	public int countXiuNo(String xiuNo) {
 		return attDao.countXiuNo(xiuNo);
 	}
-	
+
 	@Override
 	public int insertXiuxi(Map<String, Object> mapM) {
 		return attDao.insertXiuxi(mapM);
 	}
-	
+
 	@Override
 	public int deleteXiuxi(String checked) {
 		return attDao.deleteXiuxi(checked);
 	}
-	
-	
-	
 
 	@Override
 	public int insertCheckin(int stfNo) {
@@ -90,24 +84,32 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public int countAttStart(int stfNo) {
 		return attDao.countAttStart(stfNo);
 	}
-	
+
 	@Override
 	public int updateCheckout(int stfNo) {
 		int result = 0;
 		result = attDao.updateCheckout(stfNo);
 
-		if(result > 0) {
-			//��ٽ� ���� attNo�� �޽��� �ִٸ� �޽� ���� �ϱ�
+		if (result > 0) {
 			Attendance att = attDao.getTodayAttendance(stfNo);
 			int thisAttNo = att.getAttNo();
-	
-			// parameter map���·� �����
+
 			Map<String, Object> mapS = new HashMap<String, Object>();
 			mapS.put("stfNo", stfNo);
 			mapS.put("thisAttNo", String.valueOf(thisAttNo));
 			
-			//�޽� ���� �ϱ�
-			attDao.updateBrEndForce(mapS);  // ���� ����� 0 �� �� �����Ƿ� ���� return ���� ó������ ����.
+			//휴식 강제종료
+			attDao.updateBrEndForce(mapS); 
+			
+			//휴식총시간 가져오기
+			String filter = "::";
+			String restAll = attDao.getRestAll(mapS);
+			if(restAll.equals(filter)) {
+				restAll = "00:00:00";
+			}
+			mapS.put("restAll", restAll);
+			//attendance 테이블 attrestall update
+			attDao.updateRestAll(mapS);
 		}
 		return result;
 	}
@@ -136,7 +138,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public String getBrEnd(int brNo) {
 		return attDao.getBrEnd(brNo);
 	}
-	
+
 	@Override
 	public WorkBreak getWorkBreak(int brNo) {
 		return attDao.getWorkBreak(brNo);
@@ -157,8 +159,6 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return attDao.getBrNo(map1);
 	}
 
-
-
 	@Override
 	public WHManage getWHM() {
 		return attDao.getWHM();
@@ -173,7 +173,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public int updateWHMOne(int weekHours) {
 		return attDao.updateWHMOne(weekHours);
 	}
-	
+
 	@Override
 	public int resetWHMZeroState() {
 		return attDao.resetWHMZeroState();
@@ -189,11 +189,14 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return attDao.getXiuxiList();
 	}
 
-
-
 	@Override
-	public int countXAList(Map<String, Object> map1) {
-		return attDao.countXAList(map1);
+	public int countXAList(Map<String, Object> mapS) {
+		return attDao.countXAList(mapS);
+	}
+	
+	@Override
+	public int countWhomeList(Map<String, Object> mapS) {
+		return attDao.countWhomeList(mapS);
 	}
 
 	@Override
@@ -201,12 +204,28 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return attDao.getxiuxiApplyList(stfNo, currentPage, limitInOnePage, keyValue);
 	}
 
+	@Override
+	public int insertXiuxiApply(Map<String, Object> mapM) {
+		return attDao.insertXiuxiApply(mapM);
+	}
+
+	@Override
+	public int insertWorkHomeApply(Map<String, Object> mapM) {
+		return attDao.insertWorkHomeApply(mapM);
+	}
+
+	@Override
+	public List<WorkHomeApply> getWhomeList(int stfNo, int currentPage, int limitInOnePage, String keyValue) {
+		return attDao.getWhomeList(stfNo, currentPage, limitInOnePage, keyValue); 
+	}
 	
+	@Override
+	public int countAttList(int stfNo) {
+		return attDao.countAttList(stfNo);
+	}
 
-
-
-
-
-
-
+	@Override
+	public List<Attendance> getAttList(int stfNo, int currentPage, int limitInOnePage){
+		return attDao.getAttList(stfNo, currentPage, limitInOnePage);
+	}
 }
