@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mycompany.ldit.attendance.model.vo.Attendance;
+import com.mycompany.ldit.attendance.model.vo.WHMZero;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkHomeApply;
 import com.mycompany.ldit.attendance.model.vo.WHManage;
@@ -58,6 +59,10 @@ public interface AttendanceService {
 	int getBrNo(Map<String, Object> map1);
 
 	WHManage getWHM();
+	
+	int getWHMOne();
+	
+	List<WHMZero> getWHMZero();
 
 	int updateWHM(Map<String, Object> map1);
 

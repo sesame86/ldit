@@ -32,6 +32,7 @@
 		<typeAlias type="com.mycompany.ldit.attendance.model.vo.WHManage" alias="WHM"/>
 		<typeAlias type="com.mycompany.ldit.attendance.model.vo.XiuxiApply" alias="XiuxiApply"/>
 		<typeAlias type="com.mycompany.ldit.attendance.model.vo.WorkHomeApply" alias="WorkHomeApply"/>
+		<typeAlias type="com.mycompany.ldit.attendance.model.vo.WHMZero" alias="WHMZero"/>
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappers/app-mapper.xml"/> -->

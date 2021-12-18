@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.ldit.attendance.model.dao.AttendanceDao;
 import com.mycompany.ldit.attendance.model.vo.Attendance;
+import com.mycompany.ldit.attendance.model.vo.WHMZero;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkHomeApply;
 import com.mycompany.ldit.attendance.model.vo.WHManage;
@@ -162,6 +163,16 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public WHManage getWHM() {
 		return attDao.getWHM();
+	}
+	
+	@Override
+	public int getWHMOne() {
+		return attDao.getWHMOne();
+	}
+	
+	@Override
+	public List<WHMZero> getWHMZero() {
+		return attDao.getWHMZero();
 	}
 
 	@Override

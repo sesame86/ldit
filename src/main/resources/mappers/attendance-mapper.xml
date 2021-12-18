@@ -24,9 +24,16 @@
 	<result property="stfNo" column="STF_NO"/>
 </resultMap>
 
-<resultMap type="WHM" id="WHM1">
+<resultMap type="WHM" id="WHMCode">
 	<id property="whmCode" column="WHM_CODE" />
 	<result property="whmRestCode" column="WHM_REST_CODE" />
+</resultMap>
+
+<resultMap type="WHMZero" id="WHMZero">
+	<id property="whmZeroDay" column="WHM_ZERO_DAY" />
+	<result property="whmZeroStart" column="WHM_ZERO_START" />
+	<result property="whmZeroEnd" column="WHM_ZERO_END" />
+	<result property="whmZeroYesNo" column="WHM_ZERO_YESNO" />
 </resultMap>
 
 <resultMap type="Xiuxi" id="xiuxiL">
@@ -113,11 +120,11 @@
 
 <insert id="insertCheckin" parameterType="_int">
 	<![CDATA[ 
-Insert into ATTENDANCE (ATT_NO, STF_NO, ATT_START) values (
-    to_number(to_char(SYSDATE, 'YYYYMMDD'))
-    , #{stfNo}
-    , SYSDATE
-)
+	Insert into ATTENDANCE (ATT_NO, STF_NO, ATT_START) values (
+	    to_number(to_char(SYSDATE, 'YYYYMMDD'))
+	    , #{stfNo}
+	    , SYSDATE
+	)
 	]]>
 </insert>
 
@@ -204,8 +211,16 @@ Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_
 	]]>
 </select>
 
-<select id="getWHM" resultMap="WHM1">
+<select id="getWHM" resultMap="WHMCode">
 	select * from WH_MANAGE
+</select>
+
+<select id="getWHMOne" resultType="_int">
+	select * from WHM_ONE
+</select>
+
+<select id="getWHMZero" resultMap="WHMZero">
+	select * from WHM_ZERO
 </select>
 
 <update id="updateWHM" parameterType="map">
@@ -217,12 +232,12 @@ Update ATTENDANCE set ATT_END = SYSDATE where STF_NO = #{stfNo} and ATT_NO = to_
 </update>
 
 <update id="resetWHMZeroState">
-update WHM_ZERO set WHM_ZERO_YESNO = 0
+	update WHM_ZERO set WHM_ZERO_YESNO = 0
 </update>
 
 <update id="updateWHMZero" parameterType="map">
-update WHM_ZERO set WHM_ZERO_START = #{zeroStartFormat}, WHM_ZERO_END = #{zeroEndFormat}, WHM_ZERO_YESNO = 1
-where WHM_ZERO_DAY = #{selectedDay}
+	update WHM_ZERO set WHM_ZERO_START = #{zeroStartFormat}, WHM_ZERO_END = #{zeroEndFormat}, WHM_ZERO_YESNO = 1
+	where WHM_ZERO_DAY = #{selectedDay}
 </update>
 
 <select id="getXiuxiList" resultMap="xiuxiL">

@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.mycompany.ldit.attendance.model.service.AttendanceServiceImpl;
+import com.mycompany.ldit.attendance.model.vo.WHMZero;
 import com.mycompany.ldit.attendance.model.vo.WHManage;
 import com.mycompany.ldit.attendance.model.vo.Xiuxi;
 import com.mycompany.ldit.staff.model.vo.Staff;
@@ -46,10 +47,14 @@ public class AttendanceRegistController {
 		
 		WHManage whm = attService.getWHM();
 		List<Xiuxi> xiuxiList = attService.getXiuxiList();
-	
-		System.out.println("getWHM: "+ whm);
+		int weekHours = attService.getWHMOne();
+		List<WHMZero> strictSchedule = attService.getWHMZero();
+		
+		System.out.println("getWHM: "+whm+", weekHours : "+weekHours+", strictSchedule : "+strictSchedule);
 		
 		mv.addObject("whm", whm);
+		mv.addObject("strictSchedule", strictSchedule);
+		mv.addObject("weekHours", weekHours);
 		mv.addObject("xiuxiList", xiuxiList);
 		return mv;
 	}

@@ -10,7 +10,7 @@ section {
 #article_a{
 	width: 90%;
 	max-width: 1080px;
-    height: 40vh;
+    height: 50vh;
     margin: 5% auto;
 	display: grid;
 	grid-template-columns: auto auto auto;
@@ -111,7 +111,23 @@ section {
 	font-size: 18px;
 }
 
-.restin_ul_title > li:nth-child(n+2){
+.restin_ul_title > li:nth-child(2){
+	margin-left: 48px;	
+}
+
+.restin_ul_title > li:nth-child(3){
+	margin-left: 85px;	
+}
+
+.restin_ul_title > li:nth-child(4){
+	margin-left: 92px;	
+}
+
+.restin_ul_title > li:nth-child(5){
+	margin-left: 50px;	
+}
+
+.restin_ul_title > li:nth-child(6){
 	margin-left: 50px;	
 }
 
@@ -144,8 +160,20 @@ section {
 	font-size: 18px;
 }
 
-.div_restin_contents > div > ul > li:nth-child(n+2){
+.div_restin_contents > div > ul > li:nth-child(2){
 	margin-left: 50px;	
+}
+
+.div_restin_contents > div > ul > li:nth-child(3){
+	margin-left: 50px;	
+}
+
+.div_restin_contents > div > ul > li:nth-child(4){
+	margin-left: 50px;	
+}
+
+.div_restin_contents > div > ul > li:nth-child(5){
+	margin-left: 110px;	
 }
 
 .div_restin_paging{
@@ -219,8 +247,16 @@ section {
 	font-size: 18px;
 }
 
-.home_ul_title > li:nth-child(n+2){
+.home_ul_title > li:nth-child(2){
 	margin-left: 50px;	
+}
+
+.home_ul_title > li:nth-child(3){
+	margin-left: 85px;	
+}
+
+.home_ul_title > li:nth-child(4){
+	margin-left: 95px;	
 }
 
 .div_home_contents{
@@ -356,8 +392,52 @@ section {
 	font-size: 18px;
 }
 
-.div_wh_contents > div > ul > li:nth-child(n+2){
-	margin-left: 50px;	
+.div_wh_contents > div > ul > li:nth-child(2){
+	margin-left: 55px;	
+}
+
+.div_wh_contents > div > ul > li:nth-child(3){
+	margin-left: 70px;
+}
+
+.div_wh_contents > div > ul > li:nth-child(4){
+	margin-left: 58px;
+}
+
+.div_wh_contents > div > ul > li:nth-child(5){
+	margin-left: 58px;
+}
+
+.div_wh_paging{
+	width: 100%;
+	margin: 0px;
+	padding: 0px 0px 5px 10px;
+	position: relative;
+	display: flex;
+}
+
+.div_wh_paging > ul{
+	clear:both;
+	margin:25px auto 0;
+    padding:0;
+    justify-content: center;
+}
+
+.div_wh_paging > ul > li {
+    list-style:none;
+    float:left;
+    margin:0 2px;
+}
+
+.div_wh_paging ul > li > a {
+    display:block;
+    width:10px;
+    height:10px;
+    text-indent:-10000px;
+    background: gray;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 }
 
 .li_no_xaList{

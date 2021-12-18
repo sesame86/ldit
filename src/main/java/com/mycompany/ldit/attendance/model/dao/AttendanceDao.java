@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.ldit.attendance.model.vo.Attendance;
+import com.mycompany.ldit.attendance.model.vo.WHMZero;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.attendance.model.vo.WorkHomeApply;
 import com.mycompany.ldit.attendance.model.vo.WHManage;
@@ -122,6 +123,14 @@ public class AttendanceDao {
 
 	public WHManage getWHM() {
 		return sqlSession.selectOne("aboutAtt.getWHM");
+	}
+	
+	public int getWHMOne() {
+		return sqlSession.selectOne("aboutAtt.getWHMOne");
+	}
+	
+	public List<WHMZero> getWHMZero() {
+		return sqlSession.selectList("aboutAtt.getWHMZero");
 	}
 
 	public int updateWHM(Map<String, Object> map1) {

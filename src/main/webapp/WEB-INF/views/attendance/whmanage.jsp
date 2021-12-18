@@ -41,7 +41,7 @@
 					</div>
 					<h1>소정근무시간</h1>
 					<div>
-						<input type="number" value="40" id="week_hours" name="week_hours">
+						<input type="number" value="${weekHours}" id="week_hours" name="week_hours">
 					</div>
 					<h1>근무일 설정</h1>
 					<div>
@@ -138,25 +138,25 @@
 	
 <script>
 
-var modal = document.getElementById("modal_wrapper");
-var btn = document.getElementById("btn_add_xiuxi");
-
-btn.onclick = function() {
-  modal.style.display = "block";
-  modal.style.display = "flex";
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-window.addEventListener("keyup", function(e) {
-    if(modal.style.display = "block" && e.key === "Escape") {
-   	modal.style.display = "none";
-    }
-});
+	var modal = document.getElementById("modal_wrapper");
+	var btn = document.getElementById("btn_add_xiuxi");
+	
+	btn.onclick = function() {
+	  modal.style.display = "block";
+	  modal.style.display = "flex";
+	}
+	
+	window.onclick = function(event) {
+	  if (event.target == modal) {
+	    modal.style.display = "none";
+	  }
+	}
+	
+	window.addEventListener("keyup", function(e) {
+	    if(modal.style.display = "block" && e.key === "Escape") {
+	   	modal.style.display = "none";
+	    }
+	});
 
 	$("#xiuxi_reason").on("keyup", function() {
 		if ($(this).val().length > 10) {
@@ -187,6 +187,33 @@ window.addEventListener("keyup", function(e) {
 	$(document).ready(function() {
 		if ("${whm.whmCode}" == "0") {
 			$("#whm_fix").attr("checked", true);
+			if("${strictSchedule[0].whmZeroYesNo}" == 1){
+				$("#mon").attr("checked", true);
+			}
+			if("${strictSchedule[1].whmZeroYesNo}" == 1){
+				$("#tues").attr("checked", true);
+			}
+			if("${strictSchedule[2].whmZeroYesNo}" == 1){
+				$("#wed").attr("checked", true);
+			}
+			if("${strictSchedule[3].whmZeroYesNo}" == 1){
+				$("#thurs").attr("checked", true);
+			}
+			if("${strictSchedule[4].whmZeroYesNo}" == 1){
+				$("#fri").attr("checked", true);
+			}
+			if("${strictSchedule[5].whmZeroYesNo}" == 1){
+				$("#sat").attr("checked", true);
+			}
+			if("${strictSchedule[6].whmZeroYesNo}" == 1){
+				$("#sun").attr("checked", true);
+			}
+			var startTime = "${strictSchedule[0].whmZeroStart}";
+			var endTime = "${strictSchedule[0].whmZeroEnd}";
+			var startTimeF = startTime.slice(0,2)+':'+startTime.slice(2,4)+':'+startTime.slice(4,6);
+			var endTimeF = endTime.slice(0,2)+':'+endTime.slice(2,4)+':'+endTime.slice(4,6);
+			$("#time_in").val(startTimeF);
+			$("#time_out").val(endTimeF);
 		} else if ("${whm.whmCode}" == "1") {
 			$("#whm_week").attr("checked", true);
 		}
