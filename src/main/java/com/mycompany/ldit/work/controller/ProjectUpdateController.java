@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.ldit.project.model.service.ProjectService;
@@ -24,7 +25,10 @@ public class ProjectUpdateController {
 	public ModelAndView getDetailList(ModelAndView mv, HttpSession session) {
 		String viewpage = "project/projectdetail";
 		List<Project> detailList = null;
-		int proNo = 1;
+		int proNo;
+//		proNo = getproNo;
+		proNo = 1;
+		System.out.println("프로젝트 번호: "+proNo);
 		try {
 			detailList = projectService.getDetailList(proNo);
 			viewpage = "project/projectdetail";
