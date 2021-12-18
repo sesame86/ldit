@@ -14,23 +14,26 @@ public class Msg {
 	
 	private int sMNo;
 	private String sMTime;
+	private String rStfId;
 	
 	private int rMNo;
 	private int rMCheck;
+	private String sStfId;
+	private int stfNo;
+	private String rMTime;
 	
-	private SendMsg sendmsg;
-	private ReceiveMsg receivemsg;
+	private SendMsg sendMsg;
+	private ReceiveMsg receiveMsg;
 	
 	public Msg() {
 		super();
 	}
 
-	
-	public int getMNo() {
+	public int getmNo() {
 		return mNo;
 	}
 
-	public void setMNo(int mNo) {
+	public void setmNo(int mNo) {
 		this.mNo = mNo;
 	}
 
@@ -38,72 +41,103 @@ public class Msg {
 		return mTitle;
 	}
 
-	public void setMTitle(String mTitle) {
+	public void setmTitle(String mTitle) {
 		this.mTitle = mTitle;
 	}
 
-	public String getMContent() {
+	public String getmContent() {
 		return mContent;
 	}
 
-	public void setMContent(String mContent) {
+	public void setmContent(String mContent) {
 		this.mContent = mContent;
 	}
 
-	public int getSMNo() {
+	public int getsMNo() {
 		return sMNo;
 	}
 
-	public void setSMNo(int sMNo) {
+	public void setsMNo(int sMNo) {
 		this.sMNo = sMNo;
 	}
 
-	public String getSMTime() {
+	public String getsMTime() {
 		return sMTime;
 	}
 
-	public void setSMTime(String sMTime) {
+	public void setsMTime(String sMTime) {
 		this.sMTime = sMTime;
 	}
 
-	public int getRMNo() {
+	public String getrStfId() {
+		return rStfId;
+	}
+
+	public void setrStfId(String rStfId) {
+		this.rStfId = rStfId;
+	}
+
+	public int getrMNo() {
 		return rMNo;
 	}
 
-	public void setRMNo(int rMNo) {
+	public void setrMNo(int rMNo) {
 		this.rMNo = rMNo;
 	}
 
-	public int getRMCheck() {
+	public int getrMCheck() {
 		return rMCheck;
 	}
 
-	public void setRMCheck(int rMCheck) {
+	public void setrMCheck(int rMCheck) {
 		this.rMCheck = rMCheck;
 	}
 
-	public SendMsg getSendMsg() {
-		return sendmsg;
+	public String getsStfId() {
+		return sStfId;
 	}
 
-	public void setSendMsg(SendMsg sendmsg) {
-		this.sendmsg = sendmsg;
+	public void setsStfId(String sStfId) {
+		this.sStfId = sStfId;
+	}
+
+	public int getStfNo() {
+		return stfNo;
+	}
+
+	public void setStfNo(int stfNo) {
+		this.stfNo = stfNo;
+	}
+
+	public String getrMTime() {
+		return rMTime;
+	}
+
+	public void setrMTime(String rMTime) {
+		this.rMTime = rMTime;
+	}
+
+	public SendMsg getSendMsg() {
+		return sendMsg;
+	}
+
+	public void setSendMsg(SendMsg sendMsg) {
+		this.sendMsg = sendMsg;
 	}
 
 	public ReceiveMsg getReceiveMsg() {
-		return receivemsg;
+		return receiveMsg;
 	}
 
-	public void setReceiveMsg(ReceiveMsg receivemsg) {
-		this.receivemsg = receivemsg;
+	public void setReceiveMsg(ReceiveMsg receiveMsg) {
+		this.receiveMsg = receiveMsg;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Msg [mNo=" + mNo + ", mTitle=" + mTitle + ", mContent=" + mContent + ", sMNo=" + sMNo + ", sMTime="
-				+ sMTime + ", rMNo=" + rMNo + ", rMCheck=" + rMCheck + ", sendmsg=" + sendmsg + ", receivemsg="
-				+ receivemsg + "]";
+				+ sMTime + ", rStfId=" + rStfId + ", rMNo=" + rMNo + ", rMCheck=" + rMCheck + ", sStfId=" + sStfId
+				+ ", stfNo=" + stfNo + ", rMTime=" + rMTime + ", sendMsg=" + sendMsg + ", receiveMsg=" + receiveMsg
+				+ "]";
 	}
-
 }

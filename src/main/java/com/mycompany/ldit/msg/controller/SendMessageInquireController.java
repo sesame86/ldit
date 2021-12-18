@@ -24,6 +24,7 @@ public class SendMessageInquireController {
 		try {
 			viewpage="msg/sendBox";
 			mlist=msgservice.sendMsgCheck(msg);
+			System.out.println("mlist:" + mlist);
 			mv.addObject("mlist", mlist);
 		} catch(Exception e) {
 			mv.addObject("msg", "보낸 쪽지함을 불러올 때 문제가 발생했습니다.");

@@ -60,8 +60,8 @@ public class MessageRegistController {
 			System.out.println("result2=" + result2);
 			System.out.println("result3=" + result3);
 			
-			msg.setMTitle(mTitle);
-			msg.setMContent(mContent);
+			msg.setmTitle(mTitle);
+			msg.setmContent(mContent);
 			
 			result=msgservice.sendMsg(msg);
 			
@@ -72,14 +72,14 @@ public class MessageRegistController {
 			System.out.println("받은 직원의 사원 번호는 " + no2);
 			
 			sendmsg.setStfNo(stfNo);
-			sendmsg.setMNo(no);
-			sendmsg.setRStfId(rStfId);
+			sendmsg.setmNo(no);
+			sendmsg.setrStfId(rStfId);
 			result2=sendmsgservice.sendBox(sendmsg);
 			
 			receivemsg.setStfNo(no2);
-			receivemsg.setMNo(no);
-			receivemsg.setRMCheck(0);
-			receivemsg.setSStfId(sStfId);
+			receivemsg.setmNo(no);
+			receivemsg.setrMCheck(0);
+			receivemsg.setsStfId(sStfId);
 			result3=receivemsgservice.receiveBox(receivemsg);
 			
 			System.out.println("result:" + result);

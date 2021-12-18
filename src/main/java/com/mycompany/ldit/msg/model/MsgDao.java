@@ -27,4 +27,9 @@ public class MsgDao {
 	public List<Msg> sendMsgCheck(Msg msg){
 		return sqlSession.selectList("Msg.sendMsgCheck", msg);
 	}
+	
+	// 받은 쪽지함 확인
+	public List<Msg> receiveMsgCheck(Msg msg){
+		return sqlSession.selectList("Msg.receiveMsgCheck", msg);
+	}
 }

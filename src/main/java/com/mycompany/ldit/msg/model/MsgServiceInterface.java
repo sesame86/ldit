@@ -13,4 +13,7 @@ public interface MsgServiceInterface {
 	
 	// 보낸 쪽지함 확인
 	public List<Msg> sendMsgCheck(Msg msg);
+	
+	// 받은 쪽지함 확인
+	public List<Msg> receiveMsgCheck(Msg msg);
 }
