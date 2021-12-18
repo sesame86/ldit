@@ -40,7 +40,7 @@
 				</c:forEach>
 			</div>
 		</div>
-		<p><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
+		<p class="pp"><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
 		<br><br><br>
 		<div id="staffContainer2" class="staffContainer">
 			<div id="deptNM2">기획부</div>
@@ -56,7 +56,7 @@
 				</c:forEach>
 			</div>
 		</div>
-		<p><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
+		<p class="pp"><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
 		<br><br><br>
 		<div id="staffContainer3" class="staffContainer">
 			<div id="deptNM3">인사부</div>
@@ -72,7 +72,7 @@
 				</c:forEach>
 			</div>
 		</div>
-		<p><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
+		<p class="pp"><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
 		<br><br><br>
 		<div id="staffContainer4" class="staffContainer">
 			<div id="deptNM4">개발부</div>
@@ -88,7 +88,7 @@
 				</c:forEach>
 			</div>
 		</div>
-		<p><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
+		<p class="pp"><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
 		<br><br><br>	
 		<div id="staffContainer5" class="staffContainer">
 			<div id="deptNM5">영업부</div>
