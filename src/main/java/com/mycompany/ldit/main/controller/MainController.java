@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.ldit.attendance.model.service.AttendanceService;
@@ -17,7 +19,10 @@ import com.mycompany.ldit.attendance.model.vo.Attendance;
 import com.mycompany.ldit.attendance.model.vo.WorkBreak;
 import com.mycompany.ldit.main.model.service.MainService;
 import com.mycompany.ldit.project.model.vo.Project;
+import com.mycompany.ldit.receivemsg.model.vo.ReceiveMsg;
+import com.mycompany.ldit.sendmsg.model.vo.SendMsg;
 import com.mycompany.ldit.staff.model.vo.Staff;
+import com.mycompany.ldit.teamaim.model.vo.TeamAim;
 import com.mycompany.ldit.work.model.servie.WorkService;
 import com.mycompany.ldit.work.model.vo.Work;
 
@@ -99,5 +104,17 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return mv;
+	}
+	@RequestMapping(value = "/getalert.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<ReceiveMsg> getAlert(HttpServletRequest request, HttpSession session) {
+		List<ReceiveMsg> msgList = null;
+		Staff loginUser = (Staff)session.getAttribute("loginUser");
+		try {
+			msgList = MainService.getReceiveMsg(loginUser.getStfNo());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return msgList;
 	}
 }

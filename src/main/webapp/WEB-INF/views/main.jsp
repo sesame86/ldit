@@ -42,7 +42,7 @@
                 <c:forEach var="vo" items="${workList}">
                  <div class="today">
                     <div class="aaaaa"></div>
-                    <div class="bbbbb">
+                    <div class="bbbbb" onclick="location.href='workmain'" style="cursor: pointer;">
                         <h4>${vo.workTitle }</h4>
                     </div>
                 </div>
@@ -155,6 +155,7 @@
                 </div>
             </div>
         </article>
+        <h1 style="display: none;" id="test01">ddddd</h1>
     </section>
     <script type="text/javascript">
 	    let attInfo = setInterval(countTime, 1000);
@@ -213,6 +214,33 @@
 		    var total= addZero(aebh-asbh,2)+":"+addZero(aebm-asbm,2)+":"+addZero(aebs-asbs,2);
 		    $("#miHour").html("오늘 총 근무시간 "+total);
 	    }
+	    
+	    //쪽지 알림
+	    let msgAlert = setInterval(getalert, 1000);
+	    function getalert() {
+			//bell
+			$("#bellalert").remove();
+    		$.ajax({
+    			url:"getalert.do",
+    			data:{},
+    			contentType: 'application/json; charset=utf-8',
+    			type: "GET",
+    			dataType: "json",
+    			success: function(result){
+    				if(result != null){
+    					$("#bell").append("<div id='bellalert'><p>"+result.length+"</p></div>");
+    				}else{
+    				}
+    			},
+    			error : function(e) {
+    				alert("code:"+e.status+"\n"+"message:"+e.responseText+"\n"+"error:"+e);
+		        }
+    		})
+		}
+	    $("#bell").on("click", function() {
+	    	//interval이라서 띄우면 사라져서 모달창은 못띄움... 그래서 그냥 msg 확인하러감
+			location.href = "receiveBox";
+	    })
     </script>
 </body>
 </html>

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.ldit.attendance.model.vo.Attendance;
 import com.mycompany.ldit.project.model.vo.Project;
+import com.mycompany.ldit.receivemsg.model.vo.ReceiveMsg;
+import com.mycompany.ldit.sendmsg.model.vo.SendMsg;
 
 @Repository("MainDao")
 public class MainDao {
@@ -19,5 +21,8 @@ public class MainDao {
 	}
 	public List<Project> getUserProject(int stfNo) {
 		return sqlSession.selectList("Main.getUserProject", stfNo);
+	}
+	public List<ReceiveMsg> getReceiveMsg(int stfNo) {
+		return sqlSession.selectList("Main.getReceiveMsg", stfNo);
 	}
 }

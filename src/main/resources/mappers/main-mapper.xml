@@ -16,6 +16,14 @@
 		<result property="proManager" column="pro_manager"/>
 		<result property="proStatus" column="pro_status"/>
 	</resultMap>
+	<resultMap type="ReceiveMsg" id="messageRm">
+		<id property="rMNo" column="r_m_no"/>
+		<result property="stfNo" column="stf_no"/>
+		<result property="mNo" column="m_no"/>
+		<result property="rMTime" column="r_m_time"/>
+		<result property="rMCheck" column="r_m_check"/>
+		<result property="sStfId" column="s_stf_d"/>
+	</resultMap>
 	<select id="getAttendance" parameterType="int" resultMap="attendanceRM">
 		select * from attendance where stf_no = #{stfNo} and TO_CHAR(att_start,'YYYYMMDD') = TO_CHAR(sysdate,'YYYYMMDD')
 	</select>
@@ -24,5 +32,8 @@
 		from project p left join team t on p.pro_no = t.pro_no left join team_member tm on t.team_id = tm.team_id
         where p.pro_manager = #{stfNo} or t.team_manager = #{stfNo} or tm.stf_no = #{stfNo}) t1
 		where ranking = 1 and t1.pro_status != 'F' order by t1.pro_no desc
+	</select>
+	<select id="getReceiveMsg" parameterType="int" resultMap="messageRm">
+		select * from receive_msg where r_m_check = 0 and stf_no = #{stfNo}
 	</select>
 </mapper>
