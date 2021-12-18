@@ -36,4 +36,10 @@ public class MsgService implements MsgServiceInterface{
 	public List<Msg> sendMsgCheck(Msg msg){
 		return msgDao.sendMsgCheck(msg);
 	}
+	
+	// 받은 쪽지함 확인
+	@Override
+	public List<Msg> receiveMsgCheck(Msg msg){
+		return msgDao.receiveMsgCheck(msg);
+	}
 }

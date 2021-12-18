@@ -19,10 +19,14 @@
 			<id property="sMNo" column="S_M_NO"/>
 			<result property="stfNo" column="STF_NO"/>
 			<result property="sMTime" column="S_M_TIME"/>
+			<result property="rStfId" column="R_STF_ID"/>
 		</association>
 		<association property="receiveMsg" javaType="receiveMsg">
 			<id property="rMNo" column="R_M_NO"/>
 			<result property="rMCheck" column="R_M_CHECK"/>
+			<result property="sStfId" column="S_STF_ID"/>
+			<result property="stfNo" column="STF_NO"/>
+			<result property="rMTime" column="R_M_TIME"/>
 		</association>
 	</resultMap>
 	
@@ -39,7 +43,13 @@
 	
 	<!-- 보낸 쪽지 확인 -->
 	<select id="sendMsgCheck" resultMap="msgRM" parameterType="Msg">
-		select m.M_TITLE, s.S_M_TIME, r.R_M_CHECK
+		select m.M_TITLE, s.S_M_TIME, r.R_M_CHECK, s.STF_NO, s.R_STF_ID
 		from MSG m join receive_msg r on m.m_no = r.m_no join send_msg s on m.m_no = s.m_no
+	</select>
+	
+	<!-- 받은 쪽지 확인 -->
+	<select id="receiveMsgCheck" resultMap="msgRM" parameterType="Msg">
+		select m.M_TITLE, r.R_M_TIME, r.S_STF_ID, r.STF_NO
+		from MSG m join receive_msg r on m.m_no = r.m_no
 	</select>
 </mapper>

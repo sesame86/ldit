@@ -24,30 +24,40 @@
 <body>
 	<%@ include file="/WEB-INF/views/ldit_header.jsp"%>
 	<%@ include file="/WEB-INF/views/ldit_aside.jsp"%>
-	<input type="hidden" id=value="${loginuser.stfNo}"/>
+	<input type="hidden" value="${loginuser.stfNo}"/>
 	<h1>보낸 쪽지 확인</h1>
 	<table>
 		<thead>
 			<tr>
-				<th>제목</th>
-				<th>보낸 날짜</th>
-				<th>수신 날짜</th>
-				<th>삭제</th>
+				<th id="title">제목</th>
+				<th id="time">보낸 날짜</th>
+				<th id="id">받은 사람</th>
+				<th id="check">수신 여부</th>
+				<th id="delete">삭제</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach var="vo" items="${mlist}">
-			<h1>${vo.sendMsg}</h1>
-			<h1>${vo.sendMsg.sMTime}</h1>
 			<c:if test="${vo.sendMsg.stfNo == loginUser.stfNo}">
 				<tr>
-					<th><button>${vo.mTitle}</button></th>
-					<th>${vo.sendMsg.sMTime}</th>
-					<th>${vo.receiveMsg.rMCheck}</th>
+					<td id="title"><input id="input" type="button" value="${vo.mTitle}"/></td>
+					<td id="time"><input id="Time" class="none" value="${vo.sendMsg.sMTime}" disabled/></td>
+					<td id="id"><input id="Id" class="none" value="${vo.sendMsg.rStfId}" disabled/></td>
+					<td id="check"><input id="readCheck" class="none2" value="${vo.receiveMsg.rMCheck}" disabled/></td>
+					<td id="delete"><button>삭제</button></td>
 				</tr>
 			</c:if>
 		</c:forEach>
 		</tbody>
 	</table>
+<script>
+	$(document).ready(function(){
+		if($(".none2").val() == 0){
+			$(".none2").val("읽지 않음");
+		}
+		else
+			$(".none2").val("읽음");
+	});
+</script>
 </body>
 </html>
