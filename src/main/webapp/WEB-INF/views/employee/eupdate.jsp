@@ -34,85 +34,15 @@
 		<div id="divInformation">
 		<label class="inf">사원 번호 : </label>
 		<label class="inf2">${loginUser.stfNo}</label><br><br><br>
-		<label for="deptNo" class="inf">부서이름 : </label>
+		<label class="inf">부서이름 : </label>
 		<c:if test="${loginUser.department.deptName == '임원'}">
-			<select id="deptNo" name="deptNo" class="inf2">
-				<option value=1 selected>임원</option>
-				<option value=2>기획부</option>
-				<option value=3>인사부</option>
-				<option value=4>개발부</option>					
-				<option value=5>영업부</option>					
-			</select>
+			<label class="inf2">${loginUser.department.deptName}</label><br><br><br>
 		</c:if>
-		<c:if test="${loginUser.department.deptName == '기획'}">
-			<select id="deptNo" name="deptNo" class="inf2">
-				<option value=1>임원</option>
-				<option value=2 selected>기획부</option>
-				<option value=3>인사부</option>
-				<option value=4>개발부</option>					
-				<option value=5>영업부</option>					
-			</select>
+		<c:if test="${loginUser.department.deptName != '임원'}">
+			<label class="inf2">${loginUser.department.deptName}부</label><br><br><br>
 		</c:if>
-		<c:if test="${loginUser.department.deptName == '인사'}">
-			<select id="deptNo" name="deptNo" class="inf2">
-				<option value=1>임원</option>
-				<option value=2>기획부</option>
-				<option value=3 selected>인사부</option>
-				<option value=4>개발부</option>					
-				<option value=5>영업부</option>					
-			</select>
-		</c:if>
-		<c:if test="${loginUser.department.deptName == '개발'}">
-			<select id="deptNo" name="deptNo" class="inf2">
-				<option value=1>임원</option>
-				<option value=2>기획부</option>
-				<option value=3>인사부</option>
-				<option value=4 selected>개발부</option>					
-				<option value=5>영업부</option>					
-			</select>
-		</c:if>
-		<c:if test="${loginUser.department.deptName == '영업'}">
-			<select id="deptNo" name="deptNo" class="inf2">
-				<option value=1>임원</option>
-				<option value=2>기획부</option>
-				<option value=3>인사부</option>
-				<option value=4>개발부</option>					
-				<option value=5 selected>영업부</option>					
-			</select>
-		</c:if><br><br><br>
-		<label for="stfLvl" class="inf">직급 : </label>
-		<c:if test="${loginUser.stfLvl == '사원'}">
-			<select id="stfLvl" name="stfLvl" class="inf2">
-				<option value="사원" selected>사원</option>
-				<option value="전무이사">전무이사</option>
-				<option value="상무이사">상무이사</option>
-				<option value="대표이사">대표이사</option>					
-			</select>
-		</c:if>
-		<c:if test="${loginUser.stfLvl == '전무이사'}">
-			<select id="stfLvl" name="stfLvl" class="inf2">
-				<option value="사원">사원</option>
-				<option value="전무이사" selected>전무이사</option>
-				<option value="상무이사">상무이사</option>
-				<option value="대표이사">대표이사</option>					
-			</select>
-		</c:if>
-		<c:if test="${loginUser.stfLvl == '상무이사'}">
-			<select id="stfLvl" name="stfLvl" class="inf2">
-				<option value="사원">사원</option>
-				<option value="전무이사">전무이사</option>
-				<option value="상무이사" selected>상무이사</option>
-				<option value="대표이사">대표이사</option>					
-			</select>
-		</c:if>
-		<c:if test="${loginUser.stfLvl == '대표이사'}">
-			<select id="stfLvl" name="stfLvl" class="inf2">
-				<option value="사원">사원</option>
-				<option value="전무이사">전무이사</option>
-				<option value="상무이사">상무이사</option>
-				<option value="대표이사" selected>대표이사</option>					
-			</select>
-		</c:if><br><br><br>
+		<label class="inf">직급 : </label>
+		<label class="inf2">${loginUser.stfLvl}</label><br><br><br>
 		<label class="inf">사원 이름 : </label>
 		<label class="inf2">${loginUser.stfName}</label><br><br><br>
 		<input type="hidden" id="stfId" name="stfId" value="${loginUser.stfId}"/>

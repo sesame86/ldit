@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <aside class="right-aside">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!-- jquery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
@@ -13,17 +13,15 @@
           <button class="aside-accordion"><p class="float-L"><i class="far fa-file-alt"></i><p class="mobile-hidden">&nbsp&nbsp 프로젝트</p><i class="fas fa-angle-down float-R"></i></p> </button>
           <div class="panel">
               <p class="pd1" onclick="location.href='projectmain'">프로젝트 조회</p>
-              <!-- <p class="pd1">이슈</p> -->
+              <p class="pd1">이슈</p>
               
           </div>
   
           <button class="aside-accordion"><p class="float-L"><i class="fas fa-columns"></i><p class="mobile-hidden">&nbsp&nbsp 근무계획</p><i class="fas fa-angle-down float-R"></i></p> </button>
           <div class="panel">
               <p class="pd1" onclick="location.href='attmain'">출퇴근 관리</p>
-              <c:if test="${loginUser.deptNo eq 3}">
               <p class="pd1" onclick="location.href='whmanage'">근태계획 설정</p>
               <p class="pd1">근태현황 조회</p>
-              </c:if>
   
           </div>
   
@@ -33,7 +31,7 @@
 			<p class="pd1" onclick="location.href='organization'">조직도</p>
 			<p class="pd1" onclick="location.href='eupdate'">개인 정보 수정</p>
           	<p class="pd1" onclick="location.href='eregist'">직원 등록</p>
-          	<p class="pd1" onclick="location.href='edelete'">직원 퇴사</p>                            
+          	<p class="pd1" onclick="location.href='edelete'">직원 정보 삭제</p>                            
           </div>
   		</c:if>
   		<c:if test="${loginUser.deptNo!=3}">
@@ -46,7 +44,7 @@
           <div class="panel"  >
               <p class="pd1" onclick="location.href='sendMsg'">쪽지보내기</p>
               <p class="pd1" onclick="location.href='sendBox'">보낸 쪽지 확인</p>
-              <p class="pd1" onclick="location.href='receiveBox'">받은쪽지 확인</p>
+              <p class="pd1" onclick="location.href='receiveBox'">받은 쪽지 확인</p>
           </div>
   
           <button class="aside-accordion"><i class="fas fa-pen-fancy"></i><p class="mobile-hidden">&nbsp&nbsp 전자결재</p></button>
@@ -54,12 +52,11 @@
               <a href="#"></a>
           </div>
           
-          <c:if test="${loginUser.deptNo==3}">
+          <!-- 인사팀만 해당 버튼 보이도록 바꿔줘야함 - 김정기 -->
           <button class="aside-accordion" onclick="location.href='pmregist'"><i class="far fa-id-badge"></i><p class="mobile-hidden">&nbsp&nbsp 권한관리</p></button>
           <div class="panel">
               <a href="#"></a>
           </div>
-          </c:if>
           <script>
            /*
            var acc = document.getElementsByClassName("accordion");

@@ -33,17 +33,11 @@ public class EmployeeUpdateController {
 	}
 	
 	@RequestMapping(value="eupdate2", method=RequestMethod.POST)
-	public String eupdate(@RequestParam("stfId") String stfId, @RequestParam("deptNo") int deptNo
-			, @RequestParam("stfLvl") String stfLvl, @RequestParam("stfPasswd") String stfPasswd
-			, @RequestParam("stfPhone") String stfPhone, @RequestParam("stfMail") String stfMail
-			, Staff staff) {
+	public String eupdate(@RequestParam("stfId") String stfId, @RequestParam("stfPasswd") String stfPasswd
+			, @RequestParam("stfPhone") String stfPhone, @RequestParam("stfMail") String stfMail, Staff staff) {
 		String viewpage="main";
-		System.out.println("deptNo:" + deptNo);
 		System.out.println("stfId:" + stfId);
-		System.out.println("stfLvl:" + stfLvl);
 		staff.setStfId(stfId);
-		staff.setDeptNo(deptNo);
-		staff.setStfLvl(stfLvl);
 		staff.setStfPasswd(stfPasswd);
 		staff.setStfPhone(stfPhone);
 		staff.setStfMail(stfMail);

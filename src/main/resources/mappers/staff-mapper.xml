@@ -51,7 +51,7 @@ STF_NOTHERE          DATE      -->
 	
 	<!-- 직원 정보 수정 -->
 	<update id="eupdate" parameterType="Staff">
-		update staff set dept_no=#{deptNo}, stf_lvl=#{stfLvl}, stf_passwd=#{stfPasswd}, stf_phone=#{stfPhone}, stf_mail=#{stfMail}
+		update staff set stf_passwd=#{stfPasswd}, stf_phone=#{stfPhone}, stf_mail=#{stfMail}
 		where stf_id=#{stfId}
 	</update>
 	
