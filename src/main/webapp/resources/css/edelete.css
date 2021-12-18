@@ -23,3 +23,60 @@ th{
 	border-top:0.1rem solid black;
 	border-bottom:0.1rem solid black;
 }
+
+/*세로*/
+/*스마트폰*/
+@media only screen and (max-width:  767px) and (orientation: portrait){
+    #teamConGrid{
+        grid-template-columns: 1fr 1fr;
+    }
+    .modal-content{
+		width:90%;
+	}
+}
+/*태블릿 pc*/
+@media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: portrait){
+    #teamConGrid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .modal-content{
+		width:60%;
+	}
+}
+/*데스크탑*/
+@media only screen and (min-width:  960px) and (orientation: portrait){
+    #teamConGrid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .modal-content{
+		width:30%;
+    }
+}
+/*가로*/
+/*스마트폰*/
+@media only screen and (max-width:  767px) and (orientation: portrait) and (orientation: landscape){
+    #teamConGrid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .modal-content{
+		width:90%;
+	}
+}
+/*태블릿 pc*/
+@media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: landscape){
+    #teamConGrid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .modal-content{
+		width:50%;
+    }
+}
+/*데스크탑*/
+@media only screen and (min-width:  960px) and (orientation: landscape){
+    #teamConGrid{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+    .modal-content{
+		width:35%;
+    }
+}

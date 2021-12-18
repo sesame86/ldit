@@ -26,9 +26,6 @@
           </div>
   
           <button class="aside-accordion"><p class="float-L"><i class="fas fa-sitemap"></i><p class="mobile-hidden">&nbsp&nbsp 직원 정보</p><i class="fas fa-angle-down float-R"></i></p> </button>
-          <c:if test="${loginUser.stfId == null}">
-  		<div class="panel"></div>
-  		</c:if>
           <c:if test="${loginUser.deptNo==3}">
           <div class="panel">
 			<p class="pd1" onclick="location.href='organization'">조직도</p>
@@ -45,10 +42,9 @@
   		</c:if>
           <button class="aside-accordion"><p class="float-L"><i class="far fa-envelope"></i><p class="mobile-hidden">&nbsp&nbsp 쪽지</p><i class="fas fa-angle-down float-R"></i></p></button>
           <div class="panel"  >
-              <p class="pd1">쪽지보내기</p>
-              <p class="pd1">보낸 쪽지 확인</p>
-              <p class="pd1">받은쪽지 확인</p>
-              <p class="pd1">쪽지 폴더 등록</p>
+              <p class="pd1" onclick="location.href='sendMsg'">쪽지보내기</p>
+              <p class="pd1" onclick="location.href='sendBox'">보낸 쪽지 확인</p>
+              <p class="pd1" onclick="location.href='receiveBox'">받은쪽지 확인</p>
           </div>
   
           <button class="aside-accordion"><i class="fas fa-pen-fancy"></i><p class="mobile-hidden">&nbsp&nbsp 전자결재</p></button>
@@ -57,12 +53,10 @@
           </div>
           
           <!-- 인사팀만 해당 버튼 보이도록 바꿔줘야함 - 김정기 -->
-          <c:if test="${loginUser.deptNo==3}">
           <button class="aside-accordion" onclick="location.href='pmregist'"><i class="far fa-id-badge"></i><p class="mobile-hidden">&nbsp&nbsp 권한관리</p></button>
           <div class="panel">
               <a href="#"></a>
           </div>
-          </c:if>
           <script>
            /*
            var acc = document.getElementsByClassName("accordion");
