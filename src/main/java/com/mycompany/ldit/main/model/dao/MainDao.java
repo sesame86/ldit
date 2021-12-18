@@ -15,9 +15,7 @@ public class MainDao {
 	private SqlSession sqlSession;
 	
 	public Attendance getAttendance(int stfNo) {
-		Attendance result = sqlSession.selectOne("Main.getAttendance", stfNo);
-		System.out.println(result);
-		return result;
+		return sqlSession.selectOne("Main.getAttendance", stfNo);
 	}
 	public List<Project> getUserProject(int stfNo) {
 		return sqlSession.selectList("Main.getUserProject", stfNo);

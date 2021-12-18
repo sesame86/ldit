@@ -90,12 +90,12 @@
             <div id="myInfo">
                 <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                 <h3 id="miName">${loginUser.stfName}</h3>
-                <p id="miHour">오늘의 근무시간 00:00:00</p>
+                <p id="miHour">오늘의 근무시간 ${elapsedWTime}</p>
                 <div id="miToday">
                     <p id="miGo">출근</p>
-                    <p id="miGoTime">00:00:00</p>
+                    <p id="miGoTime">${attStart}</p>
                     <p id="miOut">퇴근</p>
-                    <p id="miOutTime">00:00:00</p>
+                    <p id="miOutTime">${attEndFormat}</p>
                 </div>
                 <p id="miWeekHour">주간 근무시간</p>
                 <progress value="60" max="100"></progress>
@@ -107,7 +107,7 @@
                 <!--여기 작성 5-->
                 <div style="margin: 5em auto;">
 
-                    <p id="restHour">오늘 총 휴식시간 00:00:00</p>
+                    <p id="restHour">오늘 총 휴식시간</p>
                     <div id="restToday">
                         <p id="restGo" > 휴식</p>
                     </div>
@@ -193,5 +193,51 @@
             </div>
         </article>
     </section>
+    <script type="text/javascript">
+	    let attInfo = setInterval(countTime, 1000);
+	    function countTime() {
+		    var nowDate = new Date();
+		    var str = "${attStart}";
+		    var bh = str.substr(0,2);
+		    var bm = str.substr(3,2);
+		    var bs = str.substr(6,2);
+		    
+		    var wh = nowDate.getHours();
+		    var wm = nowDate.getMinutes();
+		    var ws = nowDate.getSeconds();
+		    
+		    var hour = wh-bh;
+		    var minute = wm-bm;
+		    var second = ws-bs;
+		    
+		    var totalWorkingTime= addZero(hour,2)+":"+addZero(minute,2)+":"+addZero(second,2);
+		    $("#miHour").html("오늘의 근무시간 "+totalWorkingTime);
+		    
+		    var brStart = "${wb.brStart}";
+		    var sbh = brStart.substr(0,2);
+		    var sbm = brStart.substr(3,2);
+		    var sbs = brStart.substr(6,2);
+		    
+		    var brEnd = "${wb.brEnd}";
+		    var ebh = brEnd.substr(0,2);
+		    var ebm = brEnd.substr(3,2);
+		    var ebs = brEnd.substr(6,2);
+		    var wbtime= addZero(ebh-sbh,2)+":"+addZero(ebm-sbm,2)+":"+addZero(ebs-sbs,2);
+		    $("#restHour").html("오늘 총 휴식시간 "+wbtime);
+	    }
+	    function addZero(num, digits){
+		    var zero = '';
+		    num = num.toString();
+		    if (num.length < digits) {
+			    for (var i = 0; i < digits - num.length; i++)
+			    zero += '0';
+		    }
+		    return zero + num;
+	    }
+	    /* var endTime = "${attEndFormat}";
+	    if(endTime != null){
+	    	clearInterval(ckInterval);
+	    } */
+    </script>
 </body>
 </html>
