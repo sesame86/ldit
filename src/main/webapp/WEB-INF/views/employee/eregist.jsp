@@ -26,7 +26,7 @@
 	<%@ include file="/WEB-INF/views/ldit_aside.jsp"%>
 	
 	<h1>직원 등록</h1>
-		<form action="eregist" method="post" enctype="multipart/form-data">
+		<form action="eregist" method="post">
 		<div id="box">
 			<div id="divImg">
 				<label class="inf">프로필 사진 : </label>
