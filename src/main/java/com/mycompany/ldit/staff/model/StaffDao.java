@@ -55,6 +55,11 @@ public class StaffDao implements StaffDaoInterface {
 		return sqlSession.delete("StaffNS.edelete", stfNo);
 	}
 	
+	// 사원 번호로 사원 아이디 조회
+	public String searchId(int No) {
+		return sqlSession.selectOne("StaffNS.searchId", No);
+	}
+	
 	//JH
 	@Inject
 	SqlSession sql; // mybais 실행 객체

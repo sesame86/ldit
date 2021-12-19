@@ -22,6 +22,11 @@ public class StaffService implements StaffServiceInterface{
 		return staffDao.searchNo(rStfId);
 	}
 	
+	// 사원 번호로 사원 아이디 가져오기
+	public String searchId(int No) {
+		return staffDao.searchId(No);
+	}
+	
 	// 조직도
 	@Override
 	public List<Staff> organization(Staff vo) {
