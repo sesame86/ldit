@@ -3,6 +3,7 @@ package com.mycompany.ldit.staff.model.vo;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.ldit.department.model.vo.Department;
+import com.mycompany.ldit.right.model.vo.Right;
 
 @Component
 public class Staff {
@@ -21,17 +22,42 @@ public class Staff {
 	private String stfNothere;
 	private String deptName;
 	private Department department;
+	private StaffLike staffLike;
+	private Right staffRight;
 	
 	public Staff() {
 		super();
 	}
-	
+
+	public Staff(int stfNo, int deptNo, String stfLvl, String stfName, String stfId, String stfPasswd, String stfImg,
+			String stfSign, String stfPhone, String stfMail, String stfEnroll, String stfNothere, String deptName,
+			Department department, StaffLike staffLike, Right staffRight) {
+		super();
+		this.stfNo = stfNo;
+		this.deptNo = deptNo;
+		this.stfLvl = stfLvl;
+		this.stfName = stfName;
+		this.stfId = stfId;
+		this.stfPasswd = stfPasswd;
+		this.stfImg = stfImg;
+		this.stfSign = stfSign;
+		this.stfPhone = stfPhone;
+		this.stfMail = stfMail;
+		this.stfEnroll = stfEnroll;
+		this.stfNothere = stfNothere;
+		this.deptName = deptName;
+		this.department = department;
+		this.staffLike = staffLike;
+		this.staffRight = staffRight;
+	}
+
 	@Override
 	public String toString() {
 		return "Staff [stfNo=" + stfNo + ", deptNo=" + deptNo + ", stfLvl=" + stfLvl + ", stfName=" + stfName
 				+ ", stfId=" + stfId + ", stfPasswd=" + stfPasswd + ", stfImg=" + stfImg + ", stfSign=" + stfSign
 				+ ", stfPhone=" + stfPhone + ", stfMail=" + stfMail + ", stfEnroll=" + stfEnroll + ", stfNothere="
-				+ stfNothere + ", deptName=" + deptName + ", department=" + department + "]";
+				+ stfNothere + ", deptName=" + deptName + ", department=" + department + ", staffLike=" + staffLike
+				+ ", staffRight=" + staffRight + "]";
 	}
 
 	public int getStfNo() {
@@ -145,4 +171,23 @@ public class Staff {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
+
+	public StaffLike getStaffLike() {
+		return staffLike;
+	}
+
+	public void setStaffLike(StaffLike staffLike) {
+		this.staffLike = staffLike;
+	}
+
+	public Right getStaffRight() {
+		return staffRight;
+	}
+
+	public void setStaffRight(Right staffRight) {
+		this.staffRight = staffRight;
+	}
+
+	
+	
 }

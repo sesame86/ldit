@@ -16,4 +16,7 @@ public interface MsgServiceInterface {
 	
 	// 받은 쪽지함 확인
 	public List<Msg> receiveMsgCheck(Msg msg);
+	
+	// 쪽지 상세 내용 확인
+	public List<Msg> checkMsg(int mNo);
 }

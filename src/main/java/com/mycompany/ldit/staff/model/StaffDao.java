@@ -1,6 +1,7 @@
 package com.mycompany.ldit.staff.model;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -54,6 +55,11 @@ public class StaffDao implements StaffDaoInterface {
 		return sqlSession.delete("StaffNS.edelete", stfNo);
 	}
 	
+	// 사원 번호로 사원 아이디 조회
+	public String searchId(int No) {
+		return sqlSession.selectOne("StaffNS.searchId", No);
+	}
+	
 	//JH
 	@Inject
 	SqlSession sql; // mybais 실행 객체
@@ -92,5 +98,19 @@ public class StaffDao implements StaffDaoInterface {
 	public static List<Staff> getSearchStaffApp() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	//직원전체조회
+	public List<Staff> getAllStaff() {
+		return sqlSession.selectList("StaffNS.getAllStaff");
+	}
+	public int deleteLike(Map<String, Object> mapM) {
+		return sqlSession.delete("StaffNS.deleteLike", mapM);
+	}
+	public int insertLike(Map<String, Object> mapM) {
+		return sqlSession.insert("StaffNS.insertLike", mapM);
+	}
+	public List<Staff> chooseLikeStaff(int hostStfNo) {
+		return sqlSession.selectList("StaffNS.chooseLikeStaff", hostStfNo);
 	}
 }

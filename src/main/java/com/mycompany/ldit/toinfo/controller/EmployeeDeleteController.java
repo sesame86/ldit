@@ -31,15 +31,6 @@ public class EmployeeDeleteController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
-
-//	@RequestMapping(value = "memberDelete", method = RequestMethod.GET)
-//    public String memberDelete(@RequestParam("uid") String uid, Model model){
-//          System.out.println("삭제 id: "+uid);
-//          memberService.memberDelete(uid);
-//              
-//          return "redirect:/memberAll";
-//              
-//    }
 	
 	@RequestMapping(value = "edelete2", method=RequestMethod.GET)
 	public String edelete(@RequestParam("stfNo") int stfNo){

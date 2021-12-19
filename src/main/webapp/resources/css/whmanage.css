@@ -160,7 +160,12 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	margin-bottom: 5%;
 }
 
-.modal_content > div > label, input{
+.modal_content > div > label{
+	font-size: 1.2rem;
+	border-color: #DEE0E1;
+}
+
+.modal_content > div > input{
 	font-size: 1.2rem;
 	border-color: #DEE0E1;
 }

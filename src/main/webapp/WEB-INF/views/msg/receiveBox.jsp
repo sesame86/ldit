@@ -28,6 +28,7 @@
 	<table>
 		<thead>
 			<tr>
+				<th id="no">쪽지 번호</th>
 				<th id="title">제목</th>
 				<th id="time">받은 날짜</th>
 				<th id="id">보낸 사람</th>
@@ -38,14 +39,18 @@
 			<c:forEach var="vo" items="${mlist}">
 				<c:if test="${vo.receiveMsg.stfNo == loginUser.stfNo}">
 					<tr>
-						<td id="title"><input id="input" type="button" value="${vo.mTitle}"/></td>
+						<td id="no"><input id="No" class="none" value="${vo.receiveMsg.rMNo}" disabled/></td>
+						<td id="title"><input id="input" type="button" value="${vo.mTitle}" onclick="location.href='checkMsg?mNo=${vo.mNo}'"/></td>
 						<td id="time"><input id="Time" class="none" value="${vo.receiveMsg.rMTime}" disabled/></td>
 						<td id="id"><input id="Id" class="none" value="${vo.receiveMsg.sStfId}" disabled/></td>
-						<td id="delete"><button>삭제</button></td>
+						<td id="delete"><button onclick="location.href='rmdelete?rMNo=${vo.receiveMsg.rMNo}'">삭제</button></td>
 					</tr>
 				</c:if>
 			</c:forEach>
 		</tbody>
 	</table>
+<script>
+
+</script>
 </body>
 </html>

@@ -32,4 +32,10 @@ public class MsgDao {
 	public List<Msg> receiveMsgCheck(Msg msg){
 		return sqlSession.selectList("Msg.receiveMsgCheck", msg);
 	}
+	
+	// 쪽지 상세 내용 확인
+	public List<Msg> checkMsg(int mNo) {
+		return sqlSession.selectList("Msg.checkMsg", mNo);
+	}
+
 }

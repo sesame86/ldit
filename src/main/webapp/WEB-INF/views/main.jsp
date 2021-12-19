@@ -34,7 +34,7 @@
         <article id="a1">
             <h1 class="mainTitle">오늘의 일정</h1>
             <h1 class="mainTitle">내정보</h1>
-            <h1 class="mainTitle">휴식정보</h1>
+            <h1 class="mainTitle">공지사항</h1>
 
             <h1 class="mobileTitle">오늘의 일정</h1>
             <div id="todayWork">
@@ -52,34 +52,52 @@
             <div id="myInfo">
                 <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                 <h3 id="miName">${loginUser.stfName}</h3>
-                <p id="miHour">오늘의 근무시간</p>
-                <div id="miToday">
-                    <p id="miGo">출근</p>
-                    <p id="miGoTime">${attStart}</p>
-                    <p id="miOut">퇴근</p>
-                    <p id="miOutTime">${attEndFormat}</p>
-                </div>
+                <c:choose>
+                	<c:when test="${!empty att.attStart}">
+	                	<div id="miToday">
+		                    <p id="miGo">출근</p>
+		                    <p id="miGoTime">${att.attStart}</p>
+		                    <p id="miOut">퇴근</p>
+		                    <p id="miOutTime">${att.attEnd}</p>
+		                </div>
+                	</c:when>
+                	<c:otherwise>
+                		<div id="miToday">
+                			<button id="checkin_btn">출근해주세요</button>
+                		</div>
+                	</c:otherwise>
+                </c:choose>
                 <p id="miWeekHour">주간 근무시간</p>
                 <progress value="60" max="100"></progress>
                 <p id="miMonthHour">월간 근무시간</p>
                 <progress value="20" max="100"></progress>
             </div>
-            <h1 class="mobileTitle">휴식정보</h1>
+            <h1 class="mobileTitle">공지사항</h1>
             <div id="restInfo">
                 <!--여기 작성 5-->
-                <div style="margin: 5em auto;">
-
-                    <p id="restHour">오늘 총 휴식시간</p>
-                    <div id="restToday">
-                        <p id="restGo" > 휴식</p>
-                    </div>
-                    <div id="dayoffToday">
-                    <p id="dayoff">연차 잔여일수</p>
-                    <p id="dayoffconunt">10 일</p>
-                    </div>
-                </div>       
-
-            </div>
+                <div>
+                </div>
+                <h1 style="text-align: left;font-size: 1.4rem">오늘의 근무 정보</h1>
+				<div>
+					<c:choose>
+						<c:when test="${empty att.attEnd}">
+							<p id="miHour">일이 즐거우면 인생은 낙원이다</p>
+						</c:when>
+						<c:otherwise>
+							<p id="miHour">오늘 총 근무시간 | ${todayHours}시간 ${todayMinutes}분</p>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${empty att.attRestAll || att.attRestAll eq '::'}">
+							<p id="miHour">따뜻한 미소는 친절을 표현하는 세계 공통어이다</p>
+						</c:when>
+						<c:otherwise>
+							<p id="restHour">오늘 총 휴식시간 | ${att.attRestAll}</p>
+						</c:otherwise>
+					</c:choose>
+					<p id="dayoff">연차 잔여일수 | ${calApl}</p>
+				</div>
+			</div>
         </article>
         <article id="a2">
             <h1 id="pjTitle">진행중인 프로젝트</h1>
@@ -109,114 +127,96 @@
             </div>
             <h1 class="mobileTitle">쪽지 즐겨찾기</h1>
             <div id="msgBookmark">
-                <div class="bmContainer">
-                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                    <div class="bmInfo">
-                        <h4>김예은</h4>
-                        <p>개발부</p>
-                    </div>
-                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
+       		    <div class="bmContainer">
+                    <a href="likestaff" href="#" onClick="window.open(this.href, '_blank', 'width=410,height=533');return false" class="like_add_icon"><i class="fas fa-plus"></i></a>
                 </div>
-                <hr>
-                <div class="bmContainer">
-                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                    <div class="bmInfo">
-                        <h4>신유리</h4>
-                        <p>인사부</p>
-                    </div>
-                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
-                </div>
-                <hr>
-                <div class="bmContainer">
-                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                    <div class="bmInfo">
-                        <h4>김가희</h4>
-                        <p>개발부</p>
-                    </div>
-                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
-                </div>
-                <hr>
-                <div class="bmContainer">
-                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                    <div class="bmInfo">
-                        <h4>추대경</h4>
-                        <p>개발부</p>
-                    </div>
-                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
-                </div>
-                <hr>
-                <div class="bmContainer">
-                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                    <div class="bmInfo">
-                        <h4>노형욱</h4>
-                        <p>개발부</p>
-                    </div>
-                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
-                </div>
-            </div>
+                <c:forEach var="i" items="${likeStaffList}">
+	                <hr>
+	                <div class="bmContainer">
+	                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
+	                    <div class="bmInfo">
+	                        <h4>${i.stfName}(${i.stfNo})</h4>
+	                        <p>${i.department.deptName}</p>
+	                    </div>
+	                    <a class="sendMsg" href="javascript:openModalBtn(${i.stfNo})"><i class="far fa-paper-plane"></i></a>
+	                </div>
+	           </c:forEach>
+            </div>         
+            
         </article>
-        <h1 style="display: none;" id="test01">ddddd</h1>
+            <!--메세지 모달 창-->
+			<div id="modal_wrapper" class="modal_wrapper">
+			  <!-- Modal content -->
+			  <div class="modal_content">
+			  	<a href="javascript:closeModalBtn()"><i class="fas fa-times"></i></a>
+			  	<form action="sendMsg" method="post">
+			  		<input type="hidden" name="stfNo" value="${loginUser.stfNo}">
+					<input type="hidden" name="sStfId" value="${loginUser.stfId}">
+					<input id="receiveID" type="hidden" name="rStfId" required="required">
+					<input id="show_name" type="text" readonly="readonly" value="님에게 쪽지보내기">
+			  		<label for="send_tt">제목</label>
+					<input id="send_tt" type="text" name="mTitle">
+					<label for="send_ct">내용</label>
+					<textarea id="send_ct" name="mContent" required="required"></textarea>
+					<div><button id="btn_send" class="btn_send">발신</button></div>
+				</form>
+			  </div>
+			</div>  
     </section>
+    
     <script type="text/javascript">
-	    let attInfo = setInterval(countTime, 10000);
-	    function countTime() {
-		    var nowDate = new Date();
-		    var str = "${attStart}";
-		    var bh = str.substr(0,2);
-		    var bm = str.substr(3,2);
-		    var bs = str.substr(6,2);
-		    
-		    var wh = nowDate.getHours();
-		    var wm = nowDate.getMinutes();
-		    var ws = nowDate.getSeconds();
-		    
-		    var hour = wh-bh;
-		    var minute = wm-bm;
-		    var second = ws-bs;
-		    
-		    var totalWorkingTime= addZero(hour,2)+":"+addZero(minute,2)+":"+addZero(second,2);
-		    $("#miHour").html("오늘의 근무시간 "+totalWorkingTime);
-	    }
-	    let workBreak = setInterval(function() {
-		    var brStart = "${wb.brStart}";
-		    var sbh = brStart.substr(0,2);
-		    var sbm = brStart.substr(3,2);
-		    var sbs = brStart.substr(6,2);
-		    
-		    var brEnd = "${wb.brEnd}";
-		    var ebh = brEnd.substr(0,2);
-		    var ebm = brEnd.substr(3,2);
-		    var ebs = brEnd.substr(6,2);
-		    var wbtime= addZero(ebh-sbh,2)+":"+addZero(ebm-sbm,2)+":"+addZero(ebs-sbs,2);
-		    $("#restHour").html("오늘 총 휴식시간 "+wbtime);
-		}, 10000);
-	    function addZero(num, digits){
-		    var zero = '';
-		    num = num.toString();
-		    if (num.length < digits) {
-			    for (var i = 0; i < digits - num.length; i++)
-			    zero += '0';
-		    }
-		    return zero + num;
-	    }
-	    var endTime = "${attEndFormat}";
-	    if(endTime != null){
-	    	clearInterval(attInfo);
-	    	var attStart = "${attStart}";
-		    var asbh = attStart.substr(0,2);
-		    var asbm = attStart.substr(3,2);
-		    var asbs = attStart.substr(6,2);
-		    
-		    var attEnd = "${attEndFormat}";
-		    var aebh = attEnd.substr(0,2);
-		    var aebm = attEnd.substr(3,2);
-		    var aebs = attEnd.substr(6,2);
-		    var total= addZero(aebh-asbh,2)+":"+addZero(aebm-asbm,2)+":"+addZero(aebs-asbs,2);
-		    $("#miHour").html("오늘 총 근무시간 "+total);
-	    }
+    
+    	//모달창 열기
+    	function openModalBtn(e){
+    		if(e == null || e == undefined){
+    			alert("수신인 정보가 없습니다");
+    		}
+    		var modal = document.getElementById("modal_wrapper");
+	  		modal.style.display = 'block';
+			let showName = e;
+			$("#show_name").val(e+" 님에게 쪽지 보내기");
+			$("#receiveID").val(showName);
+			sendID = $("#receiveID").val();
+			console.log(sendID);
+		}
+    	//모달창 닫기
+    	function closeModalBtn() {
+    		var modal = document.getElementById("modal_wrapper");
+    		modal.style.display = "none";
+		}
+    	
+    	$("#send_tt").on("keyup", function() {
+    		if ($(this).val().length > 100) {
+    			$(this).val($(this).val().substring(0, 100));
+    		}
+    	});
+    	
+    	$("#send_ct").on("keyup", function() {
+    		if ($(this).val().length > 100) {
+    			$(this).val($(this).val().substring(0, 100));
+    		}
+    	});
+    	    
+    	//출근
+    	$("#checkin_btn").click(function () {
+    		$.ajax({
+    			url : "checkin"
+    			, data: {stfNo : "${loginUser.stfNo}"}
+    			, type : "post"
+    			, success: function(data) {
+    				location.reload();
+    			}
+    			, error : function(request, status, errorData){ 
+    				 alert("error code : " + request.status + "\n" 
+    						 + "message : " + request.responseText + "\n" 
+    						 + "error : " + errorData);}
+    		});
+		});
+    
+    	
 	    
 	    //쪽지 알림
-	    let msgAlert = setInterval(getalert, 10000);
+	    //let msgAlert = setInterval(getalert, 10000);
 	    function getalert() {
 			//bell
 			$("#bellalert").remove();
@@ -238,7 +238,6 @@
     		})
 		}
 	    $("#bell").on("click", function() {
-	    	//interval이라서 띄우면 사라져서 모달창은 못띄움... 그래서 그냥 msg 확인하러감
 			location.href = "receiveBox";
 	    })
     </script>
