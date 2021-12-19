@@ -72,12 +72,12 @@
       	order by t1.pro_no desc
 	</select>
 	<select id="getDetailList" parameterType="int" resultMap="projectRM">
-		select p.pro_no, p.pro_title, p.pro_content, p.pro_start, p.pro_end, p.pro_manager, t.team_manager, st.stf_name
+		select p.pro_no, p.pro_title, p.pro_content, p.pro_start, p.pro_end, p.pro_manager, r.stf_no, st.stf_name
 		from project p
-		left join team t on p.pro_no = t.pro_no
-		<!-- left join staff sp on p.pro_manager = sp.stf_no -->
-		left join staff st on t.team_manager = st.stf_no
+		left join right r on p.pro_no = r.pro_no
+		left join staff st on r.stf_no = st.stf_no
 		where p.pro_no = #{proNo}
+		and r.right_no = 1
 	</select>
 	
 	<!-- 프로젝트 생성 후 권한관리테이블 프로젝트 번호 등록 -->
