@@ -23,7 +23,7 @@ h1{
 
 #divInformation {
 	float:left;
-	padding-top:5%;
+	padding-top:3%;
 }
 
 #idAlert{
@@ -78,6 +78,17 @@ h1{
 	width:10rem;
 }
 
+#phoneAlert{
+	margin-top:1em;
+	margin-left:16.5em;
+	font-size:0.5em;
+}
+
+#mailAlert{
+	margin-top:1em;
+	margin-left:16.5em;
+	font-size:0.5em;
+}
 /*세로*/
 /*스마트폰*/
 @media only screen and (max-width:  767px) and (orientation: portrait){

@@ -31,15 +31,15 @@
 		<input type="hidden" name="sStfId" value="${loginUser.stfId}"/>
 		<div id="Msg1" class="information">
 			<label class="inf">받는 사람 </label>
-			<textarea id="rStfId" name="rStfId" class="inf2" placeholder="받을 사람의 아이디를 입력해주세요."></textarea><br>
+			<textarea id="rStfId" name="rStfId" class="inf2" placeholder="받을 사람의 아이디를 입력해주세요.0" required></textarea><br>
 		</div>
 		<div id="Msg2" class="information">
 			<label class="inf">제목 </label>
-			<textarea id="mTitle" name="mTitle" class="inf2" placeholder="쪽지 제목을 입력해주세요."></textarea><br>
+			<textarea id="mTitle" name="mTitle" class="inf2" placeholder="쪽지 제목을 입력해주세요." required></textarea><br>
 		</div>
 		<div id="Msg3" class="information">
 			<label class="inf">내용 </label>
-			<textarea id="mContent" name="mContent" class="inf2" placeholder="쪽지 내용을 입력해주세요."></textarea>
+			<textarea id="mContent" name="mContent" class="inf2" placeholder="쪽지 내용을 입력해주세요." required></textarea>
 		</div>
 		<div id="divBtn">
 			<button type="submit" id="regist" class="rBtn">보내기</button>
