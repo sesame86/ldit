@@ -193,7 +193,7 @@
     	$(".sendMsg").click(function () {
     		  	var modal = document.getElementById("modal_wrapper");
     			modal.style.display = 'block';
-    			$(this).parent().css('color','red');
+//    			$(this).parent().css('color','red');
     			let showName = $(this).prev("input").val();
     			let showID = $(this).next("input").val();
     			console.log(showName);

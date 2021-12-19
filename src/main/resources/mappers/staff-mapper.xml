@@ -122,9 +122,7 @@ STF_NOTHERE          DATE      -->
 	</select>
 	
 	<select id="viewStaff" resultMap="staffRM" parameterType="Staff">
-		select x.*, y.* from
-		(select * from staff s join department d on s.dept_no = d.dept_no) x
-		left outer join right y on x.stf_no = y.stf_no
+		select * from staff
 		where stf_id = #{stfId}
 	</select>
 	
