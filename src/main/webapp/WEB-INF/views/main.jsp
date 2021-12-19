@@ -34,7 +34,7 @@
         <article id="a1">
             <h1 class="mainTitle">오늘의 일정</h1>
             <h1 class="mainTitle">내정보</h1>
-            <h1 class="mainTitle">휴식정보</h1>
+            <h1 class="mainTitle">오늘의 근무 정보</h1>
 
             <h1 class="mobileTitle">오늘의 일정</h1>
             <div id="todayWork">
@@ -53,37 +53,46 @@
                 <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                 <h3 id="miName">${loginUser.stfName}</h3>
                 <c:choose>
-					<c:when test="${empty attEndFormat}">
-		                <p id="miHour">일이 즐거우면 인생은 낙원이다</p>					
-					</c:when>
-					<c:otherwise>
-						<p id="miHour">오늘 총 근무시간: ${todayHours}시간 ${todayMinutes}분</p>
-					</c:otherwise>
+                	<c:when test="${!empty att.attStart}">
+	                	<div id="miToday">
+		                    <p id="miGo">출근</p>
+		                    <p id="miGoTime">${att.attStart}</p>
+		                    <p id="miOut">퇴근</p>
+		                    <p id="miOutTime">${att.attEnd}</p>
+		                </div>
+                	</c:when>
+                	<c:otherwise>
+                		<div id="miToday">
+                			<button id="checkin_btn">출근해주세요</button>
+                		</div>
+                	</c:otherwise>
                 </c:choose>
-                <div id="miToday">
-                    <p id="miGo">출근</p>
-                    <p id="miGoTime">${attStart}</p>
-                    <p id="miOut">퇴근</p>
-                    <p id="miOutTime">${attEndFormat}</p>
-                </div>
                 <p id="miWeekHour">주간 근무시간</p>
                 <progress value="60" max="100"></progress>
                 <p id="miMonthHour">월간 근무시간</p>
                 <progress value="20" max="100"></progress>
             </div>
-            <h1 class="mobileTitle">휴식정보</h1>
+            <h1 class="mobileTitle">오늘의 근무 정보</h1>
             <div id="restInfo">
                 <!--여기 작성 5-->
                 <div style="margin: 5em auto;">
-
-                    <p id="restHour">오늘 총 휴식시간</p>
-                    <div id="restToday">
-                        <p id="restGo" > 휴식</p>
-                    </div>
-                    <div id="dayoffToday">
-                    <p id="dayoff">연차 잔여일수</p>
-                    <p id="dayoffconunt">10 일</p>
-                    </div>
+	                <c:choose>
+						<c:when test="${empty att.attEnd}">
+			                <p id="miHour">일이 즐거우면 인생은 낙원이다</p>					
+						</c:when>
+						<c:otherwise>
+							<p id="miHour">오늘 총 근무시간 | ${todayHours}시간 ${todayMinutes}분</p>
+						</c:otherwise>
+	                </c:choose>
+	                <c:choose>
+						<c:when test="${empty att.attRestAll || att.attRestAll eq '::'}">
+			                <p id="miHour">따뜻한 미소는 친절을 표현하는 세계 공통어이다</p>					
+						</c:when>
+						<c:otherwise>
+							<p id="restHour">오늘 총 휴식시간 | ${att.attRestAll}</p>
+						</c:otherwise>
+	                </c:choose>
+                  	<p id="dayoff">연차 잔여일수 | ${calApl}</p>
                 </div>       
 
             </div>
@@ -136,7 +145,25 @@
     </section>
     <script type="text/javascript">
     
-    
+    	//출근
+    	$("#checkin_btn").click(function () {
+    		$.ajax({
+    			url : "checkin"
+    			, data: {stfNo : "${loginUser.stfNo}"}
+    			, type : "post"
+    			, success: function(data) {
+    				if(!isNull(data)){
+    					location.reload();
+    				} else {
+    					alert("출근 등록에 실패했습니다.");
+    				}
+    			}
+    			, error : function(request, status, errorData){ 
+    				 alert("error code : " + request.status + "\n" 
+    						 + "message : " + request.responseText + "\n" 
+    						 + "error : " + errorData);}
+    		});
+		});
     
     	
 	    

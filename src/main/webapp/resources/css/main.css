@@ -57,6 +57,7 @@ section {
     font-size: 1rem;
     overflow: auto;
 }
+
 #miToday{
     clear: both;
     width: 80%;
@@ -65,6 +66,16 @@ section {
     line-height: 1.8rem;
     font-size: 0.8rem;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+#checkin_btn{
+	border: none;
+	background-color: inherit;
+	width: 100%;
+	height: 100%;
+}
+#checkin_btn:hover{
+	border: none;
+	cursor: pointer;
 }
 #miGo{
     float: left;
@@ -81,7 +92,8 @@ section {
     height: 100%;
     line-height: 2.2rem;
     font-size: 1rem;
-    overflow: auto;
+    overflow: hidden;
+    text-align: center;
 }
 #miOut{
     float: left;
@@ -98,7 +110,8 @@ section {
     height: 100%;
     line-height: 2.2rem;
     font-size: 1rem;
-    overflow: auto;
+    overflow: hidden;
+    text-align: center;
 }
 #miWeekHour{
     clear: both;
@@ -454,19 +467,18 @@ progress {
         text-align: center;
         overflow: auto;
     }
-
-    #restHour{
-        background-color: white;
-        border-radius: 1rem;
-        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
-        width: 80%;
-        height: 8%;
-        margin: 1rem auto;
-        line-height: 1.8rem;
-        font-size: 0.8rem;
-    }
-  
-  
+	#restHour{
+	    background-color: white;
+	    border-radius: 1rem;
+	    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+	    width: 80%;
+	    height: 8%;
+	    margin: 1rem auto;
+	    line-height: 2.2rem;
+	    font-size: 1rem;
+	    overflow: auto;	
+	}
+	  
     #restGo{
         float: none;
         background-color: lightgray;
@@ -475,13 +487,17 @@ progress {
         height: 100%;
         margin: 1rem auto;
     }
-    #dayoff{
-        float: left;
-        background-color: lightgray;
-        border-radius: 0.2rem;
-        width: 60%;
-        height: 100%;
-    }
+	#dayoff{
+	    background-color: white;
+	    border-radius: 1rem;
+	    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+	    width: 80%;
+	    height: 8%;
+	    margin: 1rem auto;
+	    line-height: 2.2rem;
+	    font-size: 1rem;
+	    overflow: auto;	
+	}
     #dayoffconunt{
         float: left;
         background-color: white;

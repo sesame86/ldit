@@ -98,7 +98,7 @@ public class AttendanceController {
 		int calAplT = attService.countAplTotal(stfNo);
 		mapM.put("calAplT", calAplT);
 
-		// 사용가능한 연차
+		// 사용한 연차
 		int calAplU = attService.countAplUse(stfNo);
 		mapM.put("calAplU", calAplU);
 

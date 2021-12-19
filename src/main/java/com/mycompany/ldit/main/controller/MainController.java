@@ -65,12 +65,21 @@ public class MainController {
 			// 오늘 날짜 Attendance 테이블 읽어오기 + 총 휴식시간 포함
 			Attendance att = null;
 			att = attService.getTodayAttendance(loginUser.getStfNo());
-			mapM.put("att", att);
+			mv.addObject("att", att);
 			
 			//쪽지즐겨찾기한 사람 데려오기
 			List<Staff> likeStaffList = staffService.chooseLikeStaff(loginUser.getStfNo());
 			mv.addObject("likeStaffList", likeStaffList);
 			System.out.println("likeStaffList:"+likeStaffList);
+			
+			// 1년 내 부여된 연차
+			int calAplT = attService.countAplTotal(loginUser.getStfNo());
+			// 사용한 연차
+			int calAplU = attService.countAplUse(loginUser.getStfNo());
+			//사용가능한 연차
+			int calApl = calAplT-calAplU;
+			System.out.println("calApl:"+calApl);
+			mv.addObject("calApl", calApl);
 			
 			WorkBreak wb = null;
 			if (att != null) {
@@ -88,7 +97,6 @@ public class MainController {
 					elapsedWTime = attService.getElapsedWTime(mapMS);
 					String todayHours = String.valueOf(elapsedWTime.get("EH"));
 					String todayMinutes = String.valueOf(elapsedWTime.get("EM"));
-					String seconds = String.valueOf(elapsedWTime.get("ES"));
 					mv.addObject("todayHours", todayHours);
 					mv.addObject("todayMinutes", todayMinutes);
 				}

@@ -3,6 +3,7 @@ package com.mycompany.ldit.staff.model.vo;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.ldit.department.model.vo.Department;
+import com.mycompany.ldit.right.model.vo.Right;
 
 @Component
 public class Staff {
@@ -22,6 +23,7 @@ public class Staff {
 	private String deptName;
 	private Department department;
 	private StaffLike staffLike;
+	private Right staffRight;
 	
 	public Staff() {
 		super();
@@ -29,7 +31,7 @@ public class Staff {
 
 	public Staff(int stfNo, int deptNo, String stfLvl, String stfName, String stfId, String stfPasswd, String stfImg,
 			String stfSign, String stfPhone, String stfMail, String stfEnroll, String stfNothere, String deptName,
-			Department department, StaffLike staffLike) {
+			Department department, StaffLike staffLike, Right staffRight) {
 		super();
 		this.stfNo = stfNo;
 		this.deptNo = deptNo;
@@ -46,6 +48,7 @@ public class Staff {
 		this.deptName = deptName;
 		this.department = department;
 		this.staffLike = staffLike;
+		this.staffRight = staffRight;
 	}
 
 	@Override
@@ -54,7 +57,7 @@ public class Staff {
 				+ ", stfId=" + stfId + ", stfPasswd=" + stfPasswd + ", stfImg=" + stfImg + ", stfSign=" + stfSign
 				+ ", stfPhone=" + stfPhone + ", stfMail=" + stfMail + ", stfEnroll=" + stfEnroll + ", stfNothere="
 				+ stfNothere + ", deptName=" + deptName + ", department=" + department + ", staffLike=" + staffLike
-				+ "]";
+				+ ", staffRight=" + staffRight + "]";
 	}
 
 	public int getStfNo() {
@@ -176,6 +179,15 @@ public class Staff {
 	public void setStaffLike(StaffLike staffLike) {
 		this.staffLike = staffLike;
 	}
+
+	public Right getStaffRight() {
+		return staffRight;
+	}
+
+	public void setStaffRight(Right staffRight) {
+		this.staffRight = staffRight;
+	}
+
 	
 	
 }
