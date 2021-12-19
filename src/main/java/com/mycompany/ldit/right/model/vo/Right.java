@@ -5,6 +5,7 @@ public class Right {
 	   private int proNo;
 	   private int stfNo;
 	   private int rightNo;
+	   private String stfName;
 	   
 	   public Right() {
 	      super();
@@ -12,7 +13,7 @@ public class Right {
 
 	@Override
 	public String toString() {
-		return "Right [proNo=" + proNo + ", stfNo=" + stfNo + ", rightNo=" + rightNo + "]";
+		return "Right [proNo=" + proNo + ", stfNo=" + stfNo + ", rightNo=" + rightNo + ", stfName=" + stfName + "]";
 	}
 
 	public int getProNo() {
@@ -37,5 +38,13 @@ public class Right {
 
 	public void setRightNo(int rightNo) {
 		this.rightNo = rightNo;
+	}
+
+	public String getStfName() {
+		return stfName;
+	}
+
+	public void setStfName(String stfName) {
+		this.stfName = stfName;
 	}
 }

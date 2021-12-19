@@ -76,7 +76,6 @@
 				type : "GET",
 				success : function(data) {
 					console.log(data);
-					alert("사원리스트가 검색되었습니다.")
 					resultHtml(data);
 				},
 				error : function(request, status, errorData) {

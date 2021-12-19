@@ -12,6 +12,18 @@
 		<result property="stfNo" column="stf_no"/>
 		<result property="teamManager" column="team_manager"/>
 		<result property="stfName" column="stf_name"/>
+		<result property="tMStfNo" column="tmstf_no"/>
+	</resultMap>
+	<resultMap type="Right" id="staffRM">
+		<id property="stfNo" column="STF_NO"/>
+		<result property="deptName" column="DEPT_Name"/>
+		<result property="stfName" column="STF_NAME"/>
+	</resultMap>
+	<resultMap type="Right" id="rightRM">
+		<result property="proNo" column="pro_no"/>
+		<result property="stfNo" column="stf_no"/>
+		<result property="rightNo" column="right_no"/>
+		<result property="stfName" column="stf_name"/>
 	</resultMap>
 	
 	<!-- 프로젝트 등록 -->
@@ -21,7 +33,6 @@
 	
 	<!-- 프로젝트 조회 -->
 	<select id="getNewList" parameterType="int" resultMap="projectRM">
-		<!-- select * from project where pro_no = #{proNo} and pro_status = 'N' order by pro_no desc -->
 		select * from(select p.pro_no, p.pro_status, p.pro_manager, p.pro_title, p.pro_start, p.pro_end, p.pro_content, t.team_manager, tm.stf_no,
       				  rank() over (partition by p.pro_no order by t.team_id desc) as ranking
       				  from project p left join team t on p.pro_no = t.pro_no 
@@ -32,7 +43,6 @@
       	order by t1.pro_no desc
 	</select>
 	<select id="getContinueList" parameterType="int" resultMap="projectRM">
-		<!-- select * from project where pro_no = #{proNo} and pro_status = 'C' order by pro_no desc -->
 		select * from(select p.pro_no, p.pro_status, p.pro_manager, p.pro_title, p.pro_start, p.pro_end, p.pro_content, t.team_manager, tm.stf_no,
       				  rank() over (partition by p.pro_no order by t.team_id desc) as ranking
       				  from project p left join team t on p.pro_no = t.pro_no 
@@ -43,7 +53,6 @@
       	order by t1.pro_no desc
 	</select>
 	<select id="getFinishList" parameterType="int" resultMap="projectRM">
-		<!-- select * from project where pro_no = #{proNo} and pro_status = 'F' order by pro_no desc -->
 		select * from(select p.pro_no, p.pro_status, p.pro_manager, p.pro_title, p.pro_start, p.pro_end, p.pro_content, t.team_manager, tm.stf_no,
       				  rank() over (partition by p.pro_no order by t.team_id desc) as ranking
       				  from project p left join team t on p.pro_no = t.pro_no 
@@ -70,4 +79,29 @@
 		left join staff st on t.team_manager = st.stf_no
 		where p.pro_no = #{proNo}
 	</select>
+	
+	<!-- 프로젝트 생성 후 권한관리테이블 프로젝트 번호 등록 -->
+	<update id="updatePjR" parameterType="Right">
+		update right r 
+		set pro_no = (select max(p.pro_no)
+        		      from project p
+              		  where p.pro_manager = r.stf_no)
+		where r.stf_no = #{stfNo}
+		and r.pro_no is null
+	</update>
+	
+	<!-- 프로젝트 권한확인 -->
+	<select id="getRightConfirm" parameterType="int" resultMap="staffRM">
+		select r.pro_no, r.stf_no, r.right_no, s.stf_name
+		from right r
+		left join staff s on r.stf_no = s.stf_no
+		where r.right_no = 0
+		and r.pro_no is null
+		and r.stf_no = #{stfNo}
+	</select>
+	
+	<!-- 프로젝트 생성 후 TM등록 -->
+	<insert id="insertTM" parameterType="Project">
+		insert into right (pro_no, stf_no, right_no) values (project_seq.nextval-1, #{tMStfNo} , '1')
+	</insert>
 </mapper>

@@ -14,6 +14,7 @@ public class Project {
 	private int stfNo; 
 	private int teamManager;
 	private String stfName;
+	private int tMStfNo;
 
 	public Project() {
 	}
@@ -22,7 +23,8 @@ public class Project {
 	public String toString() {
 		return "Project [proNo=" + proNo + ", proTitle=" + proTitle + ", proContent=" + proContent + ", proStart="
 				+ proStart + ", proEnd=" + proEnd + ", proManager=" + proManager + ", proStatus=" + proStatus
-				+ ", stfNo=" + stfNo + ", teamManager=" + teamManager + ", stfName=" + stfName + "]";
+				+ ", stfNo=" + stfNo + ", teamManager=" + teamManager + ", stfName=" + stfName + ", tMStfNo=" + tMStfNo
+				+ "]";
 	}
 
 	public int getProNo() {
@@ -103,5 +105,13 @@ public class Project {
 
 	public void setStfName(String stfName) {
 		this.stfName = stfName;
+	}
+
+	public int gettMStfNo() {
+		return tMStfNo;
+	}
+
+	public void settMStfNo(int tMStfNo) {
+		this.tMStfNo = tMStfNo;
 	}
 }

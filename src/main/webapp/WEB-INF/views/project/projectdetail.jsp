@@ -30,14 +30,17 @@
         <div id="pjAdd">
             <h1>Project 상세</h1>
             <article>
-            <%-- console.log(${detailList}) --%>
-                <div class="submitBtn" id="pJAddBtnDiv">
-                 <button type="button" class="submitAddBtn" id="pJProceedBtn">진행</button>
-                 <button type="button" class="submitAddBtn" id="pJCompleteBtn">완료</button>
-                 <button type="button" class="submitAddBtn" id="pJUpdateBtn">수정</button>
-                 <button type="button" class="submitAddBtn" id="pJCancelBtn" onclick="location.href='projectmain'">목록</button>
-                </div>
+            <%-- console.log(${detailList});
+            <%-- console.log(${loginUser.stfNo}); --%>
                 <c:forEach var="vo" items="${detailList}">
+	                <div class="submitBtn" id="pJAddBtnDiv">
+	                <c:if test="${loginUser.stfNo == vo.proManager}">
+		                 <button type="button" class="submitAddBtn" id="pJProceedBtn">진행</button>
+		                 <button type="button" class="submitAddBtn" id="pJCompleteBtn">완료</button>
+		                 <button type="button" class="submitAddBtn" id="pJUpdateBtn">수정</button>
+	                </c:if>
+	                <button type="button" class="submitAddBtn" id="pJCancelBtn" onclick="location.href='projectmain'">목록</button>
+	                </div>
 	                <form id="pjAddFrm" action="pjadd" method="post">
 	                    <div class="textBox" id="calendar">
 	                    	<label>시작일</label>

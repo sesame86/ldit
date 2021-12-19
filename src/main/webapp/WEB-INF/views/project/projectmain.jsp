@@ -29,13 +29,16 @@
 		<div id="csContainer">
 			<h1>프로젝트 조회</h1>
             <div>
-            	<button class="newbtn" id="newbtn" onclick="location.href='popen'">프로젝트 등록</button>
+				<c:forEach var="vo" items="${rightConfirm}">
+	            	<c:if test="${vo.rightNo == 0}">
+	            		<button class="newbtn" id="newbtn" onclick="location.href='popen'">프로젝트 등록</button>
+	            	</c:if>
+				</c:forEach>
             </div>
 			<div class="flexContainer">
 				<div id="new">
 					<h4>예정</h4>
 					<input type="hidden" id="stfNo" name="stfNo" value="${loginUser.stfNo}">
-					<%-- console.log(${newList}); --%>
 					<c:forEach var="vo" items="${newList}">
 					<div id="newList">
 							<div class="reqColorSmallNew"></div>
