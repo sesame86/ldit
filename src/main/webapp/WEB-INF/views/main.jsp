@@ -138,15 +138,65 @@
 	                        <h4>${i.stfName}(${i.stfNo})</h4>
 	                        <p>${i.department.deptName}</p>
 	                    </div>
-	                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
+	                    <a class="sendMsg" href="javascript:openModalBtn(${i.stfNo})"><i class="far fa-paper-plane"></i></a>
 	                </div>
 	           </c:forEach>
-            </div>
+            </div>         
+            
         </article>
-        <h1 style="display: none;" id="test01">ddddd</h1>
+            <!--메세지 모달 창-->
+			<div id="modal_wrapper" class="modal_wrapper">
+			  <!-- Modal content -->
+			  <div class="modal_content">
+			  	<a href="javascript:closeModalBtn()"><i class="fas fa-times"></i></a>
+			  	<form action="sendMsg" method="post">
+			  		<input type="hidden" name="stfNo" value="${loginUser.stfNo}">
+					<input type="hidden" name="sStfId" value="${loginUser.stfId}">
+					<input id="receiveID" type="hidden" name="rStfId" required="required">
+					<input id="show_name" type="text" readonly="readonly" value="님에게 쪽지보내기">
+			  		<label for="send_tt">제목</label>
+					<input id="send_tt" type="text" name="mTitle">
+					<label for="send_ct">내용</label>
+					<textarea id="send_ct" name="mContent" required="required"></textarea>
+					<div><button id="btn_send" class="btn_send">발신</button></div>
+				</form>
+			  </div>
+			</div>  
     </section>
+    
     <script type="text/javascript">
     
+    	//모달창 열기
+    	function openModalBtn(e){
+    		if(e == null || e == undefined){
+    			alert("수신인 정보가 없습니다");
+    		}
+    		var modal = document.getElementById("modal_wrapper");
+	  		modal.style.display = 'block';
+			let showName = e;
+			$("#show_name").val(e+" 님에게 쪽지 보내기");
+			$("#receiveID").val(showName);
+			sendID = $("#receiveID").val();
+			console.log(sendID);
+		}
+    	//모달창 닫기
+    	function closeModalBtn() {
+    		var modal = document.getElementById("modal_wrapper");
+    		modal.style.display = "none";
+		}
+    	
+    	$("#send_tt").on("keyup", function() {
+    		if ($(this).val().length > 100) {
+    			$(this).val($(this).val().substring(0, 100));
+    		}
+    	});
+    	
+    	$("#send_ct").on("keyup", function() {
+    		if ($(this).val().length > 100) {
+    			$(this).val($(this).val().substring(0, 100));
+    		}
+    	});
+    	    
     	//출근
     	$("#checkin_btn").click(function () {
     		$.ajax({
@@ -154,11 +204,7 @@
     			, data: {stfNo : "${loginUser.stfNo}"}
     			, type : "post"
     			, success: function(data) {
-    				if(!isNull(data)){
-    					location.reload();
-    				} else {
-    					alert("출근 등록에 실패했습니다.");
-    				}
+    				location.reload();
     			}
     			, error : function(request, status, errorData){ 
     				 alert("error code : " + request.status + "\n" 

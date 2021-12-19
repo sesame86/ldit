@@ -511,3 +511,70 @@ progress {
     .like_add_icon{
     	padding-left: 47%;
     }
+    
+    /*모달*/
+    .modal_wrapper {
+	  display: none; 
+	  position: fixed;
+	  z-index: 1;
+	  right: 0;
+	  bottom: 0;
+	  width: 400px;
+	  height: 350px;
+	  overflow: hidden;
+	}
+	.modal_content {
+	  background-color: #fefefe;
+	  padding: 20px 10px 50px 30px;
+	  border: 1px solid #888;
+	  width: 100%;
+	  height: 100%;
+	  box-sizing: border-box;
+	}
+	.modal_content > a{
+		float:right;
+	}
+	.modal_content > form > label{
+		font-size: 1rem;
+		border-color: #DEE0E1;
+		display: block;
+		width: 300px;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+	}
+	#send_tt{
+		font-size: 1.2rem;
+		border-color: #DEE0E1;
+		display: block;
+		width: 300px;
+	}
+	#send_ct{
+		resize: none;
+		font-size: 1.2rem;
+		border-color: #DEE0E1;
+		display: block;
+		width: 300px;
+		height: 100px;
+	}
+	#show_name{
+		font-size: 1.2rem;
+		border: none;
+		display: block;
+		width: 300px;
+	}
+	#show_name:focus {
+        outline: none;
+    }
+	#btn_send{
+		margin-top: 1rem;
+		padding: 10px;
+		display: block;
+		width: 300px;
+		background-color: #3498DB;
+		border: none;
+	}
+	#btn_send:hover{
+		cursor: pointer;
+	}
+	
+	
