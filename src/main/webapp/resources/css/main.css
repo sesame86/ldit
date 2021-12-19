@@ -24,13 +24,27 @@ section {
     font-size: 1.4rem;
     margin: 1% 2%;
 }
-#todayWork, #myInfo, #restInfo{
+#todayWork, #myInfo{
     background-color: #F7F9FA;
     border-radius: 0.6rem;
     float: left;
     width: 28%;
     height: 100%;
-    margin: 0 2%;
+    margin: 0 1%;
+}
+#restInfo{
+    border-radius: 0.6rem;
+    float: left;
+    width: 28%;
+    height: 100%;
+    margin: 0 1%;
+    display: grid;
+	grid-template-rows: 40% 10% 40%;
+	gap: 4% 0;
+}
+/*restInfo*/
+#restInfo div{
+	background-color: #F7F9FA;
 }
 /*myInfo*/
 #myInfo{
@@ -46,36 +60,39 @@ section {
 #miName{
     margin: 1rem auto;
 }
-#miHour{
+#miHour, #restHour, #dayoff{
     background-color: white;
     border-radius: 1rem;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
     width: 80%;
-    height: 8%;
+    height: 18%;
     margin: 1rem auto;
-    line-height: 2.2rem;
-    font-size: 1rem;
-    overflow: auto;
+    font-size: 0.9rem;
 }
 
 #miToday{
     clear: both;
     width: 80%;
-    height: 8%;
+    height: 10%;
     margin: 1rem auto;
     line-height: 1.8rem;
     font-size: 0.8rem;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
 }
+
 #checkin_btn{
 	border: none;
-	background-color: inherit;
+	background-color: white;
 	width: 100%;
 	height: 100%;
+	border-radius: 0.3rem;
 }
 #checkin_btn:hover{
 	border: none;
 	cursor: pointer;
+	-webkit-transform: scale(1.01);
+    transform: scale(1.01);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
 }
 #miGo{
     float: left;
@@ -83,6 +100,7 @@ section {
     border-radius: 0.2rem;
     width: 20%;
     height: 100%;
+    line-height: 2.2rem;
 }
 #miGoTime{
     float: left;
@@ -101,6 +119,7 @@ section {
     border-radius: 0.2rem;
     width: 20%;
     height: 100%;
+    line-height: 2.2rem;
 }
 #miOutTime{
     float: left;
@@ -399,9 +418,9 @@ progress {
     #miHour{
         height: 17%;
     }
-    #miToday{
+    /* #miToday{
         height: 17%;
-    }
+    } */
 }
 /*데스크탑*/
 @media only screen and (min-width:  960px) and (orientation: landscape){
@@ -467,7 +486,7 @@ progress {
         text-align: center;
         overflow: auto;
     }
-	#restHour{
+	/* #restHour{
 	    background-color: white;
 	    border-radius: 1rem;
 	    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
@@ -486,25 +505,8 @@ progress {
         width: 20%;
         height: 100%;
         margin: 1rem auto;
-    }
-	#dayoff{
-	    background-color: white;
-	    border-radius: 1rem;
-	    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
-	    width: 80%;
-	    height: 8%;
-	    margin: 1rem auto;
-	    line-height: 2.2rem;
-	    font-size: 1rem;
-	    overflow: auto;	
-	}
-    #dayoffconunt{
-        float: left;
-        background-color: white;
-        border-radius: 0.2rem;
-        width: 40%;
-        height: 100%;
-    }
+    }*/
+
     /* 즐겨찾기 추가 아이콘*/
     .like_add_icon{
     	padding-left: 47%;

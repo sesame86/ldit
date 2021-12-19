@@ -34,7 +34,7 @@
         <article id="a1">
             <h1 class="mainTitle">오늘의 일정</h1>
             <h1 class="mainTitle">내정보</h1>
-            <h1 class="mainTitle">오늘의 근무 정보</h1>
+            <h1 class="mainTitle">공지사항</h1>
 
             <h1 class="mobileTitle">오늘의 일정</h1>
             <div id="todayWork">
@@ -72,30 +72,32 @@
                 <p id="miMonthHour">월간 근무시간</p>
                 <progress value="20" max="100"></progress>
             </div>
-            <h1 class="mobileTitle">오늘의 근무 정보</h1>
+            <h1 class="mobileTitle">공지사항</h1>
             <div id="restInfo">
                 <!--여기 작성 5-->
-                <div style="margin: 5em auto;">
-	                <c:choose>
+                <div>
+                </div>
+                <h1 style="text-align: left;font-size: 1.4rem">오늘의 근무 정보</h1>
+				<div>
+					<c:choose>
 						<c:when test="${empty att.attEnd}">
-			                <p id="miHour">일이 즐거우면 인생은 낙원이다</p>					
+							<p id="miHour">일이 즐거우면 인생은 낙원이다</p>
 						</c:when>
 						<c:otherwise>
 							<p id="miHour">오늘 총 근무시간 | ${todayHours}시간 ${todayMinutes}분</p>
 						</c:otherwise>
-	                </c:choose>
-	                <c:choose>
+					</c:choose>
+					<c:choose>
 						<c:when test="${empty att.attRestAll || att.attRestAll eq '::'}">
-			                <p id="miHour">따뜻한 미소는 친절을 표현하는 세계 공통어이다</p>					
+							<p id="miHour">따뜻한 미소는 친절을 표현하는 세계 공통어이다</p>
 						</c:when>
 						<c:otherwise>
 							<p id="restHour">오늘 총 휴식시간 | ${att.attRestAll}</p>
 						</c:otherwise>
-	                </c:choose>
-                  	<p id="dayoff">연차 잔여일수 | ${calApl}</p>
-                </div>       
-
-            </div>
+					</c:choose>
+					<p id="dayoff">연차 잔여일수 | ${calApl}</p>
+				</div>
+			</div>
         </article>
         <article id="a2">
             <h1 id="pjTitle">진행중인 프로젝트</h1>
