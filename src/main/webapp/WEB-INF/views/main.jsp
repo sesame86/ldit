@@ -174,14 +174,14 @@
 			  <div class="modal_content">
 			  	<a href="javascript:closeModalBtn()"><i class="fas fa-times"></i></a>
 			  	<form action="sendMsg" method="post">
-			  		<input type="hidden" name="stfNo" value="${loginUser.stfNo}">
-					<input type="hidden" name="sStfId" value="${loginUser.stfId}">
+			  		<input type="hidden" name="stfNo" value="${loginUser.stfNo}" required>
+					<input type="hidden" name="sStfId" value="${loginUser.stfId}" required>
 					<input id="receiveID" type="hidden" name="rStfId" required="required">
 					<input id="show_name" type="text" readonly="readonly" value="님에게 쪽지보내기">
 			  		<label for="send_tt">제목</label>
-					<input id="send_tt" type="text" name="mTitle">
+					<input id="send_tt" type="text" name="mTitle" required>
 					<label for="send_ct">내용</label>
-					<textarea id="send_ct" name="mContent" required="required"></textarea>
+					<textarea id="send_ct" name="mContent" required></textarea>
 					<div><button id="btn_send" class="btn_send">발신</button></div>
 				</form>
 			  </div>
@@ -189,6 +189,7 @@
     </section>
     
     <script type="text/javascript">
+    //location.reload();
     	//모달창 열기
     	$(".sendMsg").click(function () {
     		  	var modal = document.getElementById("modal_wrapper");
