@@ -22,15 +22,13 @@ public class ProjectUpdateController {
 	private ProjectService projectService;
 	
 	@RequestMapping(value = "/pupdate", method = RequestMethod.GET)
-	public ModelAndView getDetailList(ModelAndView mv, HttpSession session) {
+	public ModelAndView getDetailList(ModelAndView mv, HttpSession session
+			, @RequestParam("getproNo") int getproNo) {
+		System.out.println("프로젝트 번호: "+getproNo);
 		String viewpage = "project/projectdetail";
 		List<Project> detailList = null;
-		int proNo;
-//		proNo = getproNo;
-		proNo = 1;
-		System.out.println("프로젝트 번호: "+proNo);
 		try {
-			detailList = projectService.getDetailList(proNo);
+			detailList = projectService.getDetailList(getproNo);
 			viewpage = "project/projectdetail";
 			
 			mv.addObject("detailList", detailList);

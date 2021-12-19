@@ -141,6 +141,7 @@ label{
 	margin: auto;
 }
 #cancleBtn{
+	padding-right: 1rem;
 	position: absolute;
 	float: right;
 	top: 1rem;

@@ -42,7 +42,7 @@
 						</select>
                     </div>
                     <div id="stf_name"><input type = "text" name = "stf_name" class = "stf_name_input" id = "stf_name_input" placeholder="이름을 입력해주세요"></div>
-                    <div id="stf_no"><input type = "text" name = "stf_no" class = "stf_no_input" id = "stf_no_input" placeholder="사번을 입력해주세요"></div>
+                    <div id="stf_no"><input type = "number" name = "stf_no" class = "stf_no_input" id = "stf_no_input" placeholder="사번을 입력해주세요"></div>
                     <button id="searchBtn"><i id="searchBtnImg" class="fas fa-search"></i></button>
                     <!-- <div id="searchBtn"><input type="button"><i id="searchBtnImg" class="fas fa-search"></i></div> -->
                 </div>

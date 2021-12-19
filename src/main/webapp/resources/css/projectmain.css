@@ -91,6 +91,7 @@ h1{
 .listInfo i{
 	margin: 0.5rem 0.5rem 0.5rem 0;
 	float: right;
+	cursor: pointer;
 }
 
 #newbtn{

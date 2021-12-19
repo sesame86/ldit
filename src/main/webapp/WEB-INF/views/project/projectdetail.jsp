@@ -32,8 +32,10 @@
             <article>
             <%-- console.log(${detailList}) --%>
                 <div class="submitBtn" id="pJAddBtnDiv">
-                 <!-- <button type="button" class="submitAddBtn" id="pJUpdateBtn">수정하기</button> -->
-                 <button type="button" class="submitAddBtn" id="pJCancelBtn" onclick="location.href='projectmain'">목록으로</button>
+                 <button type="button" class="submitAddBtn" id="pJProceedBtn">진행</button>
+                 <button type="button" class="submitAddBtn" id="pJCompleteBtn">완료</button>
+                 <button type="button" class="submitAddBtn" id="pJUpdateBtn">수정</button>
+                 <button type="button" class="submitAddBtn" id="pJCancelBtn" onclick="location.href='projectmain'">목록</button>
                 </div>
                 <c:forEach var="vo" items="${detailList}">
 	                <form id="pjAddFrm" action="pjadd" method="post">
