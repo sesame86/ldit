@@ -32,6 +32,7 @@ public class RequirementsRegistController {
 		System.out.println(cvo);
 		try {
 			int result = ClientNeedsService.insertCS(cvo);
+			System.out.println(result);
 		}catch (Exception e) {
 			e.getStackTrace();
 		}

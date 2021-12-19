@@ -136,7 +136,7 @@
                         <p>${pVo.proStart} ~ ${pVo.proEnd}</p>
                     </div>
                     <c:if test="${pVo.proStatus == 'N'.charAt(0)}">
-                    	<div class="reqColorBig" style="background-color: #3498DB">새로운 요청</div>
+                    	<div class="reqColorBig" style="background-color: #3498DB"><a href="pupdate?getproNo=${pVo.proNo}">새로운 요청</a></div>
                     </c:if>
                     <c:if test="${pVo.proStatus == 'C'.charAt(0)}">
                     	<div class="reqColorBig" style="background-color: #27AE60">진행중</div>
