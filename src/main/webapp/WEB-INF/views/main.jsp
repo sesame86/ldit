@@ -254,7 +254,7 @@
     	
 	    
 	    //쪽지 알림
-	    //let msgAlert = setInterval(getalert, 10000);
+	    let msgAlert = setInterval(getalert, 10000);
 	    function getalert() {
 			//bell
 			$("#bellalert").remove();
