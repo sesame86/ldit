@@ -30,9 +30,9 @@
 		<div id="box">
 			<div id="divImg">
 				<label class="inf">프로필 사진 : </label>
-				<input type="file" name="stfImg" class="inf2" required/><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<input type="file" id="picture1" name="stfImg" class="inf2" required/><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<label class="inf">서명 : </label>
-				<input type="file" name="stfSign" class="inf2" required/>
+				<input type="file" id="picture2" name="stfSign" class="inf2" required/>
 			</div>
 			<div id="divInformation">
 				<label class="inf">사원 번호 :</label>

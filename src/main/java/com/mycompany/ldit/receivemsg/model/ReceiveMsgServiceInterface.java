@@ -8,4 +8,7 @@ public interface ReceiveMsgServiceInterface {
 	
 	// 받은 쪽지 삭제
 	public int deleteMsg(int sMNo);
+	
+	// 제목 클릭 시 수신 여부 읽음으로 변경
+	public int updateCheck(int mNo);
 }

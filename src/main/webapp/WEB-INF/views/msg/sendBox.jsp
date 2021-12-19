@@ -39,27 +39,41 @@
 		</thead>
 		<tbody>
 		<c:forEach var="vo" items="${mlist}">
-			<c:if test="${vo.sendMsg.stfNo == loginUser.stfNo}">
-				<tr>
-					<td id="no"><input id="No" class="none" value="${vo.sendMsg.sMNo}" disabled/></td>
-					<td id="title"><input class="input" type="button" value="${vo.mTitle}" onclick="location.href='checkMsg?mNo=${vo.mNo}'"/></td>
-					<td id="time"><input id="Time" class="none" value="${vo.sendMsg.sMTime}" disabled/></td>
-					<td id="id"><input id="Id" class="none" value="${vo.sendMsg.rStfId}" disabled/></td>
-					<td id="check"><input id="readCheck" class="none2" value="${vo.receiveMsg.rMCheck}" disabled/></td>
-					<td id="delete"><button onclick="location.href='smdelete?sMNo=${vo.sendMsg.sMNo}'">삭제</button></td>
-				</tr>
-			</c:if>
+			<c:choose>
+				<c:when test="${vo.receiveMsg.rMCheck == 0 && vo.sendMsg.stfNo == loginUser.stfNo}" >
+					<tr>
+						<td id="no"><input id="No" class="none" value="${vo.sendMsg.sMNo}" disabled/></td>
+						<td id="title"><input class="input" type="button" value="${vo.mTitle}" onclick="location.href='checkMsg?mNo=${vo.mNo}'"/></td>
+						<td id="time"><input id="Time" class="none" value="${vo.sendMsg.sMTime}" disabled/></td>
+						<td id="id"><input id="Id" class="none" value="${vo.sendMsg.rStfId}" disabled/></td>
+						<td id="check"><input id="readCheck" class="none2" value="읽지 않음" disabled/></td>
+						<td id="delete"><button onclick="location.href='smdelete?sMNo=${vo.sendMsg.sMNo}'">삭제</button></td>
+					</tr>
+					</c:when>
+					<c:when test="${vo.receiveMsg.rMCheck == 1 && vo.sendMsg.stfNo == loginUser.stfNo}" >
+					<tr>
+						<td id="no"><input id="No" class="none" value="${vo.sendMsg.sMNo}" disabled/></td>
+						<td id="title"><input class="input" type="button" value="${vo.mTitle}" onclick="location.href='checkMsg?mNo=${vo.mNo}'"/></td>
+						<td id="time"><input id="Time" class="none" value="${vo.sendMsg.sMTime}" disabled/></td>
+						<td id="id"><input id="Id" class="none" value="${vo.sendMsg.rStfId}" disabled/></td>
+						<td id="check"><input id="readCheck" class="none2" value="읽음" disabled/></td>
+						<td id="delete"><button onclick="location.href='smdelete?sMNo=${vo.sendMsg.sMNo}'">삭제</button></td>
+					</tr>
+					</c:when>
+			</c:choose>
 		</c:forEach>
 		</tbody>
 	</table>
 <script>	
-	$(document).ready(function(){
-		if($(".none2").val() == 0){
-			$(".none2").val("읽지 않음");
-		}
-		else
-			$(".none2").val("읽음");
-	});
+/* $(document).ready(function(){
+	console.log($(".none2").val());
+	if($(".none2").val() == 0){
+		$(".none2").val("읽지 않음");
+	}
+	else
+		$(".none2").val("읽음");
+	console.log($(".none2").val());
+}); */
 	
 </script>
 </body>

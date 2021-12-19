@@ -10,7 +10,9 @@ h1 {
 	width:90%;
 	padding-left:5rem;
 }
-
+#delete{
+	cursor:pointer;	
+}
 table {
 	float:left;
 	width:85%;

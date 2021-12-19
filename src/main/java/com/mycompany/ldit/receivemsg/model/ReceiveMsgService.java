@@ -35,4 +35,17 @@ public class ReceiveMsgService implements ReceiveMsgServiceInterface{
 		}
 		return result;
 	}
+	
+	// 제목 누르면 수신 여부 읽음으로 변경
+	@Override
+	public int updateCheck(int mNo) {
+		int result=0;
+		try {
+			result=receivemsgdao.updateCheck(mNo);
+			System.out.println("수신 체크 변경 여부 :" + result);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

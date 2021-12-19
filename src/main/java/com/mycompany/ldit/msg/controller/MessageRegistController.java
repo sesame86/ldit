@@ -89,7 +89,7 @@ public class MessageRegistController {
 			System.out.println("result:" + result);
 			System.out.println("result2:" + result2);
 			System.out.println("result3:" + result3);
-			mv.setViewName("main");
+			mv.setViewName("redirect:/sendBox");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

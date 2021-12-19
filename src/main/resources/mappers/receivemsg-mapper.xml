@@ -31,4 +31,9 @@ private int rMNo;
 	<delete id="deleteMsg" parameterType="int">
 		delete from receive_msg where r_M_No=#{rMNo}
 	</delete>
+	
+	<!-- 제목 누르면 읽음으로 변경 -->
+	<update id="updateCheck" parameterType="int">
+		update receive_msg set r_m_check=1 where m_no=#{mNo}
+	</update>
 </mapper>

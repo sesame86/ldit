@@ -53,7 +53,7 @@
 								<td>${vo.stfPhone}</td>
 								<td>${vo.stfMail}</td>
 								<td>${vo.stfEnroll}</td>
-								<td><button onclick="location.href='edelete2?stfNo=${vo.stfNo}'">퇴사</button></td>
+								<td><button id="delete" onclick="location.href='edelete2?stfNo=${vo.stfNo}'">퇴사</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -20,4 +20,9 @@ public class ReceiveMsgDao {
 	public int deleteMsg(int rMNo) {
 		return sqlSession.delete("ReceiveMsg.deleteMsg", rMNo);
 	}
+	
+	// 제목 누르면 읽음으로 변경
+	public int updateCheck(int mNo) {
+		return sqlSession.update("ReceiveMsg.updateCheck", mNo);
+	}
 }
