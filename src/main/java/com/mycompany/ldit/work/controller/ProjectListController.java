@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.ldit.project.model.service.ProjectService;
 import com.mycompany.ldit.project.model.vo.Project;
+import com.mycompany.ldit.right.model.vo.Right;
 import com.mycompany.ldit.staff.model.vo.Staff;
 import com.mycompany.ldit.team.model.service.TeamService;
 
@@ -36,6 +37,7 @@ public class ProjectListController {
 		List<Project> continueList = null;
 		List<Project> finishList = null;
 		List<Project> allList = null;
+		List<Right> rightConfirm = null;
 		try {
 			Staff loginUser = (Staff)session.getAttribute("loginUser");
 			Staff stfNo = new Staff();
@@ -45,12 +47,14 @@ public class ProjectListController {
 			continueList = projectService.getContinueList(stfNo);
 			finishList = projectService.getFinishList(stfNo);
 			allList = projectService.getAllList(stfNo);
+			rightConfirm = projectService.getRightConfirm(stfNo);
 			viewpage = "project/projectmain";
 
 			mv.addObject("newList", newList);
 			mv.addObject("continueList", continueList);
 			mv.addObject("finishList", finishList);
 			mv.addObject("allList", allList);
+			mv.addObject("rightConfirm", rightConfirm);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

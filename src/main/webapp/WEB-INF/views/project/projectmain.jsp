@@ -29,27 +29,30 @@
 		<div id="csContainer">
 			<h1>프로젝트 조회</h1>
             <div>
-            	<button class="newbtn" id="newbtn" onclick="location.href='popen'">프로젝트 등록</button>
+				<c:forEach var="vo" items="${rightConfirm}">
+	            	<c:if test="${vo.rightNo == 0}">
+	            		<button class="newbtn" id="newbtn" onclick="location.href='popen'">프로젝트 등록</button>
+	            	</c:if>
+				</c:forEach>
             </div>
 			<div class="flexContainer">
 				<div id="new">
 					<h4>예정</h4>
 					<input type="hidden" id="stfNo" name="stfNo" value="${loginUser.stfNo}">
-					<%-- console.log(${detailList}); --%>
 					<c:forEach var="vo" items="${newList}">
 					<div id="newList">
 							<div class="reqColorSmallNew"></div>
 							<div class="listInfo">
-								<i class="fas fa-user-plus"></i>
+								<i class="fas fa-user-plus" onclick="location.href='teammain'"></i>
 								<br>
-								<a href="#" id="titleBtn" onclick="location.href='pupdate'">제목 : ${vo.proTitle}</a>
+								<a href="pupdate?getproNo=${vo.proNo}">제목 : ${vo.proTitle}</a>
 								<br>
 								<p class="date">시작일 : ${vo.proStart}</p>
 								<br>
 								<p class="date">마감일 : ${vo.proEnd}</p>
-								<input type="hidden" id="proNo" name="proNo" value="${vo.proNo}">
+								<input type="hidden" class="proNo" name="proNo" value="${vo.proNo}">
 								<br>
-								<i class="fas fa-bars"></i>
+								<i class="fas fa-bars" onclick="location.href='csneeds'"></i>
 							</div>
 					</div>
 					</c:forEach>
@@ -60,16 +63,16 @@
 					<div id="continueList">
 							<div class="reqColorSmallContinue"></div>
 							<div class="listInfo">
-								<i class="fas fa-user-plus"></i>
+								<i class="fas fa-user-plus" onclick="location.href='teammain'"></i>
 								<br>
-								<a href="#" id="titleBtn" onclick="location.href='pupdate'">제목 : ${vo.proTitle}</a>
+								<a href="pupdate?getproNo=${vo.proNo}">제목 : ${vo.proTitle}</a>
 								<br>
 								<p class="date">시작일 : ${vo.proStart}</p>
 								<br>
 								<p class="date">마감일 : ${vo.proEnd}</p>
-								<input type="hidden" id="proNo" name="proNo" value="${vo.proNo}">
+								<input type="hidden" class="proNo" name="proNo" value="${vo.proNo}">
 								<br>
-								<i class="fas fa-bars"></i>
+								<i class="fas fa-bars" onclick="location.href='csneeds'"></i>
 							</div>
 					</div>
 					</c:forEach>
@@ -80,16 +83,16 @@
 					<div id="finishList">
 							<div class="reqColorSmallFinish"></div>
 							<div class="listInfo">
-								<i class="fas fa-user-plus"></i>
+								<i class="fas fa-user-plus" onclick="location.href='teammain'"></i>
 								<br>
-								<a href="#" id="titleBtn" onclick="location.href='pupdate'">제목 : ${vo.proTitle}</a>
+								<a href="pupdate?getproNo=${vo.proNo}">제목 : ${vo.proTitle}</a>
 								<br>
 								<p class="date">시작일 : ${vo.proStart}</p>
 								<br>
 								<p class="date">마감일 : ${vo.proEnd}</p>
-								<input type="hidden" id="proNo" name="proNo" value="${vo.proNo}">
+								<input type="hidden" class="proNo" name="proNo" value="${vo.proNo}">
 								<br>
-								<i class="fas fa-bars"></i>
+								<i class="fas fa-bars" onclick="location.href='csneeds'"></i>
 							</div>
 					</div>
 					</c:forEach>
@@ -98,25 +101,6 @@
 		</div>
 	</section>
 	<script type="text/javascript">
-		$("#titleBtn").on("click",	function() {
-			$.ajax({
-				url : "pupdate",
-				data:{
-					"proNo" : $("#proNo").val()
-					},
-				type : "GET",
-				success : function(data) {
-				},
-				error : function(request, status, errorData) {
-					alert("error code : "
-							+ request.status + "\n"
-							+ "message : "
-							+ request.responseText
-							+ "\n" + "error : "
-							+ errorData);
-				}
-			});
-		});
 	</script>
 </body>
 </html>

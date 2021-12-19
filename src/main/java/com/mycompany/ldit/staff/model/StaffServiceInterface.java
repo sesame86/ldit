@@ -11,6 +11,9 @@ public interface StaffServiceInterface {
 	// 받은 쪽지함의 받은 직원 사원 번호 가져오기
 	public int searchNo(String rStfId);
 	
+	// 사원 번호로 사원 아이디 가져오기
+	public String searchId(int No);
+	
 	// 조직도
 	public List<Staff> organization(Staff vo);
 

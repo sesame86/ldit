@@ -25,68 +25,93 @@ import com.mycompany.ldit.staff.model.vo.Staff;
 public class MessageRegistController {
 	@Autowired
 	private MsgService msgservice;
-	
+
 	@Autowired
 	private SendMsgService sendmsgservice;
-	
+
 	@Autowired
 	private ReceiveMsgService receivemsgservice;
-	
+
 	@Autowired
 	private StaffService staffservice;
+
 	
-	@RequestMapping(value="sendMsg", method=RequestMethod.GET)
-	public ModelAndView sendMsg(ModelAndView mv) {
-		mv.setViewName("msg/sendMsg");
-		return mv;
+	 @RequestMapping(value="sendMsg", method=RequestMethod.GET)
+	 public ModelAndView sendMsg(ModelAndView mv) {
+		 mv.setViewName("msg/sendMsg");
+		 return mv;
 	}
-	
-	@RequestMapping(value="sendMsg", method=RequestMethod.POST)
-	public ModelAndView sendMsg(Msg msg, SendMsg sendmsg, ReceiveMsg receivemsg, Staff staff, @RequestParam("mTitle") String mTitle, @RequestParam("sStfId") String sStfId
-			,@RequestParam("mContent") String mContent, @RequestParam("rStfId") String rStfId, @RequestParam("stfNo") int stfNo
-			,  HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr, HttpSession session, ModelAndView mv) {
+	 
+
+	@RequestMapping(value = "sendMsg", method = RequestMethod.POST)
+	public ModelAndView sendMsg(Msg msg, SendMsg sendmsg, ReceiveMsg receivemsg, Staff staff,
+			@RequestParam("mTitle") String mTitle, @RequestParam("sStfId") String sStfId,
+			@RequestParam("mContent") String mContent, @RequestParam("rStfId") String rStfId, @RequestParam("No") int No,
+			@RequestParam("stfNo") int stfNo, HttpServletRequest request, HttpServletResponse response,
+			RedirectAttributes rttr, HttpSession session, ModelAndView mv) {
 		int result = 0;
 		int result2 = 0;
 		int result3 = 0;
-		
+
 		int no = 0; // 쪽지 번호
 		int no2 = 0; // 사원 번호
+
 		
+		 String Id = "";
+		 
+		 System.out.println("No:" + No);
+		 
+
 		System.out.println("no값 :" + no);
 		System.out.println("no2값 :" + no2);
-		
+
 		try {
 			System.out.println("result=" + result);
 			System.out.println("result2=" + result2);
 			System.out.println("result3=" + result3);
-			
+
 			msg.setmTitle(mTitle);
 			msg.setmContent(mContent);
-			
-			result=msgservice.sendMsg(msg);
-			
+
+			result = msgservice.sendMsg(msg);
+
+			Id= staffservice.searchId(No);
+			System.out.println("Id:" + Id);
+
 			no = msgservice.checkMNo(msg);
 			System.out.println("쪽지 번호는 " + no);
+
+			if(Id!="") {
+				no2 = staffservice.searchNo(Id);
+				System.out.println("받은 직원의 사원 번호는 " + no2);
+				
+				sendmsg.setStfNo(stfNo);
+				sendmsg.setmNo(no);
+				sendmsg.setrStfId(Id);
+				result2=sendmsgservice.sendBox(sendmsg);
+			}
 			
-			no2 = staffservice.searchNo(rStfId);
-			System.out.println("받은 직원의 사원 번호는 " + no2);
+			else {
+				no2 = staffservice.searchNo(rStfId);
+				System.out.println("받은 직원의 사원 번호는 " + no2);
 			
-			sendmsg.setStfNo(stfNo);
-			sendmsg.setmNo(no);
-			sendmsg.setrStfId(rStfId);
-			result2=sendmsgservice.sendBox(sendmsg);
+				sendmsg.setStfNo(stfNo);
+				sendmsg.setmNo(no);
+				sendmsg.setrStfId(rStfId);
+				result2 = sendmsgservice.sendBox(sendmsg);
+			}
 			
 			receivemsg.setStfNo(no2);
 			receivemsg.setmNo(no);
 			receivemsg.setrMCheck(0);
 			receivemsg.setsStfId(sStfId);
-			result3=receivemsgservice.receiveBox(receivemsg);
-			
+			result3 = receivemsgservice.receiveBox(receivemsg);
+
 			System.out.println("result:" + result);
 			System.out.println("result2:" + result2);
 			System.out.println("result3:" + result3);
 			mv.setViewName("main");
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mv;

@@ -32,6 +32,7 @@
             <article>
                 <form id="pjAddFrm" action="pjadd" method="post">
                     <input type="hidden" id="stfNo" name="stfNo" value="${loginUser.stfNo}">
+                    <input type="hidden" id="tMStfNo" name="tMStfNo">
                     <div class="textBox" id="calendar">
                     	<label>시작일</label>
                     	<input type="date" id="proStart" name="proStart" required="required">
@@ -46,7 +47,7 @@
                     <br>
                     <div class="textBox" id="pjTm">
                     	<label>프로젝트 TM</label>
-						<input type = "text" name = "stf_name" class = "stf_name_input" id = "stf_name_input" placeholder="이름으로 검색해주세요">
+						<input type = "text" name = "stf_name" class = "stf_name_input" id = "tMRight" placeholder="이름으로 검색해주세요" required="required">
                     	<button type="button" class="submitAddBtn" id="tMSearchBtn">검색</button>
                     </div>
                     <br>
@@ -108,7 +109,7 @@
 			var html="";
 			$.each(data, function(i, value){
 				var stfName = value.stfName;
-				html += "<h4>부서명</h4><p>"+value.deptName+"</p><h4>이름</h4><p>"+value.stfName+"<h4>사원번호</h4><p>"+value.stfNo+"</p><button onclick='tmBtn("+stfName+")' id='tmRegister' class='rightBtnList'>TM등록</button><br>";
+				html += "<h4>부서명</h4><p>"+value.deptName+"</p><h4>이름</h4><p>"+value.stfName+"<h4>사원번호</h4><p>"+value.stfNo+"</p><button type='button' id='tmRegister' class='rightBtnList' value='"+value.stfNo+"'>TM등록</button><br>";
 			});
 			$("#tmContent").empty(); 
 			$("#tmContent").append(html);
@@ -118,9 +119,16 @@
     		$("#tmModal").css("display", "none");
 		}
 	    
-	    /* function tmBtn(stfName) {
-			document.getElementById("stf_name_input").innerHTML = stfNo;
-		} */
+	    $(document).on("click", "#tmRegister", function() {
+	    	console.log("클릭 성공");
+			var stfNoVal = $(this).val();
+			var stfNameVal = $(this).prev().prev().prev().text();
+	    	console.log("사번 확인 : "+stfNoVal);
+	    	console.log("이름 확인 : "+stfNameVal);
+	    	$("#tmModal").css("display", "none");
+	    	$("#tMRight").val(stfNameVal);
+	    	$("#tMStfNo").val(stfNoVal);
+	    })
     </script>
 </body>
 </html>

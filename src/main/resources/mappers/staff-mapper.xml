@@ -67,7 +67,10 @@ STF_NOTHERE          DATE      -->
 			<result property="wantedStfNo" column="wanted_stf_no"/>
 		</association>
 	</resultMap>
-	
+	<!-- 쪽지 즐겨찾기 사원 번호로 사원 아이디 가져오기 -->
+	<select id="searchId" resultType="String" parameterType="int">
+		select stf_id from staff where stf_no = #{No}
+	</select>
 	<!-- 받은 쪽지함의 받는 직원의 사원 번호 가져오기 -->
 	<select id="searchNo" resultType="int" parameterType="String">
 		select stf_no from staff where stf_id = #{rStfId}

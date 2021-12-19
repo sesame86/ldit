@@ -44,6 +44,8 @@ public class ProjectOpenUpController {
 		System.out.println(pJvo);
 		try {
 			int result = projectService.insertPJ(pJvo);
+			int result2 = projectService.updatePjR(loginUser.getStfNo());
+			int result3 = projectService.insertTM(pJvo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
