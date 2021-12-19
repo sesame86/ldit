@@ -103,7 +103,7 @@
 	</insert> -->
 	<!-- 권한 확인 -->
 	<select id="getStaffRight" parameterType="Staff" resultType="int">
-		select nvl(r.right_no, -1) right_no from right r right join staff s on r.stf_no = s.stf_no where s.stf_no = #{stfNo}
+		select nvl(r.right_no, -1) right_no from right r right join staff s on r.stf_no = s.stf_no where s.stf_no = #{stfNo} group by right_no
 	</select>
 	<!-- update시 팀 정보 조회 -->
 	<select id="getTeamUpdate" parameterType="int" resultMap="insertOrUpdateRM">
