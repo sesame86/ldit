@@ -363,6 +363,10 @@ progress {
       #todayWork, #myInfo, #restInfo{
 	    width: 100% !important;
 	}
+	
+	#restInfo, #nonvisible{
+		display: none;
+	}
 }
 /*태블릿 pc*/
 @media only screen and (min-width:  768px) and (max-width: 959px) and (orientation: portrait){
@@ -418,6 +422,9 @@ progress {
     #miHour{
         height: 17%;
     }
+    #restInfo, #nonvisible{
+		display: none;
+	}
     /* #miToday{
         height: 17%;
     } */
@@ -576,5 +583,13 @@ progress {
 	#btn_send:hover{
 		cursor: pointer;
 	}
-	
+	#info_alert >table{
+		margin-top: 8px;
+	}
+	marquee:hover {
+		cursor: pointer;
+	}
+	marquee > span{
+		color: red;
+	}
 	

@@ -26,13 +26,13 @@
 	<%@ include file="/WEB-INF/views/ldit_aside.jsp"%>
 	
 	<h1>직원 등록</h1>
-		<form action="eregist" method="post">
+		<form action="eregist" method="post" enctype="multipart/form-data">
 		<div id="box">
 			<div id="divImg">
 				<label class="inf">프로필 사진 : </label>
-				<input type="text" name="stfImg" class="inf2" required/><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<input type="file" name="stfImg" class="inf2" required/><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<label class="inf">서명 : </label>
-				<input type="text" name="stfSign" class="inf2" required/>
+				<input type="file" name="stfSign" class="inf2" required/>
 			</div>
 			<div id="divInformation">
 				<label class="inf">사원 번호 :</label>
