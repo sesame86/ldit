@@ -105,4 +105,7 @@ public class StaffDao implements StaffDaoInterface {
 	public int insertLike(Map<String, Object> mapM) {
 		return sqlSession.insert("StaffNS.insertLike", mapM);
 	}
+	public List<Staff> chooseLikeStaff(int hostStfNo) {
+		return sqlSession.selectList("StaffNS.chooseLikeStaff", hostStfNo);
+	}
 }

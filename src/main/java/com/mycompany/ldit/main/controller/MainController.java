@@ -66,7 +66,12 @@ public class MainController {
 			Attendance att = null;
 			att = attService.getTodayAttendance(loginUser.getStfNo());
 			mapM.put("att", att);
-
+			
+			//쪽지즐겨찾기한 사람 데려오기
+			List<Staff> likeStaffList = staffService.chooseLikeStaff(loginUser.getStfNo());
+			mv.addObject("likeStaffList", likeStaffList);
+			System.out.println("likeStaffList:"+likeStaffList);
+			
 			WorkBreak wb = null;
 			if (att != null) {
 				// attNo설정하기
@@ -101,6 +106,7 @@ public class MainController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return mv;
 	}
 	
@@ -124,9 +130,9 @@ public class MainController {
 		
 		List<Staff> allStaffList = staffService.getAllStaff();
 		mv.addObject("allStaffList", allStaffList);
-		System.out.println("allStaffList: "+allStaffList);
 		return mv;	
 	}
+	
 	//직원 즐겨찾기 ajax
 	@RequestMapping(value = "deleteandlikestaff", method = RequestMethod.POST)
 	@ResponseBody

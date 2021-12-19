@@ -129,7 +129,7 @@ STF_NOTHERE          DATE      -->
 		<![CDATA[ 
 		select a.*, b.*
 		from (select * from staff s join department d on s.dept_no = d.dept_no) a
-		left outer join staff_like b on a.stf_no = b.wanted_stf_no order by a.stf_name asc
+		left outer join staff_like b on a.stf_no = b.wanted_stf_no order by b.wanted_stf_no asc
 		  	]]>
 	</select>
 	<delete id="deleteLike" parameterType="map">
@@ -138,4 +138,12 @@ STF_NOTHERE          DATE      -->
 	<insert id="insertLike" parameterType="map">
 		insert into STAFF_LIKE values(staff_like_seq.nextval, #{hostStfNo}, #{wantedStfNo})
 	</insert>
+	<select id="chooseLikeStaff" parameterType="_int" resultMap="staffForLike">
+			<![CDATA[ 
+		select stf_no, stf_name, stf_img, dept_name from (select a.*, b.*
+		from (select * from staff s join department d on s.dept_no = d.dept_no) a
+		left outer join staff_like b on a.stf_no = b.wanted_stf_no)
+        where host_stf_no = #{hostStfNo} and wanted_stf_no != #{hostStfNo}
+        		  	]]>
+	</select>
 </mapper>

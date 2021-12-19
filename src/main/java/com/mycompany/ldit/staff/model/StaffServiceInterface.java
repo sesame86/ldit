@@ -48,5 +48,7 @@ public interface StaffServiceInterface {
 	int deleteLike(Map<String, Object> mapM);
 	//like insert
 	int insertLike(Map<String, Object> mapM);
+	//내가 찜한 직원 조회
+	List<Staff> chooseLikeStaff(int hostStfNo);
 	
 }

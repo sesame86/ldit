@@ -119,51 +119,17 @@
        		    <div class="bmContainer">
                     <a href="likestaff" href="#" onClick="window.open(this.href, '_blank', 'width=410,height=533');return false" class="like_add_icon"><i class="fas fa-plus"></i></a>
                 </div>
-                <hr>
-                <div class="bmContainer">
-                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                    <div class="bmInfo">
-                        <h4>김예은</h4>
-                        <p>개발부</p>
-                    </div>
-                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
-                </div>
-                <hr>
-                <div class="bmContainer">
-                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                    <div class="bmInfo">
-                        <h4>신유리</h4>
-                        <p>인사부</p>
-                    </div>
-                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
-                </div>
-                <hr>
-                <div class="bmContainer">
-                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                    <div class="bmInfo">
-                        <h4>김가희</h4>
-                        <p>개발부</p>
-                    </div>
-                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
-                </div>
-                <hr>
-                <div class="bmContainer">
-                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                    <div class="bmInfo">
-                        <h4>추대경</h4>
-                        <p>개발부</p>
-                    </div>
-                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
-                </div>
-                <hr>
-                <div class="bmContainer">
-                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
-                    <div class="bmInfo">
-                        <h4>노형욱</h4>
-                        <p>개발부</p>
-                    </div>
-                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
-                </div>
+                <c:forEach var="i" items="${likeStaffList}">
+	                <hr>
+	                <div class="bmContainer">
+	                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
+	                    <div class="bmInfo">
+	                        <h4>${i.stfName}(${i.stfNo})</h4>
+	                        <p>${i.department.deptName}</p>
+	                    </div>
+	                    <a class="sendMsg" href="#"><i class="far fa-paper-plane"></i></a>
+	                </div>
+	           </c:forEach>
             </div>
         </article>
         <h1 style="display: none;" id="test01">ddddd</h1>

@@ -136,4 +136,8 @@ public class StaffService implements StaffServiceInterface{
 	public int insertLike(Map<String, Object> mapM) {
 		return staffDao.insertLike(mapM);
 	}
+	@Override
+	public List<Staff> chooseLikeStaff(int hostStfNo) {
+		return staffDao.chooseLikeStaff(hostStfNo);
+	}
 }
