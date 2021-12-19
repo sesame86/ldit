@@ -15,4 +15,9 @@ public class SendMsgDao {
 	public int sendBox(SendMsg sendmsg) {
 		return sqlSession.insert("SendMsg.sendBox", sendmsg);
 	}
+	
+	// 보낸 쪽지 삭제
+	public int deleteMsg(int sMNo) {
+		return sqlSession.delete("SendMsg.deleteMsg", sMNo);
+	}
 }

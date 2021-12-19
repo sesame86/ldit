@@ -15,4 +15,9 @@ public class ReceiveMsgDao {
 	public int receiveBox(ReceiveMsg receivemsg) {
 		return sqlSession.insert("ReceiveMsg.receiveBox", receivemsg);
 	}
+	
+	// 받은 쪽지 삭제
+	public int deleteMsg(int rMNo) {
+		return sqlSession.delete("ReceiveMsg.deleteMsg", rMNo);
+	}
 }

@@ -61,6 +61,7 @@ h1{
     font-size: 1rem;
     margin-left:35%;
     padding: 0.5rem 2rem;
+    cursor:pointer;
 }
 
 #cancel{
@@ -71,6 +72,7 @@ h1{
     font-size: 1rem;
     padding: 0.5rem 2rem;
     margin-left:3%;
+    cursor:pointer;
 }
 /*세로*/
 /*스마트폰*/

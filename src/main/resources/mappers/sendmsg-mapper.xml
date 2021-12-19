@@ -23,4 +23,9 @@ R_STF_NO NOT NULL NUMBER      -->
 	<insert id="sendBox" parameterType="SendMsg">
 		insert into send_msg values (SEND_MSG_SEQ.NEXTVAL, #{stfNo}, #{mNo}, to_char(SYSDATE, 'YYYY-MM-DD hh24:mi:ss'), #{rStfId})
 	</insert>
+	
+	<!-- 보낸 쪽지 삭제하기 -->
+	<delete id="deleteMsg" parameterType="int">
+		delete from send_msg where s_M_No=#{sMNo}
+	</delete>
 </mapper>

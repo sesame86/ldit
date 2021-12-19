@@ -11,10 +11,11 @@
 		<id property="mNo" column="M_NO"/>
 		<result property="mTitle" column="M_TITLE"/>
 		<result property="mContent" column="M_CONTENT"/>
-		<!-- <association property="staff" javaType="Staff">
+		<association property="staff" javaType="Staff">
 			<id property="stfNo" column="STF_NO"/>
 			<result property="stfId" column="STF_ID"/>
-		</association> -->
+			<result property="stfName" column="STF_NAME"/>
+		</association>
 		<association property="sendMsg" javaType="sendMsg">
 			<id property="sMNo" column="S_M_NO"/>
 			<result property="stfNo" column="STF_NO"/>
@@ -32,7 +33,6 @@
 	
 	<!-- 쪽지 보내기 -->
 	<insert id="sendMsg" parameterType="Msg">
-	
 		insert into MSG values (MSG_SEQ.NEXTVAL, #{mTitle}, #{mContent})
 	</insert>
 	
@@ -41,15 +41,25 @@
 		select MAX(m_no) from MSG 
 	</select>
 	
+	<!-- 쪽지 상세 내용 확인 -->
+	<select id="checkMsg" parameterType="Msg" resultMap="msgRM">
+		select m_title, m_content from MSG where m_no=#{mNo}
+	</select>
+	
 	<!-- 보낸 쪽지 확인 -->
 	<select id="sendMsgCheck" resultMap="msgRM" parameterType="Msg">
-		select m.M_TITLE, s.S_M_TIME, r.R_M_CHECK, s.STF_NO, s.R_STF_ID
-		from MSG m join receive_msg r on m.m_no = r.m_no join send_msg s on m.m_no = s.m_no
+		select m.M_NO, m.M_TITLE, m.M_CONTENT, s.S_M_TIME, r.R_M_CHECK, s.STF_NO, s.R_STF_ID, s.S_M_NO
+		from MSG m
+		join receive_msg r on m.m_no = r.m_no
+		join send_msg s on m.m_no = s.m_no
+		order by s_m_no desc
 	</select>
 	
 	<!-- 받은 쪽지 확인 -->
 	<select id="receiveMsgCheck" resultMap="msgRM" parameterType="Msg">
-		select m.M_TITLE, r.R_M_TIME, r.S_STF_ID, r.STF_NO
-		from MSG m join receive_msg r on m.m_no = r.m_no
+		select m.M_NO, m.M_TITLE, m.M_CONTENT, r.R_M_TIME, r.S_STF_ID, r.STF_NO, r.R_M_NO
+		from MSG m
+		join receive_msg r on m.m_no = r.m_no
+		order by r_m_no desc
 	</select>
 </mapper>

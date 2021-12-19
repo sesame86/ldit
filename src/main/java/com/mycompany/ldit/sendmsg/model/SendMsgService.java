@@ -22,4 +22,17 @@ public class SendMsgService implements SendMsgServiceInterface{
 		}
 		return result;
 	}
+	
+	// 보낸 쪽지 삭제
+	@Override
+	public int deleteMsg(int sMNo) {
+		int result=0;
+		try {
+			result=sendmsgDao.deleteMsg(sMNo);
+			System.out.println("보낸 쪽지 삭제 성공 여부:" + result);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

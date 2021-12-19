@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.mycompany.ldit.receivemsg.model.vo.ReceiveMsg;
 import com.mycompany.ldit.sendmsg.model.vo.SendMsg;
+import com.mycompany.ldit.staff.model.vo.Staff;
 
 @Component
 public class Msg {
@@ -22,8 +23,12 @@ public class Msg {
 	private int stfNo;
 	private String rMTime;
 	
+	private String stfId;
+	private String stfName;
+	
 	private SendMsg sendMsg;
 	private ReceiveMsg receiveMsg;
+	private Staff staff;
 	
 	public Msg() {
 		super();
@@ -117,6 +122,22 @@ public class Msg {
 		this.rMTime = rMTime;
 	}
 
+	public String getStfId() {
+		return stfId;
+	}
+
+	public void setStfId(String stfId) {
+		this.stfId = stfId;
+	}
+
+	public String getStfName() {
+		return stfName;
+	}
+
+	public void setStfName(String stfName) {
+		this.stfName = stfName;
+	}
+
 	public SendMsg getSendMsg() {
 		return sendMsg;
 	}
@@ -133,11 +154,20 @@ public class Msg {
 		this.receiveMsg = receiveMsg;
 	}
 
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
+
 	@Override
 	public String toString() {
 		return "Msg [mNo=" + mNo + ", mTitle=" + mTitle + ", mContent=" + mContent + ", sMNo=" + sMNo + ", sMTime="
 				+ sMTime + ", rStfId=" + rStfId + ", rMNo=" + rMNo + ", rMCheck=" + rMCheck + ", sStfId=" + sStfId
-				+ ", stfNo=" + stfNo + ", rMTime=" + rMTime + ", sendMsg=" + sendMsg + ", receiveMsg=" + receiveMsg
-				+ "]";
+				+ ", stfNo=" + stfNo + ", rMTime=" + rMTime + ", stfId=" + stfId + ", stfName=" + stfName + ", sendMsg="
+				+ sendMsg + ", receiveMsg=" + receiveMsg + ", staff=" + staff + "]";
 	}
+
 }

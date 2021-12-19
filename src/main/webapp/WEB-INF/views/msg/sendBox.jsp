@@ -29,6 +29,7 @@
 	<table>
 		<thead>
 			<tr>
+				<th id="no">쪽지 번호</th>
 				<th id="title">제목</th>
 				<th id="time">보낸 날짜</th>
 				<th id="id">받은 사람</th>
@@ -40,17 +41,18 @@
 		<c:forEach var="vo" items="${mlist}">
 			<c:if test="${vo.sendMsg.stfNo == loginUser.stfNo}">
 				<tr>
-					<td id="title"><input id="input" type="button" value="${vo.mTitle}"/></td>
+					<td id="no"><input id="No" class="none" value="${vo.sendMsg.sMNo}" disabled/></td>
+					<td id="title"><input class="input" type="button" value="${vo.mTitle}" onclick="location.href='checkMsg?mNo=${vo.mNo}'"/></td>
 					<td id="time"><input id="Time" class="none" value="${vo.sendMsg.sMTime}" disabled/></td>
 					<td id="id"><input id="Id" class="none" value="${vo.sendMsg.rStfId}" disabled/></td>
 					<td id="check"><input id="readCheck" class="none2" value="${vo.receiveMsg.rMCheck}" disabled/></td>
-					<td id="delete"><button>삭제</button></td>
+					<td id="delete"><button onclick="location.href='smdelete?sMNo=${vo.sendMsg.sMNo}'">삭제</button></td>
 				</tr>
 			</c:if>
 		</c:forEach>
 		</tbody>
 	</table>
-<script>
+<script>	
 	$(document).ready(function(){
 		if($(".none2").val() == 0){
 			$(".none2").val("읽지 않음");
@@ -58,6 +60,7 @@
 		else
 			$(".none2").val("읽음");
 	});
+	
 </script>
 </body>
 </html>
