@@ -35,13 +35,12 @@
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
 						<label class="staffName">${vo.stfName}</label>
 						<label class="staffPhone">${vo.stfPhone}</label>
-						<label class="staffMail">${vo.stfMail}</label><br><br><br>
+						<label class="staffMail">${vo.stfMail}</label>
 					</c:if>
 				</c:forEach>
 			</div>
 		</div>
 		<p class="pp"><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
-		<br><br><br>
 		<div id="staffContainer2" class="staffContainer">
 			<div id="deptNM2">기획부</div>
 			<div id="staffInfo2">
@@ -51,13 +50,12 @@
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
 						<label class="staffName">${vo.stfName}</label>
 						<label class="staffPhone">${vo.stfPhone}</label>
-						<label class="staffMail">${vo.stfMail}</label><br><br><br>
+						<label class="staffMail">${vo.stfMail}</label>
 					</c:if>
 				</c:forEach>
 			</div>
 		</div>
 		<p class="pp"><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
-		<br><br><br>
 		<div id="staffContainer3" class="staffContainer">
 			<div id="deptNM3">인사부</div>
 			<div id="staffInfo3">
@@ -67,13 +65,12 @@
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
 						<label class="staffName">${vo.stfName}</label>
 						<label class="staffPhone">${vo.stfPhone}</label>
-						<label class="staffMail">${vo.stfMail}</label><br><br><br>
+						<label class="staffMail">${vo.stfMail}</label>
 					</c:if>
 				</c:forEach>
 			</div>
 		</div>
 		<p class="pp"><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
-		<br><br><br>
 		<div id="staffContainer4" class="staffContainer">
 			<div id="deptNM4">개발부</div>
 			<div id="staffInfo4">
@@ -83,13 +80,12 @@
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
 						<label class="staffName">${vo.stfName}</label>
 						<label class="staffPhone">${vo.stfPhone}</label>
-						<label class="staffMail">${vo.stfMail}</label><br><br><br>
+						<label class="staffMail">${vo.stfMail}</label>
 					</c:if>
 				</c:forEach>
 			</div>
 		</div>
 		<p class="pp"><img id="bar" src="<%=request.getContextPath() %>/resources/image/bar.png"></p>
-		<br><br><br>	
 		<div id="staffContainer5" class="staffContainer">
 			<div id="deptNM5">영업부</div>
 			<div id="staffInfo5">
@@ -99,12 +95,12 @@
 						<img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
 						<label class="staffName">${vo.stfName}</label>
 						<label class="staffPhone">${vo.stfPhone}</label>
-						<label class="staffMail">${vo.stfMail}</label><br><br><br>
+						<label class="staffMail">${vo.stfMail}</label>
 					</c:if>
 				</c:forEach>
 			</div>
 		</div>
-		<br><br><br>
+		<br><br>
 	</section>
 </body>
 </html>

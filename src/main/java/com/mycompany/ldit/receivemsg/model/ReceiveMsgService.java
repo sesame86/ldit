@@ -22,4 +22,17 @@ public class ReceiveMsgService implements ReceiveMsgServiceInterface{
 		}
 		return result;
 	}
+	
+	// 받은 쪽지 삭제
+	@Override
+	public int deleteMsg(int rMNo) {
+		int result=0;
+		try {
+			result=receivemsgdao.deleteMsg(rMNo);
+			System.out.println("받은 쪽지 삭제 성공 여부: " + result);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

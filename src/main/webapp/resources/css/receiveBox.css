@@ -8,7 +8,7 @@ h1 {
 }
 
 table {
-	margin-left:30%;
+	margin-left:29%;
 }
 
 thead{
@@ -30,6 +30,7 @@ button {
     border-radius: 0.3rem;
     font-size: 1rem;
     padding: 0.2rem 0.5rem;
+    cursor:pointer;
 }
 
 #title{
@@ -43,6 +44,7 @@ button {
     width:19rem;
     text-align:left;
     border:none;
+    cursor:pointer;
 }
 
 #time{
@@ -59,6 +61,11 @@ button {
 
 #delete{
 	width:7rem;
+	cursor:pointer;
+}
+
+#no{
+	width:10rem;
 }
 
 .none{

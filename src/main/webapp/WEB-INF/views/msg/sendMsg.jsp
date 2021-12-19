@@ -31,7 +31,7 @@
 		<input type="hidden" name="sStfId" value="${loginUser.stfId}"/>
 		<div id="Msg1" class="information">
 			<label class="inf">받는 사람 </label>
-			<textarea id="rStfId" name="rStfId" class="inf2" placeholder="받을 사람의 아이디를 입력해주세요.0" required></textarea><br>
+			<textarea id="rStfId" name="rStfId" class="inf2" placeholder="받을 사람의 아이디를 입력해주세요." required></textarea><br>
 		</div>
 		<div id="Msg2" class="information">
 			<label class="inf">제목 </label>
@@ -43,7 +43,7 @@
 		</div>
 		<div id="divBtn">
 			<button type="submit" id="regist" class="rBtn">보내기</button>
-			<button type="button" id="cancel" class="rBtn" onclick="location.href='main'">취소</button>
+			<button id="cancel" class="rBtn" onclick="location.href='main'">취소</button>
 		</div>
 	</form>
 </body>
