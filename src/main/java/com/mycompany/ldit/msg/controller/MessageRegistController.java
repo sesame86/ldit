@@ -46,7 +46,7 @@ public class MessageRegistController {
 	@RequestMapping(value = "sendMsg", method = RequestMethod.POST)
 	public ModelAndView sendMsg(Msg msg, SendMsg sendmsg, ReceiveMsg receivemsg, Staff staff,
 			@RequestParam("mTitle") String mTitle, @RequestParam("sStfId") String sStfId,
-			@RequestParam("mContent") String mContent, @RequestParam("rStfId") String rStfId, @RequestParam("No") int No,
+			@RequestParam("mContent") String mContent, @RequestParam("rStfId") String rStfId,
 			@RequestParam("stfNo") int stfNo, HttpServletRequest request, HttpServletResponse response,
 			RedirectAttributes rttr, HttpSession session, ModelAndView mv) {
 		int result = 0;
@@ -55,12 +55,6 @@ public class MessageRegistController {
 
 		int no = 0; // 쪽지 번호
 		int no2 = 0; // 사원 번호
-
-		
-		 String Id = "";
-		 
-		 System.out.println("No:" + No);
-		 
 
 		System.out.println("no값 :" + no);
 		System.out.println("no2값 :" + no2);
@@ -75,31 +69,16 @@ public class MessageRegistController {
 
 			result = msgservice.sendMsg(msg);
 
-			Id= staffservice.searchId(No);
-			System.out.println("Id:" + Id);
-
 			no = msgservice.checkMNo(msg);
 			System.out.println("쪽지 번호는 " + no);
 
-			if(Id!="") {
-				no2 = staffservice.searchNo(Id);
-				System.out.println("받은 직원의 사원 번호는 " + no2);
-				
-				sendmsg.setStfNo(stfNo);
-				sendmsg.setmNo(no);
-				sendmsg.setrStfId(Id);
-				result2=sendmsgservice.sendBox(sendmsg);
-			}
-			
-			else {
-				no2 = staffservice.searchNo(rStfId);
-				System.out.println("받은 직원의 사원 번호는 " + no2);
-			
-				sendmsg.setStfNo(stfNo);
-				sendmsg.setmNo(no);
-				sendmsg.setrStfId(rStfId);
-				result2 = sendmsgservice.sendBox(sendmsg);
-			}
+			no2 = staffservice.searchNo(rStfId);
+			System.out.println("받은 직원의 사원 번호는 " + no2);
+
+			sendmsg.setStfNo(stfNo);
+			sendmsg.setmNo(no);
+			sendmsg.setrStfId(rStfId);
+			result2 = sendmsgservice.sendBox(sendmsg);
 			
 			receivemsg.setStfNo(no2);
 			receivemsg.setmNo(no);
