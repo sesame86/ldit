@@ -33,43 +33,51 @@
 	
 	<!-- 프로젝트 조회 -->
 	<select id="getNewList" parameterType="int" resultMap="projectRM">
-		select * from(select p.pro_no, p.pro_status, p.pro_manager, p.pro_title, p.pro_start, p.pro_end, p.pro_content, t.team_manager, tm.stf_no,
-      				  rank() over (partition by p.pro_no order by t.team_id desc) as ranking
-      				  from project p left join team t on p.pro_no = t.pro_no 
-      				  left join team_member tm on t.team_id = tm.team_id
-        			  where p.pro_manager = #{stfNo} or t.team_manager = #{stfNo} or tm.stf_no = #{stfNo}) t1
-      	where ranking = 1 
+		select * from(select p.pro_no, p.pro_status, p.pro_manager, p.pro_title, p.pro_start, p.pro_end, p.pro_content, t.team_manager, tm.stf_no, r.right_no,
+		              rank() over (partition by p.pro_no order by t.team_id desc, r.stf_no desc) as ranking
+		              from project p 
+		              left join team t on p.pro_no = t.pro_no 
+		              left join team_member tm on t.team_id = tm.team_id
+		              left join right r on p.pro_no = r.pro_no
+		              where p.pro_manager = #{stfNo} or t.team_manager = #{stfNo} or tm.stf_no = #{stfNo} or r.stf_no = #{stfNo}) t1
+		where ranking = 1 
       	and pro_status = 'N'
       	order by t1.pro_no desc
 	</select>
 	<select id="getContinueList" parameterType="int" resultMap="projectRM">
-		select * from(select p.pro_no, p.pro_status, p.pro_manager, p.pro_title, p.pro_start, p.pro_end, p.pro_content, t.team_manager, tm.stf_no,
-      				  rank() over (partition by p.pro_no order by t.team_id desc) as ranking
-      				  from project p left join team t on p.pro_no = t.pro_no 
-      				  left join team_member tm on t.team_id = tm.team_id
-        			  where p.pro_manager = #{stfNo} or t.team_manager = #{stfNo} or tm.stf_no = #{stfNo}) t1
-      	where ranking = 1 
+		select * from(select p.pro_no, p.pro_status, p.pro_manager, p.pro_title, p.pro_start, p.pro_end, p.pro_content, t.team_manager, tm.stf_no, r.right_no,
+		              rank() over (partition by p.pro_no order by t.team_id desc, r.stf_no desc) as ranking
+		              from project p 
+		              left join team t on p.pro_no = t.pro_no 
+		              left join team_member tm on t.team_id = tm.team_id
+		              left join right r on p.pro_no = r.pro_no
+		              where p.pro_manager = #{stfNo} or t.team_manager = #{stfNo} or tm.stf_no = #{stfNo} or r.stf_no = #{stfNo}) t1
+		where ranking = 1 
       	and pro_status = 'C'
       	order by t1.pro_no desc
 	</select>
 	<select id="getFinishList" parameterType="int" resultMap="projectRM">
-		select * from(select p.pro_no, p.pro_status, p.pro_manager, p.pro_title, p.pro_start, p.pro_end, p.pro_content, t.team_manager, tm.stf_no,
-      				  rank() over (partition by p.pro_no order by t.team_id desc) as ranking
-      				  from project p left join team t on p.pro_no = t.pro_no 
-      				  left join team_member tm on t.team_id = tm.team_id
-        			  where p.pro_manager = #{stfNo} or t.team_manager = #{stfNo} or tm.stf_no = #{stfNo}) t1
-      	where ranking = 1 
+		select * from(select p.pro_no, p.pro_status, p.pro_manager, p.pro_title, p.pro_start, p.pro_end, p.pro_content, t.team_manager, tm.stf_no, r.right_no,
+		              rank() over (partition by p.pro_no order by t.team_id desc, r.stf_no desc) as ranking
+		              from project p 
+		              left join team t on p.pro_no = t.pro_no 
+		              left join team_member tm on t.team_id = tm.team_id
+		              left join right r on p.pro_no = r.pro_no
+		              where p.pro_manager = #{stfNo} or t.team_manager = #{stfNo} or tm.stf_no = #{stfNo} or r.stf_no = #{stfNo}) t1
+		where ranking = 1 
       	and pro_status = 'F'
       	order by t1.pro_no desc
 	</select>
 	<select id="getAllList" parameterType="int" resultMap="projectRM">
-		select * from(select p.pro_no, p.pro_status, p.pro_manager, t.team_manager, tm.stf_no,
-      				  rank() over (partition by p.pro_no order by t.team_id desc) as ranking
-      				  from project p left join team t on p.pro_no = t.pro_no 
-      				  left join team_member tm on t.team_id = tm.team_id
-        			  where p.pro_manager = #{stfNo} or t.team_manager = #{stfNo} or tm.stf_no = #{stfNo}) t1
-      	where ranking = 1 
-      	order by t1.pro_no desc
+		select * from(select p.pro_no, p.pro_status, p.pro_manager, p.pro_title, p.pro_start, p.pro_end, p.pro_content, t.team_manager, tm.stf_no, r.right_no,
+		              rank() over (partition by p.pro_no order by t.team_id desc, r.stf_no desc) as ranking
+		              from project p 
+		              left join team t on p.pro_no = t.pro_no 
+		              left join team_member tm on t.team_id = tm.team_id
+		              left join right r on p.pro_no = r.pro_no
+		              where p.pro_manager = #{stfNo} or t.team_manager = #{stfNo} or tm.stf_no = #{stfNo} or r.stf_no = #{stfNo}) t1
+		where ranking = 1 
+		order by t1.pro_no desc
 	</select>
 	<select id="getDetailList" parameterType="int" resultMap="projectRM">
 		select p.pro_no, p.pro_title, p.pro_content, p.pro_start, p.pro_end, p.pro_manager, r.stf_no, st.stf_name
