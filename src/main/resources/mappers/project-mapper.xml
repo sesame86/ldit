@@ -104,4 +104,16 @@
 	<insert id="insertTM" parameterType="Project">
 		insert into right (pro_no, stf_no, right_no) values (project_seq.nextval-1, #{tMStfNo} , '1')
 	</insert>
+	
+	<!-- 프로젝트 진행상태로 변경 -->
+	<update id="updatePJC" parameterType="Project">
+		update project set pro_status = 'C'
+		where pro_no = #{proNo}
+	</update>
+
+	<!-- 프로젝트 완료상태로 변경 -->
+	<update id="updatePJF" parameterType="Project">
+		update project set pro_status = 'F'
+		where pro_no = #{proNo}
+	</update>
 </mapper>

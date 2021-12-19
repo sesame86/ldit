@@ -59,5 +59,15 @@ public class ProjectServiceImpl implements ProjectService{
 	public List<Project> getDetailList(int proNo) throws Exception {
 		return projectDao.getDetailList(proNo);
 	}
+	
+	@Override
+	public List<Project> updatePJF(int proNo) throws Exception {
+		return projectDao.updatePJF(proNo);
+	}
+	
+	@Override
+	public List<Project> updatePJC(int proNo) throws Exception {
+		return projectDao.updatePJC(proNo);
+	}
 
 }

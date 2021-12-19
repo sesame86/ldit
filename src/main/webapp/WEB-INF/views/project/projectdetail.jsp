@@ -35,16 +35,16 @@
                 <c:forEach var="vo" items="${detailList}">
 	                <div class="submitBtn" id="pJAddBtnDiv">
 	                <c:if test="${loginUser.stfNo == vo.proManager}">
-		                 <button type="button" class="submitAddBtn" id="pJProceedBtn">진행</button>
-		                 <button type="button" class="submitAddBtn" id="pJCompleteBtn">완료</button>
-		                 <button type="button" class="submitAddBtn" id="pJUpdateBtn">수정</button>
+		                 <button type="button" class="submitAddBtn" id="pJProceedBtn" value="${vo.proNo}">진행</button>
+		                 <button type="button" class="submitAddBtn" id="pJCompleteBtn" value="${vo.proNo}">완료</button>
+		                 <%-- <button type="button" class="submitAddBtn" id="pJUpdateBtn" value="${vo.proNo}">수정</button> --%>
 	                </c:if>
 	                <button type="button" class="submitAddBtn" id="pJCancelBtn" onclick="location.href='projectmain'">목록</button>
 	                </div>
 	                <form id="pjAddFrm" action="pjadd" method="post">
 	                    <div class="textBox" id="calendar">
 	                    	<label>시작일</label>
-	                    	<!-- <input type="" id="proStart" name="proStart" required="required"> -->
+	                    	<!-- <input type="date" id="proStart" name="proStart" required="required"> -->
 	                    	<li class="inTextBox">${vo.proStart}</li>
 	                    	<label>종료일</label>
 	                    	<!-- <input type="date" id="proEnd" name="proEnd" required="required"> -->
@@ -77,6 +77,51 @@
         </div>
     </section>
     <script>
+    	/* 프로젝트 진행기능 */
+	    $("#pJProceedBtn").on("click",	function() {
+			$.ajax({
+				url : "proceed",
+				data:{
+					"getproNo" : $("#pJProceedBtn").val()
+					},
+				type : "GET",
+				success : function(data) {
+				},
+				error : function(request, status, errorData) {
+					alert("error code : "
+							+ request.status + "\n"
+							+ "message : "
+							+ request.responseText
+							+ "\n" + "error : "
+							+ errorData);
+				}
+			});
+			alert("프로젝트를 진행합니다.")
+			location.href='projectmain'
+		});
+    	
+    	/* 프로젝트 완료기능 */
+	    $("#pJCompleteBtn").on("click",	function() {
+			$.ajax({
+				url : "pcomplete",
+				data:{
+					"getproNo" : $("#pJCompleteBtn").val()
+					},
+				type : "GET",
+				success : function(data) {
+				},
+				error : function(request, status, errorData) {
+					alert("error code : "
+							+ request.status + "\n"
+							+ "message : "
+							+ request.responseText
+							+ "\n" + "error : "
+							+ errorData);
+				}
+			});
+			alert("프로젝트를 완료하였습니다.")
+			location.href='projectmain'
+		});
     </script>
 </body>
 </html>

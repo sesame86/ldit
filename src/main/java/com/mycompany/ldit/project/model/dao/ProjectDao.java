@@ -42,5 +42,11 @@ public class ProjectDao {
 	public List<Project> getDetailList(int proNo) throws Exception {
 		return sqlSession.selectList("Project.getDetailList", proNo);
 	}
+	public List<Project> updatePJF(int proNo) throws Exception {
+		return sqlSession.selectList("Project.updatePJF", proNo);
+	}
+	public List<Project> updatePJC(int proNo) throws Exception {
+		return sqlSession.selectList("Project.updatePJC", proNo);
+	}
 
 }

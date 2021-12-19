@@ -16,4 +16,6 @@ public interface ProjectService {
 	public List<Project> getAllList(Staff stfNo) throws Exception;
 	public List<Right> getRightConfirm(Staff stfNo) throws Exception;
 	public List<Project> getDetailList(int proNo) throws Exception;
+	public List<Project> updatePJF(int proNo) throws Exception;
+	public List<Project> updatePJC(int proNo) throws Exception;
 }
