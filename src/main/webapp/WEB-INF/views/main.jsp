@@ -50,7 +50,10 @@
             </div>
             <h1 class="mobileTitle">내정보</h1>
             <div id="myInfo">
-                <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
+             	<c:choose>
+                	<c:when test="${!empty loginUser.stfImg}"><img src="<%=request.getContextPath() %>/resources/image/${loginUser.stfImg}"></c:when>
+                	<c:otherwise><img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG"></c:otherwise>
+               	</c:choose>
                 <h3 id="miName">${loginUser.stfName}</h3>
                 <c:choose>
                 	<c:when test="${!empty att.attStart}">
@@ -63,7 +66,7 @@
                 	</c:when>
                 	<c:otherwise>
                 		<div id="miToday">
-                			<button id="checkin_btn">출근해주세요</button>
+                			<button id="checkin_btn">오늘의 근무 시작</button>
                 		</div>
                 	</c:otherwise>
                 </c:choose>
@@ -72,10 +75,26 @@
                 <p id="miMonthHour">월간 근무시간</p>
                 <progress value="20" max="100"></progress>
             </div>
-            <h1 class="mobileTitle">공지사항</h1>
+            <h1 id="nonvisible" class="mobileTitle">공지사항</h1>
             <div id="restInfo">
-                <!--여기 작성 5-->
-                <div>
+                <div id="info_alert">
+                	<table>
+                		<tr>
+                			<td><MARQUEE scrollamount="5"><span><i class="fas fa-exclamation-circle"></i></span> No.50 [공지] 원격훈련 중 부정훈련 예방을 위한 모니터링 실시(운영부)</MARQUEE></td>
+                		</tr>
+                		<tr>
+                			<td><MARQUEE scrollamount="5"><span><i class="fas fa-exclamation-circle"></i></span> No.49 훈련장려금 신청(단위기간: 2021-10-19~2021-11-18)</MARQUEE></td>
+                		</tr>
+                		<tr>
+	                		<td><MARQUEE scrollamount="5"><span><i class="fas fa-exclamation-circle"></i></span> No.48 [행정]7/19 행정팀 OT자료입니다.(고용노동부 규정, 학습안내서 및 평가계획서)</MARQUEE></td>
+                		</tr>
+                		<tr>
+	                		<td><MARQUEE scrollamount="5"><span><i class="fas fa-exclamation-circle"></i></span> No.47 [공지]평가 일정표 안내(인사부)</MARQUEE></td>
+                		</tr>
+                		<tr>
+	                		<td><MARQUEE scrollamount="5"><span><i class="fas fa-exclamation-circle"></i></span> No.46 글로벌사회공헌원 글로벌지속가능발전포럼(GEEF) 2022 Internship 모집 (~12/16)</MARQUEE></td>
+                		</tr>
+                	</table>
                 </div>
                 <h1 style="text-align: left;font-size: 1.4rem">오늘의 근무 정보</h1>
 				<div>
@@ -133,12 +152,17 @@
                 <c:forEach var="i" items="${likeStaffList}">
 	                <hr>
 	                <div class="bmContainer">
-	                    <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
+	                	<c:choose>
+		                	<c:when test="${!empty i.stfImg}"><img src="<%=request.getContextPath() %>/resources/image/${i.stfImg}"></c:when>
+		                	<c:otherwise><img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG"></c:otherwise>
+	                	</c:choose>
 	                    <div class="bmInfo">
 	                        <h4>${i.stfName}(${i.stfNo})</h4>
 	                        <p>${i.department.deptName}</p>
 	                    </div>
-	                    <a class="sendMsg" href="javascript:openModalBtn(${i.stfNo})"><i class="far fa-paper-plane"></i></a>
+	                    <input type="hidden" value="${i.stfName}">
+	                    <a class="sendMsg"><i class="far fa-paper-plane"></i></a>
+	                    <input type="hidden" value="${i.stfId}">
 	                </div>
 	           </c:forEach>
             </div>         
@@ -165,20 +189,33 @@
     </section>
     
     <script type="text/javascript">
-    
     	//모달창 열기
-    	function openModalBtn(e){
-    		if(e == null || e == undefined){
-    			alert("수신인 정보가 없습니다");
-    		}
-    		var modal = document.getElementById("modal_wrapper");
-	  		modal.style.display = 'block';
-			let showName = e;
-			$("#show_name").val(e+" 님에게 쪽지 보내기");
-			$("#receiveID").val(showName);
-			sendID = $("#receiveID").val();
-			console.log(sendID);
-		}
+    	$(".sendMsg").click(function () {
+    		  	var modal = document.getElementById("modal_wrapper");
+    			modal.style.display = 'block';
+    			$(this).parent().css('color','red');
+    			let showName = $(this).prev("input").val();
+    			let showID = $(this).next("input").val();
+    			console.log(showName);
+    			console.log(showID);
+    			$("#show_name").val(showName+"님에게 쪽지보내기");
+    			$("#receiveID").val(showID);
+    			console.log($("#show_name").val());
+    			console.log($("#receiveID").val());
+		});
+    	//모달창 열기
+//    	function openModalBtn(e){
+  //  		if(e == null || e == undefined){
+    //			alert("수신인 정보가 없습니다");
+   // 		}
+   // 		var modal = document.getElementById("modal_wrapper");
+	//  		modal.style.display = 'block';
+	//		let showName = e;
+	//		$("#show_name").val(e+" 님에게 쪽지 보내기");
+	//		$("#receiveID").val(showName);
+	//		sendID = $("#receiveID").val();
+	//		console.log(sendID);
+	//	}
     	//모달창 닫기
     	function closeModalBtn() {
     		var modal = document.getElementById("modal_wrapper");
