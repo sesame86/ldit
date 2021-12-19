@@ -489,3 +489,7 @@ progress {
         width: 40%;
         height: 100%;
     }
+    /* 즐겨찾기 추가 아이콘*/
+    .like_add_icon{
+    	padding-left: 47%;
+    }

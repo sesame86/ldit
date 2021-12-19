@@ -52,7 +52,14 @@
             <div id="myInfo">
                 <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                 <h3 id="miName">${loginUser.stfName}</h3>
-                <p id="miHour">오늘의 근무시간</p>
+                <c:choose>
+					<c:when test="${empty attEndFormat}">
+		                <p id="miHour">일이 즐거우면 인생은 낙원이다</p>					
+					</c:when>
+					<c:otherwise>
+						<p id="miHour">오늘 총 근무시간: ${todayHours}시간 ${todayMinutes}분</p>
+					</c:otherwise>
+                </c:choose>
                 <div id="miToday">
                     <p id="miGo">출근</p>
                     <p id="miGoTime">${attStart}</p>
@@ -109,6 +116,10 @@
             </div>
             <h1 class="mobileTitle">쪽지 즐겨찾기</h1>
             <div id="msgBookmark">
+       		    <div class="bmContainer">
+                    <a href="likestaff" href="#" onClick="window.open(this.href, '_blank', 'width=410,height=533');return false" class="like_add_icon"><i class="fas fa-plus"></i></a>
+                </div>
+                <hr>
                 <div class="bmContainer">
                     <img src="<%=request.getContextPath() %>/resources/image/myInfoAlt.JPG">
                     <div class="bmInfo">
@@ -158,65 +169,13 @@
         <h1 style="display: none;" id="test01">ddddd</h1>
     </section>
     <script type="text/javascript">
-	    let attInfo = setInterval(countTime, 10000);
-	    function countTime() {
-		    var nowDate = new Date();
-		    var str = "${attStart}";
-		    var bh = str.substr(0,2);
-		    var bm = str.substr(3,2);
-		    var bs = str.substr(6,2);
-		    
-		    var wh = nowDate.getHours();
-		    var wm = nowDate.getMinutes();
-		    var ws = nowDate.getSeconds();
-		    
-		    var hour = wh-bh;
-		    var minute = wm-bm;
-		    var second = ws-bs;
-		    
-		    var totalWorkingTime= addZero(hour,2)+":"+addZero(minute,2)+":"+addZero(second,2);
-		    $("#miHour").html("오늘의 근무시간 "+totalWorkingTime);
-	    }
-	    let workBreak = setInterval(function() {
-		    var brStart = "${wb.brStart}";
-		    var sbh = brStart.substr(0,2);
-		    var sbm = brStart.substr(3,2);
-		    var sbs = brStart.substr(6,2);
-		    
-		    var brEnd = "${wb.brEnd}";
-		    var ebh = brEnd.substr(0,2);
-		    var ebm = brEnd.substr(3,2);
-		    var ebs = brEnd.substr(6,2);
-		    var wbtime= addZero(ebh-sbh,2)+":"+addZero(ebm-sbm,2)+":"+addZero(ebs-sbs,2);
-		    $("#restHour").html("오늘 총 휴식시간 "+wbtime);
-		}, 10000);
-	    function addZero(num, digits){
-		    var zero = '';
-		    num = num.toString();
-		    if (num.length < digits) {
-			    for (var i = 0; i < digits - num.length; i++)
-			    zero += '0';
-		    }
-		    return zero + num;
-	    }
-	    var endTime = "${attEndFormat}";
-	    if(endTime != null){
-	    	clearInterval(attInfo);
-	    	var attStart = "${attStart}";
-		    var asbh = attStart.substr(0,2);
-		    var asbm = attStart.substr(3,2);
-		    var asbs = attStart.substr(6,2);
-		    
-		    var attEnd = "${attEndFormat}";
-		    var aebh = attEnd.substr(0,2);
-		    var aebm = attEnd.substr(3,2);
-		    var aebs = attEnd.substr(6,2);
-		    var total= addZero(aebh-asbh,2)+":"+addZero(aebm-asbm,2)+":"+addZero(aebs-asbs,2);
-		    $("#miHour").html("오늘 총 근무시간 "+total);
-	    }
+    
+    
+    
+    	
 	    
 	    //쪽지 알림
-	    let msgAlert = setInterval(getalert, 10000);
+	    //let msgAlert = setInterval(getalert, 10000);
 	    function getalert() {
 			//bell
 			$("#bellalert").remove();
@@ -238,7 +197,6 @@
     		})
 		}
 	    $("#bell").on("click", function() {
-	    	//interval이라서 띄우면 사라져서 모달창은 못띄움... 그래서 그냥 msg 확인하러감
 			location.href = "receiveBox";
 	    })
     </script>

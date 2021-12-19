@@ -1,6 +1,7 @@
 package com.mycompany.ldit.staff.model;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,4 +41,12 @@ public interface StaffServiceInterface {
 	
 	//결재
 	List<Staff> getSearchStaff(String userName); // Approval 자동완성
+	
+	//전체직원조회
+	List<Staff> getAllStaff();
+	//like를 위한 delete
+	int deleteLike(Map<String, Object> mapM);
+	//like insert
+	int insertLike(Map<String, Object> mapM);
+	
 }

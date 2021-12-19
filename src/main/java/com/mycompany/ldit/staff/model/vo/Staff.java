@@ -21,17 +21,40 @@ public class Staff {
 	private String stfNothere;
 	private String deptName;
 	private Department department;
+	private StaffLike staffLike;
 	
 	public Staff() {
 		super();
 	}
-	
+
+	public Staff(int stfNo, int deptNo, String stfLvl, String stfName, String stfId, String stfPasswd, String stfImg,
+			String stfSign, String stfPhone, String stfMail, String stfEnroll, String stfNothere, String deptName,
+			Department department, StaffLike staffLike) {
+		super();
+		this.stfNo = stfNo;
+		this.deptNo = deptNo;
+		this.stfLvl = stfLvl;
+		this.stfName = stfName;
+		this.stfId = stfId;
+		this.stfPasswd = stfPasswd;
+		this.stfImg = stfImg;
+		this.stfSign = stfSign;
+		this.stfPhone = stfPhone;
+		this.stfMail = stfMail;
+		this.stfEnroll = stfEnroll;
+		this.stfNothere = stfNothere;
+		this.deptName = deptName;
+		this.department = department;
+		this.staffLike = staffLike;
+	}
+
 	@Override
 	public String toString() {
 		return "Staff [stfNo=" + stfNo + ", deptNo=" + deptNo + ", stfLvl=" + stfLvl + ", stfName=" + stfName
 				+ ", stfId=" + stfId + ", stfPasswd=" + stfPasswd + ", stfImg=" + stfImg + ", stfSign=" + stfSign
 				+ ", stfPhone=" + stfPhone + ", stfMail=" + stfMail + ", stfEnroll=" + stfEnroll + ", stfNothere="
-				+ stfNothere + ", deptName=" + deptName + ", department=" + department + "]";
+				+ stfNothere + ", deptName=" + deptName + ", department=" + department + ", staffLike=" + staffLike
+				+ "]";
 	}
 
 	public int getStfNo() {
@@ -145,4 +168,14 @@ public class Staff {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
+
+	public StaffLike getStaffLike() {
+		return staffLike;
+	}
+
+	public void setStaffLike(StaffLike staffLike) {
+		this.staffLike = staffLike;
+	}
+	
+	
 }

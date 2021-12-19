@@ -44,6 +44,30 @@ STF_NOTHERE          DATE      -->
 		</association>
 	</resultMap>
 	
+	<resultMap type="Staff" id="staffForLike">
+		<id property="stfNo" column="STF_NO"/>
+		<result property="deptNo" column="DEPT_NO"/>
+		<result property="stfLvl" column="STF_LVL"/>
+		<result property="stfName" column="STF_NAME"/>
+		<result property="stfId" column="STF_ID"/>
+		<result property="stfPasswd" column="STF_PASSWD"/>
+		<result property="stfImg" column="STF_IMG"/>
+		<result property="stfSign" column="STF_SIGN"/>
+		<result property="stfPhone" column="STF_PHONE"/>
+		<result property="stfMail" column="STF_MAIL"/>
+		<result property="stfEnroll" column="STF_ENROLL"/>
+		<result property="stfNothere" column="STF_NOTHERE"/>
+		<association property="department" javaType="Department">
+			<id property="deptNo" column="DEPT_NO"/>
+			<result property="deptName" column="DEPT_NAME"/>
+		</association>
+		<association property="staffLike" javaType="StaffLike">
+			<id property="likeNO" column="like_no"/>
+			<result property="hostStfNo" column="host_stf_no"/>
+			<result property="wantedStfNo" column="wanted_stf_no"/>
+		</association>
+	</resultMap>
+	
 	<!-- 받은 쪽지함의 받는 직원의 사원 번호 가져오기 -->
 	<select id="searchNo" resultType="int" parameterType="String">
 		select stf_no from staff where stf_id = #{rStfId}
@@ -99,4 +123,19 @@ STF_NOTHERE          DATE      -->
 		from staff
 		where stf_id = #{stfId}
 	</select>
+	
+	<!-- 전체 직원 정보 조회 by  STF_NAME-->
+	<select id="getAllStaff" resultMap="staffForLike">
+		<![CDATA[ 
+		select a.*, b.*
+		from (select * from staff s join department d on s.dept_no = d.dept_no) a
+		left outer join staff_like b on a.stf_no = b.wanted_stf_no order by a.stf_name asc
+		  	]]>
+	</select>
+	<delete id="deleteLike" parameterType="map">
+		delete from STAFF_LIKE where HOST_STF_NO=#{hostStfNo} and WANTED_STF_NO=#{wantedStfNo}
+	</delete>
+	<insert id="insertLike" parameterType="map">
+		insert into STAFF_LIKE values(staff_like_seq.nextval, #{hostStfNo}, #{wantedStfNo})
+	</insert>
 </mapper>

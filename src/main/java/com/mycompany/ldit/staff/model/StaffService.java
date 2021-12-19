@@ -1,6 +1,7 @@
 package com.mycompany.ldit.staff.model;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -118,5 +119,21 @@ public class StaffService implements StaffServiceInterface{
 	public List<Staff> getSearchStaff(String user_name) {
 		
 		return StaffDao.getSearchStaffApp();
+	}
+	
+	//직원전체조회
+	@Override
+	public List<Staff> getAllStaff() {
+		return staffDao.getAllStaff();
+	}
+
+	@Override
+	public int deleteLike(Map<String, Object> mapM) {
+		return staffDao.deleteLike(mapM);
+	}
+
+	@Override
+	public int insertLike(Map<String, Object> mapM) {
+		return staffDao.insertLike(mapM);
 	}
 }
