@@ -63,7 +63,7 @@
 					<div id="continueList">
 							<div class="reqColorSmallContinue"></div>
 							<div class="listInfo">
-								<i class="fas fa-user-plus" onclick="location.href='teammain'"></i>
+								<i class="fas fa-user-plus" onclick="location.href='teammain?proNo=${vo.proNo}'"></i>
 								<br>
 								<a href="pupdate?getproNo=${vo.proNo}">제목 : ${vo.proTitle}</a>
 								<br>
@@ -72,7 +72,7 @@
 								<p class="date">마감일 : ${vo.proEnd}</p>
 								<input type="hidden" class="proNo" name="proNo" value="${vo.proNo}">
 								<br>
-								<i class="fas fa-bars" onclick="location.href='csneeds'"></i>
+								<i class="fas fa-bars" onclick="location.href='csneeds?proNo=${vo.proNo}'"></i>
 							</div>
 					</div>
 					</c:forEach>
@@ -83,7 +83,7 @@
 					<div id="finishList">
 							<div class="reqColorSmallFinish"></div>
 							<div class="listInfo">
-								<i class="fas fa-user-plus" onclick="location.href='teammain'"></i>
+								<i class="fas fa-user-plus" onclick="location.href='teammain?proNo=${vo.proNo}'"></i>
 								<br>
 								<a href="pupdate?getproNo=${vo.proNo}">제목 : ${vo.proTitle}</a>
 								<br>
@@ -92,7 +92,7 @@
 								<p class="date">마감일 : ${vo.proEnd}</p>
 								<input type="hidden" class="proNo" name="proNo" value="${vo.proNo}">
 								<br>
-								<i class="fas fa-bars" onclick="location.href='csneeds'"></i>
+								<i class="fas fa-bars" onclick="location.href='csneeds?proNo=${vo.proNo}'"></i>
 							</div>
 					</div>
 					</c:forEach>
