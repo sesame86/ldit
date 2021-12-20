@@ -28,7 +28,7 @@ public class RequirementsRegistController {
 	}
 	@RequestMapping(value = "/csadd", method = RequestMethod.POST)
 	public ModelAndView insertCS(ModelAndView mv, ClientNeeds cvo) {
-		String viewpage = "redirect:csneeds";
+		String viewpage = "redirect:csneeds?proNo="+cvo.getProNo();
 		System.out.println(cvo);
 		try {
 			int result = ClientNeedsService.insertCS(cvo);
