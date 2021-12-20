@@ -17,7 +17,7 @@ public class RequirementsPrioritiesChangeController {
 	
 	@RequestMapping(value = "/updatecs.do", method = RequestMethod.POST)
 	public ModelAndView updateCS(ModelAndView mv, ClientNeeds cvo) {
-		String viewpage = "redirect:csneeds";
+		String viewpage = "redirect:csneeds?proNo="+cvo.getProNo();
 		try {
 			int result = ClientNeedsService.updateCS(cvo);
 		}catch (Exception e) {

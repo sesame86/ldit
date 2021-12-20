@@ -196,6 +196,7 @@
 		}
 		function updatePriority(cnId) {
 			$("#csDetailContent form").append("<input type='hidden' name='cnId' value="+cnId+">");
+			$("#csDetailContent form").append("<input type='hidden' name='proNo' value="+${proNo}+">");
 			$("#updatePr").html("<select id='updatePr' name='cnPriority'><option value='1'>긴급</option><option value='2'>높음</option><option value='3'>보통</option><option value='4'>낮음</option></select> <button type='submit' id='updateBtn'>수정</button>");
 		}
 	</script>
