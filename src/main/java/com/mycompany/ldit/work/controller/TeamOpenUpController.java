@@ -28,17 +28,17 @@ public class TeamOpenUpController {
 	private TeamMemberService TeamMemberService;
 	
 	@RequestMapping(value = "/teamadd", method = RequestMethod.GET)
-	public ModelAndView getTeam(ModelAndView mv, HttpServletRequest request, @RequestParam(value="proNo", required = false) String prono) {
+	public ModelAndView getTeam(ModelAndView mv, HttpServletRequest request, @RequestParam(value="proNo", required = false) int proNo) {
 		String viewpage = "team/team_add";
 		Project vo = null;
 		try {
 			//pro_no 넘기는거 받아오기 전까지
-			int proNo = 1;
-			if(prono == null) {
-				proNo = 2;				
-			} else {
-				proNo = Integer.parseInt(prono);
-			}
+//			int proNo = 1;
+//			if(prono == null) {
+//				proNo = 2;				
+//			} else {
+//				proNo = Integer.parseInt(prono);
+//			}
 			System.out.println("teamadd에서 proNo"+proNo);
 			vo = TeamService.getOneProject(proNo);
 			viewpage = "team/team_add";
@@ -64,7 +64,7 @@ public class TeamOpenUpController {
 	}
 	@RequestMapping(value = "/teamadd", method = RequestMethod.POST)
 	public ModelAndView postTeam(ModelAndView mv, Team tvo, HttpServletRequest request) {
-		String viewpage = "redirect:teammain";
+		String viewpage = "redirect:teammain?proNo="+tvo.getProNo();
 		try {
 			int result1 = 0;
 			int result2 = 0;
@@ -72,7 +72,7 @@ public class TeamOpenUpController {
 			int getTeamId = 0;
 			//int checkTM = -1;
 			String update = request.getParameter("update");
-			
+			System.out.println("open"+tvo);
 			if(update != null) { //팀 수정
 				int updateInt = Integer.parseInt(update);
 				System.out.println(updateInt);
@@ -92,11 +92,13 @@ public class TeamOpenUpController {
 				result1 = TeamService.insertTeam(tvo);
 				getTeamId = TeamService.checkTeamId(tvo);
 				if(getTeamId != 0) {
+					System.out.println("팀개설진입");
 					for(int i=0; i<tvo.getStaffList().size(); i++) {
 						TeamMember tmVo = new TeamMember();
 						tmVo.setTeamId(getTeamId);
 						tmVo.setStfNo(tvo.getStaffList().get(i).getStfNo());
 						result3 = TeamMemberService.insertTeamMember(tmVo);
+						System.out.println("팀원추가진입");
 					}
 				}
 			}

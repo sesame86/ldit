@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,17 +52,18 @@ public class TeamGoalUpdateController {
 		return taVo;
 	}
 	@RequestMapping(value = "/goalupdate", method = RequestMethod.POST)
-	public ModelAndView updateTeamGoal(ModelAndView mv, TeamAim tAimVo) {
-		String viewpage = "redirect:teammain";
+	public ModelAndView updateTeamGoal(ModelAndView mv, TeamAim tAimVo, @RequestParam(value="proNo", required = false) int proNo) {
+		System.out.println(proNo);
+		String viewpage = "redirect:teammain?proNo="+proNo;
 		int result = 0;
 		System.out.println(tAimVo);
 		try {
 			result = TeamAimService.updateTeamGoal(tAimVo);
 			if(result>0) {
-				viewpage = "redirect:teammain";
+				viewpage = "redirect:teammain?proNo="+proNo;
 				mv.addObject("msg", "팀의 목표를 등록하였습니다.");
 			}else {
-				viewpage = "redirect:teammain";
+				viewpage = "redirect:teammain?proNo="+proNo;
 				mv.addObject("msg", "팀의 목표를 등록에 실패하였습니다.");
 			}
 		} catch (Exception e) {

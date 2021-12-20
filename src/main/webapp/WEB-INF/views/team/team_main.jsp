@@ -34,7 +34,7 @@
             <c:forEach var="vo" items="${getTeam}">
                 <article class="card">
                 		<c:if test="${rightNo == 1}">
-			            	<a href="teamadd?update=${vo.teamId}" id="teamUpdate"><i class="fas fa-sync-alt"></i></a>
+			            	<a href="teamadd?update=${vo.teamId}&proNo=${proNo}" id="teamUpdate"><i class="fas fa-sync-alt"></i></a>
 			            </c:if>
 						<c:if test="${vo.teamAim.aimFinish == 'N'.charAt(0)}">
 							<c:if test="${vo.teamAim.aimStatus == 0}">
@@ -112,6 +112,7 @@
 		        </div>
 		        <form method="post" action="goaladd" id="tgModalFrm">
 		        	<div id="tgForm">
+		        		<input type="hidden" id="proNo" name="proNo" value="${proNo}">
 		        		<input type="hidden" id="teamId" name="teamId" value="0">
 		        		<label>목표 제목</label>
 			        	<input name="aimTitle" required="required" id="aimTitle">
@@ -144,6 +145,7 @@
 		        </div>
 		        <form id="tgModalFrm">
 		        	<div id="tgForm">
+		        		<input type="hidden" id="proNo" name="proNo" value="${proNo}">
 		        		<input type="hidden" id="teamId1" name="teamId1" value="0" readonly="readonly">
 		        		<label>목표 제목</label>
 			        	<input name="aimTitle1" id="aimTitle1" readonly="readonly">
