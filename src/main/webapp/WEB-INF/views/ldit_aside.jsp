@@ -26,20 +26,15 @@
           </div>
   
           <button class="aside-accordion"><p class="float-L"><i class="fas fa-sitemap"></i><p class="mobile-hidden">&nbsp&nbsp 직원 정보</p><i class="fas fa-angle-down float-R"></i></p> </button>
-          <c:if test="${loginUser.deptNo==3}">
-          <div class="panel">
-			<p class="pd1" onclick="location.href='organization'">조직도</p>
-			<p class="pd1" onclick="location.href='eupdate'">개인 정보 수정</p>
-          	<p class="pd1" onclick="location.href='eregist'">직원 등록</p>
-          	<p class="pd1" onclick="location.href='edelete'">직원 정보 삭제</p>                            
-          </div>
-  		</c:if>
-  		<c:if test="${loginUser.deptNo!=3}">
+
   		<div class="panel">
 			<p class="pd1" onclick="location.href='organization'">조직도</p>
-			<p class="pd1" onclick="location.href='eupdate'">개인 정보 수정</p>                      
+			<p class="pd1" onclick="location.href='eupdate'">개인 정보 수정</p>        
+			<c:if test="${loginUser.deptNo eq 3}">
+			<p class="pd1" onclick="location.href='eregist'">직원 등록</p>
+          	<p class="pd1" onclick="location.href='edelete'">직원 정보 삭제</p>  
+			</c:if>             
           </div>
-  		</c:if>
           <button class="aside-accordion"><p class="float-L"><i class="far fa-envelope"></i><p class="mobile-hidden">&nbsp&nbsp 쪽지</p><i class="fas fa-angle-down float-R"></i></p></button>
           <div class="panel"  >
               <p class="pd1" onclick="location.href='sendMsg'">쪽지보내기</p>
