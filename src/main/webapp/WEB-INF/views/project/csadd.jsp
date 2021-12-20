@@ -30,7 +30,7 @@
 		<div id="csAddCon">
 			<h1>고객 요구사항 등록</h1>
 			<article>
-				<form id="csAddFrm" action="csadd" method="post">
+				<form id="csAddFrm" action="csadd?proNo=${proNo}" method="post">
 					<div id="csGrid">
 						<input type="hidden" id="proNo" name="proNo" value="${proNo}">
 						<label>요구사항 제목</label>
