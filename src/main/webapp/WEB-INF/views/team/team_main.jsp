@@ -28,7 +28,7 @@
         <div id="teamContainer">
             <h1>Team</h1>
             <c:if test="${rightNo == 1}">
-            	<a href="teamadd" id="teamAdd"><i class="fas fa-user-plus"></i></a>
+            	<a href="teamadd?proNo=${proNo}" id="teamAdd"><i class="fas fa-user-plus"></i></a>
             </c:if>
             <div id="teamConGrid">
             <c:forEach var="vo" items="${getTeam}">
