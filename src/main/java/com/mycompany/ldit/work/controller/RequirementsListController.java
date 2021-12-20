@@ -32,7 +32,7 @@ public class RequirementsListController {
 		List<ClientNeeds> highList = null;
 		List<ClientNeeds> normalList = null;
 		List<ClientNeeds> lowList = null;
-		int proNo = 41;
+		int proNo = -1;
 		try {
 			//pro_no 넘기는거 받아오기 전까지
 			if(prono == null) {
@@ -40,7 +40,7 @@ public class RequirementsListController {
 			} else {
 				proNo = Integer.parseInt(prono);
 			}
-			System.out.println("proNo"+proNo);
+			System.out.println("csneeds proNo"+proNo);
 			Staff loginUser = (Staff)session.getAttribute("loginUser");
 			int rightNo = TeamService.getStaffRight(loginUser.getStfNo());
 			mv.addObject("rightNo", rightNo);

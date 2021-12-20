@@ -43,7 +43,7 @@
 					<div id="newList">
 							<div class="reqColorSmallNew"></div>
 							<div class="listInfo">
-								<i class="fas fa-user-plus" onclick="location.href='teammain'"></i>
+								<i class="fas fa-user-plus" onclick="location.href='teammain?proNo=${vo.proNo}'"></i>
 								<br>
 								<a href="pupdate?getproNo=${vo.proNo}">제목 : ${vo.proTitle}</a>
 								<br>
