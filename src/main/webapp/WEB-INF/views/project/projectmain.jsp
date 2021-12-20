@@ -52,7 +52,7 @@
 								<p class="date">마감일 : ${vo.proEnd}</p>
 								<input type="hidden" class="proNo" name="proNo" value="${vo.proNo}">
 								<br>
-								<i class="fas fa-bars" onclick="location.href='csneeds'"></i>
+								<i class="fas fa-bars" onclick="location.href='csneeds?proNo=${vo.proNo}'"></i>
 							</div>
 					</div>
 					</c:forEach>

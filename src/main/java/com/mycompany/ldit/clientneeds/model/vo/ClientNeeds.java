@@ -12,6 +12,8 @@ public class ClientNeeds {
 	public ClientNeeds() {
 		super();
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "ClientNeeds [cnId=" + cnId + ", proNo=" + proNo + ", cnTitle=" + cnTitle + ", cnContent=" + cnContent

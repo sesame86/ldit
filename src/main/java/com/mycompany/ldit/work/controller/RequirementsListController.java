@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,15 +26,21 @@ public class RequirementsListController {
 	private TeamService TeamService;
 	
 	@RequestMapping(value = "/csneeds", method = RequestMethod.GET)
-	public ModelAndView getNeedsList(ModelAndView mv, HttpSession session) {
+	public ModelAndView getNeedsList(ModelAndView mv, HttpSession session, @RequestParam(value="proNo", required = false) String prono) {
 		String viewpage = "project/csneeds";
 		List<ClientNeeds> urgentList = null;
 		List<ClientNeeds> highList = null;
 		List<ClientNeeds> normalList = null;
 		List<ClientNeeds> lowList = null;
+		int proNo = 41;
 		try {
 			//pro_no 넘기는거 받아오기 전까지
-			int proNo = 1;
+			if(prono == null) {
+				proNo = 2;				
+			} else {
+				proNo = Integer.parseInt(prono);
+			}
+			System.out.println("proNo"+proNo);
 			Staff loginUser = (Staff)session.getAttribute("loginUser");
 			int rightNo = TeamService.getStaffRight(loginUser.getStfNo());
 			mv.addObject("rightNo", rightNo);
