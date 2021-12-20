@@ -80,19 +80,19 @@
                 <div id="info_alert">
                 	<table>
                 		<tr>
-                			<td><MARQUEE scrollamount="5"><span><i class="fas fa-exclamation-circle"></i></span> No.50 [공지] 원격훈련 중 부정훈련 예방을 위한 모니터링 실시(운영부)</MARQUEE></td>
+                			<td><MARQUEE scrollamount="0"><span><i class="fas fa-exclamation-circle"></i></span> No.50 [공지] 원격훈련 중 부정훈련 예방을 위한 모니터링 실시(운영부)</MARQUEE></td>
                 		</tr>
                 		<tr>
-                			<td><MARQUEE scrollamount="5"><span><i class="fas fa-exclamation-circle"></i></span> No.49 훈련장려금 신청(단위기간: 2021-10-19~2021-11-18)</MARQUEE></td>
+                			<td><MARQUEE scrollamount="0"><span><i class="fas fa-exclamation-circle"></i></span> No.49 훈련장려금 신청(단위기간: 2021-10-19~2021-11-18)</MARQUEE></td>
                 		</tr>
                 		<tr>
-	                		<td><MARQUEE scrollamount="5"><span><i class="fas fa-exclamation-circle"></i></span> No.48 [행정]7/19 행정팀 OT자료입니다.(고용노동부 규정, 학습안내서 및 평가계획서)</MARQUEE></td>
+	                		<td><MARQUEE scrollamount="0"><span><i class="fas fa-exclamation-circle"></i></span> No.48 [행정]7/19 행정팀 OT자료입니다.(고용노동부 규정, 학습안내서 및 평가계획서)</MARQUEE></td>
                 		</tr>
                 		<tr>
-	                		<td><MARQUEE scrollamount="5"><span><i class="fas fa-exclamation-circle"></i></span> No.47 [공지]평가 일정표 안내(인사부)</MARQUEE></td>
+	                		<td><MARQUEE scrollamount="0"><span><i class="fas fa-exclamation-circle"></i></span> No.47 [공지]평가 일정표 안내(인사부)</MARQUEE></td>
                 		</tr>
                 		<tr>
-	                		<td><MARQUEE scrollamount="5"><span><i class="fas fa-exclamation-circle"></i></span> No.46 글로벌사회공헌원 글로벌지속가능발전포럼(GEEF) 2022 Internship 모집 (~12/16)</MARQUEE></td>
+	                		<td><MARQUEE scrollamount="0"><span><i class="fas fa-exclamation-circle"></i></span> No.46 글로벌사회공헌원 글로벌지속가능발전포럼(GEEF) 2022 Internship 모집 (~12/16)</MARQUEE></td>
                 		</tr>
                 	</table>
                 </div>
